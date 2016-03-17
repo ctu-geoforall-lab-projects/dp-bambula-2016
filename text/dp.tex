@@ -57,46 +57,46 @@
 % TITULNÍ STRANA 11111111111
 % =========================
 
-\begin{titlepage}
-
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-
-\center % Center everything on the page
- 
-%----------------------------------------------------------------------------------------
-%	HEADING SECTIONS
-%----------------------------------------------------------------------------------------
-
-\textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
-\textsc{\Large Fakulta stavební} % Major heading such as course name
-
-
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
-
-\vfill
-
-\textsc{\LARGE Diplomová práce}
- 
-%----------------------------------------------------------------------------------------
-%	AUTHOR SECTION
-%----------------------------------------------------------------------------------------
-\vfill
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} 
-\large 2016	% datum
-\end{flushleft}
-\end{minipage}
-~
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} 
-\large Bc. Štěpán \textsc{Bambula} \\ % Your name
-\end{flushright}
-\end{minipage}\\[1cm]
- 
-\end{titlepage}
-% -------------------------------------------------------------------------------------------------------------
+% \begin{titlepage}
+% 
+% \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+% 
+% \center % Center everything on the page
+%  
+% %----------------------------------------------------------------------------------------
+% %	HEADING SECTIONS
+% %----------------------------------------------------------------------------------------
+% 
+% \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
+% \textsc{\Large Fakulta stavební} % Major heading such as course name
+% 
+% 
+% %----------------------------------------------------------------------------------------
+% %	TITLE SECTION
+% %----------------------------------------------------------------------------------------
+% 
+% \vfill
+% 
+% \textsc{\LARGE Diplomová práce}
+%  
+% %----------------------------------------------------------------------------------------
+% %	AUTHOR SECTION
+% %----------------------------------------------------------------------------------------
+% \vfill
+% \begin{minipage}{0.4\textwidth}
+% \begin{flushleft} 
+% \large 2016	% datum
+% \end{flushleft}
+% \end{minipage}
+% ~
+% \begin{minipage}{0.4\textwidth}
+% \begin{flushright} 
+% \large Bc. Štěpán \textsc{Bambula} \\ % Your name
+% \end{flushright}
+% \end{minipage}\\[1cm]
+%  
+% \end{titlepage}
+% % -------------------------------------------------------------------------------------------------------------
 
 
 % =========================
@@ -192,6 +192,7 @@ Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Pra
 
 \vspace{12pt}
 
+VFK, QGIS, ČUZK, Python, C++, PyQt, GDAL
 
 
 \vfill
@@ -208,6 +209,7 @@ Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Pra
 \textsc{\Large Keywords}
 
 \vspace{12pt}
+VFK, QGIS, CUZK, Python, C++, PyQt, GDAL
 
 
 \vfill
@@ -257,6 +259,12 @@ V~Praze dne \dots \dots \dots \\
 \rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
 \section*{Seznam použitých zkratek}
 
+\begin{description}
+\item[VFK] Výměnný formát katastru nemovitostí
+\item[ČUZK] Český úřad zeměměřický a katastrální
+\item[GDAL] Geospatial Data Abstraction Library
+\end{description}
+
 
 %=========================OBSAH=======================================
 \clearpage
@@ -269,6 +277,45 @@ V~Praze dne \dots \dots \dots \\
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{arabic} % číslování arabskými
 \rhead{Úvod}		 % vpravo název kapitoly
+\section*{Úvod}
+\addcontentsline{toc}{section}{Úvod}
+
+
+
+
+\clearpage
+\rhead{{\rightmark}}
+\section{Rešerše dostupných nástrojů}
+
+
+\clearpage
+\section{Použitý software}
+
+\subsection{QGIS}
+
+\subsection{Python}
+
+\cite{dive_into_python}
+
+\subsection{C++}
+
+\subsection{PyQt}
+
+
+\clearpage
+\section{Formát VFK}
+
+\cite{dp_landa}
+\cite{vfk_struktura}
+
+
+
+
+
+
+
+
+
 
 
 

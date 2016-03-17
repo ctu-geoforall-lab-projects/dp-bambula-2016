@@ -1,0 +1,330 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}	% kódování textu
+\usepackage[czech]{babel}		% zavedení češtiny
+\usepackage[IL2]{fontenc}
+\usepackage[pdftex]{hyperref}	% veškeré klikací odkazy
+\usepackage{a4wide}
+\usepackage{indentfirst}	% odsazení prvního řádku odstavce
+\usepackage{amsmath,amsfonts,amssymb}	% matematika
+\usepackage{graphicx}	% grafika
+\usepackage{multirow}	% slouceni radek v tabulce
+\usepackage{multicol}	% slouceni sloupcu v tabulce
+\usepackage{longtable}	% rozdeleni tabulky pres vice stran
+\usepackage{enumerate}	% seznamy
+\usepackage{float}
+\usepackage{booktabs}	% professional tables
+\usepackage{lscape}		% stranka na sirku
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{array}
+\usepackage{subfigure}
+
+
+% nastavení příkazu URL podle normy ISO
+%\DeclareUrlCommand\url{\def\UrlLeft{< }\def\UrlRight{ >} \urlstyle{tt}}	% správné zobrazení www
+
+\setlength{\parskip}{1ex}
+
+
+\begin{document}
+% ===============================================================
+% NASTAVENI ZAHLAVI A ZAPATI	
+% ===============================================================
+% uvodni stranka zahlavi ani zapati mit nebude
+\thispagestyle{empty}
+ % vlevo text a název aktuální sekce
+\lhead{\includegraphics[scale=0.2]{images/cvut_logo.png}\hspace{10pt}ČVUT v~Praze}
+ % vpravo název kapitoly
+\rhead{{\rightmark}}
+
+ % nastavime pouziti naseho stylu
+\pagestyle{fancy}
+
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}{}}
+
+\fancypagestyle{plain}{
+  \fancyhead{} % na prázdných stránkách nechci záhlaví
+  \renewcommand{\headrulewidth}{0pt} % ani linku
+}
+
+% =========================
+% TITULNÍ STRANA 11111111111
+% =========================
+
+% \begin{titlepage}
+% 
+% \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+% 
+% \center % Center everything on the page
+%  
+% %----------------------------------------------------------------------------------------
+% %	HEADING SECTIONS
+% %----------------------------------------------------------------------------------------
+% 
+% \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
+% \textsc{\Large Fakulta stavební} % Major heading such as course name
+% 
+% 
+% %----------------------------------------------------------------------------------------
+% %	TITLE SECTION
+% %----------------------------------------------------------------------------------------
+% 
+% \vfill
+% 
+% \textsc{\LARGE Diplomová práce}
+%  
+% %----------------------------------------------------------------------------------------
+% %	AUTHOR SECTION
+% %----------------------------------------------------------------------------------------
+% \vfill
+% \begin{minipage}{0.4\textwidth}
+% \begin{flushleft} 
+% \large 2016	% datum
+% \end{flushleft}
+% \end{minipage}
+% ~
+% \begin{minipage}{0.4\textwidth}
+% \begin{flushright} 
+% \large Bc. Štěpán \textsc{Bambula} \\ % Your name
+% \end{flushright}
+% \end{minipage}\\[1cm]
+%  
+% \end{titlepage}
+% % -------------------------------------------------------------------------------------------------------------
+
+
+% =========================
+% TITULNÍ STRANA 2222222222
+% =========================
+
+\begin{titlepage}
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
+\textsc{\Large Fakulta stavební}\\[0.5cm] % Major heading such as course name
+\textsc{\large Studijní program: Geodézie a kartografie}\\[0.5cm] % Minor heading such as course title
+\textsc{\large Studijní obor: Geomatika}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\vspace{50pt}
+
+\includegraphics[scale=1.2]{images/cvut_logo.png}  % Include a department/university logo 
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\vspace{40pt}
+
+\textsc{\Large Diplomová práce}\\
+\vfill
+\textsc{\LARGE  Rozšíření nástroje pro práci s~katastrálními daty v~programu QGIS}\\[0.5cm] % Title of your document
+
+\textsc{\Large QGIS VFK Plugin Improvements}
+ 
+ 
+ %----------------------------------------------------------------------------------------
+%	VEDOUCÍ PRÁCE
+%----------------------------------------------------------------------------------------
+ \vfill
+\large Vedoucí práce: Ing. Martin \textsc{Landa}, Ph.D.
+
+Katedra geomatiky
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vfill
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} 
+\large 2016	% datum
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} 
+\large Bc. Štěpán \textsc{Bambula} \\ % Your name
+\end{flushright}
+\end{minipage}\\[1cm]
+ 
+\end{titlepage}
+
+%========================= ZADÁNÍ PRÁCE =================================
+\clearpage
+\pagestyle{empty}
+
+\vspace*{\fill}
+\begin{center}
+\textsc{\Large Zde vložit zadání práce!!!}
+\end{center}
+
+\vspace*{\fill}
+
+%========================= ABSTRAKT =====================================
+\clearpage
+
+\hfill
+
+\noindent
+\textsc{\Large Abstrakt}
+
+\vspace{12pt}
+
+Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Praze zaměřený na práci s~katastrálními daty poskytovanými ve výměnném formátu VFK v~prostředí open source nástroje QGIS. Práce navazuje na již existující nástroj implementovaný jako tzv. zásuvný modul a rozšiřuje ho o~novou funkctionalitu a to především zpracování a vizualizaci datových vět změnových souborů VFK. Druhotným cílem je usnadnění distribuce zásuvného modulu v~prostředí QGIS s~důrazem na jeho přenositelnost.
+
+\vspace{32pt}
+
+\noindent
+\textsc{\Large Klíčová slova}
+
+\vspace{12pt}
+
+VFK, QGIS, ČUZK, Python, PyQt
+
+
+\vfill
+
+\noindent
+\textsc{\Large Abstract}
+
+\vspace{12pt}
+
+
+\vspace{32pt}
+
+\noindent
+\textsc{\Large Keywords}
+
+\vspace{12pt}
+VFK, QGIS, CUZK, Python, PyQt
+
+
+\vfill
+
+%========================= PROHLÁŠENÍ ==================================
+\clearpage
+\vspace*{\fill}
+
+\noindent
+\textsc{\Large Prohlášení}
+
+\vspace{12pt}
+Prohlašuji, že jsem diplomovou práci na téma \uv{Rozšíření nástroje pro práci s~katastrálními daty v~programu QGIS} vypracoval samostatně. Všechny podklady, ze kterých jsem čerpal, jsou uvedeny v~seznamu použité literatury.
+
+\vspace{24pt}
+\noindent
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft}
+\center 
+V~Praze dne \dots \dots \dots \\
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.8\textwidth}
+\begin{flushright} 
+\vspace{20pt}
+\center
+\dots \dots \dots \dots \dots \dots \dots \dots \\
+Štěpán Bambula
+\end{flushright}
+\end{minipage}\\[2cm]
+
+
+%========================= PODĚKOVÁNÍ ==================================
+\clearpage
+\vspace*{\fill}
+
+\noindent
+\textsc{\Large Poděkování}
+
+\vspace{12pt}
+
+\vspace{2cm}
+
+%======================POUZITE ZKRATKY===============================
+\clearpage
+\rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
+\section*{Seznam použitých zkratek}
+
+
+%=========================OBSAH=======================================
+\clearpage
+\rhead{{\rightmark}}		% vpravo název kapitoly
+\tableofcontents
+
+%============================ÚVOD====================================
+\clearpage
+\pagestyle{fancy}		% nastaví styl stránky a číslování
+\setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
+\pagenumbering{arabic} % číslování arabskými
+\rhead{Úvod}		 % vpravo název kapitoly
+\section*{Úvod}
+\addcontentsline{toc}{section}{Úvod}
+
+
+
+
+\clearpage
+\rhead{{\rightmark}}
+\section{Rešerše dostupných nástrojů}
+
+
+\clearpage
+\section{Použitý software}
+
+
+\clearpage
+\section{Formát VFK}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%======================CITACE=========================================
+\clearpage
+\rhead{{\rightmark}}		% vpravo název kapitoly
+\renewcommand{\refname}{Použitá literatura}
+\bibliography{citace}
+\bibliographystyle{czechiso}
+
+%======================SEZNAM OBRÁZKŮ===============================
+\clearpage
+\listoffigures
+
+%======================SEZNAM TABULEK================================
+\clearpage
+\listoftables
+
+%====================== PŘÍLOHY ========================================
+\newpage
+\appendix
+
+\setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
+\pagenumbering{Roman} % číslování arabskými
+
+%-----------------------------------------------
+
+
+\end{document}

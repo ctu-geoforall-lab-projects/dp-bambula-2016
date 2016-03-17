@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\selectlanguage}[1]{\relax}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{dp_landa}
+LANDA, M.: \emph{Návrh modulu GRASSu pro import dat ve výměnném formátu
+  ISKN}. Diplomová práce, České vysoké učení technické, Praha, 2005.
+\newline\urlprefix\url{http://goo.gl/5ZzQps}
+
+\bibitem{dive_into_python}
+PILGRIM, M.: \emph{Dive into Python}. Berkeley: Apress, 7 2004, ISBN
+  978-1-59059-356-1.
+
+\bibitem{vfk_struktura}
+{Struktura VFK}. [online], cit. 2016-03-15.
+\newline\urlprefix\url{http://goo.gl/2I22N6}
+
+\end{thebibliography}
