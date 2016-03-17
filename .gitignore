@@ -5,6 +5,11 @@ BP.pdf
 *.out
 *.toc
 *.dvi
+*.bbl
+*.blg
+*.lof
+*.lot
+*.backup
 
 # Directories
 vlna/

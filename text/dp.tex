@@ -285,22 +285,28 @@ V~Praze dne \dots \dots \dots \\
 
 \clearpage
 \rhead{{\rightmark}}
-\section{Rešerše dostupných nástrojů}
+\section{Dostupné nástroje pro práci s~VFK}
 
 
 \clearpage
-\section{Použitý software}
+\section{Použité technologie}
 
 \subsection{QGIS}
 
 \subsection{Python}
 
+Jazyk Python je objektově orientovaný programovací jazyk, který efektivně používá víceúrovňové datové typy. Jedná se o~jazyk interpretovaný, čímž se jeví jako ideální nástroj pro psaní skriptů, ale i rychlý vývoj aplikací. Je vyvíjen jako open-source\footnote{Open-source software je takový software, k~němuž zákazník dostane od jeho tvůrce zdrojový kód a může jej dále upravovat. Jednotlivé definice termínu \uv{open source} se liší zvláště v~podmínkách pro další distribuci softwaru.\cite{abclinuxu_opensource}} software, díky čemuž se stává použitelným na velkém množství platforem (Linux, Windows, MacOS, \dots). Jazyk je rozšířitelný o~široké spektrum modulů, které umožňují řešit problematiku takřka z~jakékoli oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi 2.x a v~novější verzi 3.x.
 \cite{dive_into_python}
-
-\subsection{C++}
+\cite{python_web}
 
 \subsection{PyQt}
 
+PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, GNU GPL v3 a  Riverbank Commercial License. Spolu s~těmito licencemi je dostupné i pod komerční licencí.
+
+Pro grafický návrh aplikace je vhodné použít nativní grafické uživatelské rozhraní Qt Designer. Výstupem z~tohoto programu je soubor obsahující vzhled aplikace ve formátu \textit{.xml}. PyQt je poté schopné tento formát převést do kódu jazyka Python. Pro komunikaci mezi objekty je využíváno signálů a slotů, díky čemuž je vytvoření komponent velice snadné.
+
+PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což z~něj dělá výkonný nástroj pro vývoj grafických aplikací.
+\cite{pyqt}
 
 \clearpage
 \section{Formát VFK}
