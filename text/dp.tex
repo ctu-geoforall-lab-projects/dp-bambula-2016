@@ -112,7 +112,7 @@
 
 \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
 \textsc{\Large Fakulta stavební}\\[0.5cm] % Major heading such as course name
-\textsc{\large Studijní program: Geodézie a kartografie}\\[0.5cm] % Minor heading such as course title
+\textsc{\large Studijní program: Geodézie a~kartografie}\\[0.5cm] % Minor heading such as course title
 \textsc{\large Studijní obor: Geomatika}\\[0.5cm] % Minor heading such as course title
 
 %----------------------------------------------------------------------------------------
@@ -183,7 +183,7 @@ Katedra geomatiky
 
 \vspace{12pt}
 
-Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Praze zaměřený na práci s~katastrálními daty poskytovanými ve výměnném formátu VFK v~prostředí open source nástroje QGIS. Práce navazuje na již existující nástroj implementovaný jako tzv. zásuvný modul a rozšiřuje ho o~novou funkctionalitu a to především zpracování a vizualizaci datových vět změnových souborů VFK. Druhotným cílem je usnadnění distribuce zásuvného modulu v~prostředí QGIS s~důrazem na jeho přenositelnost.
+Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Praze zaměřený na práci s~katastrálními daty poskytovanými ve výměnném formátu VFK v~prostředí open source nástroje QGIS. Práce navazuje na již existující nástroj implementovaný jako tzv. zásuvný modul a~rozšiřuje ho o~novou funkctionalitu a~to především zpracování a~vizualizaci datových vět změnových souborů VFK. Druhotným cílem je usnadnění distribuce zásuvného modulu v~prostředí QGIS s~důrazem na jeho přenositelnost.
 
 \vspace{32pt}
 
@@ -192,7 +192,7 @@ Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Pra
 
 \vspace{12pt}
 
-VFK, QGIS, ČUZK, Python, C++, PyQt, GDAL
+VFK, QGIS, ČUZK, Python, C++, PyQt, GDAL, zásuvný modul
 
 
 \vfill
@@ -209,7 +209,7 @@ VFK, QGIS, ČUZK, Python, C++, PyQt, GDAL
 \textsc{\Large Keywords}
 
 \vspace{12pt}
-VFK, QGIS, CUZK, Python, C++, PyQt, GDAL
+VFK, QGIS, CUZK, Python, C++, PyQt, GDAL, plugin
 
 
 \vfill
@@ -261,8 +261,10 @@ V~Praze dne \dots \dots \dots \\
 
 \begin{description}
 \item[VFK] Výměnný formát katastru nemovitostí
-\item[ČUZK] Český úřad zeměměřický a katastrální
+\item[ČUZK] Český úřad zeměměřický a~katastrální
 \item[GDAL] Geospatial Data Abstraction Library
+\item[GIS] Geografický informační systém
+\item[OSGeo] Open Source Geospatial Foundation
 \end{description}
 
 
@@ -293,7 +295,7 @@ V~Praze dne \dots \dots \dots \\
 
 \subsection{QGIS}
 
-\cite{qgis}
+QGIS je geografický informační systém, který je distribuován jako open-source\footnote{Open-source software je takový software, k~němuž zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále upravovat. Jednotlivé definice termínu \uv{open source} se liší zvláště v~podmínkách pro další distribuci softwaru.\cite{abclinuxu_opensource}} pod licencí \textit{GNU General Public License}. Je oficiálním a~klíčovým produktem organizace OSGeo. Díky přenositelnosti zdrojového kódu je použitelný na širokém spektru platforem, ať už jsou to desktopové platformy Linux, MacOS, Windows, nebo mobilní platforma Android.
 
 \begin{figure}[htb]
 \centering
@@ -301,9 +303,33 @@ V~Praze dne \dots \dots \dots \\
 \caption[QGIS -- logo]{QGIS -- logo (zdroj: \cite{qgis})}
 \end{figure}
 
+Program umožňuje prohlížení, tvorbu a~editaci velkého množství vektorových (Esri Shapefile, GeoJSON, GPX, \dots), ale i~rastrových (GeoTIFF, JPEG, \dots) nebo databázových formátů. Podporuje zpracování dat GPS a~tvorbu mapových výstupů. Mimo jiné umožňuje provádět prostorové analýzy, analýzy terénu nebo analýzy síťové, práci s~mapovou algebrou a~mnoho dalšího.
+
+QGIS nedisponuje tak širokou paletou nástrojů, jako jeho open-source kolega GRASS GIS. Jeho funkcionalita ale může být rozšířena díky nepřebernému množství zásuvných modulů. Jedním z~nejdůležitějších modulů pro analýzu geografických dat je zásuvný modul GRASS GIS, který zpřístupňuje funkce stejnojmenného programu. QGIS poté může sloužit jako jeho nadstavba.
+\cite{qgis}
+\cite{qgis_wiki}
+
+
+\subsection{GDAL/OGR}
+
+GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihovna je vyvíjena pod hlavičkou Open Source Geospatial Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá jednoduchý abstraktní datový model pro všechny podporované datové formáty. Kromě toho nabízí také řadu užitečných nástrojů pro příkazovou řádku určených pro konverzi a~zpracování dat. \cite{gdal_wiki}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{images/gdal-logo.png}
+\caption[GDAL -- logo]{GDAL -- logo (zdroj: \cite{gdal})}
+\end{figure}
+
+GDAL byla původně vyvíjena Frankem Warmerdamem a~to do verze 1.3.2, posléze byla knihovna převedena na GDAL/OGR Project Management Committee, která je součástí Open Source Geospatial Foundation.\cite{gdal_wiki}
+
+Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL/OGR, slouží pro práci s~daty ve vektorovém formátu.\cite{gdal}
+
+GDAL/OGR je považován za jeden z~hlavních open-source projektů. Knihovna je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená a~poskytuje základní funkcionalitu potřebnou pro denní práci s rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
+
+
 \subsection{Python}
 
-Jazyk Python je objektově orientovaný programovací jazyk, který efektivně používá víceúrovňové datové typy. Jedná se o~jazyk interpretovaný, čímž se jeví jako ideální nástroj pro psaní skriptů, ale i rychlý vývoj aplikací. Je vyvíjen jako open-source\footnote{Open-source software je takový software, k~němuž zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále upravovat. Jednotlivé definice termínu \uv{open source} se liší zvláště v~podmínkách pro další distribuci softwaru.\cite{abclinuxu_opensource}} software, díky čemuž se stává použitelným na velkém množství platforem (Linux, Windows, MacOS, \dots). Jazyk je rozšířitelný o~široké spektrum modulů, které umožňují řešit problematiku takřka z~jakékoli oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi 2.x a v~novější verzi 3.x.
+Jazyk Python je objektově orientovaný programovací jazyk, který efektivně používá víceúrovňové datové typy. Jedná se o~jazyk interpretovaný, čímž se jeví jako ideální nástroj pro psaní skriptů, ale i~rychlý vývoj aplikací. Je vyvíjen jako open-source software, díky čemuž se stává použitelným na velkém množství platforem (Linux, Windows, MacOS, \dots). Jazyk je rozšířitelný o~široké spektrum modulů, které umožňují řešit problematiku takřka z~jakékoli oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi 2.x a~v~novější verzi 3.x.
 \cite{dive_into_python}
 \cite{python_web}
 
@@ -315,7 +341,7 @@ Jazyk Python je objektově orientovaný programovací jazyk, který efektivně p
 
 \subsection{PyQt}
 
-PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, GNU GPL v3 a  Riverbank Commercial License. Spolu s~těmito licencemi je dostupné i pod komerční licencí.
+PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a~nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a~ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, \textit{GNU GPL v3} a~\textit{Riverbank Commercial License}. Spolu s~těmito licencemi je dostupné i~pod komerční licencí.
 
 \begin{figure}[htb]
 \centering
@@ -323,11 +349,12 @@ PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python
 \caption[PyQt -- logo]{PyQt -- logo (zdroj: \cite{pyqt_wiki})}
 \end{figure}
 
-Pro grafický návrh aplikace je vhodné použít nativní grafické uživatelské rozhraní Qt Designer. Výstupem z~tohoto programu je soubor obsahující vzhled aplikace ve formátu \textit{.xml}. PyQt je poté schopné tento formát převést do kódu jazyka Python. Pro komunikaci mezi objekty je využíváno signálů a slotů, díky čemuž je vytvoření komponent velice snadné.
+Pro grafický návrh aplikace je vhodné použít nativní grafické uživatelské rozhraní Qt Designer. Výstupem z~tohoto programu je soubor obsahující vzhled aplikace ve formátu \textit{.xml}. PyQt je poté schopné tento formát převést do kódu jazyka Python. Pro komunikaci mezi objekty je využíváno signálů a~slotů, díky čemuž je vytvoření komponent velice snadné.
 
 PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což z~něj dělá výkonný nástroj pro vývoj grafických aplikací.
 \cite{pyqt}
 \cite{pyqt_wiki}
+
 
 
 \clearpage

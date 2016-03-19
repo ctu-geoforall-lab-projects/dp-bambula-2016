@@ -1,6 +1,5 @@
 *.aux
 *.log
-BP.pdf
 *.bak
 *.out
 *.toc
@@ -10,6 +9,7 @@ BP.pdf
 *.lof
 *.lot
 *.backup
+*.te~
 
 # Directories
 vlna/
