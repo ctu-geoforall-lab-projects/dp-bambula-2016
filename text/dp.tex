@@ -2,7 +2,8 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[12pt]{article}
+%\documentclass[12pt]{article}
+\documentclass[a4paper,12pt,oneside]{book}
 
 \usepackage[utf8]{inputenc}	% kódování textu
 \usepackage[czech]{babel}		% zavedení češtiny
@@ -25,6 +26,18 @@
 \usepackage{subfigure}
 
 
+
+\usepackage[%
+%top=40mm,
+%bottom=35mm,
+%left=40mm,
+%right=30mm
+top=40mm,
+bottom=35mm,
+left=35mm,
+right=25mm
+]{geometry}
+
 % nastavení příkazu URL podle normy ISO
 %\DeclareUrlCommand\url{\def\UrlLeft{< }\def\UrlRight{ >} \urlstyle{tt}}	% správné zobrazení www
 
@@ -45,8 +58,8 @@
  % nastavime pouziti naseho stylu
 \pagestyle{fancy}
 
-\renewcommand{\sectionmark}[1]{\markright{#1}{}}
-\renewcommand{\subsectionmark}[1]{\markright{#1}{}}
+\renewcommand{\chaptermark}[1]{\markright{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{#1}{}}
 
 \fancypagestyle{plain}{
   \fancyhead{} % na prázdných stránkách nechci záhlaví
@@ -57,46 +70,46 @@
 % TITULNÍ STRANA 11111111111
 % =========================
 
-% \begin{titlepage}
-% 
-% \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-% 
-% \center % Center everything on the page
-%  
-% %----------------------------------------------------------------------------------------
-% %	HEADING SECTIONS
-% %----------------------------------------------------------------------------------------
-% 
-% \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
-% \textsc{\Large Fakulta stavební} % Major heading such as course name
-% 
-% 
-% %----------------------------------------------------------------------------------------
-% %	TITLE SECTION
-% %----------------------------------------------------------------------------------------
-% 
-% \vfill
-% 
-% \textsc{\LARGE Diplomová práce}
-%  
-% %----------------------------------------------------------------------------------------
-% %	AUTHOR SECTION
-% %----------------------------------------------------------------------------------------
-% \vfill
-% \begin{minipage}{0.4\textwidth}
-% \begin{flushleft} 
-% \large 2016	% datum
-% \end{flushleft}
-% \end{minipage}
-% ~
-% \begin{minipage}{0.4\textwidth}
-% \begin{flushright} 
-% \large Bc. Štěpán \textsc{Bambula} \\ % Your name
-% \end{flushright}
-% \end{minipage}\\[1cm]
-%  
-% \end{titlepage}
-% % -------------------------------------------------------------------------------------------------------------
+\begin{titlepage}
+ 
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
+\textsc{\Large Fakulta stavební} % Major heading such as course name
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\vfill
+
+\textsc{\LARGE Diplomová práce}
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vfill
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} 
+\large 2016	% datum
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} 
+\large Bc. Štěpán \textsc{Bambula} \\ % Your name
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\end{titlepage}
+% -------------------------------------------------------------------------------------------------------------
 
 
 % =========================
@@ -256,8 +269,9 @@ V~Praze dne \dots \dots \dots \\
 
 %======================POUZITE ZKRATKY===============================
 \clearpage
-\rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
-\section*{Seznam použitých zkratek}
+%\rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
+\chapter*{Seznam použitých zkratek}
+\thispagestyle{empty}
 
 \begin{description}
 \item[VFK] Výměnný formát katastru nemovitostí
@@ -272,6 +286,7 @@ V~Praze dne \dots \dots \dots \\
 \clearpage
 \rhead{{\rightmark}}		% vpravo název kapitoly
 \tableofcontents
+\thispagestyle{empty}
 
 %============================ÚVOD====================================
 \clearpage
@@ -279,21 +294,21 @@ V~Praze dne \dots \dots \dots \\
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{arabic} % číslování arabskými
 \rhead{Úvod}		 % vpravo název kapitoly
-\section*{Úvod}
-\addcontentsline{toc}{section}{Úvod}
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
 
 
 
 
 \clearpage
 \rhead{{\rightmark}}
-\section{Dostupné nástroje pro práci s~VFK}
+\chapter{Dostupné nástroje pro práci s~VFK}
 
 
 \clearpage
-\section{Použité technologie}
+\chapter{Použité technologie}
 
-\subsection{QGIS}
+\section{QGIS}
 
 QGIS je geografický informační systém, který je distribuován jako open-source\footnote{Open-source software je takový software, k~němuž zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále upravovat. Jednotlivé definice termínu \uv{open source} se liší zvláště v~podmínkách pro další distribuci softwaru.\cite{abclinuxu_opensource}} pod licencí \textit{GNU General Public License}. Je oficiálním a~klíčovým produktem organizace OSGeo. Díky přenositelnosti zdrojového kódu je použitelný na širokém spektru platforem, ať už jsou to desktopové platformy Linux, MacOS, Windows, nebo mobilní platforma Android.
 
@@ -310,7 +325,7 @@ QGIS nedisponuje tak širokou paletou nástrojů, jako jeho open-source kolega G
 \cite{qgis_wiki}
 
 
-\subsection{GDAL/OGR}
+\section{GDAL/OGR}
 
 GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihovna je vyvíjena pod hlavičkou Open Source Geospatial Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá jednoduchý abstraktní datový model pro všechny podporované datové formáty. Kromě toho nabízí také řadu užitečných nástrojů pro příkazovou řádku určených pro konverzi a~zpracování dat. \cite{gdal_wiki}
 
@@ -327,7 +342,7 @@ Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL/OGR, slouží pro
 GDAL/OGR je považován za jeden z~hlavních open-source projektů. Knihovna je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená a~poskytuje základní funkcionalitu potřebnou pro denní práci s rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
 
 
-\subsection{Python}
+\section{Python}
 
 Jazyk Python je objektově orientovaný programovací jazyk, který efektivně používá víceúrovňové datové typy. Jedná se o~jazyk interpretovaný, čímž se jeví jako ideální nástroj pro psaní skriptů, ale i~rychlý vývoj aplikací. Je vyvíjen jako open-source software, díky čemuž se stává použitelným na velkém množství platforem (Linux, Windows, MacOS, \dots). Jazyk je rozšířitelný o~široké spektrum modulů, které umožňují řešit problematiku takřka z~jakékoli oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi 2.x a~v~novější verzi 3.x.
 \cite{dive_into_python}
@@ -339,7 +354,7 @@ Jazyk Python je objektově orientovaný programovací jazyk, který efektivně p
 \caption[Python -- logo]{Python -- logo (zdroj: \cite{python_web})}
 \end{figure}
 
-\subsection{PyQt}
+\section{PyQt}
 
 PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a~nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a~ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, \textit{GNU GPL v3} a~\textit{Riverbank Commercial License}. Spolu s~těmito licencemi je dostupné i~pod komerční licencí.
 
@@ -358,7 +373,7 @@ PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což 
 
 
 \clearpage
-\section{Formát VFK}
+\chapter{Formát VFK}
 
 \cite{dp_landa}
 \cite{vfk_struktura}
