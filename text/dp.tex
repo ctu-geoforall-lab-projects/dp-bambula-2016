@@ -376,7 +376,7 @@ PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což 
 \clearpage
 \chapter{Informační systém katastru nemovitostí}
 
-ISKN je integrovaný informační systém pro podporu výkonu státní správy katastru nemovitostí a pro zajištění uživatelských služeb katastru nemovitostí. Obsahuje prostředky pro vedení souborů popisných informací, pro vedení souborů geodetických informací, pro podporu správních a administrativních činností při vedení katastru nemovitostí a pro správu dokumentačních fondů. \cite{iskn}
+ISKN je integrovaný informační systém pro podporu výkonu státní správy katastru nemovitostí a~pro zajištění jeho uživatelských služeb. Obsahuje prostředky pro současné vedení souborů popisných informací (SPI) a~souborů geodetických informací (SGI). Dále jsou v~něm obsaženy prostředky pro podporu správních a~administrativních činností při vedení katastru nemovitostí a~pro správu dokumentačních fondů. \cite{iskn}
 
 \begin{figure}[htb]
 \centering
@@ -384,41 +384,69 @@ ISKN je integrovaný informační systém pro podporu výkonu státní správy k
 \caption[ČUZK -- logo]{ČUZK -- logo (zdroj: \cite{iskn})}
 \end{figure}
 
-\section{Historie a vývoj}
+\section{Historie a~vývoj}
 
-Vývoj systému byl započat v~roce 1997 ve spolupráci se společností APP Czech s.r.o.\footnote{Dnes společnost funguje pod názvem NESS Czech s.r.o.}, která fungovala jako systémový integrátor a dodavatel aplikačního programového vybavení. Dalšími společnostmi podílejícími se na vývoji ISKN byly Infinity, a.s., Compaq Computer s.r.o.\footnote{Dnes pod názvem HP.}, Oracle Czech, s.r.o., Bentley Systems, s.r.o., BEA Systems, s.r.o. \cite{iskn}
+Vývoj systému byl započat v~roce 1997 ve spolupráci se společností APP Czech s.r.o.\footnote{Dnes společnost funguje pod názvem NESS Czech s.r.o.}, která fungovala jako systémový integrátor a~dodavatel aplikačního programového vybavení. Dalšími společnostmi podílejícími se na vývoji ISKN byly Infinity, a.s., Compaq Computer s.r.o.\footnote{Dnes pod názvem HP.}, Oracle Czech, s.r.o., Bentley Systems, s.r.o., BEA Systems, s.r.o. \cite{iskn}
 
-Systém byl nasazen do provozu v~září roku 2001, a to na všech katastrálních pracovištích včetně centrály. Dolaďování a převzetí závěrečných etap probíhalo v~roce 2002. V~témže roce byl dokončen audit systému. \cite{iskn}
+Systém byl nasazen do provozu v~září roku 2001, a~to na všech katastrálních pracovištích včetně centrály. Dolaďování a~převzetí závěrečných etap probíhalo v~roce 2002. V~témže roce byl dokončen audit systému. \cite{iskn}
 
-Nový systém ISKN plně nahradil dřívější způsob vedení katastru nemovitostí a integroval vedení a správu katastru nemovitostí do jediného informačního systému společného pro všechna pracoviště katastrálních úřadů a centrum. Toto vede k~tomu, že je možné zveřejňovat a poskytovat aktuální data z~katastru nemovitostí prostřednictvím dálkového přístupu během několika málo minut, a to z~celého území republiky. \cite{iskn}
+Implementace ISKN plně nahradila dřívější způsob vedení katastru nemovitostí. ISKN integroval vedení a~správu katastru nemovitostí pod jediný informační systém společný pro všechna pracoviště katastrálních úřadů a~centrum. Toto vede k~tomu, že je možné zveřejňovat a~poskytovat aktuální data z~katastru nemovitostí prostřednictvím dálkového přístupu během několika málo minut, a~to z~celého území republiky. \cite{iskn}
 
-Pro uložení dat se v~systému ISKN využívá Spatial Cartridge Option a databáze Oracle. BEA WebLogic podporuje vzdálený přístup k~datům prostřednictvím sítě Internet. Systémový management využívá nástrojů CA Unicenter. \cite{iskn}
+Data jsou do systému ISKN ukládána pomocí Spatial Cartridge Option do databáze Oracle. Podpora vzdáleného přístupu k~datům pomocí sítě Internet je zajištěna pomocí BEA WebLogic. Systémový management využívá nástrojů CA Unicenter. \cite{iskn}
 
-V~roce 2004 byla uzavřena nová smlouva se společností NESS Czech s.r.o. na rozvoj a údržbu informačního systému v~období 2004 -- 2006. V~tomto období byl zmodernizován především Dálkový přistup do katastru nemovitostí, zavedena orientační mapa parcel a zavedeno opatřování výpisu z~katastru nemovitostí a kopie katastrální mapy elektronickou značkou\footnote{Tento krok umožnil, aby tzv. \uv{ověřující} podle zákona č. 365/2000 Sb., o~informačních systémech veřejné správy, v~platném znění, mohli poskytovat ověřené výpisy z~katastru nemovitostí, převedené z~elektronické do listinné podoby.}. \cite{iskn}
+V~roce 2004 byla uzavřena nová smlouva se společností NESS Czech s.r.o. na rozvoj a~údržbu informačního systému v~letech 2004 -- 2006. V~tomto období byl zmodernizován především Dálkový přistup do katastru nemovitostí a~zavedena orientační mapa parcel. Důležitou inovací  bylo zavedení elektronické značky pro výpis z~katastru nemovitostí a~pro kopii katastrální mapy \footnote{Tento krok umožnil, aby tzv. \uv{ověřující} podle zákona č. 365/2000 Sb., o~informačních systémech veřejné správy, v~platném znění, mohli poskytovat ověřené výpisy z~katastru nemovitostí, převedené z~elektronické do listinné podoby. \cite{iskn}}. \cite{iskn}
 
-Společnost NESS Czech s.r.o. poté v~dalších letech vyhrála několik veřejných zakázek týkajících se údržby a rozvoje ISKN. Jedním z~hlavních cílů v~bylo převedení decentralizovaného systému (107 lokálních databází replikovaných do centrální databáze) na centralizovaný systém s~uložením dat ISKN pouze v~jediné DB.  Tento přechod byl spojen se změnou architektury z~původní client/server na třívrstvou architekturu. Tato architektura je založena na platformě Oracle Forms/Reports 10g a databázi Oracle 10g. Dále byl proveden přechod na vyšší verzi Bentley nástroje pro správu prostorových dat. \cite{iskn}
+Společnost NESS Czech s.r.o. poté v~dalších letech vyhrála několik veřejných zakázek týkajících se údržby a~rozvoje ISKN. Hlavním cílem bylo převedení decentralizovaného systému (107 lokálních databází replikovaných do centrální databáze) na centralizovaný systém, ve kterém byla data ISKN uložena pouze v~jedné databázi. Spolu s~touto úpravou byla změněna i~architektura z~původní client/server na třívrstvou architekturu. Architektura je postavena na platformě Oracle Forms/Reports 10g a~databázi Oracle 10g. Další změnou byl přechod na vyšší verzi Bentley nástroje pro správu prostorových dat. \cite{iskn}
 
-ISKN byl nadále zlepšován. Za zmínku stojí především systém pro Dálkový přístup do katastru nemovitostí, nebo zavedení možnosti získat informaci o~ukončení řízení pomocí SMS nebo e-mailové zprávy. \cite{iskn}
+ISKN byl nadále zlepšován. Za zmínku stojí především systém pro Dálkový přístup do katastru nemovitostí nebo zavedení možnosti získat informaci o~ukončení řízení pomocí SMS nebo e-mailové zprávy. \cite{iskn}
 
 
 \section{Hlavní charakteristiky ISKN}
 
 \subsection{Optimalizace uložení dat}
 
-Díky zvolení jednotného datového modelu pro uložení popisných a prostorových dat v~databázi Oracle a dat týkajících se správních řízení byla umožněna současná aktualizace popisných a prostorových dat a udržení jejich vzájemné konzistence. Pro optimalizaci byla také přijata koncepce samostatné evidence budov a bezešvé digitální katastrální mapy. Od konce roku 2001 jsou uchovávány také veškerá historická data popisných a prostorových dat, díky čemuž je možné sestavovat data do potřebných výstupů k~historickému datu od zavedení ISKN v~roce 2001. \cite{iskn}
+Díky zvolení jednotného datového modelu pro uložení popisných a~prostorových dat v~databázi Oracle spolu s~daty týkajících se správních řízení byla umožněna současná aktualizace popisných a~prostorových dat a~udržení jejich vzájemné konzistence. Pro optimalizaci byla také přijata koncepce samostatné evidence budov a~bezešvé digitální katastrální mapy. Od konce roku 2001 jsou uchovávány také veškerá historická data popisných a~prostorových dat, díky čemuž je možné sestavovat data do potřebných výstupů k~historickému datu od zavedení ISKN v~roce 2001. \cite{iskn}
 
 \subsection{Optimalizace procesů při správě KN}
 
-Do systému ISKN byla zavedena celá řada automatických kontrol pro proces zapsání změny do KN. Dále bylo umožněno převzetí aktuálních dat z~jiných registrů (např. registr obyvatel) a ostatních informačních systémů. Postup provedení změny dat KN je takový, že podle návrhu je připraven budoucí stav, je možno před jeho zplatněním zobrazit budoucí stav popisných dat a v~prostorech s~digitální katastrální mapou též její budoucí stav, případně provádět zde potřebné úpravy. Díky tomu je zajištěna důkladná kontrola výsledného stavu katastru a celý proces realizace změny v~prostředí ISKN je navíc zajištěn i technicko--organizačními opatřeními (návrh změny a kontrolu, včetně zplatnění provádějí rozdílné osoby dle přidělených uživatelských rolí). \cite{iskn}
+Do systému ISKN byla zavedena celá řada automatických kontrol pro proces zapsání změny do KN. Dále bylo umožněno převzetí aktuálních dat z~jiných registrů (např. registr obyvatel) a~ostatních informačních systémů. Postup provedení změny dat KN je následující: na základě návrhu je připraven budoucí stav, který je možné před jeho zplatněním zobrazit (SPI, SGI), případně v~něm provádět úpravy. Toto zajišťuje důkladnou kontrolu výsledného stavu katastru. Proces realizace změny je navíc zajištěn i~technicko-organizačními opatřeními (návrh změny a~kontrolu, včetně zplatnění provádí vždy jiná osoba dle přidělených uživatelských rolí). \cite{iskn}
 
-Nové procesy zpracování dat/návrhů změn dávají možnost částečného nabytí platnosti geometrického plánu s~automatizovanou změnou návrhu změny v~budoucím stavu, dále také umožňují aktualizaci dat katastru nemovitostí způsobem, který nezamyká aktualizovaná data, ale pouze řeší konflikty při pokusu aktualizovat stejná data. \cite{iskn}
+Díky novým procesům ve zpracování dat/návrhů změn je možné částečné nabytí platnosti geometrického plánu s~automatizovanou změnou návrhu změny v~budoucím stavu. Nové procesy také umožňují aktualizaci dat katastru nemovitostí takovým způsobem, aniž by zamkly aktualizovaná data. Pouze se jimi řeší konflikty v~aktualizaci stejných dat.
 
-Jednotná centrální správa číselníků, která je také součástí ISKN, do procesů zpracování změn na katastrálních úřadech vnáší jednotnost a zvyšuje tím kvalitu a konzistenci datové základny. Některé centrální číselníky, případně seznamy jsou přebírány z~externích zdrojů např. číselníky územní identifikace, PSČ. \cite{iskn}
+Součástí ISKN je také jednotná centrální správa číselníků, která vnáší jednotnost do procesu zpracování změn na katastrálních úřadech. Tímto se rapidně zvyšuje konzistence a~kvalita datové základny. Některé z~centrálních číselníků nebo seznamů jsou přebírány z~externích datových zdrojů (např. číselníky územní identifikace, PSČ). \cite{iskn}
 
+\subsection{Bezpečnost}
+
+Vysoká bezpečnost ochrany dat je zajištěna kombinací hardwarových prostředků s~operačním systémem, databází a~vlastní aplikací ISKN. Nepřetržitý provoz je zajištěn pomocí technologie databázových a~aplikačních clusterů a~tím, že je celá infrastruktura zdvojena (primární a~záložní centrum). Do záložního centra jsou replikována veškerá data tak, aby byl v~případě náhlého výpadku primárního centra zajištěn nepřetržitý provoz ISKN. \cite{iskn}
+
+
+\section{Poskytování dat}
+
+Poskytování dat je umožněno na základě vyhlášky číslo 358/2013 Sb., o~poskytování údajů z~katastru nemovitostí. \cite{iskn}
+
+\subsection{Poskytování dat dálkovým přístupem}
+
+Na základě registrace je umožněno poskytování dat (zdarma, nebo za úplatu podle typu zákazníka) prostřednictvím sítě Internet. Výpisy z~KN a~snímky katastrální mapy mají povahu veřejných elektronických listin (jsou opatřeny elektronickou značkou) a~mohou být převedeny do podoby listinných veřejných listin. Tímto způsobem je v~současné době vyřizována více než třetina výstupů. \cite{iskn}
+
+Více informací o~této metodě poskytování dat je spolu s~aplikací dostupných na stránkách ČUZK (\url{http://www.cuzk.cz/aplikace-dp/}).
+
+\subsection{Poskytování dat ve výměnném formátu ISKN}
+
+Data z~KN mohou být poskytována v~textovém souboru, který obsahuje záznamy v~pevně definované struktuře. Více informací o~tomto výměnném formátu je uvedeno v~kapitole č. \ref{l_format_vfk}.
 
 
 \clearpage
-\chapter{Formát VFK}
+\chapter{Výměnný formát ISKN}
+\label{l_format_vfk}
+
+%TODO: http://freegis.fsv.cvut.cz/gwiki/V%C3%BDm%C4%9Bnn%C3%BD_form%C3%A1t_ISKN
+%TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
+%TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru.aspx
+%TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru/Popis_VF_ISKN-v5_1-1-(1).aspx
+
+
+
+
 
 \cite{dp_landa}
 \cite{vfk_struktura}
