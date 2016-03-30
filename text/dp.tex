@@ -24,7 +24,7 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage{subfigure}
-
+\usepackage{wasysym}
 
 
 \usepackage[%
@@ -280,6 +280,8 @@ V~Praze dne \dots \dots \dots \\
 \item[GIS] Geografický informační systém
 \item[OSGeo] Open Source Geospatial Foundation
 \item[ISKN] Informační systém katastru nemovitostí
+\item[SGI] Soubor geodetických informací
+\item[SPI] Soubor popisných informací
 \end{description}
 
 
@@ -372,9 +374,10 @@ PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což 
 \cite{pyqt_wiki}
 
 
-
+% ==================================================================================
 \clearpage
 \chapter{Informační systém katastru nemovitostí}
+\label{l_iskn}
 
 ISKN je integrovaný informační systém pro podporu výkonu státní správy katastru nemovitostí a~pro zajištění jeho uživatelských služeb. Obsahuje prostředky pro současné vedení souborů popisných informací (SPI) a~souborů geodetických informací (SGI). Dále jsou v~něm obsaženy prostředky pro podporu správních a~administrativních činností při vedení katastru nemovitostí a~pro správu dokumentačních fondů. \cite{iskn}
 
@@ -435,19 +438,112 @@ Více informací o~této metodě poskytování dat je spolu s~aplikací dostupn�
 Data z~KN mohou být poskytována v~textovém souboru, který obsahuje záznamy v~pevně definované struktuře. Více informací o~tomto výměnném formátu je uvedeno v~kapitole č. \ref{l_format_vfk}.
 
 
+% ==================================================================================
 \clearpage
 \chapter{Výměnný formát ISKN}
 \label{l_format_vfk}
 
-%TODO: http://freegis.fsv.cvut.cz/gwiki/V%C3%BDm%C4%9Bnn%C3%BD_form%C3%A1t_ISKN
+V~této kapitole je ve stručnosti popsána historie vývoje výměnného formátu ISKN spolu s~jeho popisem, ve kterém se věnuji především sekcím důležitým pro vývoj zásuvného modulu pro QGIS, který dokáže data v~tomto formátu zobrazit.
+
+\section{Vývoj formátu}
+
+Hlavním milníkem ve vývoji výměnného formátu bylo zavedení ISKN, viz. kapitola č. \ref{l_iskn}. Do této doby byly soubory SPI a~SGI ukládány odděleně, což se právě se zavedením ISKN změnilo. Tento krok vedl k~vytvoření nového výměnného formátu (NVF), který postupně nahrazoval starý výměnný formát (SVF). \cite{dp_landa}
+
+\subsection{Výměnný formát KN před ISKN}
+
+Tento formát je po zavedení nového formátu také nazýván \textit{starý výměnný formát}~--~\textbf{SVF}. Byl vytvořen roku 1996, kdy začala vznikat digitalizace SGI. Obsahuje dvě samostatné části:
+
+\begin{enumerate}
+ \item \textbf{SPI} -- Obsahuje informace o~vlastnících, parcelách a~nabývacích titulech. Byl distribuován ve dvou formátech:
+ \begin{enumerate}
+  \item soubory ve formátu \textit{.dbf}: Tento typ souboru byl dále dělen na další dvě části:
+  
+  \begin{enumerate}
+   \item SPI bez jiných právních vztahů (bez JPV),
+   \item SPI s~jinými právními vztahy (s~JPV).
+  \end{enumerate}
+  
+  \item soubory ve formátu \textit{.txt}: SB, SC, SE
+ \end{enumerate}
+ 
+ Data byla poskytována v~následujících rozsazích: podle územní jednotky (katastrální území, obec, okres, ČR), dle výběru parcel, nebo na základě oprávněného subjektu (pouze ve formátu \textit{.txt}).
+ 
+ Ve výše zmíněných formátech (\textit{.dbf, .txt}) jsou značné nesoulady. Ty jsou způsobeny hlavně neexistencí některých položek v~novém datovém modelu ISKN nebo jejich rozdílnou interpretací.
+
+ \item \textbf{SGI} -- Jsou v~něm obsaženy informace o~poloze nemovitostí. 
+ 
+ Data byla poskytována pro katastrální území, kde již byla provedena digitalizace.
+\end{enumerate}
+
+V~současné době je již oficiální podpora ukončena a~byl nahrazen právě novým výměnným formátem. \cite{svf_cuzk}
+
+\subsection{Výměnný formát VF ISKN}
+
+Formát je nazýván také jako \textit{nový výměnný formát} -- \textbf{NVF}. V~tomto formátu jsou obsaženy zároveň popisné i~grafické informace včetně dat o~řízení. Data jsou vytvářena ve dvou stavech:
+
+\begin{itemize}
+ \item \textbf{Stavová data} -- Data jsou vygenerována vzhledem ke konkrétnímu časovému okamžiku. Obsahují vždy kompletní data pro daný okamžik. Práce s~těmito daty je řešena v~původní verzi zásuvného modulu pro QGIS. 
+ 
+ \item \textbf{Změnová data} -- Jsou v~nich obsaženy pouze změny za požadovaný časový úsek. Zpracováním a~zobrazením změnových dat v~programu QGIS se zabývá právě tato diplomová práce.
+\end{itemize}
+
+Data jsou poskytována v~následujících rozsazích:
+
+\begin{itemize}
+ \item územní jednotka (katastrální území, obec, okres, ČR),
+ \item oprávněný subjekt,
+ \item výběr parcel,
+ \item výběr parcel polygonem v~mapě.
+\end{itemize}
+
+Do výměnného souboru je možné dle přání zákazníka vybrat libovolné kombinace datových skupin, viz, tabulka č. \ref{l_datove_skupiny}. \cite{dp_landa}
+
+\begin{table}[htbp]
+\centering
+\caption[Datové skupiny VF ISKN]{Datové skupiny VF ISKN (zdroj: \cite{nvf_cuzk})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Název skupiny} & \textbf{Obsah} \\ 
+\midrule
+Nemovitosti & parcely a~budovy \\ 
+Jednotky & bytové jednotky \\ 
+Bonitní díly parcel & kódy BPEJ k~parcelám \\ 
+Vlastnictví & \parbox{220pt}{listy vlastnictví, oprávněné subjekty a~vlastnické vztahy} \\ 
+Jiné právní vztahy & ostatní právní vztahy kromě vlastnictví \\ 
+Řízení & údaje o~řízení (vklad, záznam,…) a~listiny \\ 
+Prvky katastrální mapy & katastrální mapy v~digitální podobě \\ 
+BPEJ & hranice BPEJ včetně kódů \\ 
+Geometrický plán & geometrické plány \\ 
+Rezervovaná čísla & rezervovaná parcelní čísla a~čísla PBPP \\ 
+Definiční body & definiční body parcel a~staveb \\ 
+Adresní místa & adresní místa budov \\
+\bottomrule
+\end{tabular}
+\label{l_datove_skupiny}
+\end{table}
+
+\newpage
+\section{Struktura výměnného formátu ISKN}
+
+Tato kapitola pojednává o~struktuře výměnného formátu ISKN. Nejsou zde popsány a~do detailu rozvedeny veškeré datové bloky formátu, ale pouze ty nejdůležitější prvky formátu vzhledem k~zásuvnému modulu pro QGIS. Podrobný popis formátu je dostupný v~oficiální dokumentaci (\cite{vfk_struktura}), ze které tato kapitola čerpá. Veškeré ukázky výměnného formátu jsou pořízeny z~testovacích dat dostupných na stránkách ČUZK (\cite{nvf_cuzk}).
+
+Datový soubor \textit{.vfk} se skládá ze čtyř základních částí, které budou samostatně popsány na následujících řádcích této kapitoly:
+
+\begin{itemize}
+ \item hlavička \texttt{\&H},
+ \item datové bloky \texttt{\&B},
+ \item datové řádky \texttt{\&D},
+ \item koncový znak \texttt{\&K}.
+\end{itemize}
+
+Datový soubor je vytvářen v~kódování češtiny dle ČSN ISO 8859-2 (ISO Latin2)\footnote{Ve výjimečných případech je možné použít kódování WIN1250. Toto kódování je použito i~v~souboru ve formátu XML verze 1.0.}. Desetinným oddělovačem je tečka (.). Datum a~čas je uveden ve tvaru ``03.06.1999 09:58:42''. Jednotlivé záznamy na řádcích jsou odděleny pomocí středníku (;). Každá datová věta je ukončena pomocí souslednosti znaků \texttt{<CR><LF>}. Znak \uv{\texttt{\currency}} znamená, že následující řádek souboru výměnného formátu je pokračováním předchozího řádku a~tvoří jedinou datovou větu, která v~textové položce obsahuje formátovací znaky \texttt{<CR><LF>}. \cite{vfk_struktura}
+
+\subsection{Hlavička \texttt{\&H}}
+
+
+
 %TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
-%TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru.aspx
 %TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru/Popis_VF_ISKN-v5_1-1-(1).aspx
-
-
-
-
-
 \cite{dp_landa}
 \cite{vfk_struktura}
 

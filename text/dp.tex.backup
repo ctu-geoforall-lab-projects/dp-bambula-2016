@@ -2,7 +2,8 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[12pt]{article}
+%\documentclass[12pt]{article}
+\documentclass[a4paper,12pt,oneside]{book}
 
 \usepackage[utf8]{inputenc}	% kódování textu
 \usepackage[czech]{babel}		% zavedení češtiny
@@ -25,6 +26,18 @@
 \usepackage{subfigure}
 
 
+
+\usepackage[%
+%top=40mm,
+%bottom=35mm,
+%left=40mm,
+%right=30mm
+top=40mm,
+bottom=35mm,
+left=35mm,
+right=25mm
+]{geometry}
+
 % nastavení příkazu URL podle normy ISO
 %\DeclareUrlCommand\url{\def\UrlLeft{< }\def\UrlRight{ >} \urlstyle{tt}}	% správné zobrazení www
 
@@ -45,8 +58,8 @@
  % nastavime pouziti naseho stylu
 \pagestyle{fancy}
 
-\renewcommand{\sectionmark}[1]{\markright{#1}{}}
-\renewcommand{\subsectionmark}[1]{\markright{#1}{}}
+\renewcommand{\chaptermark}[1]{\markright{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{#1}{}}
 
 \fancypagestyle{plain}{
   \fancyhead{} % na prázdných stránkách nechci záhlaví
@@ -57,46 +70,46 @@
 % TITULNÍ STRANA 11111111111
 % =========================
 
-% \begin{titlepage}
-% 
-% \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-% 
-% \center % Center everything on the page
-%  
-% %----------------------------------------------------------------------------------------
-% %	HEADING SECTIONS
-% %----------------------------------------------------------------------------------------
-% 
-% \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
-% \textsc{\Large Fakulta stavební} % Major heading such as course name
-% 
-% 
-% %----------------------------------------------------------------------------------------
-% %	TITLE SECTION
-% %----------------------------------------------------------------------------------------
-% 
-% \vfill
-% 
-% \textsc{\LARGE Diplomová práce}
-%  
-% %----------------------------------------------------------------------------------------
-% %	AUTHOR SECTION
-% %----------------------------------------------------------------------------------------
-% \vfill
-% \begin{minipage}{0.4\textwidth}
-% \begin{flushleft} 
-% \large 2016	% datum
-% \end{flushleft}
-% \end{minipage}
-% ~
-% \begin{minipage}{0.4\textwidth}
-% \begin{flushright} 
-% \large Bc. Štěpán \textsc{Bambula} \\ % Your name
-% \end{flushright}
-% \end{minipage}\\[1cm]
-%  
-% \end{titlepage}
-% % -------------------------------------------------------------------------------------------------------------
+\begin{titlepage}
+ 
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
+\textsc{\Large Fakulta stavební} % Major heading such as course name
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\vfill
+
+\textsc{\LARGE Diplomová práce}
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+\vfill
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} 
+\large 2016	% datum
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} 
+\large Bc. Štěpán \textsc{Bambula} \\ % Your name
+\end{flushright}
+\end{minipage}\\[1cm]
+
+\end{titlepage}
+% -------------------------------------------------------------------------------------------------------------
 
 
 % =========================
@@ -112,7 +125,7 @@
 
 \textsc{\LARGE České vysoké učení technické v~Praze}\\[0.5cm] % Name of your university/college
 \textsc{\Large Fakulta stavební}\\[0.5cm] % Major heading such as course name
-\textsc{\large Studijní program: Geodézie a kartografie}\\[0.5cm] % Minor heading such as course title
+\textsc{\large Studijní program: Geodézie a~kartografie}\\[0.5cm] % Minor heading such as course title
 \textsc{\large Studijní obor: Geomatika}\\[0.5cm] % Minor heading such as course title
 
 %----------------------------------------------------------------------------------------
@@ -183,7 +196,7 @@ Katedra geomatiky
 
 \vspace{12pt}
 
-Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Praze zaměřený na práci s~katastrálními daty poskytovanými ve výměnném formátu VFK v~prostředí open source nástroje QGIS. Práce navazuje na již existující nástroj implementovaný jako tzv. zásuvný modul a rozšiřuje ho o~novou funkctionalitu a to především zpracování a vizualizaci datových vět změnových souborů VFK. Druhotným cílem je usnadnění distribuce zásuvného modulu v~prostředí QGIS s~důrazem na jeho přenositelnost.
+Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Praze zaměřený na práci s~katastrálními daty poskytovanými ve výměnném formátu VFK v~prostředí open source nástroje QGIS. Práce navazuje na již existující nástroj implementovaný jako tzv. zásuvný modul a~rozšiřuje ho o~novou funkctionalitu a~to především zpracování a~vizualizaci datových vět změnových souborů VFK. Druhotným cílem je usnadnění distribuce zásuvného modulu v~prostředí QGIS s~důrazem na jeho přenositelnost.
 
 \vspace{32pt}
 
@@ -192,7 +205,7 @@ Cílem diplomové práce je rozšířit projekt laboratoře OSGeoREL ČVUT v~Pra
 
 \vspace{12pt}
 
-VFK, QGIS, ČUZK, Python, PyQt
+VFK, QGIS, ČUZK, Python, C++, PyQt, GDAL, zásuvný modul
 
 
 \vfill
@@ -209,7 +222,7 @@ VFK, QGIS, ČUZK, Python, PyQt
 \textsc{\Large Keywords}
 
 \vspace{12pt}
-VFK, QGIS, CUZK, Python, PyQt
+VFK, QGIS, CUZK, Python, C++, PyQt, GDAL, plugin
 
 
 \vfill
@@ -256,14 +269,27 @@ V~Praze dne \dots \dots \dots \\
 
 %======================POUZITE ZKRATKY===============================
 \clearpage
-\rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
-\section*{Seznam použitých zkratek}
+%\rhead{SEZNAM POUŽITÝCH ZKRATEK}		 % vpravo název kapitoly
+\chapter*{Seznam použitých zkratek}
+\thispagestyle{empty}
+
+\begin{description}
+\item[VFK] Výměnný formát katastru nemovitostí
+\item[ČUZK] Český úřad zeměměřický a~katastrální
+\item[GDAL] Geospatial Data Abstraction Library
+\item[GIS] Geografický informační systém
+\item[OSGeo] Open Source Geospatial Foundation
+\item[ISKN] Informační systém katastru nemovitostí
+\item[SGI] Soubor geodetických informací
+\item[SPI] Soubor popisných informací
+\end{description}
 
 
 %=========================OBSAH=======================================
 \clearpage
 \rhead{{\rightmark}}		% vpravo název kapitoly
 \tableofcontents
+\thispagestyle{empty}
 
 %============================ÚVOD====================================
 \clearpage
@@ -271,25 +297,252 @@ V~Praze dne \dots \dots \dots \\
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{arabic} % číslování arabskými
 \rhead{Úvod}		 % vpravo název kapitoly
-\section*{Úvod}
-\addcontentsline{toc}{section}{Úvod}
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
 
 
 
 
 \clearpage
 \rhead{{\rightmark}}
-\section{Rešerše dostupných nástrojů}
+\chapter{Dostupné nástroje pro práci s~VFK}
 
 
 \clearpage
-\section{Použitý software}
+\chapter{Použité technologie}
+
+\section{QGIS}
+
+QGIS je geografický informační systém, který je distribuován jako open-source\footnote{Open-source software je takový software, k~němuž zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále upravovat. Jednotlivé definice termínu \uv{open source} se liší zvláště v~podmínkách pro další distribuci softwaru.\cite{abclinuxu_opensource}} pod licencí \textit{GNU General Public License}. Je oficiálním a~klíčovým produktem organizace OSGeo. Díky přenositelnosti zdrojového kódu je použitelný na širokém spektru platforem, ať už jsou to desktopové platformy Linux, MacOS, Windows, nebo mobilní platforma Android.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/qgis-logo.png}
+\caption[QGIS -- logo]{QGIS -- logo (zdroj: \cite{qgis})}
+\end{figure}
+
+Program umožňuje prohlížení, tvorbu a~editaci velkého množství vektorových (Esri Shapefile, GeoJSON, GPX, \dots), ale i~rastrových (GeoTIFF, JPEG, \dots) nebo databázových formátů. Podporuje zpracování dat GPS a~tvorbu mapových výstupů. Mimo jiné umožňuje provádět prostorové analýzy, analýzy terénu nebo analýzy síťové, práci s~mapovou algebrou a~mnoho dalšího.
+
+QGIS nedisponuje tak širokou paletou nástrojů, jako jeho open-source kolega GRASS GIS. Jeho funkcionalita ale může být rozšířena díky nepřebernému množství zásuvných modulů. Jedním z~nejdůležitějších modulů pro analýzu geografických dat je zásuvný modul GRASS GIS, který zpřístupňuje funkce stejnojmenného programu. QGIS poté může sloužit jako jeho nadstavba.
+\cite{qgis}
+\cite{qgis_wiki}
 
 
+\section{GDAL/OGR}
+
+GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihovna je vyvíjena pod hlavičkou Open Source Geospatial Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá jednoduchý abstraktní datový model pro všechny podporované datové formáty. Kromě toho nabízí také řadu užitečných nástrojů pro příkazovou řádku určených pro konverzi a~zpracování dat. \cite{gdal_wiki}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{images/gdal-logo.png}
+\caption[GDAL -- logo]{GDAL -- logo (zdroj: \cite{gdal})}
+\end{figure}
+
+GDAL byla původně vyvíjena Frankem Warmerdamem a~to do verze 1.3.2, posléze byla knihovna převedena na GDAL/OGR Project Management Committee, která je součástí Open Source Geospatial Foundation.\cite{gdal_wiki}
+
+Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL/OGR, slouží pro práci s~daty ve vektorovém formátu.\cite{gdal}
+
+GDAL/OGR je považován za jeden z~hlavních open-source projektů. Knihovna je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená a~poskytuje základní funkcionalitu potřebnou pro denní práci s~rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
+
+
+\section{Python}
+
+Jazyk Python je objektově orientovaný programovací jazyk, který efektivně používá víceúrovňové datové typy. Jedná se o~jazyk interpretovaný, čímž se jeví jako ideální nástroj pro psaní skriptů, ale i~rychlý vývoj aplikací. Je vyvíjen jako open-source software, díky čemuž se stává použitelným na velkém množství platforem (Linux, Windows, MacOS, \dots). Jazyk je rozšířitelný o~široké spektrum modulů, které umožňují řešit problematiku takřka z~jakékoli oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi 2.x a~v~novější verzi 3.x.
+\cite{dive_into_python}
+\cite{python_web}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/python-logo.png}
+\caption[Python -- logo]{Python -- logo (zdroj: \cite{python_web})}
+\end{figure}
+
+\section{PyQt}
+
+PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a~nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a~ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, \textit{GNU GPL v3} a~\textit{Riverbank Commercial License}. Spolu s~těmito licencemi je dostupné i~pod komerční licencí.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/pyqt-logo.png}
+\caption[PyQt -- logo]{PyQt -- logo (zdroj: \cite{pyqt_wiki})}
+\end{figure}
+
+Pro grafický návrh aplikace je vhodné použít nativní grafické uživatelské rozhraní Qt Designer. Výstupem z~tohoto programu je soubor obsahující vzhled aplikace ve formátu \textit{.xml}. PyQt je poté schopné tento formát převést do kódu jazyka Python. Pro komunikaci mezi objekty je využíváno signálů a~slotů, díky čemuž je vytvoření komponent velice snadné.
+
+PyQt v~sobě kombinuje mocnost knihovny Qt s~jednoduchostí jazyka Python, což z~něj dělá výkonný nástroj pro vývoj grafických aplikací.
+\cite{pyqt}
+\cite{pyqt_wiki}
+
+
+% ==================================================================================
 \clearpage
-\section{Formát VFK}
+\chapter{Informační systém katastru nemovitostí}
+\label{l_iskn}
+
+ISKN je integrovaný informační systém pro podporu výkonu státní správy katastru nemovitostí a~pro zajištění jeho uživatelských služeb. Obsahuje prostředky pro současné vedení souborů popisných informací (SPI) a~souborů geodetických informací (SGI). Dále jsou v~něm obsaženy prostředky pro podporu správních a~administrativních činností při vedení katastru nemovitostí a~pro správu dokumentačních fondů. \cite{iskn}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/cuzk-logo.png}
+\caption[ČUZK -- logo]{ČUZK -- logo (zdroj: \cite{iskn})}
+\end{figure}
+
+\section{Historie a~vývoj}
+
+Vývoj systému byl započat v~roce 1997 ve spolupráci se společností APP Czech s.r.o.\footnote{Dnes společnost funguje pod názvem NESS Czech s.r.o.}, která fungovala jako systémový integrátor a~dodavatel aplikačního programového vybavení. Dalšími společnostmi podílejícími se na vývoji ISKN byly Infinity, a.s., Compaq Computer s.r.o.\footnote{Dnes pod názvem HP.}, Oracle Czech, s.r.o., Bentley Systems, s.r.o., BEA Systems, s.r.o. \cite{iskn}
+
+Systém byl nasazen do provozu v~září roku 2001, a~to na všech katastrálních pracovištích včetně centrály. Dolaďování a~převzetí závěrečných etap probíhalo v~roce 2002. V~témže roce byl dokončen audit systému. \cite{iskn}
+
+Implementace ISKN plně nahradila dřívější způsob vedení katastru nemovitostí. ISKN integroval vedení a~správu katastru nemovitostí pod jediný informační systém společný pro všechna pracoviště katastrálních úřadů a~centrum. Toto vede k~tomu, že je možné zveřejňovat a~poskytovat aktuální data z~katastru nemovitostí prostřednictvím dálkového přístupu během několika málo minut, a~to z~celého území republiky. \cite{iskn}
+
+Data jsou do systému ISKN ukládána pomocí Spatial Cartridge Option do databáze Oracle. Podpora vzdáleného přístupu k~datům pomocí sítě Internet je zajištěna pomocí BEA WebLogic. Systémový management využívá nástrojů CA Unicenter. \cite{iskn}
+
+V~roce 2004 byla uzavřena nová smlouva se společností NESS Czech s.r.o. na rozvoj a~údržbu informačního systému v~letech 2004 -- 2006. V~tomto období byl zmodernizován především Dálkový přistup do katastru nemovitostí a~zavedena orientační mapa parcel. Důležitou inovací  bylo zavedení elektronické značky pro výpis z~katastru nemovitostí a~pro kopii katastrální mapy \footnote{Tento krok umožnil, aby tzv. \uv{ověřující} podle zákona č. 365/2000 Sb., o~informačních systémech veřejné správy, v~platném znění, mohli poskytovat ověřené výpisy z~katastru nemovitostí, převedené z~elektronické do listinné podoby. \cite{iskn}}. \cite{iskn}
+
+Společnost NESS Czech s.r.o. poté v~dalších letech vyhrála několik veřejných zakázek týkajících se údržby a~rozvoje ISKN. Hlavním cílem bylo převedení decentralizovaného systému (107 lokálních databází replikovaných do centrální databáze) na centralizovaný systém, ve kterém byla data ISKN uložena pouze v~jedné databázi. Spolu s~touto úpravou byla změněna i~architektura z~původní client/server na třívrstvou architekturu. Architektura je postavena na platformě Oracle Forms/Reports 10g a~databázi Oracle 10g. Další změnou byl přechod na vyšší verzi Bentley nástroje pro správu prostorových dat. \cite{iskn}
+
+ISKN byl nadále zlepšován. Za zmínku stojí především systém pro Dálkový přístup do katastru nemovitostí nebo zavedení možnosti získat informaci o~ukončení řízení pomocí SMS nebo e-mailové zprávy. \cite{iskn}
 
 
+\section{Hlavní charakteristiky ISKN}
+
+\subsection{Optimalizace uložení dat}
+
+Díky zvolení jednotného datového modelu pro uložení popisných a~prostorových dat v~databázi Oracle spolu s~daty týkajících se správních řízení byla umožněna současná aktualizace popisných a~prostorových dat a~udržení jejich vzájemné konzistence. Pro optimalizaci byla také přijata koncepce samostatné evidence budov a~bezešvé digitální katastrální mapy. Od konce roku 2001 jsou uchovávány také veškerá historická data popisných a~prostorových dat, díky čemuž je možné sestavovat data do potřebných výstupů k~historickému datu od zavedení ISKN v~roce 2001. \cite{iskn}
+
+\subsection{Optimalizace procesů při správě KN}
+
+Do systému ISKN byla zavedena celá řada automatických kontrol pro proces zapsání změny do KN. Dále bylo umožněno převzetí aktuálních dat z~jiných registrů (např. registr obyvatel) a~ostatních informačních systémů. Postup provedení změny dat KN je následující: na základě návrhu je připraven budoucí stav, který je možné před jeho zplatněním zobrazit (SPI, SGI), případně v~něm provádět úpravy. Toto zajišťuje důkladnou kontrolu výsledného stavu katastru. Proces realizace změny je navíc zajištěn i~technicko-organizačními opatřeními (návrh změny a~kontrolu, včetně zplatnění provádí vždy jiná osoba dle přidělených uživatelských rolí). \cite{iskn}
+
+Díky novým procesům ve zpracování dat/návrhů změn je možné částečné nabytí platnosti geometrického plánu s~automatizovanou změnou návrhu změny v~budoucím stavu. Nové procesy také umožňují aktualizaci dat katastru nemovitostí takovým způsobem, aniž by zamkly aktualizovaná data. Pouze se jimi řeší konflikty v~aktualizaci stejných dat.
+
+Součástí ISKN je také jednotná centrální správa číselníků, která vnáší jednotnost do procesu zpracování změn na katastrálních úřadech. Tímto se rapidně zvyšuje konzistence a~kvalita datové základny. Některé z~centrálních číselníků nebo seznamů jsou přebírány z~externích datových zdrojů (např. číselníky územní identifikace, PSČ). \cite{iskn}
+
+\subsection{Bezpečnost}
+
+Vysoká bezpečnost ochrany dat je zajištěna kombinací hardwarových prostředků s~operačním systémem, databází a~vlastní aplikací ISKN. Nepřetržitý provoz je zajištěn pomocí technologie databázových a~aplikačních clusterů a~tím, že je celá infrastruktura zdvojena (primární a~záložní centrum). Do záložního centra jsou replikována veškerá data tak, aby byl v~případě náhlého výpadku primárního centra zajištěn nepřetržitý provoz ISKN. \cite{iskn}
+
+
+\section{Poskytování dat}
+
+Poskytování dat je umožněno na základě vyhlášky číslo 358/2013 Sb., o~poskytování údajů z~katastru nemovitostí. \cite{iskn}
+
+\subsection{Poskytování dat dálkovým přístupem}
+
+Na základě registrace je umožněno poskytování dat (zdarma, nebo za úplatu podle typu zákazníka) prostřednictvím sítě Internet. Výpisy z~KN a~snímky katastrální mapy mají povahu veřejných elektronických listin (jsou opatřeny elektronickou značkou) a~mohou být převedeny do podoby listinných veřejných listin. Tímto způsobem je v~současné době vyřizována více než třetina výstupů. \cite{iskn}
+
+Více informací o~této metodě poskytování dat je spolu s~aplikací dostupných na stránkách ČUZK (\url{http://www.cuzk.cz/aplikace-dp/}).
+
+\subsection{Poskytování dat ve výměnném formátu ISKN}
+
+Data z~KN mohou být poskytována v~textovém souboru, který obsahuje záznamy v~pevně definované struktuře. Více informací o~tomto výměnném formátu je uvedeno v~kapitole č. \ref{l_format_vfk}.
+
+
+% ==================================================================================
+\clearpage
+\chapter{Výměnný formát ISKN}
+\label{l_format_vfk}
+
+V~této kapitole je ve stručnosti popsána historie vývoje výměnného formátu ISKN spolu s~jeho popisem, ve kterém se věnuji především sekcím důležitým pro vývoj zásuvného modulu pro QGIS, který dokáže data v~tomto formátu zobrazit.
+
+\section{Vývoj formátu}
+
+Hlavním milníkem ve vývoji výměnného formátu bylo zavedení ISKN, viz. kapitola č. \ref{l_iskn}. Do této doby byly soubory SPI a~SGI ukládány odděleně, což se právě se zavedením ISKN změnilo. Tento krok vedl k~vytvoření nového výměnného formátu (NVF), který postupně nahrazoval starý výměnný formát (SVF). \cite{dp_landa}
+
+\subsection{Výměnný formát KN před ISKN}
+
+Tento formát je po zavedení nového formátu také nazýván \textit{starý výměnný formát}~--~\textbf{SVF}. Byl vytvořen roku 1996, kdy začala vznikat digitalizace SGI. Obsahuje dvě samostatné části:
+
+\begin{enumerate}
+ \item \textbf{SPI} -- Obsahuje informace o~vlastnících, parcelách a~nabývacích titulech. Byl distribuován ve dvou formátech:
+ \begin{enumerate}
+  \item soubory ve formátu \textit{.dbf}: Tento typ souboru byl dále dělen na další dvě části:
+  
+  \begin{enumerate}
+   \item SPI bez jiných právních vztahů (bez JPV),
+   \item SPI s~jinými právními vztahy (s~JPV).
+  \end{enumerate}
+  
+  \item soubory ve formátu \textit{.txt}: SB, SC, SE
+ \end{enumerate}
+ 
+ Data byla poskytována v~následujících rozsazích: podle územní jednotky (katastrální území, obec, okres, ČR), dle výběru parcel, nebo na základě oprávněného subjektu (pouze ve formátu \textit{.txt}).
+ 
+ Ve výše zmíněných formátech (\textit{.dbf, .txt}) jsou značné nesoulady. Ty jsou způsobeny hlavně neexistencí některých položek v~novém datovém modelu ISKN nebo jejich rozdílnou interpretací.
+
+ \item \textbf{SGI} -- Jsou v~něm obsaženy informace o~poloze nemovitostí. 
+ 
+ Data byla poskytována pro katastrální území, kde již byla provedena digitalizace.
+\end{enumerate}
+
+V~současné době je již oficiální podpora ukončena a~byl nahrazen právě novým výměnným formátem. \cite{svf_cuzk}
+
+\subsection{Výměnný formát VF ISKN}
+
+Formát je nazýván také jako \textit{nový výměnný formát} -- \textbf{NVF}. V~tomto formátu jsou obsaženy zároveň popisné i~grafické informace včetně dat o~řízení. Data jsou vytvářena ve dvou stavech:
+
+\begin{itemize}
+ \item \textbf{Stavová data} -- Data jsou vygenerována vzhledem ke konkrétnímu časovému okamžiku. Obsahují vždy kompletní data pro daný okamžik. Práce s~těmito daty je řešena v~původní verzi zásuvného modulu pro QGIS. 
+ 
+ \item \textbf{Změnová data} -- Jsou v~nich obsaženy pouze změny za požadovaný časový úsek. Zpracováním a~zobrazením změnových dat v~programu QGIS se zabývá právě tato diplomová práce.
+\end{itemize}
+
+Data jsou poskytována v~následujících rozsazích:
+
+\begin{itemize}
+ \item územní jednotka (katastrální území, obec, okres, ČR),
+ \item oprávněný subjekt,
+ \item výběr parcel,
+ \item výběr parcel polygonem v~mapě.
+\end{itemize}
+
+Do výměnného souboru je možné dle přání zákazníka vybrat libovolné kombinace datových skupin, viz, tabulka č. \ref{l_datove_skupiny}. \cite{dp_landa}
+
+\begin{table}[htbp]
+\centering
+\caption[Datové skupiny VF ISKN]{Datové skupiny VF ISKN (zdroj: \cite{nvf_cuzk})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Název skupiny} & \textbf{Obsah} \\ 
+\midrule
+Nemovitosti & parcely a~budovy \\ 
+Jednotky & bytové jednotky \\ 
+Bonitní díly parcel & kódy BPEJ k~parcelám \\ 
+Vlastnictví & \parbox{220pt}{listy vlastnictví, oprávněné subjekty a~vlastnické vztahy} \\ 
+Jiné právní vztahy & ostatní právní vztahy kromě vlastnictví \\ 
+Řízení & údaje o~řízení (vklad, záznam,…) a~listiny \\ 
+Prvky katastrální mapy & katastrální mapy v~digitální podobě \\ 
+BPEJ & hranice BPEJ včetně kódů \\ 
+Geometrický plán & geometrické plány \\ 
+Rezervovaná čísla & rezervovaná parcelní čísla a~čísla PBPP \\ 
+Definiční body & definiční body parcel a~staveb \\ 
+Adresní místa & adresní místa budov \\
+\bottomrule
+\end{tabular}
+\label{l_datove_skupiny}
+\end{table}
+
+\newpage
+\section{Struktura výměnného formátu ISKN}
+
+Tato kapitola pojednává o struktuře výměnného formátu ISKN. Nejsou zde popsány a do detailu rozvedeny veškeré datové bloky formátu, ale pouze ty nejdůležitější prvky formátu vzhledem k zásuvnému modulu pro QGIS. Podrobný popis formátu je dostupný v oficiální dokumentaci (\cite{vfk_struktura}), ze které tato kapitola čerpá. Veškeré ukázky výměnného formátu jsou pořízeny z testovacích dat dostupných na stránkách ČUZK (\cite{nvf_cuzk}).
+
+Datový soubor \textit{.vfk} se skládá ze čtyř základních částí, které budou samostatně popsány na následujících řádcích této kapitoly:
+
+\begin{itemize}
+ \item hlavička \texttt{\&H},
+ \item datové bloky \texttt{\&B},
+ \item datové řádky \texttt{\&D},
+ \item koncový znak \texttt{\&K}.
+\end{itemize}
+
+
+
+
+%TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
+%TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru/Popis_VF_ISKN-v5_1-1-(1).aspx
+\cite{dp_landa}
+\cite{vfk_struktura}
 
 
 
