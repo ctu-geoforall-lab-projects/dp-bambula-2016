@@ -25,7 +25,13 @@
 \usepackage{array}
 \usepackage{subfigure}
 \usepackage{wasysym}
+\usepackage{listings} 
 
+\lstset{
+basicstyle=\ttfamily,
+columns=flexible,
+breaklines=true
+}
 
 \usepackage[%
 %top=40mm,
@@ -496,7 +502,7 @@ Data jsou poskytována v~následujících rozsazích:
  \item výběr parcel polygonem v~mapě.
 \end{itemize}
 
-Do výměnného souboru je možné dle přání zákazníka vybrat libovolné kombinace datových skupin, viz, tabulka č. \ref{l_datove_skupiny}. \cite{dp_landa}
+Do výměnného souboru je možné dle přání zákazníka vybrat libovolné kombinace datových skupin, viz tab. \ref{t_datove_skupiny}. \cite{dp_landa}
 
 \begin{table}[htbp]
 \centering
@@ -519,7 +525,7 @@ Definiční body & definiční body parcel a~staveb \\
 Adresní místa & adresní místa budov \\
 \bottomrule
 \end{tabular}
-\label{l_datove_skupiny}
+\label{t_datove_skupiny}
 \end{table}
 
 \newpage
@@ -540,6 +546,100 @@ Datový soubor je vytvářen v~kódování češtiny dle ČSN ISO 8859-2 (ISO La
 
 \subsection{Hlavička \texttt{\&H}}
 
+Každý řádek hlavičky začíná sousledností znaků \texttt{\&H}, po které následuje označení položky, např. \texttt{VERZE}. Jednotlivé údaje jsou odděleny pomocí středníku. Hlavička obsahuje několik povinných řádků, jejichž seznam je uveden v~tabulce \ref{t_hlavicka}.
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam položek hlavičky]{Seznam položek hlavičky (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Položka} & \textbf{Popis} \\ 
+\midrule
+VERZE & označení verze VF \\ 
+VYTVORENO & datum a~čas vytvoření souboru \\ 
+PUVOD & původ dat \\ 
+CODEPAGE & označení kódové stránky \\ 
+SKUPINA & seznam skupin datových bloků souboru \\ 
+JMENO & jméno osoby, která soubor vytvořila \\ 
+PLATNOST & časová podmínka použitá pro vytvoření souboru \\ 
+ZMENY & stavová, nebo změnová data \\ 
+POLYG & omezující podmínka -- polygon \\
+KATUZE & omezující podmínka -- katastrální území \\
+OPSUB & omezující podmínka -- oprávněné subjekty \\
+PAR & omezující podmínka -- parcely \\
+\bottomrule
+\end{tabular}
+\label{t_hlavicka}
+\end{table}
+
+Příklad prvních řádků hlavičky je uveden v~tabulce \ref{t_hlavicka_priklad}. Tabulka byla vytvořena na základě testovacích dat a~obsahuje i~některé nepovinné položky, např. \texttt{\&HINFO}.
+
+\begin{table}[htbp]
+\centering
+\caption[Ukázka hlavičky]{Ukázka hlavičky (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Položka} & \textbf{Atributy} \\ 
+\midrule
+\&HVERZE & "5.0" \\ 
+\&HINFO & "TESTOVACÍ" \\ 
+\&HVYTVORENO & "23.11.2013 12:58:06" \\ 
+\&HPUVOD & "ISKN" \\ 
+\&HCODEPAGE & "WE8ISO8859P2" \\ 
+\&HSKUPINA & "NEMO";"JEDN";"BDPA";"VLST";"JPVZ" \\ 
+\&HJMENO & "Kokeš Petr Ing." \\ 
+\&HPLATNOST & "23.11.2013 12:51:00";"23.11.2013 12:51:00" \\ 
+\&HZMENY & 0 \\ 
+\&HNAVRHY & 0 \\ 
+\&HPOLYG & 0 \\ 
+\bottomrule
+\end{tabular}
+\label{t_hlavicka_priklad}
+\end{table}
+
+\begin{description}
+ \item[VERZE:] Pouze jeden řádek označující verzi souboru VFK.
+ \item[VYTVOŘENO:] Datum a~čas, kdy byl datový soubor vygenerován.
+ \item[PŮVOD:] Specifikuje původ dat. Standardně je zde uvedeno \uv{ISKN}.
+ \item[CODEPAGE:] Označení kódové stránky. Hodnota \uv{WE8ISO8859P2} značí kódování češtiny dle ČSN ISO 8859-2. Hodnota \uv{"EE8MSWIN1250} slouží pro označení kódování češtiny dle MS WIN1250.
+ \item[SKUPINA:] Uvádí se zde seznam datových bloků souboru. Např. \texttt{\&HSKUPINA; ”Zkratka skupiny“;[“Zkratka skupiny” \dots]}.
+ \item[JMÉNO:] Jméno osoby, která soubor vytvořila. Např. \texttt{\&HJMENO;"Jméno Příjmení"}.
+ \item[PLATNOST:] Časová podmínka použitá pro vytvoření souboru. Zde jsou možné dvě varianty:
+ 
+ \begin{itemize}
+  \item Data jsou platná v~daném čase. \texttt{\&HPLATNOST;"03.12.2013 09:56:42"; "03.12.2013 09:56:42"},
+  \item data jsou platná v~daném období. \texttt{\&HPLATNOST;"03.12.2012 09:56:42"; "03.12.2013 09:56:42"}.
+ \end{itemize}
+ 
+ S~tímto souvisí položka \texttt{\&HZMENY}, která nabývá hodnot 0/1 a~označuje, zda se jedná o~data stavová, nebo změnová. Položka \texttt{\&HNAVRHY} nabývá také hodnot 0/1 a~značí, zda jsou v~souboru obsaženy potvrzené geometrické plány, či nikoliv.
+ 
+ \item[KATUZE:] Obsahuje jeden řádek, který popisuje hlavičku omezující podmínky katastrálních území. Další řádky začínající \texttt{\&D} tvoří omezující podmínku. Počet datových řádků udává počet katastrálních území, která omezující podmínku tvoří. Pokud v~omezující podmínce není žádné katastrální území, bude uvedena pouze hlavička. Pro ujasnění je zde uveden příklad z~testovacích dat.
+ 
+ \begin{lstlisting}
+&HKATUZE;KOD N6;OBCE_KOD N6;NAZEV T48;PLATNOST_OD D;PLATNOST_DO
+&DKATUZE;693936;550426;"Jáma";"19.06.1991 00:00:00";""
+ \end{lstlisting}
+
+ \item[OPSUB:] První řádek popisuje hlavičku omezující podmínky oprávněných subjektů. Další řádky s~daty poté omezující podmínku tvoří, obdobně jako je uvedeno u~omezující podmínky pro katastrální území. Počet datových řádků je shodný s~počtem oprávněných subjektů v~omezující podmínce.
+ 
+ \item[PAR:] První řádek popisuje hlavičku omezující podmínky parcel. Další řádky tvoří omezující podmínku. Počet datových řádků je shodný s~počtem parcel uvedených v~omezující podmínce.
+ 
+ \item[POLYG:] Tento údaj může nabývat hodnot 0/1. Pokud je uvedena hodnota 1, tak je obsah souboru odvozen z~polygonu. V~takovém to případě musí být polygon na dalších řádcích definován svými vrcholy. Takto zadaný polygon může mít nejvýše 101 vrcholů. Příklad zadání omezujícího polygonu:
+ 
+ \begin{lstlisting}
+&HPOLYGDATA;675124.12;1024587.24
+&HPOLYGDATA;675224.12;1024687.24
+&HPOLYGDATA;675184.12;1024537.24
+ \end{lstlisting} 
+\end{description}
+
+\subsection{Datové bloky \texttt{\&B}}
+
+
+\subsection{Datové řádky \texttt{\&D}}
+
+
+\subsection{Koncový znak \texttt{\&K}}
 
 
 %TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
