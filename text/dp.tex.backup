@@ -533,12 +533,11 @@ Adresní místa & adresní místa budov \\
 
 Tato kapitola pojednává o~struktuře výměnného formátu ISKN. Nejsou zde popsány a~do detailu rozvedeny veškeré datové bloky formátu, ale pouze ty nejdůležitější prvky formátu vzhledem k~zásuvnému modulu pro QGIS. Podrobný popis formátu je dostupný v~oficiální dokumentaci (\cite{vfk_struktura}), ze které tato kapitola čerpá. Veškeré ukázky výměnného formátu jsou pořízeny z~testovacích dat dostupných na stránkách ČUZK (\cite{nvf_cuzk}).
 
-Datový soubor \textit{.vfk} se skládá ze čtyř základních částí, které budou samostatně popsány na následujících řádcích této kapitoly:
+Datový soubor \textit{.vfk} se skládá ze tří základních částí, které budou samostatně popsány na následujících řádcích této kapitoly:
 
 \begin{itemize}
  \item hlavička \texttt{\&H},
  \item datové bloky \texttt{\&B},
- \item datové řádky \texttt{\&D},
  \item koncový znak \texttt{\&K}.
 \end{itemize}
 
@@ -546,7 +545,7 @@ Datový soubor je vytvářen v~kódování češtiny dle ČSN ISO 8859-2 (ISO La
 
 \subsection{Hlavička \texttt{\&H}}
 
-Každý řádek hlavičky začíná sousledností znaků \texttt{\&H}, po které následuje označení položky, např. \texttt{VERZE}. Jednotlivé údaje jsou odděleny pomocí středníku. Hlavička obsahuje několik povinných řádků, jejichž seznam je uveden v tabulce \ref{t_hlavicka}.
+Každý řádek hlavičky začíná sousledností znaků \texttt{\&H}, po které následuje označení položky, např. \texttt{VERZE}. Jednotlivé údaje jsou odděleny pomocí středníku. Hlavička obsahuje několik povinných řádků, jejichž seznam je uveden v~tabulce \ref{t_hlavicka}.
 
 \begin{table}[htbp]
 \centering
@@ -556,7 +555,7 @@ Každý řádek hlavičky začíná sousledností znaků \texttt{\&H}, po které
 \textbf{Položka} & \textbf{Popis} \\ 
 \midrule
 VERZE & označení verze VF \\ 
-VYTVORENO & datum a čas vytvoření souboru \\ 
+VYTVORENO & datum a~čas vytvoření souboru \\ 
 PUVOD & původ dat \\ 
 CODEPAGE & označení kódové stránky \\ 
 SKUPINA & seznam skupin datových bloků souboru \\ 
@@ -572,7 +571,7 @@ PAR & omezující podmínka -- parcely \\
 \label{t_hlavicka}
 \end{table}
 
-Příklad prvních řádků hlavičky je uveden v tabulce \ref{t_hlavicka_priklad}. Tabulka byla vytvořena na základě testovacích dat a obsahuje i některé nepovinné položky, např. \texttt{\&HINFO}.
+Příklad prvních řádků hlavičky je uveden v~tabulce \ref{t_hlavicka_priklad}. Tabulka byla vytvořena na základě testovacích dat a~obsahuje i~některé nepovinné položky, např. \texttt{\&HINFO}.
 
 \begin{table}[htbp]
 \centering
@@ -599,7 +598,7 @@ Příklad prvních řádků hlavičky je uveden v tabulce \ref{t_hlavicka_prikla
 
 \begin{description}
  \item[VERZE:] Pouze jeden řádek označující verzi souboru VFK.
- \item[VYTVOŘENO:] Datum a čas, kdy byl datový soubor vygenerován.
+ \item[VYTVOŘENO:] Datum a~čas, kdy byl datový soubor vygenerován.
  \item[PŮVOD:] Specifikuje původ dat. Standardně je zde uvedeno \uv{ISKN}.
  \item[CODEPAGE:] Označení kódové stránky. Hodnota \uv{WE8ISO8859P2} značí kódování češtiny dle ČSN ISO 8859-2. Hodnota \uv{"EE8MSWIN1250} slouží pro označení kódování češtiny dle MS WIN1250.
  \item[SKUPINA:] Uvádí se zde seznam datových bloků souboru. Např. \texttt{\&HSKUPINA; ”Zkratka skupiny“;[“Zkratka skupiny” \dots]}.
@@ -607,30 +606,146 @@ Příklad prvních řádků hlavičky je uveden v tabulce \ref{t_hlavicka_prikla
  \item[PLATNOST:] Časová podmínka použitá pro vytvoření souboru. Zde jsou možné dvě varianty:
  
  \begin{itemize}
-  \item Data jsou platná v daném čase. \texttt{\&HPLATNOST;"03.12.2013 09:56:42"; "03.12.2013 09:56:42"},
-  \item data jsou platná v daném období. \texttt{\&HPLATNOST;"03.12.2012 09:56:42"; "03.12.2013 09:56:42"}.
+  \item Data jsou platná v~daném čase. \texttt{\&HPLATNOST;"03.12.2013 09:56:42"; "03.12.2013 09:56:42"},
+  \item data jsou platná v~daném období. \texttt{\&HPLATNOST;"03.12.2012 09:56:42"; "03.12.2013 09:56:42"}.
  \end{itemize}
  
- S tímto souvisí položka \texttt{\&HZMENY}, která nabývá hodnot 0/1 a označuje, zda se jedná o data stavová, nebo změnová. Položka \texttt{\&HNAVRHY} nabývá také hodnot 0/1 a značí, zda jsou v souboru obsaženy potvrzené geometrické plány, či nikoliv.
+ S~tímto souvisí položka \texttt{\&HZMENY}, která nabývá hodnot 0/1 a~označuje, zda se jedná o~data stavová, nebo změnová. Položka \texttt{\&HNAVRHY} nabývá také hodnot 0/1 a~značí, zda jsou v~souboru obsaženy potvrzené geometrické plány, či nikoliv.
  
- \item[KATUZE:] Obsahuje jeden řádek, který popisuje hlavičku omezující podmínky katastrálních území. Další řádky začínající \texttt{\&D} tvoří omezující podmínku. Počet datových řádků udává počet katastrálních území, která omezující podmínku tvoří. Pokud v omezující podmínce není žádné katastrální území, bude uvedena pouze hlavička. Pro ujasnění je zde uveden příklad z testovacích dat.
+ \item[KATUZE:] Obsahuje jeden řádek, který popisuje hlavičku omezující podmínky katastrálních území. Další řádky začínající \texttt{\&D} tvoří omezující podmínku. Počet datových řádků udává počet katastrálních území, která omezující podmínku tvoří. Pokud v~omezující podmínce není žádné katastrální území, bude uvedena pouze hlavička. Pro ujasnění je zde uveden příklad z~testovacích dat.
  
  \begin{lstlisting}
 &HKATUZE;KOD N6;OBCE_KOD N6;NAZEV T48;PLATNOST_OD D;PLATNOST_DO
 &DKATUZE;693936;550426;"Jáma";"19.06.1991 00:00:00";""
  \end{lstlisting}
 
- \item[OPSUB:] První řádek popisuje hlavičku omezující podmínky oprávněných subjektů. Další řádky s daty poté omezující podmínku tvoří, obdobně jako je uvedeno u omezující podmínky pro katastrální území. Počet datových řádků je shodný s počtem oprávněných subjektů v omezující podmínce.
+ \item[OPSUB:] První řádek popisuje hlavičku omezující podmínky oprávněných subjektů. Další řádky s~daty poté omezující podmínku tvoří, obdobně jako je uvedeno u~omezující podmínky pro katastrální území. Počet datových řádků je shodný s~počtem oprávněných subjektů v~omezující podmínce.
  
- \item[PAR:] První řádek popisuje hlavičku omezující podmínky parcel. Další řádky tvoří omezující podmínku. Počet datových řádků je shodný s počtem parcel uvedených v omezující podmínce.
+ \item[PAR:] První řádek popisuje hlavičku omezující podmínky parcel. Další řádky tvoří omezující podmínku. Počet datových řádků je shodný s~počtem parcel uvedených v~omezující podmínce.
  
- \item[POLYG:] 
+ \item[POLYG:] Tento údaj může nabývat hodnot 0/1. Pokud je uvedena hodnota 1, tak je obsah souboru odvozen z~polygonu. V~takovém to případě musí být polygon na dalších řádcích definován svými vrcholy. Takto zadaný polygon může mít nejvýše 101 vrcholů. Příklad zadání omezujícího polygonu:
+ 
+ \begin{lstlisting}
+&HPOLYGDATA;675124.12;1024587.24
+&HPOLYGDATA;675224.12;1024687.24
+&HPOLYGDATA;675184.12;1024537.24
+ \end{lstlisting} 
+\end{description}
+
+\subsection{Datové bloky}
+
+Datové bloky obsahují řádky dvojího typu:
+
+\begin{itemize}
+ \item uvozující řádek bloku \texttt{\&B} -- obsahuje seznam atributů s jejich datovými typy, viz tab. \ref{t_datove_typy},
+ \item datové řádky \texttt{\&D} -- v řádku jsou uvedeny vlastní data.
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\caption[Datové typy ISKN]{Datové typy ISKN (zdroj: \cite{dp_landa})}
+\begin{tabular}{lll}
+\toprule
+\textbf{Kód} & \textbf{Datový typ} & \textbf{Číslo za kódem} \\ 
+\midrule
+N & číselný & maximální délka položky \\ 
+T & textový & maximální délka textu \\ 
+D & datumový & ve tvaru DD.MM.YYYY HH:MI:SS \\ 
+\bottomrule
+\end{tabular}
+\label{t_datove_typy}
+\end{table}
+
+Níže je uveden příklad datového bloku pro blok \uv{PARCELA}. Ukázka je pořízena z testovacích dat.
+
+\begin{lstlisting}
+&BPAR;ID N30;STAV_DAT N2;DATUM_VZNIKU D;DATUM_ZANIKU D;PRIZNAK_KONTEXTU N1;RIZENI_ID_VZNIKU N30;RIZENI_ID_ZANIKU N30;PKN_ID N30;PAR_TYPE T10;KATUZE_KOD N6;KATUZE_KOD_PUV N6;DRUH_CISLOVANI_PAR N1;KMENOVE_CISLO_PAR N5;ZDPAZE_KOD N1;PODDELENI_CISLA_PAR N3;DIL_PARCELY N1;MAPLIS_KOD N30;ZPURVY_KOD N1;DRUPOZ_KOD N2;ZPVYPA_KOD N4;TYP_PARCELYN1;VYMERA_PARCELY N9;CENA_NEMOVITOSTI N14.2;DEFINICNI_BOD_PAR T100;TEL_ID N30;PAR_ID N30;BUD_ID N30;IDENT_BUD T1;SOUCASTI T1;PS_ID N30;IDENT_PS T1
+
+&DPAR;3067989306;0;"26.06.2003 07:43:05";"";3;3003873306;;;"PKN"; 693936;;1;37;;1;;6780;2;13;;;332;;"";674674306;;323700306;"a";"n";;"n"
+\end{lstlisting}
+
+\subsection*{Seznam skupin datových bloků ISKN}
+
+V této sekci je uveden popis jednotlivých skupin datových bloků. Jsou zde uvedeny pouze nejpodstatnější informace, podrobný popis lze dohledat v oficiální dokumentaci formátu VFK (\cite{vfk_struktura}).
+
+\begin{description}
+ \item[NEMOVITOSTI:] Jedná se o největší skupinu datových bloků. Celkem jich může obsahovat až 21. V této skupině se nachází dva nejdůležitější bloky z pohledu zásuvného modulu pro QGIS, a to bloky PAR a BUD. Právě tyto dva bloky jsou pomocí zásuvného modulu vizualizovány. Dále je zde obsažen například číselník způsobů využití pozemku nebo způsob využití budov. Seznam všech bloků v této skupině je uveden v tabulce \ref{t_skupina_nemovitosti}. Znak (*) uvedený v tabulce znamená, že daný blok nepodléhá historizaci.
+ 
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{NEMOVITOSTI}]{Seznam datových bloků ve skupině \uv{NEMOVITOSTI} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+PAR & Parcely \\ 
+BUD & Budovy \\ 
+CABU & Části budov \\ 
+ZPOCHN* & Číselník způsobů ochrany nemovitosti \\
+DRUPOZ* & Číselník druhů pozemku \\
+ZPVYPO* & Číselník způsobů využití pozemku \\
+ZDPAZE* & Číselník zdrojů parcel ZE \\
+ZPURVY* & Číselník způsobů určení výměry \\
+TYPBUD* & Číselník typů budov \\
+MAPLIS* & Číselník mapových listů \\
+KATUZE* & Číselník katastrálních území \\
+OBCE* & Číselník obcí -- vázaně \\
+CASOBC* & Číselník částí obce -- vázaně \\
+OKRESY* & Číselník okresů -- vázaně \\
+KRAJE* & Číselník krajů -- vázaně \\
+NKRAJE* & Číselník nových krajů -- vázaně \\
+RZO & Přiřazení způsobu ochrany k nemovitostem \\
+ZPVYBU* & Způsob využití budov \\
+PS & Práva stavby \\
+RU & Přiřazení účelu práva stavby \\
+UCEL & Číselník účelů práva stavby \\
+\bottomrule
+\end{tabular}
+\label{t_skupina_nemovitosti}
+\end{table}
+ 
+ \item[JEDNOTKY:] V této skupině jsou uvedeny bytové či nebytové prostory, které byly označeny příslušnou listinou jako jednotka. Pro každou jednotku je uveden její popis (jednoznačně ji identifikuje v rámci budovy), typ a způsob využití. Ke každé jednotce je dále uveden spoluvlastnický podíl ($\frac{\text{velikost podlahové plochy}}{\text{celková plocha všech jednotek v domě}}$). \cite{dp_landa}
+ 
+ 
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{JEDNOTKY}]{Seznam datových bloků ve skupině \uv{JEDNOTKY} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+JED & Jednotky \\ 
+TYPJED* & Číselník typů jednotek \\ 
+ZPVYJE* & Způsob využití jednotek \\ 
+\bottomrule
+\end{tabular}
+\label{t_skupina_jednotky}
+\end{table}
 
 
+ \item[BONITNÍ DÍLY PARCEL:] Jsou zde uvedeny informace o bonitních dílech parcely. Ve skupině se nachází pouze jeden datový blok (BDP), ve kterém je popsán vztah mezi BPEJ\footnote{Bonitovaná půdně-ekologická jednotka: Základní určovací a oceňovací jednotka produkční schopnosti zemědělské půdy. Je vyjádřená číselným kódem -- číslice kódu vyjadřují půdně-klimatické vlastnosti půdy. Jednotky tvoří ohraničený územní celek, který má specifické ekologické vlastnosti a bioenergetický potenciál. \cite{vugtk}} a parcelou. \cite{dp_landa}
+ 
+ \item[ŘÍZENÍ:]
+ 
+ \item[PRVKY KATASTRÁLNÍ MAPY:]
+ 
+ \item[BPEJ:]
+ 
+ \item[GEOMETRICKÝ PLÁN:]
+ 
+ \item[REZERVOVANÁ ČÍSLA:]
+ 
+ \item[DEFINIČNÍ BODY:]
+ 
+ \item[ADRESNÍ MÍSTA:]
  
 \end{description}
 
 
+
+
+
+\subsection{Koncový znak \texttt{\&K}}
 
 
 %TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
