@@ -308,11 +308,33 @@ V~Praze dne \dots \dots \dots \\
 
 
 
-
 \clearpage
 \rhead{{\rightmark}}
-\chapter{Dostupné nástroje pro práci s~VFK}
+\chapter{Rešerše nástrojů pro práci s~VFK}
 
+\section{ISKN Studio pro ArcGIS}
+% TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+
+\section{ISKN View pro ArcGIS}
+% TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+
+\section{VFK2DWG}
+% TODO: http://www.cadstudio.cz/vfk2dwg
+
+\section{VFK2DB}
+% TODO: http://www.cadstudio.cz/vfk
+
+\section{Import dat KN}
+% TODO: http://www.gisoft.cz/Moduly/ImportVFK
+
+\section{Spirit VFK}
+% TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
+
+\section{Topol VFK Import}
+% TODO: http://www.datasystem.cz/vfk-import-s-37-m-4.html
+
+% TODO: http://freegis.fsv.cvut.cz/gwiki/V%C3%BDm%C4%9Bnn%C3%BD_form%C3%A1t_ISKN
+% TODO: http://theses.cz/id/exlzm6/45456-232276924.pdf
 
 \clearpage
 \chapter{Použité technologie}
@@ -616,7 +638,7 @@ Příklad prvních řádků hlavičky je uveden v~tabulce \ref{t_hlavicka_prikla
  
  \begin{lstlisting}
 &HKATUZE;KOD N6;OBCE_KOD N6;NAZEV T48;PLATNOST_OD D;PLATNOST_DO
-&DKATUZE;693936;550426;"Jáma";"19.06.1991 00:00:00";""
+&DKATUZE;693936;550426;"Jama";"19.06.1991 00:00:00";""
  \end{lstlisting}
 
  \item[OPSUB:] První řádek popisuje hlavičku omezující podmínky oprávněných subjektů. Další řádky s~daty poté omezující podmínku tvoří, obdobně jako je uvedeno u~omezující podmínky pro katastrální území. Počet datových řádků je shodný s~počtem oprávněných subjektů v~omezující podmínce.
@@ -637,8 +659,8 @@ Příklad prvních řádků hlavičky je uveden v~tabulce \ref{t_hlavicka_prikla
 Datové bloky obsahují řádky dvojího typu:
 
 \begin{itemize}
- \item uvozující řádek bloku \texttt{\&B} -- obsahuje seznam atributů s jejich datovými typy, viz tab. \ref{t_datove_typy},
- \item datové řádky \texttt{\&D} -- v řádku jsou uvedeny vlastní data.
+ \item uvozující řádek bloku \texttt{\&B} -- obsahuje seznam atributů s~jejich datovými typy, viz tab. \ref{t_datove_typy},
+ \item datové řádky \texttt{\&D} -- v~řádku jsou uvedeny vlastní data.
 \end{itemize}
 
 \begin{table}[htbp]
@@ -656,7 +678,7 @@ D & datumový & ve tvaru DD.MM.YYYY HH:MI:SS \\
 \label{t_datove_typy}
 \end{table}
 
-Níže je uveden příklad datového bloku pro blok \uv{PARCELA}. Ukázka je pořízena z testovacích dat.
+Níže je uveden příklad datového bloku pro blok \uv{PARCELA}. Ukázka je pořízena z~testovacích dat.
 
 \begin{lstlisting}
 &BPAR;ID N30;STAV_DAT N2;DATUM_VZNIKU D;DATUM_ZANIKU D;PRIZNAK_KONTEXTU N1;RIZENI_ID_VZNIKU N30;RIZENI_ID_ZANIKU N30;PKN_ID N30;PAR_TYPE T10;KATUZE_KOD N6;KATUZE_KOD_PUV N6;DRUH_CISLOVANI_PAR N1;KMENOVE_CISLO_PAR N5;ZDPAZE_KOD N1;PODDELENI_CISLA_PAR N3;DIL_PARCELY N1;MAPLIS_KOD N30;ZPURVY_KOD N1;DRUPOZ_KOD N2;ZPVYPA_KOD N4;TYP_PARCELYN1;VYMERA_PARCELY N9;CENA_NEMOVITOSTI N14.2;DEFINICNI_BOD_PAR T100;TEL_ID N30;PAR_ID N30;BUD_ID N30;IDENT_BUD T1;SOUCASTI T1;PS_ID N30;IDENT_PS T1
@@ -666,10 +688,10 @@ Níže je uveden příklad datového bloku pro blok \uv{PARCELA}. Ukázka je po�
 
 \subsection*{Seznam skupin datových bloků ISKN}
 
-V této sekci je uveden popis jednotlivých skupin datových bloků. Jsou zde uvedeny pouze nejpodstatnější informace, podrobný popis lze dohledat v oficiální dokumentaci formátu VFK (\cite{vfk_struktura}).
+V~této sekci je uveden popis jednotlivých skupin datových bloků. Jsou zde uvedeny pouze nejpodstatnější informace, podrobný popis lze dohledat v~oficiální dokumentaci formátu VFK (\cite{vfk_struktura}).
 
 \begin{description}
- \item[NEMOVITOSTI:] Jedná se o největší skupinu datových bloků. Celkem jich může obsahovat až 21. V této skupině se nachází dva nejdůležitější bloky z pohledu zásuvného modulu pro QGIS, a to bloky PAR a BUD. Právě tyto dva bloky jsou pomocí zásuvného modulu vizualizovány. Dále je zde obsažen například číselník způsobů využití pozemku nebo způsob využití budov. Seznam všech bloků v této skupině je uveden v tabulce \ref{t_skupina_nemovitosti}. Znak (*) uvedený v tabulce znamená, že daný blok nepodléhá historizaci.
+ \item[NEMOVITOSTI:] Jedná se o~největší skupinu datových bloků. Celkem jich může obsahovat až 21. V~této skupině se nachází dva nejdůležitější bloky z~pohledu zásuvného modulu pro QGIS, a~to bloky PAR a~BUD. Právě tyto dva bloky jsou pomocí zásuvného modulu vizualizovány. Dále je zde obsažen například číselník způsobů využití pozemku nebo způsob využití budov. Seznam všech bloků v~této skupině je uveden v~tabulce \ref{t_skupina_nemovitosti}. Znak (*) uvedený v~tabulce znamená, že daný blok nepodléhá historizaci.
  
 \begin{table}[htbp]
 \centering
@@ -694,7 +716,7 @@ CASOBC* & Číselník částí obce -- vázaně \\
 OKRESY* & Číselník okresů -- vázaně \\
 KRAJE* & Číselník krajů -- vázaně \\
 NKRAJE* & Číselník nových krajů -- vázaně \\
-RZO & Přiřazení způsobu ochrany k nemovitostem \\
+RZO & Přiřazení způsobu ochrany k~nemovitostem \\
 ZPVYBU* & Způsob využití budov \\
 PS & Práva stavby \\
 RU & Přiřazení účelu práva stavby \\
@@ -704,7 +726,7 @@ UCEL & Číselník účelů práva stavby \\
 \label{t_skupina_nemovitosti}
 \end{table}
  
- \item[JEDNOTKY:] V této skupině jsou uvedeny bytové či nebytové prostory, které byly označeny příslušnou listinou jako jednotka. Pro každou jednotku je uveden její popis (jednoznačně ji identifikuje v rámci budovy), typ a způsob využití. Ke každé jednotce je dále uveden spoluvlastnický podíl ($\frac{\text{velikost podlahové plochy}}{\text{celková plocha všech jednotek v domě}}$). \cite{dp_landa}
+ \item[JEDNOTKY:] V~této skupině jsou uvedeny bytové či nebytové prostory, které byly označeny příslušnou listinou jako jednotka. Pro každou jednotku je uveden její popis (jednoznačně ji identifikuje v~rámci budovy), typ a~způsob využití. Ke každé jednotce je dále uveden spoluvlastnický podíl ($\frac{\text{velikost podlahové plochy}}{\text{celková plocha všech jednotek v domě}}$). \cite{dp_landa}
  
  
 \begin{table}[htbp]
@@ -723,9 +745,9 @@ ZPVYJE* & Způsob využití jednotek \\
 \end{table}
 
  \newpage
- \item[BONITNÍ DÍLY PARCEL:] Jsou zde uvedeny informace o bonitních dílech parcely. Ve skupině se nachází pouze jeden datový blok (BDP), ve kterém je popsán vztah mezi BPEJ\footnote{\textbf{Bonitovaná půdně-ekologická jednotka}: Základní určovací a oceňovací jednotka produkční schopnosti zemědělské půdy. Je vyjádřená číselným kódem -- číslice kódu vyjadřují půdně-klimatické vlastnosti půdy. Jednotky tvoří ohraničený územní celek, který má specifické ekologické vlastnosti a bioenergetický potenciál. \cite{vugtk}} a parcelou. \cite{dp_landa}
+ \item[BONITNÍ DÍLY PARCEL:] Jsou zde uvedeny informace o~bonitních dílech parcely. Ve skupině se nachází pouze jeden datový blok (BDP), ve kterém je popsán vztah mezi BPEJ\footnote{\textbf{Bonitovaná půdně-ekologická jednotka}: Základní určovací a~oceňovací jednotka produkční schopnosti zemědělské půdy. Je vyjádřená číselným kódem -- číslice kódu vyjadřují půdně-klimatické vlastnosti půdy. Jednotky tvoří ohraničený územní celek, který má specifické ekologické vlastnosti a~bioenergetický potenciál. \cite{vugtk}} a~parcelou. \cite{dp_landa}
  
- \item[VLASTNICTVÍ:] Tato skupina bloků obsahuje informace o vlastnictví. Jako vlastník zde může být uvedena fyzická osoba, právnická osoba nebo jiný oprávněný uživatel (manželé v bezpodílovém spoluvlastnictví). Ve skupině se může nacházet několik datových bloků, viz tab. \ref{t_skupina_vlastnictvi}. \cite{dp_landa}
+ \item[VLASTNICTVÍ:] Tato skupina bloků obsahuje informace o~vlastnictví. Jako vlastník zde může být uvedena fyzická osoba, právnická osoba nebo jiný oprávněný uživatel (manželé v~bezpodílovém spoluvlastnictví). Ve skupině se může nacházet několik datových bloků, viz tab. \ref{t_skupina_vlastnictvi}. \cite{dp_landa}
  
 \begin{table}[htbp]
 \centering
@@ -743,44 +765,247 @@ TEL & Katastrální tělesa \\
 \label{t_skupina_vlastnictvi}
 \end{table}
 
- \item[JINÉ PRÁVNÍ VZTAHY:] Obsahuje pouze jeden datový blok (JPVZ).
+ \item[JINÉ PRÁVNÍ VZTAHY:] Obsahuje informace o~jiných než vlastnických vztazích jednoho oprávněného subjektu (nemovitosti) ke konkrétnímu předmětu (nemovitosti, vlastnictví, dalšímu jinému právnímu vztahu). Seznam a~popis datových bloků je uveden v~tabulce č. \ref{t_skupina_jpv}. \cite{dp_landa}
+ 
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{JINÉ PRÁVNÍ VZTAHY}]{Seznam datových bloků ve skupině \uv{JINÉ PRÁVNÍ VZTAHY} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+JPV & Jiné právní vztahy \\ 
+TYPRAV* & Číselník typů právních vztahů \\ 
+RJPV & Vazba JPV k~jinému věcnému právu \\ 
+\bottomrule
+\end{tabular}
+\label{t_skupina_jpv}
+\end{table}
 
- \item[ŘÍZENÍ:]
+ \item[ŘÍZENÍ:] Tato skupina je druhou nejobsáhlejší skupinou ve výměnném formátu. Může být obsažena ve změnovém exportu z~ISKN -- v~tomto případě obsahuje pouze záznamy, které byly v~daném časovém intervalu změněny. Obsahuje několik datových bloků, viz tab. \ref{t_skupina_rizeni}. \cite{dp_landa}
  
- \item[PRVKY KATASTRÁLNÍ MAPY:]
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{ŘÍZENÍ}]{Seznam datových bloků ve skupině \uv{ŘÍZENÍ} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+RIZENI* & Řízení (vklad, záznam) \\ 
+RIZKU* & Vazba Řízení -- Katastrální území \\ 
+OBJRIZ* & Objekty řízení (parcely, budovy, \dots) \\ 
+PRERIZ* & Předměty řízení \\ 
+UCAST* & Účastníci řízení \\ 
+ADRUC* & Adresy účastníků řízení \\ 
+LISTIN* & Listiny \\ 
+DUL* & Další údaje listin \\ 
+LDU* & Vazba Listiny -- Další údaje listin \\ 
+TYPLIS* & Číselník typů listin \\ 
+TYPPRE* & Číselník typů předmětu řízení \\ 
+TYPRIZ* & Typy řízení \\ 
+TYPUCA* & Typy účastníků řízení \\ 
+UCTYP* & Vazba Účastnící -- Typy účastníků řízení \\ 
+RL & Přiřazení listin k~nemovitostem, vlastnictví a~jiným právním vztahům \\ 
+OBESMF* & Obeslání účastníků řízení \\ 
+\bottomrule
+\end{tabular}
+\label{t_skupina_rizeni}
+\end{table}
  
- \item[BPEJ:]
+ \item[PRVKY KATASTRÁLNÍ MAPY:] Tato skupina je jednou z~nejdůležitějších pro zásuvný modul, respektive pro driver VFK v~knihovně GDAL. Jsou v~ní totiž obsaženy jak popisné, tak hlavně polohopisné informace o~prvcích polohopisu. Z~nich (tedy hlavně z~prvních dvou datových bloků \texttt{SOBR} a~\texttt{SBP}) je tvořena geometrie vektorové mapy. Spolu s~nimi skupina obsahuje další neméně důležité datové bloky, viz tab. \ref{t_skupina_prvkyKM}. \cite{dp_landa}
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{PRVKY KATASTRÁLNÍ MAPY}]{Seznam datových bloků ve skupině \uv{PRVKY KATASTRÁLNÍ MAPY} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+SOBR* & Souřadnice obrazu bodů polohopisu v~mapě \\ 
+SBP & Spojení bodů polohopisu -- definuje polohopisné liniové prvky \\ 
+SBM & Spojení bodů mapy -- definuje nepolohopisné liniové prvky \\ 
+KODCHB* & Číselník kódů charakteristiky kvality bodu \\ 
+TYPSOS* & Číselník typů souřadnicových systémů \\ 
+HP & Hranice parcel \\ 
+OP & Obrazy parcel (parcelní číslo, značka druhu pozemku, \dots) \\ 
+OB & Obrazy budov (obvod budovy, značka druhu budovy) \\ 
+DPM & Další prvky mapy \\ 
+OBBP & Obrazy bodů BP \\ 
+TYPPPD* & Číselník typů prvků prostorových dat \\ 
+ZVB & Zobrazení věcných břemen \\ 
+POM & Prvky orientační mapy \\ 
+SPOM & Spojení prvků orientační mapy -- definuje liniové prvky \\ 
+SPOL & Souřadnice polohy bodů polohopisu (měřené) \\  
+\bottomrule
+\end{tabular}
+\label{t_skupina_prvkyKM}
+\end{table}
  
- \item[GEOMETRICKÝ PLÁN:]
+ \newpage
+ \item[BPEJ:] Skupina \texttt{BPEJ} obsahuje dva datové bloky, viz tab. \ref{t_skupina_bpej}. Jsou v~ní obsaženy informace o~bonitovaných půdně ekologických jednotkách. BPEJ je základní mapovací a~oceňovací jednotka zemědělských půd, která vyjadřuje rozdílné produkční a~ekonomické efekty zemědělského území. Hranice BPEJ nejsou součástí katastrální mapy. Pouze tvoří rozhraní mezi dvěma jednotkami. \cite{dp_landa}
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{BPEJ}]{Seznam datových bloků ve skupině \uv{BPEJ} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+HBPEJ & Hranice BPEJ \\ 
+OBPEJ & Označení BPEJ \\ 
+\bottomrule
+\end{tabular}
+\label{t_skupina_bpej}
+\end{table}
  
- \item[REZERVOVANÁ ČÍSLA:]
+ \item[GEOMETRICKÝ PLÁN:] Tato skupina obsahuje sadu bloků popisujících geometrický plán a~hlavičku dalších změn v~KM, které nejsou prováděny geometrickým plánem. Obsahuje několik datových bloků, jejichž seznam je uveden v~tabulce č. \ref{t_skupina_gp}. Ve skupině je obsažena tabulka pro uchování záznamů podrobného měření změn jak v~terénu, tak i~změn, které s~měřením v~terénu nesouvisí (slučování parcel, demolice budov, \dots). \cite{dp_landa} \cite{vfk_struktura}
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{GEOMETRICKÝ PLÁN}]{Seznam datových bloků ve skupině \uv{GEOMETRICKÝ PLÁN} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+NZ & Hlavičky geometrických plánů a~ostatních změn KM \\ 
+ZPMZ & Hlavičky ZPMZ \\ 
+NZZP & Vazební tabulka návrhy změn KM -- ZPMZ \\ 
+PARG & Parcely GP \\ 
+BUDG & Budovy GP \\ 
+BDPG & Bonitní díly parcel GP \\ 
+HPG & Hranice parcel GP \\ 
+OPG & Obrazy parcel GP \\ 
+OBG & Obrazy budov GP \\ 
+ZVBG & Zobrazení věcných břemen GP \\ 
+DPMG & Další prvky mapy GP \\ 
+SBPG & Spojení bodu polohopisu GP \\ 
+OBPEJG & Označení BPEJ GP \\ 
+SBMG & Spojení bodů mapy GP \\ 
+HBPEJG & Hranice BPEJ GP \\ 
+OBDEBOG & Obrazy definičních bodů parcel a~budov GP \\ 
+\bottomrule
+\end{tabular}
+\label{t_skupina_gp}
+\end{table}
+
+ \newpage
+ \item[REZERVOVANÁ ČÍSLA:] Rezervovanými čísly se v~této skupině myslí parcelní čísla, která byla rezervována pro účely vyhotovení geometrického plánu. Před potvrzením geometrického plánu probíhá kontrola, jestli byla použita přidělená rezervovaná parcelní čísla. Při zápisu nové parcely do KN se její číslo z~tabulky \texttt{RECI} maže. Úplné parcelní číslo musí být jedinečné v~rámci tabulek \texttt{PAR} a~\texttt{RECI}. 
  
- \item[DEFINIČNÍ BODY:]
+ Datový blok \texttt{DOCI} obsahuje všechna parcelní čísla, která kdy byla použita za dobu elektronického vedení katastru nemovitostí v~informačním systému ISKN (od r. 2001). Seznam všech datových bloků je uveden v~tabulce č. \ref{t_skupina_rezCisla}. \cite{dp_landa} \cite{vfk_struktura}
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{REZERVOVANÁ ČÍSLA}]{Seznam datových bloků ve skupině \uv{REZERVOVANÁ ČÍSLA} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+RECI & Rezervovaná parcelní čísla \\
+DOCI & Dotčená parcelní čísla \\
+DOHICI & Dotčená historická parcelní čísla \\
+REZBP & Rezervovaná čísla bodu PBPP \\
+\bottomrule
+\end{tabular}
+\label{t_skupina_rezCisla}
+\end{table}
+
+ \item[DEFINIČNÍ BODY:] Skupina obsahuje pouze jeden datový blok \texttt{OBDEBO}. V~tomto bloku jsou obsaženy obrazy definičních bodů parcel, budov a~částí budov (pokud jsou v~ISKN naplněny). Jsou zde uvedeny údaje o~souřadnicích a~odkazech (ID) na objekty v~KN. \cite{vfk_struktura}
  
- \item[ADRESNÍ MÍSTA:]
+ \item[ADRESNÍ MÍSTA:] Datový blok \texttt{BUDOBJ} zajišťuje vazbu mezi budovami a~adresami pomocí ID budovy a~kódu objektu. Tento blok nepracuje s~historií -- obsahuje vždy aktuální data bez ohledu na datum, ke kterému je export NVF vytvořen.
+ 
+ Ve druhém bloku (\texttt{ADROBJ}) jsou uvedeny odkazy na adresy budov, které jsou obsaženy v~bloku nemovitostí. Blok opět nepracuje s~historií. \cite{vfk_struktura}
+
+\begin{table}[htbp]
+\centering
+\caption[Seznam datových bloků ve skupině \uv{ADRESNÍ MÍSTA}]{Seznam datových bloků ve skupině \uv{ADRESNÍ MÍSTA} (zdroj: \cite{vfk_struktura})}
+\begin{tabular}{ll}
+\toprule
+\textbf{Kód} & \textbf{Popis} \\ 
+\midrule
+BUDOBJ & Odkazy objektů na adresy \\
+ADROBJ & Adresy \\
+\bottomrule
+\end{tabular}
+\label{t_skupina_adrMista}
+\end{table}
  
 \end{description}
 
 
-
-
-
 \subsection{Koncový znak \texttt{\&K}}
 
-
-%TODO: http://geo.fsv.cvut.cz/~landa/publications/2005/diploma_thesis/martin.landa-thesis.pdf
-%TODO: http://www.cuzk.cz/Katastr-nemovitosti/Poskytovani-udaju-z-KN/Vymenny-format-KN/Vymenny-format-ISKN-v-textovem-tvaru/Popis_VF_ISKN-v5_1-1-(1).aspx
-\cite{dp_landa}
-\cite{vfk_struktura}
+Specifickou částí výměnného formátu je takzvaný \uv{koncový znak} \texttt{\&K}. Načtení tohoto znaku signalizuje konec souboru výměnného formátu. Pro driver VFK v~knihovně GDAL znak znamená konec načítání. 
 
 
+\section{Změnové věty v~NVF}
+
+Změnový export nelze provést nad všemi skupinami datových bloků. Proveden může být pouze nad následujícími:
+
+\begin{itemize}
+\itemsep 1pt	
+\parskip 1pt
+ \item nemovitosti,
+ \item jednotky,
+ \item bonitní díly parcel,
+ \item vlastnictví,
+ \item JPV,
+ \item řízení,
+ \item prvky katastrální mapy,
+ \item BPEJ.
+\end{itemize}
+
+Objekty, které byly vybrány v~parametrech při spuštění exportu, jsou součástí datového souboru i~v~případě, kdy na nich nebyla provedena žádná změna (tzn. jsou platné). Pro ostatní objekty ve vybraných datových skupinách se exportují pouze změnové věty. \cite{vfk_struktura}
+
+\subsection{Obsah změnového exportu -- Typy tabulek}
+
+Z~pohledu exportu změnových vět rozlišujeme několik skupin tabulek, které jsou rozděleny podle toho, zda podléhají principu historizace, či nikoliv.
+
+\subsubsection{Tabulky předmětu KN podléhající principu historizace}
+
+Uchovává se u~nich jak minulost, tak současnost. Tento typ obsahuje tabulky, ve kterých jsou uloženy informace o~parcelách, budovách, jednotkách,  OS, JPV, přiřazených listinách a~katastrálních tělesech. Aktuálnost dat je vyjádřena pomocí následujících atributů: datum vzniku, datum zániku, stav dat a~kontext změn. Může nastat několik kombinací atributů, jejich seznam a~popis je uveden v~tabulce č. \ref{t_komb_atributu}. \cite{vfk_struktura}
+
+\begin{table}[htbp]
+\centering
+\caption[Kombinace atributů vyjadřujících aktuálnost dat]{Kombinace atributů vyjadřujících aktuálnost dat (zdroj: \cite{vfk_struktura})}
+\label{t_komb_atributu}
+\begin{tabular}{lccl}
+\toprule
+\textbf{Operace} & \textbf{\parbox{25pt}{Stav dat}} & \textbf{\parbox{50pt}{Kontext změn}} & \textbf{Událost} \\ \midrule
+\multirow{3}{*}{UPDATE} & -1 & 1 & \parbox{245pt}{Objekt byl v~exportovaném období změněn, původní verze objektu zanikla, nová verze vznikla. Nová verze není vzhledem k~sys. datu aktuální, (záznam je v~minulosti).} \vspace{6pt} \\ 
+ & -1 & 3 & \parbox{245pt}{Objekt v~exportovaném období vznikl a~později byl změněn -- verze není vzhledem k~sys. datu aktuální, (záznam je v~minulosti).} \vspace{6pt} \\ 
+ & 0 & 3 & \parbox{245pt}{Objekt byl v~exportovaném období změněn, vznikla nová verze, která vzhledem k~sys. datu je aktuální.} \vspace{6pt} \\ 
+DELETE & 3 & 1 & \parbox{245pt}{Objekt byl v~exportovaném období zrušen.} \vspace{6pt} \\ 
+INSERT & 0 & 3 & \parbox{245pt}{Objekt vznikl v~exportovaném období.} \vspace{6pt} \\ 
+LOCK & 0 & 2 & \parbox{245pt}{Objekty zadané ve vstupních parametrech.} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Jestliže je provedena operace \texttt{UPDATE}, tak je možné mít v exportovaném datovém souboru několik vět se stejným ID. Počet těchto vět je ovlivněn především počtem změn na daném objektu v exportovaném období, ale i vzájemným vztahem datových položek \textit{platnost od} a \textit{platnost do} u exportovaného objektu vzhledem k danému období. 
+
+U operací \texttt{INSERT} a \texttt{DELETE} je v datovém souboru možný pouze jeden záznam s jedním ID. \cite{vfk_struktura}
+
+Příklad obsahu změnového exportu:
+
+\begin{lstlisting}
+ID N30;STAV_DAT N2;DATUM_VZNIKU D;DATUM_ZANIKU D;PRIZNAK_KONTEXTU N1;RIZENI_ID_VZNIKU N30;RIZENI_ID_ZANIKU N30
+493589708;-1;"11.12.1998";"13.09.2002";1;908105708;919198708
+493589708;-1;"13.09.2002";"14.11.2002";3;919198708;920435708
+493589708;-1;"14.11.2002";"15.11.2002";3;920435708;920595708
+493589708;-1;"15.11.2002";"";3;920595708;922200708
+\end{lstlisting}
 
 
+\subsubsection{Tabulky nepodléhající principu historizace (skupina RIZENI)}
 
+Jsou exportovány daná řízení, která byla v zadaném intervalu (Platnost od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy, listiny, vazba na další údaje listin, typy účastníků řízení a denormalizovaná data o obeslání účastníků. \cite{vfk_struktura}
 
+\subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a REZE)}
 
+U těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o geometrických plánech (skupina GMPL) a rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
 
+\subsubsection{Export číselníků}
 
+V číselnících jsou exportována jen ta data, u kterých byla platnost započata nebo ukončena v zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
 
 
 
