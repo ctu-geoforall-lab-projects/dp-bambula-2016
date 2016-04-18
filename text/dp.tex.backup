@@ -323,23 +323,33 @@ V této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s t�
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
 
 \section{VFK2DWG}
+\label{l_vfk2dwg}
 % TODO: http://www.cadstudio.cz/vfk2dwg
 Jedná se o aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a dále s nimi pracovat.
 
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/vfk2dwg-aplikace.png}
+\caption[Aplikace VFK2DWG]{Aplikace VFK2DWG (zdroj: \cite{cadstudio-vfk2dwg})}
+\end{figure}
+
 Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s aplikací \textbf{Nahlížení do KN}), kde o nich mohou být zjištěny dodatečné informace.
 
-\begin{figure}[htbp]
-  \centering
-  \subfigure[Před]{\includegraphics[scale=0.4]{images/vfk2dwg-aplikace.png}}
-  \subfigure[Po]{\includegraphics[scale=0.4]{images/vfk2dwg-ukazka.png}}
-  \caption[Ukázka aplikace VFK2DWG]{Ukázka aplikace VFK2DWG (zdroj: \cite{cadstudio-vfk2dwg})}
-  \label{ob_1voj_georef}
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/vfk2dwg-ukazka.png}
+\caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
 \end{figure}
 
 Nejnovější verze aplikace pracuje i s daty formátu ve verzi 5.1 a je podporována i v AutoCAD 2016. Bohužel se jedná o komerční aplikaci a proto nemohla být otestována. Veškeré informace byly převzaty z oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
 
 \section{VFK2DB}
 % TODO: http://www.cadstudio.cz/vfk
+VFK2DB je databázová varianta výše zmíněné aplikace (\ref{l_vfk2dwg}), která se chová jako samostatně spustitelný program nezávislý na konkrétním programu GIS či CAD. 
+
+Aplikace importuje data z formátu \textit{VFK} do relační databáze Oracle nebo MS SQL Server (v budoucnu se počítá s doplněním exportu do dalších typů databází, např. PostGIS, SQLite). Takto vytvořená databáze může být načtena některým z GIS produktů založených na prostorových SQL databázích (AutoCAD Map 3D, ESRI, Bentley, Intergraph, GeoServer, MapServer, \dots). 
+
+
 
 \section{Import dat KN}
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK

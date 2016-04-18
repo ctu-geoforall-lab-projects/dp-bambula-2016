@@ -312,9 +312,9 @@ V~Praze dne \dots \dots \dots \\
 \rhead{{\rightmark}}
 \chapter{Rešerše nástrojů pro práci s~VFK}
 
-V současné době existuje několik nástrojů pro práci s katastrálními daty. Ať už se jedná o moduly, které jsou distribuovány zdarma, nebo za úplatu,  jako nadstavba pro komerční nástroje, případně o moduly dostupné pro open-source nástroje. S trochou nadsázky se dá říci, že každý větší software pro práci s prostorovými daty má svůj zásuvný modul (nadstavbu) pro práci s daty ve formátu \textit{VFK}.
+V~současné době existuje několik nástrojů pro práci s~katastrálními daty. Ať už se jedná o~moduly, které jsou distribuovány zdarma, nebo za úplatu,  jako nadstavba pro komerční nástroje, případně o~moduly dostupné pro open-source nástroje. S~trochou nadsázky se dá říci, že každý větší software pro práci s~prostorovými daty má svůj zásuvný modul (nadstavbu) pro práci s~daty ve formátu \textit{VFK}.
 
-V této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s těmito daty. Moduly, které jsou šířeny zdarma a bylo je možné vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází především z dostupně dokumentace na příslušných oficiálních webových stránkách.
+V~této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s~těmito daty. Moduly, které jsou šířeny zdarma a~bylo je možné vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází především z~dostupně dokumentace na příslušných oficiálních webových stránkách.
 
 \section{ISKN Studio pro ArcGIS}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
@@ -323,8 +323,9 @@ V této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s t�
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
 
 \section{VFK2DWG}
+\label{l_vfk2dwg}
 % TODO: http://www.cadstudio.cz/vfk2dwg
-Jedná se o aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a dále s nimi pracovat.
+Jedná se o~aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a~dále s~nimi pracovat.
 
 \begin{figure}[htb]
 \centering
@@ -332,7 +333,7 @@ Jedná se o aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilit
 \caption[Aplikace VFK2DWG]{Aplikace VFK2DWG (zdroj: \cite{cadstudio-vfk2dwg})}
 \end{figure}
 
-Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s aplikací \textbf{Nahlížení do KN}), kde o nich mohou být zjištěny dodatečné informace.
+Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s~aplikací \textbf{Nahlížení do KN}), kde o~nich mohou být zjištěny dodatečné informace.
 
 \begin{figure}[htb]
 \centering
@@ -340,10 +341,15 @@ Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní �
 \caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
 \end{figure}
 
-Nejnovější verze aplikace pracuje i s daty formátu ve verzi 5.1 a je podporována i v AutoCAD 2016. Bohužel se jedná o komerční aplikaci a proto nemohla být otestována. Veškeré informace byly převzaty z oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
+Nejnovější verze aplikace pracuje i~s~daty formátu ve verzi 5.1 a~je podporována i~v~AutoCAD 2016. Bohužel se jedná o~komerční aplikaci a~proto nemohla být otestována. Veškeré informace byly převzaty z~oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
 
 \section{VFK2DB}
 % TODO: http://www.cadstudio.cz/vfk
+VFK2DB je databázová varianta výše zmíněné aplikace (\ref{l_vfk2dwg}), která se chová jako samostatně spustitelný program nezávislý na konkrétním programu GIS či CAD. 
+
+Aplikace importuje data z~formátu \textit{VFK} do relační databáze Oracle nebo MS SQL Server (v~budoucnu se počítá s~doplněním exportu do dalších typů databází, např. PostGIS, SQLite). Takto vytvořená databáze může být načtena některým z~GIS produktů založených na prostorových SQL databázích (AutoCAD Map 3D, ESRI, Bentley, Intergraph, GeoServer, MapServer, \dots). 
+
+Opět se jedná o~komerční aplikaci společnosti CAD Studio, a~proto nemohla být otestována. Veškerý zde uvedený popis vychází z~oficiální dokumentace na stránkách společnosti, viz \cite{cadstudio-vfk2db}.
 
 \section{Import dat KN}
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK
@@ -1003,9 +1009,9 @@ LOCK & 0 & 2 & \parbox{245pt}{Objekty zadané ve vstupních parametrech.} \\ \bo
 \end{tabular}
 \end{table}
 
-Jestliže je provedena operace \texttt{UPDATE}, tak je možné mít v exportovaném datovém souboru několik vět se stejným ID. Počet těchto vět je ovlivněn především počtem změn na daném objektu v exportovaném období, ale i vzájemným vztahem datových položek \textit{platnost od} a \textit{platnost do} u exportovaného objektu vzhledem k danému období. 
+Jestliže je provedena operace \texttt{UPDATE}, tak je možné mít v~exportovaném datovém souboru několik vět se stejným ID. Počet těchto vět je ovlivněn především počtem změn na daném objektu v~exportovaném období, ale i~vzájemným vztahem datových položek \textit{platnost od} a~\textit{platnost do} u~exportovaného objektu vzhledem k~danému období. 
 
-U operací \texttt{INSERT} a \texttt{DELETE} je v datovém souboru možný pouze jeden záznam s jedním ID. \cite{vfk_struktura}
+U~operací \texttt{INSERT} a~\texttt{DELETE} je v~datovém souboru možný pouze jeden záznam s~jedním ID. \cite{vfk_struktura}
 
 Příklad obsahu změnového exportu:
 
@@ -1020,15 +1026,15 @@ ID N30;STAV_DAT N2;DATUM_VZNIKU D;DATUM_ZANIKU D;PRIZNAK_KONTEXTU N1;RIZENI_ID_V
 
 \subsubsection{Tabulky nepodléhající principu historizace (skupina RIZENI)}
 
-Jsou exportovány daná řízení, která byla v zadaném intervalu (Platnost od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy, listiny, vazba na další údaje listin, typy účastníků řízení a denormalizovaná data o obeslání účastníků. \cite{vfk_struktura}
+Jsou exportovány daná řízení, která byla v~zadaném intervalu (Platnost od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy, listiny, vazba na další údaje listin, typy účastníků řízení a~denormalizovaná data o~obeslání účastníků. \cite{vfk_struktura}
 
-\subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a REZE)}
+\subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a~REZE)}
 
-U těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o geometrických plánech (skupina GMPL) a rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
+U~těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o~geometrických plánech (skupina GMPL) a~rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
 
 \subsubsection{Export číselníků}
 
-V číselnících jsou exportována jen ta data, u kterých byla platnost započata nebo ukončena v zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
+V~číselnících jsou exportována jen ta data, u~kterých byla platnost započata nebo ukončena v~zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
 
 
 
