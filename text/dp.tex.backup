@@ -308,11 +308,52 @@ V~Praze dne \dots \dots \dots \\
 
 
 
-
 \clearpage
 \rhead{{\rightmark}}
-\chapter{Dostupné nástroje pro práci s~VFK}
+\chapter{Rešerše nástrojů pro práci s~VFK}
 
+V současné době existuje několik nástrojů pro práci s katastrálními daty. Ať už se jedná o moduly, které jsou distribuovány zdarma, nebo za úplatu,  jako nadstavba pro komerční nástroje, případně o moduly dostupné pro open-source nástroje. S trochou nadsázky se dá říci, že každý větší software pro práci s prostorovými daty má svůj zásuvný modul (nadstavbu) pro práci s daty ve formátu \textit{VFK}.
+
+V této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s těmito daty. Moduly, které jsou šířeny zdarma a bylo je možné vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází především z dostupně dokumentace na příslušných oficiálních webových stránkách.
+
+\section{ISKN Studio pro ArcGIS}
+% TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+
+\section{ISKN View pro ArcGIS}
+% TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+
+\section{VFK2DWG}
+% TODO: http://www.cadstudio.cz/vfk2dwg
+Jedná se o aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a dále s nimi pracovat.
+
+Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s aplikací \textbf{Nahlížení do KN}), kde o nich mohou být zjištěny dodatečné informace.
+
+\begin{figure}[htbp]
+  \centering
+  \subfigure[Před]{\includegraphics[scale=0.4]{images/vfk2dwg-aplikace.png}}
+  \subfigure[Po]{\includegraphics[scale=0.4]{images/vfk2dwg-ukazka.png}}
+  \caption[Ukázka aplikace VFK2DWG]{Ukázka aplikace VFK2DWG (zdroj: \cite{cadstudio-vfk2dwg})}
+  \label{ob_1voj_georef}
+\end{figure}
+
+Nejnovější verze aplikace pracuje i s daty formátu ve verzi 5.1 a je podporována i v AutoCAD 2016. Bohužel se jedná o komerční aplikaci a proto nemohla být otestována. Veškeré informace byly převzaty z oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
+
+\section{VFK2DB}
+% TODO: http://www.cadstudio.cz/vfk
+
+\section{Import dat KN}
+% TODO: http://www.gisoft.cz/Moduly/ImportVFK
+
+\section{Spirit VFK}
+% TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
+
+\section{Topol VFK Import}
+% TODO: http://www.datasystem.cz/vfk-import-s-37-m-4.html
+
+
+
+% TODO: http://freegis.fsv.cvut.cz/gwiki/V%C3%BDm%C4%9Bnn%C3%BD_form%C3%A1t_ISKN
+% TODO: http://theses.cz/id/exlzm6/45456-232276924.pdf
 
 \clearpage
 \chapter{Použité technologie}
@@ -979,14 +1020,11 @@ Jsou exportovány daná řízení, která byla v zadaném intervalu (Platnost od
 
 \subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a REZE)}
 
-U těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o geometrických plánech (skupina GMPL) a rezervovaných číslech (skupina REZE).
+U těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o geometrických plánech (skupina GMPL) a rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
 
 \subsubsection{Export číselníků}
 
-
-
-
-% TODO: dopsat
+V číselnících jsou exportována jen ta data, u kterých byla platnost započata nebo ukončena v zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
 
 
 
