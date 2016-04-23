@@ -33,6 +33,7 @@ columns=flexible,
 breaklines=true
 }
 
+
 \usepackage[%
 %top=40mm,
 %bottom=35mm,
@@ -312,28 +313,95 @@ V~Praze dne \dots \dots \dots \\
 \rhead{{\rightmark}}
 \chapter{Rešerše nástrojů pro práci s~VFK}
 
-V současné době existuje několik nástrojů pro práci s katastrálními daty. Ať už se jedná o moduly, které jsou distribuovány zdarma, nebo za úplatu,  jako nadstavba pro komerční nástroje, případně o moduly dostupné pro open-source nástroje. S trochou nadsázky se dá říci, že každý větší software pro práci s prostorovými daty má svůj zásuvný modul (nadstavbu) pro práci s daty ve formátu \textit{VFK}.
+V~současné době existuje několik nástrojů pro práci s~katastrálními daty. Ať už se jedná o~moduly, které jsou distribuovány zdarma, nebo za úplatu,  jako nadstavba pro komerční nástroje, případně o~moduly dostupné pro open-source nástroje. S~trochou nadsázky se dá říci, že každý větší software pro práci s~prostorovými daty má svůj zásuvný modul (nadstavbu) pro práci s~daty \textit{VFK}.
 
-V této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s těmito daty. Moduly, které jsou šířeny zdarma a bylo je možné vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází především z dostupně dokumentace na příslušných oficiálních webových stránkách.
+V~této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s~těmito daty. Moduly, které jsou šířeny zdarma a~bylo je možné vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází především z~dostupně dokumentace na příslušných oficiálních webových stránkách.
 
 \section{ISKN Studio pro ArcGIS}
+\label{l_iskn_studio}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+Aplikace ISKN Studio slouží pro převod dat VFK do do geodatabáze, se kterou je schopen pracovat program ArcGIS. Struktura geodatabáze je navržena dle připravené šablony. Tato šablona je vždy vázána k dané verzi formátu VFK a může být stažena přímo ze stránek společnosti Arcdata Praha, která je zárověn zvůrcem této aplikace. Data načtená touto aplikací mohou být exportována také ve formátu \textit{.xml}. Díky této aplikaci může být v geodatabázi sestavena geometrie vektorových prvků. \cite{iskn_studio}
 
-\section{ISKN View pro ArcGIS}
+\begin{figure}[htb]
+\centering
+\includegraphics{images/ISKNStudio-aplikace.png}
+\caption[Aplikace ISKN Studio]{Aplikace ISKN Studio (zdroj: vlastní)}
+\end{figure}
+
+Strutura vytvořené geodatabáze je shodná s datovými bloky obsaženými ve vstupním souboru VFK (pro každý datový blok je vytvořena jedna tabulka). 
+
+Aplikace disponuje kromě zpracování souboru VFK dalšími funkcionalitami. Jednou z hlavních je možnost kontroly struktury vstupního VFK souboru podle zvolené šablony nebo podle geodatabáze. Samozřejmostí je možnost uložení protokolu o zpracování. Aplikace je distribuována zdarma.
+
+\newpage
+\subsection{ISKN View pro ArcGIS}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
+ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio (\ref{l_iskn_studio}). Software je používán jako doplněk (\textit{Add-In}) v programu ArcGIS verze 10.1 a vyšší. 
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.65]{images/ISKNView-aplikace.png}
+\caption[Aplikace ISKN View]{Aplikace ISKN View (zdroj: \cite{iskn_studio})}
+\end{figure}
+
+Díky ISKN View je umožněno rychlé a jednoduché vyhledávání v datech ISKN, která byla pomocí aplikace ISKN Studio převedena do některé z podporovaných geodatabází.  Aplikace je rovněž šířena bezúplatně. \cite{iskn_studio}
+
+\newpage
+\section{Import dat KN ve výměnném formátu}
+% TODO: http://www.gisoft.cz/Moduly/ImportVFK
+Jedná se o modul vytvořený společností GISOFT, který slouží k převodu a načtení dat ve formátech VFK a VKM do formátu DGN. Modul spolupracuje s produkty společnosti Bentley Systems, především MicroStation. Umožňuje načtení dat jak ve starém, tak i v novém výměnném formátu (viz kapitola č. \ref{l_format_vfk}) KN. Je dostupný jako volitelný modul pro nadstavby \textbf{MGEO}\footnote{http://www.gisoft.cz/MGEO/MGEO} a \textbf{SPIDER}\footnote{http://www.gisoft.cz/SPIDER/SPIDER}. Může být použit v následujících případech:
+
+\begin{description}
+ \item[Samostatně:] Použití samostatně se hodí v případě, kdy jsou načítána data výměnného formátu obsahující pouze katastrální mapu. V tomto případě bude vstupní soubor převeden do podoby výkresu ve formátu DGN.
+
+ \item[Spolu s modulem Práce s popisnými informacemi KN:] Tento mód je užiteč\-ný v případě, kdy jsou v souboru spolu s katastrání mapou dostupné i popisné informace (případně jsou uvedeny pouze popisné informace).	
+\end{description}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=1]{images/microstation_modul.png}
+\caption[Import dat KN ve výměnném formátu -- ukázka použití]{Import dat KN ve výměnném formátu -- ukázka použití (zdroj: \cite{gisoft_modul})}
+\end{figure}
+
+Veškeré informace uvedené o tomto modulu vycházejí z oficiálního popisu modulu uvedeného na stránkách společnostu GISOFT. \cite{gisoft_modul}
+
+\newpage
+\section{Spirit VFK}
+% TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
+Software Spirit VFK je vytvořený a distribuovaný společností GEOREAL jako samostatně spustitelná desktopová aplikace. Slouží pro převod dat (VFK) katastru nemovitostí do jakékoli geodatabáze podporované společností ESRI. 
+
+Do geodatabáze jsou postupně importovány tabulky, relace a ostatní obsažené objekty ISKN. Takto vytvořená databáze může být použita v souvisejících aplikačních nadstavbách \textbf{Spirit KN}\footnote{http://www.georeal.cz/cz/spirit-desktop/spirit-kn} a \textbf{Spirit Portál - KN}\footnote{http://www.georeal.cz/cz/spirit-server/portal-kn}, případně může sloužit pro další analytické práce nad daty KN. Import dat do geodatabáze probíhá v následujících krocích:
+
+\begin{enumerate}
+ \item příprava geodatabáze (tvorba tabulek, relací, \dots),
+ \item import dat VFK,
+ \item vektorizace parcel, budov a ostatních mapových vrstev,
+ \item optimalizace mapových vrstev, tvorba symbologie.
+\end{enumerate}
+
+Symbologie (ve formátech MXD a LYR) vytvářená v posledním kroku se používá pro zobrazování dat ve výše zmíněných aplikačních nadstavbách pro ArcMap. Aplikace Spirit VFK může být využívána pro pravidelnou aktualizaci datových skladů katastru nemovitostí.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.9]{images/spirit_vfk.png}
+\caption[Spirit VFK -- ukázka aplikace]{Spirit VFK -- ukázka aplikace (zdroj: \cite{spirit_vfk})}
+\end{figure}
+
+Pro aplikaci existuje i její odlehčená verze Spirit VFK Light, díky které je možné importovat data VFK do osobní geodatabáze ArcGIS (MS Access) nebo databáze MS SQL Server. Používání obou aplikací nevyžaduje znalost struktury dat ISKN nebo výměnného formátu VFK.
+
+Veškeré výše uvedené informace pocházejí z oficiálních stránek produktu, viz \cite{spirit_vfk}.
 
 \section{VFK2DWG}
 \label{l_vfk2dwg}
 % TODO: http://www.cadstudio.cz/vfk2dwg
-Jedná se o aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a dále s nimi pracovat.
+Jedná se o~aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD, AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky této aplikaci je možné do výše uvedených programů načíst data VF ISKN (\textit{.vfk}) a~dále s~nimi pracovat.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=1]{images/vfk2dwg-aplikace.png}
+\includegraphics[scale=0.85]{images/vfk2dwg-aplikace.png}
 \caption[Aplikace VFK2DWG]{Aplikace VFK2DWG (zdroj: \cite{cadstudio-vfk2dwg})}
 \end{figure}
 
-Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s aplikací \textbf{Nahlížení do KN}), kde o nich mohou být zjištěny dodatečné informace.
+Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s~aplikací \textbf{Nahlížení do KN}), kde o~nich mohou být zjištěny dodatečné informace.
 
 \begin{figure}[htb]
 \centering
@@ -341,29 +409,55 @@ Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní �
 \caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
 \end{figure}
 
-Nejnovější verze aplikace pracuje i s daty formátu ve verzi 5.1 a je podporována i v AutoCAD 2016. Bohužel se jedná o komerční aplikaci a proto nemohla být otestována. Veškeré informace byly převzaty z oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
+Nejnovější verze aplikace pracuje i~s~daty formátu ve verzi 5.1 a~je podporována i~v~AutoCAD 2016. Bohužel se jedná o~komerční aplikaci a~proto nemohla být otestována. Veškeré informace byly převzaty z~oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
+
 
 \section{VFK2DB}
 % TODO: http://www.cadstudio.cz/vfk
 VFK2DB je databázová varianta výše zmíněné aplikace (\ref{l_vfk2dwg}), která se chová jako samostatně spustitelný program nezávislý na konkrétním programu GIS či CAD. 
 
-Aplikace importuje data z formátu \textit{VFK} do relační databáze Oracle nebo MS SQL Server (v budoucnu se počítá s doplněním exportu do dalších typů databází, např. PostGIS, SQLite). Takto vytvořená databáze může být načtena některým z GIS produktů založených na prostorových SQL databázích (AutoCAD Map 3D, ESRI, Bentley, Intergraph, GeoServer, MapServer, \dots). 
+Aplikace importuje data z~formátu \textit{VFK} do relační databáze Oracle nebo MS SQL Server (v~budoucnu se počítá s~doplněním exportu do dalších typů databází, např. PostGIS, SQLite). Takto vytvořená databáze může být načtena některým z~GIS produktů založených na prostorových SQL databázích (AutoCAD Map 3D, ESRI, Bentley, Intergraph, GeoServer, MapServer, \dots). 
 
-
-
-\section{Import dat KN}
-% TODO: http://www.gisoft.cz/Moduly/ImportVFK
-
-\section{Spirit VFK}
-% TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
+Opět se jedná o~komerční aplikaci společnosti CAD Studio, a~proto nemohla být otestována. Veškerý zde uvedený popis vychází z~oficiální dokumentace na stránkách společnosti, viz \cite{cadstudio-vfk2db}.
 
 \section{Topol VFK Import}
 % TODO: http://www.datasystem.cz/vfk-import-s-37-m-4.html
+Jak už ze samotného názvu plyne, aplikace Topol VFK Import byla vyvinuta společností Data System s.r.o. ve spolupráci se společností Topol Software. Aplikace disponuje vlastním grafickým prostředím, ve kterém je možné VFK data exportovat do formátů DWG a DXF, případně do vlastního formátu (OpenGIS MDB) společnosti Topol. 
+
+Opět se jedná o komerční aplikaci, a proto nemohla být vykoušena. Veškeré informace pocházejí z webových stránek výrobce, viz \cite{topol_vfk_import}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.3]{images/topol-aplikace.png}
+\caption[Topol VFK Import -- ukázka zpracovaných dat]{Topol VFK Import -- ukázka zpracovaných dat (zdroj: \cite{topol_vfk_import})}
+\end{figure}
+
+\newpage
+\section{GDAL -- VFK Driver}
+% TODO: http://freegis.fsv.cvut.cz/gwiki/VFK_/_GDAL
+% TODO: http://www.gdal.org/drv_vfk.html
+% TODO: http://gama.fsv.cvut.cz/~landa/publications/2010/gis-ostrava-2010/paper/landa-ogr-vfk.pdf
+VFK Driver, díky kterému je možné data VFK číst, je součástí knihovny GDAL (viz \ref{l_gdal}) od verze 1.7. Vstupní VFK soubor je knihovnou GDAL rozeznán jako \texttt{OGR datasource}, každý datový blok je poté vnímán jako \texttt{OGR layer}. Od GDAL verze 1.10 je podpora VFK přidána pouze v případě, kdy je knihovna kompilována s podporou SQLite (\texttt{./configure --with-sqlite}).
+
+Driver si interně data při prvním čtení ukládá do databáze SQLite ve stejném adresáři, jako je umístěn VFK soubor. Při opětovném čtení driver používá pro čtení již vytvořenou databázi. Implicitní chování driveru může být ovlivněno zadáním proměnných prostředí. 
+
+Jednou z nejdůležitějších je proměnná \texttt{OGR\_VFK\_DB\_NAME} sloužící pro definici jména SQLite databáze. Neméně důležitá proměnná
+\texttt{OGR\_VFK\_DB\_OVERWRITE} říká, že při každém čtení souboru VFK se vytváří databáze SQLite znovu, čtení tedy probíhá pouze ze souboru.
+
+\begin{lstlisting}[language=bash,caption={bash version}]
+
+ 
+\end{lstlisting}
 
 
 
+\section{GRASS GIS}
 % TODO: http://freegis.fsv.cvut.cz/gwiki/V%C3%BDm%C4%9Bnn%C3%BD_form%C3%A1t_ISKN
-% TODO: http://theses.cz/id/exlzm6/45456-232276924.pdf
+
+
+
+
+
 
 \clearpage
 \chapter{Použité technologie}
@@ -386,6 +480,7 @@ QGIS nedisponuje tak širokou paletou nástrojů, jako jeho open-source kolega G
 
 
 \section{GDAL/OGR}
+\label{l_gdal}
 
 GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihovna je vyvíjena pod hlavičkou Open Source Geospatial Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá jednoduchý abstraktní datový model pro všechny podporované datové formáty. Kromě toho nabízí také řadu užitečných nástrojů pro příkazovou řádku určených pro konverzi a~zpracování dat. \cite{gdal_wiki}
 
@@ -1009,9 +1104,9 @@ LOCK & 0 & 2 & \parbox{245pt}{Objekty zadané ve vstupních parametrech.} \\ \bo
 \end{tabular}
 \end{table}
 
-Jestliže je provedena operace \texttt{UPDATE}, tak je možné mít v exportovaném datovém souboru několik vět se stejným ID. Počet těchto vět je ovlivněn především počtem změn na daném objektu v exportovaném období, ale i vzájemným vztahem datových položek \textit{platnost od} a \textit{platnost do} u exportovaného objektu vzhledem k danému období. 
+Jestliže je provedena operace \texttt{UPDATE}, tak je možné mít v~exportovaném datovém souboru několik vět se stejným ID. Počet těchto vět je ovlivněn především počtem změn na daném objektu v~exportovaném období, ale i~vzájemným vztahem datových položek \textit{platnost od} a~\textit{platnost do} u~exportovaného objektu vzhledem k~danému období. 
 
-U operací \texttt{INSERT} a \texttt{DELETE} je v datovém souboru možný pouze jeden záznam s jedním ID. \cite{vfk_struktura}
+U~operací \texttt{INSERT} a~\texttt{DELETE} je v~datovém souboru možný pouze jeden záznam s~jedním ID. \cite{vfk_struktura}
 
 Příklad obsahu změnového exportu:
 
@@ -1026,15 +1121,15 @@ ID N30;STAV_DAT N2;DATUM_VZNIKU D;DATUM_ZANIKU D;PRIZNAK_KONTEXTU N1;RIZENI_ID_V
 
 \subsubsection{Tabulky nepodléhající principu historizace (skupina RIZENI)}
 
-Jsou exportovány daná řízení, která byla v zadaném intervalu (Platnost od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy, listiny, vazba na další údaje listin, typy účastníků řízení a denormalizovaná data o obeslání účastníků. \cite{vfk_struktura}
+Jsou exportovány daná řízení, která byla v~zadaném intervalu (Platnost od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy, listiny, vazba na další údaje listin, typy účastníků řízení a~denormalizovaná data o~obeslání účastníků. \cite{vfk_struktura}
 
-\subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a REZE)}
+\subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a~REZE)}
 
-U těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o geometrických plánech (skupina GMPL) a rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
+U~těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změnových vět. Jsou zde udržovány informace o~geometrických plánech (skupina GMPL) a~rezervovaných číslech (skupina REZE). \cite{vfk_struktura}
 
 \subsubsection{Export číselníků}
 
-V číselnících jsou exportována jen ta data, u kterých byla platnost započata nebo ukončena v zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
+V~číselnících jsou exportována jen ta data, u~kterých byla platnost započata nebo ukončena v~zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
 
 
 
