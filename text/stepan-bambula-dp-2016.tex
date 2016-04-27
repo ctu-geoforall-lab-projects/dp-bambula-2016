@@ -23,10 +23,11 @@
 \usepackage{fancyhdr}
 \usepackage{url}
 \usepackage{array}
-\usepackage{subfigure}
 \usepackage{wasysym}
 \usepackage{listings} 
 \usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \lstset{
 basicstyle=\ttfamily,
@@ -321,22 +322,22 @@ V~této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím s~t�
 \section{ISKN Studio pro ArcGIS}
 \label{l_iskn_studio}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
-Aplikace ISKN Studio slouží pro převod dat VFK do do geodatabáze, se kterou je schopen pracovat program ArcGIS. Struktura geodatabáze je navržena dle připravené šablony. Tato šablona je vždy vázána k dané verzi formátu VFK a může být stažena přímo ze stránek společnosti Arcdata Praha, která je zárověn zvůrcem této aplikace. Data načtená touto aplikací mohou být exportována také ve formátu \textit{.xml}. Díky této aplikaci může být v geodatabázi sestavena geometrie vektorových prvků. \cite{iskn_studio}
+Aplikace ISKN Studio slouží pro převod dat VFK do do geodatabáze, se kterou je schopen pracovat program ArcGIS. Struktura geodatabáze je navržena dle připravené šablony. Tato šablona je vždy vázána k~dané verzi formátu VFK a~může být stažena přímo ze stránek společnosti Arcdata Praha, která je zárověn zvůrcem této aplikace. Data načtená touto aplikací mohou být exportována také ve formátu \textit{.xml}. Díky této aplikaci může být v~geodatabázi sestavena geometrie vektorových prvků. \cite{iskn_studio}
 
 \begin{figure}[htb]
 \centering
-\includegraphics{images/ISKNStudio-aplikace.png}
+\includegraphics[width=\textwidth]{images/ISKNStudio-aplikace.png}
 \caption[Aplikace ISKN Studio]{Aplikace ISKN Studio (zdroj: vlastní)}
 \end{figure}
 
-Strutura vytvořené geodatabáze je shodná s datovými bloky obsaženými ve vstupním souboru VFK (pro každý datový blok je vytvořena jedna tabulka). 
+Strutura vytvořené geodatabáze je shodná s~datovými bloky obsaženými ve vstupním souboru VFK (pro každý datový blok je vytvořena jedna tabulka). 
 
-Aplikace disponuje kromě zpracování souboru VFK dalšími funkcionalitami. Jednou z hlavních je možnost kontroly struktury vstupního VFK souboru podle zvolené šablony nebo podle geodatabáze. Samozřejmostí je možnost uložení protokolu o zpracování. Aplikace je distribuována zdarma.
+Aplikace disponuje kromě zpracování souboru VFK dalšími funkcionalitami. Jednou z~hlavních je možnost kontroly struktury vstupního VFK souboru podle zvolené šablony nebo podle geodatabáze. Samozřejmostí je možnost uložení protokolu o~zpracování. Aplikace je distribuována zdarma.
 
 \newpage
 \subsection{ISKN View pro ArcGIS}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
-ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio (\ref{l_iskn_studio}). Software je používán jako doplněk (\textit{Add-In}) v programu ArcGIS verze 10.1 a vyšší. 
+ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio (\ref{l_iskn_studio}). Software je používán jako doplněk (\textit{Add-In}) v~programu ArcGIS verze 10.1 a~vyšší. 
 
 \begin{figure}[htb]
 \centering
@@ -344,17 +345,17 @@ ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio (\ref{l_is
 \caption[Aplikace ISKN View]{Aplikace ISKN View (zdroj: \cite{iskn_studio})}
 \end{figure}
 
-Díky ISKN View je umožněno rychlé a jednoduché vyhledávání v datech ISKN, která byla pomocí aplikace ISKN Studio převedena do některé z podporovaných geodatabází.  Aplikace je rovněž šířena bezúplatně. \cite{iskn_studio}
+Díky ISKN View je umožněno rychlé a~jednoduché vyhledávání v~datech ISKN, která byla pomocí aplikace ISKN Studio převedena do některé z~podporovaných geodatabází.  Aplikace je rovněž šířena bezúplatně. \cite{iskn_studio}
 
 \newpage
 \section{Import dat KN ve výměnném formátu}
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK
-Jedná se o modul vytvořený společností GISOFT, který slouží k převodu a načtení dat ve formátech VFK a VKM do formátu DGN. Modul spolupracuje s produkty společnosti Bentley Systems, především MicroStation. Umožňuje načtení dat jak ve starém, tak i v novém výměnném formátu (viz kapitola č. \ref{l_format_vfk}) KN. Je dostupný jako volitelný modul pro nadstavby \textbf{MGEO}\footnote{http://www.gisoft.cz/MGEO/MGEO} a \textbf{SPIDER}\footnote{http://www.gisoft.cz/SPIDER/SPIDER}. Může být použit v následujících případech:
+Jedná se o~modul vytvořený společností GISOFT, který slouží k~převodu a~načtení dat ve formátech VFK a~VKM do formátu DGN. Modul spolupracuje s~produkty společnosti Bentley Systems, především MicroStation. Umožňuje načtení dat jak ve starém, tak i~v~novém výměnném formátu (viz kapitola č. \ref{l_format_vfk}) KN. Je dostupný jako volitelný modul pro nadstavby \textbf{MGEO}\footnote{http://www.gisoft.cz/MGEO/MGEO} a~\textbf{SPIDER}\footnote{http://www.gisoft.cz/SPIDER/SPIDER}. Může být použit v~následujících případech:
 
 \begin{description}
- \item[Samostatně:] Použití samostatně se hodí v případě, kdy jsou načítána data výměnného formátu obsahující pouze katastrální mapu. V tomto případě bude vstupní soubor převeden do podoby výkresu ve formátu DGN.
+ \item[Samostatně:] Použití samostatně se hodí v~případě, kdy jsou načítána data výměnného formátu obsahující pouze katastrální mapu. V~tomto případě bude vstupní soubor převeden do podoby výkresu ve formátu DGN.
 
- \item[Spolu s modulem Práce s popisnými informacemi KN:] Tento mód je užiteč\-ný v případě, kdy jsou v souboru spolu s katastrání mapou dostupné i popisné informace (případně jsou uvedeny pouze popisné informace).	
+ \item[Spolu s~modulem Práce s~popisnými informacemi KN:] Tento mód je užiteč\-ný v~případě, kdy jsou v~souboru spolu s~katastrání mapou dostupné i~popisné informace (případně jsou uvedeny pouze popisné informace).	
 \end{description}
 
 \begin{figure}[htb]
@@ -363,23 +364,23 @@ Jedná se o modul vytvořený společností GISOFT, který slouží k převodu a
 \caption[Import dat KN ve výměnném formátu -- ukázka použití]{Import dat KN ve výměnném formátu -- ukázka použití (zdroj: \cite{gisoft_modul})}
 \end{figure}
 
-Veškeré informace uvedené o tomto modulu vycházejí z oficiálního popisu modulu uvedeného na stránkách společnostu GISOFT. \cite{gisoft_modul}
+Veškeré informace uvedené o~tomto modulu vycházejí z~oficiálního popisu modulu uvedeného na stránkách společnostu GISOFT. \cite{gisoft_modul}
 
 \newpage
 \section{Spirit VFK}
 % TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
-Software Spirit VFK je vytvořený a distribuovaný společností GEOREAL jako samostatně spustitelná desktopová aplikace. Slouží pro převod dat (VFK) katastru nemovitostí do jakékoli geodatabáze podporované společností ESRI. 
+Software Spirit VFK je vytvořený a~distribuovaný společností GEOREAL jako samostatně spustitelná desktopová aplikace. Slouží pro převod dat (VFK) katastru nemovitostí do jakékoli geodatabáze podporované společností ESRI. 
 
-Do geodatabáze jsou postupně importovány tabulky, relace a ostatní obsažené objekty ISKN. Takto vytvořená databáze může být použita v souvisejících aplikačních nadstavbách \textbf{Spirit KN}\footnote{http://www.georeal.cz/cz/spirit-desktop/spirit-kn} a \textbf{Spirit Portál - KN}\footnote{http://www.georeal.cz/cz/spirit-server/portal-kn}, případně může sloužit pro další analytické práce nad daty KN. Import dat do geodatabáze probíhá v následujících krocích:
+Do geodatabáze jsou postupně importovány tabulky, relace a~ostatní obsažené objekty ISKN. Takto vytvořená databáze může být použita v~souvisejících aplikačních nadstavbách \textbf{Spirit KN}\footnote{http://www.georeal.cz/cz/spirit-desktop/spirit-kn} a~\textbf{Spirit Portál - KN}\footnote{http://www.georeal.cz/cz/spirit-server/portal-kn}, případně může sloužit pro další analytické práce nad daty KN. Import dat do geodatabáze probíhá v~následujících krocích:
 
 \begin{enumerate}
  \item příprava geodatabáze (tvorba tabulek, relací, \dots),
  \item import dat VFK,
- \item vektorizace parcel, budov a ostatních mapových vrstev,
+ \item vektorizace parcel, budov a~ostatních mapových vrstev,
  \item optimalizace mapových vrstev, tvorba symbologie.
 \end{enumerate}
 
-Symbologie (ve formátech MXD a LYR) vytvářená v posledním kroku se používá pro zobrazování dat ve výše zmíněných aplikačních nadstavbách pro ArcMap. Aplikace Spirit VFK může být využívána pro pravidelnou aktualizaci datových skladů katastru nemovitostí.
+Symbologie (ve formátech MXD a~LYR) vytvářená v~posledním kroku se používá pro zobrazování dat ve výše zmíněných aplikačních nadstavbách pro ArcMap. Aplikace Spirit VFK může být využívána pro pravidelnou aktualizaci datových skladů katastru nemovitostí.
 
 \begin{figure}[htb]
 \centering
@@ -387,9 +388,9 @@ Symbologie (ve formátech MXD a LYR) vytvářená v posledním kroku se použív
 \caption[Spirit VFK -- ukázka aplikace]{Spirit VFK -- ukázka aplikace (zdroj: \cite{spirit_vfk})}
 \end{figure}
 
-Pro aplikaci existuje i její odlehčená verze Spirit VFK Light, díky které je možné importovat data VFK do osobní geodatabáze ArcGIS (MS Access) nebo databáze MS SQL Server. Používání obou aplikací nevyžaduje znalost struktury dat ISKN nebo výměnného formátu VFK.
+Pro aplikaci existuje i~její odlehčená verze Spirit VFK Light, díky které je možné importovat data VFK do osobní geodatabáze ArcGIS (MS Access) nebo databáze MS SQL Server. Používání obou aplikací nevyžaduje znalost struktury dat ISKN nebo výměnného formátu VFK.
 
-Veškeré výše uvedené informace pocházejí z oficiálních stránek produktu, viz \cite{spirit_vfk}.
+Veškeré výše uvedené informace pocházejí z~oficiálních stránek produktu, viz \cite{spirit_vfk}.
 
 \section{VFK2DWG}
 \label{l_vfk2dwg}
@@ -404,11 +405,11 @@ Jedná se o~aplikaci od společnosti CAD Studio. Slouží jako nadstavba (utilit
 
 Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel, parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů provázány se stránkami ČUZK (respektive s~aplikací \textbf{Nahlížení do KN}), kde o~nich mohou být zjištěny dodatečné informace.
 
-\begin{figure}[htb]
-\centering
-\includegraphics[scale=1]{images/vfk2dwg-ukazka.png}
-\caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
-\end{figure}
+% \begin{figure}[htb]
+% \centering
+% \includegraphics[width=\textwidth]{images/vfk2dwg-ukazka.png}
+% \caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
+% \end{figure}
 
 Nejnovější verze aplikace pracuje i~s~daty formátu ve verzi 5.1 a~je podporována i~v~AutoCAD 2016. Bohužel se jedná o~komerční aplikaci a~proto nemohla být otestována. Veškeré informace byly převzaty z~oficiálních stránek společnosti CAD Studio, viz \cite{cadstudio-vfk2dwg}.
 
@@ -423,13 +424,13 @@ Opět se jedná o~komerční aplikaci společnosti CAD Studio, a~proto nemohla b
 
 \section{Topol VFK Import}
 % TODO: http://www.datasystem.cz/vfk-import-s-37-m-4.html
-Jak už ze samotného názvu plyne, aplikace Topol VFK Import byla vyvinuta společností Data System s.r.o. ve spolupráci se společností Topol Software. Aplikace disponuje vlastním grafickým prostředím, ve kterém je možné VFK data exportovat do formátů DWG a DXF, případně do vlastního formátu (OpenGIS MDB) společnosti Topol. 
+Jak už ze samotného názvu plyne, aplikace Topol VFK Import byla vyvinuta společností Data System s.r.o. ve spolupráci se společností Topol Software. Aplikace disponuje vlastním grafickým prostředím, ve kterém je možné VFK data exportovat do formátů DWG a~DXF, případně do vlastního formátu (OpenGIS MDB) společnosti Topol. 
 
-Opět se jedná o komerční aplikaci, a proto nemohla být vykoušena. Veškeré informace pocházejí z webových stránek výrobce, viz \cite{topol_vfk_import}.
+Opět se jedná o~komerční aplikaci, a~proto nemohla být vykoušena. Veškeré informace pocházejí z~webových stránek výrobce, viz \cite{topol_vfk_import}.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.3]{images/topol-aplikace.png}
+\includegraphics[width=\textwidth]{images/topol-aplikace.png}
 \caption[Topol VFK Import -- ukázka zpracovaných dat]{Topol VFK Import -- ukázka zpracovaných dat (zdroj: \cite{topol_vfk_import})}
 \end{figure}
 
@@ -438,11 +439,27 @@ Opět se jedná o komerční aplikaci, a proto nemohla být vykoušena. Vešker�
 % TODO: http://freegis.fsv.cvut.cz/gwiki/VFK_/_GDAL
 % TODO: http://www.gdal.org/drv_vfk.html
 % TODO: http://gama.fsv.cvut.cz/~landa/publications/2010/gis-ostrava-2010/paper/landa-ogr-vfk.pdf
-VFK Driver, díky kterému je možné data VFK číst, je součástí knihovny GDAL (viz \ref{l_gdal}) od verze 1.7. Vstupní VFK soubor je knihovnou GDAL rozeznán jako \texttt{OGR datasource}, každý datový blok je poté vnímán jako \texttt{OGR layer}. Od GDAL verze 1.10 je podpora VFK přidána pouze v případě, kdy je knihovna kompilována s podporou SQLite (\texttt{./configure --with-sqlite}).
+VFK Driver, díky kterému je možné data VFK číst, je součástí knihovny GDAL (viz \ref{l_gdal}) od verze 1.7. Vstupní VFK soubor je knihovnou GDAL rozeznán jako \texttt{OGR datasource}, každý datový blok je poté vnímán jako \texttt{OGR layer}. Od GDAL verze 1.10 je podpora VFK přidána pouze v~případě, kdy je knihovna kompilována s~podporou SQLite (\texttt{./configure --with-sqlite}).
 
-Driver si interně data při prvním čtení ukládá do databáze SQLite ve stejném adresáři, jako je umístěn VFK soubor. Při opětovném čtení driver používá pro čtení již vytvořenou databázi. Implicitní chování driveru může být ovlivněno zadáním proměnných prostředí. 
+Driver si interně data při prvním čtení ukládá do databáze SQLite ve stejném adresáři, jako je umístěn VFK soubor. Při opětovném čtení driver používá pro čtení již vytvořenou databázi. Tímto se opakované načítání dat několikanásobně urychlí, viz porovnání níže. Implicitní chování driveru může být ovlivněno zadáním proměnných prostředí.
 
-Jednou z nejdůležitějších je proměnná \texttt{OGR\_VFK\_DB\_NAME} sloužící pro definici jména SQLite databáze. Neméně důležitá proměnná
+\begin{multicols}{2}
+\begin{lstlisting}
+# prvni cteni
+real	0m11.547s
+user	0m11.016s
+sys	0m0.232s
+\end{lstlisting}
+\columnbreak
+\begin{lstlisting}
+# opakovane cteni
+real	0m0.317s
+user	0m0.284s
+sys	0m0.028s
+\end{lstlisting}
+\end{multicols}
+
+Jednou z~nejdůležitějších je proměnná \texttt{OGR\_VFK\_DB\_NAME} sloužící pro definici jména SQLite databáze. Neméně důležitá proměnná
 \texttt{OGR\_VFK\_DB\_OVERWRITE} říká, že při každém čtení souboru VFK se vytváří databáze SQLite znovu, čtení tedy probíhá pouze ze souboru. Níže je uvedena ukázka otevření souboru VFK. \cite{gdal_vfk}
 
 \begin{lstlisting}[language=bash, showstringspaces=false, escapeinside={(*@}{@*)}]
@@ -460,7 +477,7 @@ INFO: Open of `Export_vse.vfk'
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale=0.45]{images/grass_ukazka.png}
+\includegraphics[width=\textwidth]{images/grass_ukazka.png}
 \caption[Ukázka načtení VFK pomocí VFK Driveru GDAL v programu GRASS GIS]{Ukázka načtení VFK pomocí VFK Driveru GDAL v programu GRASS GIS (zdroj: vlastní)}
 \end{figure}
 
@@ -857,7 +874,7 @@ UCEL & Číselník účelů práva stavby \\
 \label{t_skupina_nemovitosti}
 \end{table}
  
- \item[JEDNOTKY:] V~této skupině jsou uvedeny bytové či nebytové prostory, které byly označeny příslušnou listinou jako jednotka. Pro každou jednotku je uveden její popis (jednoznačně ji identifikuje v~rámci budovy), typ a~způsob využití. Ke každé jednotce je dále uveden spoluvlastnický podíl ($\frac{\text{velikost podlahové plochy}}{\text{celková plocha všech jednotek v domě}}$). \cite{dp_landa}
+ \item[JEDNOTKY:] V~této skupině jsou uvedeny bytové či nebytové prostory, které byly označeny příslušnou listinou jako jednotka. Pro každou jednotku je uveden její popis (jednoznačně ji identifikuje v~rámci budovy), typ a~způsob využití. Ke každé jednotce je dále uveden spoluvlastnický podíl ($\frac{\text{velikost podlahové plochy}}{\text{celková plocha všech jednotek v~domě}}$). \cite{dp_landa}
  
  
 \begin{table}[htbp]
@@ -1139,6 +1156,120 @@ U~těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem změno
 V~číselnících jsou exportována jen ta data, u~kterých byla platnost započata nebo ukončena v~zadaném časovém intervalu (Platnost od -- Platnost do). \cite{vfk_struktura}
 
 
+% ==================================================================================
+\clearpage
+\chapter{VFK Plugin pro QGIS}
+Prvotní verze zásuvného modulu QGIS \textbf{VFK Plugin} pro práci s daty českého katastru nemovitostí byla vyvinuta studenty oboru Geoinformatika na FSv ČVUT v Praze Annou Kratochvílovou a Václavem Petrášem. 
+
+Zásuvný modul byl napsát v jazyce C++, s použitím knihovny Qt. Pracuje s daty v novém výměnném formátu katastru (VFK), viz kapitola č. \ref{l_format_vfk}. 
+
+Pro přístup k datům plugin využívá knihovny GDAL, respektive ovladače \textbf{VFK Driver}. Načtená data driver ukládá do databáze SQLite, jejíž struktura je shodná se strukturou jednotlivých bloků v souboru VFK. Při opakovaném čtení dat ze stejného souboru je využívána již vytvořená SQLite databáze, oproti původnímu VFK souboru. 
+
+Zdrojové kódy zásuvného modulu jsou šířeny pod licencí GNU GPL\footnote{https://raw.githubusercontent.com/ctu-osgeorel/qgis-vfk-plugin/master/LICENSE}. Zásuvný modul je možné stáhnout z oficiálního git repositáře\footnote{https://github.com/ctu-osgeorel/qgis-vfk-plugin-cpp}. \cite{cvut_vfkPlugin}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\textwidth]{images/vfkPlugin-puvodni_okno.png}
+\caption[VFK Plugin -- C++ verze]{VFK Plugin -- C++ verze (zdroj: \cite{cvut_vfkPlugin})}
+\end{figure}
+
+\newpage
+\section{Funkcionalita}
+Cílem zásuvného modulu je zjednodušit práci s daty katastru nemovitostí. Plugin byl proto navržen tak, aby byl schopen jednoduše a rychle řešit základní úlohy nad těmito daty. Mezi základní funkcionalitu patří možnost vyhledávání podle:
+
+\begin{itemize}
+ \item vlastníků,
+ \item parcel,
+ \item budov,
+ \item jednotek.
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-vlastnici.png}
+        \caption{Vyhledávání vlastníků}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-parcely.png}
+        \caption{Vyhledávání parcel}
+    \end{subfigure}
+    \caption{Vyhledávací formuláře 1/2}
+    \label{l_vyhledavani_1}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.393\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-budovy.png}
+        \caption{Vyhledávání budov}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-jednotky.png}
+        \caption{Vyhledávání jednotek}
+    \end{subfigure}
+    \caption{Vyhledávací formuláře 2/2}
+    \label{l_vyhledavani_1}
+\end{figure}
+
+Ve vedlejším okně, prohlížeči dat, se zobrazují výsledky vyhledávání. Tato data lze interaktivně procházet, podobně jako je tomu ve webovém prohlížeči, jelikož jsou ukládána ve formě HTML stránek. Jsou zde implementovány základní vlastnosti HTML. Pro navigaci mezi jednotlivými prvky jsou používány hypertextové odkazy. Obsah okna prohlížeče je ukládán do historie, což usnadňuje uživateli vyhledávání stále se opakujících informací (není potřeba opakovaně provádět stejný databázový dotaz). Historii lze procházet pomocí tlačítek \texttt{Vpřed} a \texttt{Zpět}.
+
+Pro zjištění aktuálního stavu o dané nemovitosti je zde implementováno propojení s aplikací \textbf{Nahlížení do katastru nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
+
+Veškeré výpisy zobrazené v prohlížeči zásuvného modulu lze exportovat, a to do následujících formátů:
+
+\begin{itemize}
+ \item \textbf{HTML}: umožňuje následné zobrazení ve webovém prohlížeči, případně import do textového procesoru,
+ \item \textbf{zdrojový kód $\LaTeX$}: umožňuje vytvoření PDF nebo PS.
+\end{itemize}
+
+Zásuvný modul a mapové okno QGIS jsou navzájem propojené. Je tedy možné v mapovém okně zobrazit polohu vyhledaných prvků a opačně vyhledat informace o prvcích, které byly vybrány pomocí nástroje výběru QGIS právě v mapovém okně.
+
+Uživatelská přívětivost používání zásuvného modulu je zvýšena \uv{dokovatelností} samotného okna pluginu. Modul je primárně ukotven k horní liště okna QGIS, ale je možné ho ukotvit i k ostatním okrajům. Okno modulu lze samozřejmě používat i samostatně (neukotvené).
+
+Pro vrstvy parcel (\texttt{PAR}) a budov (\texttt{BUD}) byl vytvořen předdefinovaný vzhled ve formátu \textit{.xml}, respektive \textit{.qml}, se kterým QGIS nativně pracuje. Ukázka použité symbologie pro vrstvu parcel je uvedena v příloze \ref{l_priloha_symbologie}. 
+
+Součástí zásuvného modulu je také stručná nápověda, která je po spuštění pluginu zobrazena stejně jako veškeré hledané informace v prohlížeči dat ve formátu HTML. Nápověda může být vyvolána i po kliknutí na příslušné tlačítko v liště panelu nástrojů VFK Pluginu. \cite{cvut_vfkPlugin}
+
+\newpage
+\section{Použití pluginu}
+
+\subsection{Instalace a spuštění}
+Stávající zásuvný modul, který je napsán v jazyce C++, je možné pod operačním systémem Ubuntu nainstalovat dle skriptů dostupných na stránkách pluginu\footnote{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}. Pro spuštění pod operačním systémem Windows, je potřeba stáhnout předkompilovanou verzi pro danou verzi QGIS a tu překopírovat do požadovaného adresáře. Podrobný návod je uveden opět na stránkách zásuvného modulu. 
+
+Takto nainstalovaný modul lze potom vyhledat v QGIS v nabídce Pluginy $\rightarrow$ Spravovat zásuvné moduly. Zde lze plugin dohledat po zadání filtru \textit{VFK}. Spuštění pluginu je poté možné z hlavní nabídky QGIS Pluginy $\rightarrow$ VFK Plugin $\rightarrow$ VFK Plugin, nebo pomocí ikonky přímo z nástrojové lišty.
+
+\subsection{Rozložení}
+Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci s prohlížečem, interakcí s mapou a nástroje pro export. 
+
+\subsection{Načítání dat}
+Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \textit{Procházet} v nabídce \textit{Import VFK}. V tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s mapovým oknem. 
+
+\subsection{Vyhledávání}
+Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré informace vyhledané o~vlastnících, parcelách, budovách nebo jednotkách lze pohodlně procházet pomocí hypertextových odkazů v prohlížeči dat. Náhled vyhledaných informací je uveden na obrázku č. \ref{l_informace_o_parcele}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.4\textwidth]{images/vfkPlugin-informace_o_parcele.png}
+\caption[Ukázka vyhledaných informací k dané parcele]{Ukázka vyhledaných informací k~dané parcele}
+\label{l_informace_o_parcele}
+\end{figure}
+
+
+
+% ==================================================================================
+\clearpage
+\chapter{Zpracování změnových vět}
+V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK.
+
+
+
 
 %======================CITACE=========================================
 \clearpage
@@ -1161,6 +1292,155 @@ V~číselnících jsou exportována jen ta data, u~kterých byla platnost započ
 
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{Roman} % číslování arabskými
+
+\chapter{Symbologie ve formátu \textit{.qml} pro vrstvu parcel}
+\label{l_priloha_symbologie}
+
+\begin{lstlisting}[language=XML]
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="1.9.90-Alpha" minimumScale="0" maximumScale="1e+08" hasScaleBasedVisibilityFlag="0">
+  <transparencyLevelInt>255</transparencyLevelInt>
+  <renderer-v2 symbollevels="0" type="singleSymbol">
+    <symbols>
+      <symbol outputUnit="MM" alpha="1" type="fill" name="0">
+        <layer pass="0" class="SimpleFill" locked="0">
+          <prop k="color" v="0,0,0,255"/>
+          <prop k="color_border" v="0,0,0,255"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="style" v="no"/>
+          <prop k="style_border" v="solid"/>
+          <prop k="width_border" v="0.26"/>
+        </layer>
+      </symbol>
+    </symbols>
+    <rotation field=""/>
+    <sizescale field=""/>
+  </renderer-v2>
+  <customproperties>
+    <property key="labeling" value="pal"/>
+    <property key="labeling/addDirectionSymbol" value="false"/>
+    <property key="labeling/bufferColorB" value="255"/>
+    <property key="labeling/bufferColorG" value="255"/>
+    <property key="labeling/bufferColorR" value="255"/>
+    <property key="labeling/bufferSize" value="0.5"/>
+    <property key="labeling/dataDefinedProperty0" value=""/>
+    <property key="labeling/dataDefinedProperty1" value=""/>
+    <property key="labeling/dataDefinedProperty10" value=""/>
+    <property key="labeling/dataDefinedProperty11" value=""/>
+    <property key="labeling/dataDefinedProperty12" value=""/>
+    <property key="labeling/dataDefinedProperty13" value=""/>
+    <property key="labeling/dataDefinedProperty14" value=""/>
+    <property key="labeling/dataDefinedProperty2" value=""/>
+    <property key="labeling/dataDefinedProperty3" value=""/>
+    <property key="labeling/dataDefinedProperty4" value=""/>
+    <property key="labeling/dataDefinedProperty5" value=""/>
+    <property key="labeling/dataDefinedProperty6" value=""/>
+    <property key="labeling/dataDefinedProperty7" value=""/>
+    <property key="labeling/dataDefinedProperty8" value=""/>
+    <property key="labeling/dataDefinedProperty9" value=""/>
+    <property key="labeling/decimals" value="0"/>
+    <property key="labeling/dist" value="0"/>
+    <property key="labeling/distInMapUnits" value="false"/>
+    <property key="labeling/enabled" value="true"/>
+    <property key="labeling/fieldName" value="CASE WHEN (length(&quot;PODDELENI_CISLA_PAR&quot; ) = 0  OR &quot;PODDELENI_CISLA_PAR&quot; = '0') THEN  KMENOVE_CISLO_PAR ELSE &quot;KMENOVE_CISLO_PAR&quot;  || '/' || &quot;PODDELENI_CISLA_PAR&quot; END"/>
+    <property key="labeling/fontFamily" value="DejaVu Sans"/>
+    <property key="labeling/fontItalic" value="true"/>
+    <property key="labeling/fontSize" value="9"/>
+    <property key="labeling/fontSizeInMapUnits" value="false"/>
+    <property key="labeling/fontStrikeout" value="false"/>
+    <property key="labeling/fontUnderline" value="false"/>
+    <property key="labeling/fontWeight" value="50"/>
+    <property key="labeling/formatNumbers" value="false"/>
+    <property key="labeling/isExpression" value="true"/>
+    <property key="labeling/labelPerPart" value="false"/>
+    <property key="labeling/mergeLines" value="false"/>
+    <property key="labeling/minFeatureSize" value="0"/>
+    <property key="labeling/obstacle" value="true"/>
+    <property key="labeling/placement" value="1"/>
+    <property key="labeling/placementFlags" value="0"/>
+    <property key="labeling/plussign" value="true"/>
+    <property key="labeling/priority" value="5"/>
+    <property key="labeling/scaleMax" value="5000"/>
+    <property key="labeling/scaleMin" value="1"/>
+    <property key="labeling/textColorB" value="0"/>
+    <property key="labeling/textColorG" value="0"/>
+    <property key="labeling/textColorR" value="0"/>
+    <property key="labeling/wrapChar" value=""/>
+  </customproperties>
+  <displayfield>ID</displayfield>
+  <label>0</label>
+  <labelattributes>
+    <label fieldname="" text="Label"/>
+    <family fieldname="" name="Sans"/>
+    <size fieldname="" units="pt" value="12"/>
+    <bold fieldname="" on="0"/>
+    <italic fieldname="" on="0"/>
+    <underline fieldname="" on="0"/>
+    <strikeout fieldname="" on="0"/>
+    <color fieldname="" red="0" blue="0" green="0"/>
+    <x fieldname=""/>
+    <y fieldname=""/>
+    <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
+    <angle fieldname="" value="0" auto="0"/>
+    <alignment fieldname="" value="center"/>
+    <buffercolor fieldname="" red="255" blue="255" green="255"/>
+    <buffersize fieldname="" units="pt" value="1"/>
+    <bufferenabled fieldname="" on=""/>
+    <multilineenabled fieldname="" on=""/>
+    <selectedonly on=""/>
+  </labelattributes>
+  <edittypes>
+    <edittype type="0" name="BUD_ID"/>
+    <edittype type="0" name="CENA_NEMOVITOSTI"/>
+    <edittype type="0" name="DATUM_VZNIKU"/>
+    <edittype type="0" name="DATUM_ZANIKU"/>
+    <edittype type="0" name="DEFINICNI_BOD_PAR"/>
+    <edittype type="0" name="DIL_PARCELY"/>
+    <edittype type="0" name="DRUH_CISLOVANI_PAR"/>
+    <edittype type="0" name="DRUPOZ_KOD"/>
+    <edittype type="0" name="ID"/>
+    <edittype type="0" name="IDENT_BUD"/>
+    <edittype type="0" name="KATUZE_KOD"/>
+    <edittype type="0" name="KATUZE_KOD_PUV"/>
+    <edittype type="0" name="KMENOVE_CISLO_PAR"/>
+    <edittype type="0" name="MAPLIS_KOD"/>
+    <edittype type="0" name="PAR_ID"/>
+    <edittype type="0" name="PAR_TYPE"/>
+    <edittype type="0" name="PKN_ID"/>
+    <edittype type="0" name="PODDELENI_CISLA_PAR"/>
+    <edittype type="0" name="PRIZNAK_KONTEXTU"/>
+    <edittype type="0" name="RIZENI_ID_VZNIKU"/>
+    <edittype type="0" name="RIZENI_ID_ZANIKU"/>
+    <edittype type="0" name="STAV_DAT"/>
+    <edittype type="0" name="TEL_ID"/>
+    <edittype type="0" name="TYP_PARCELY"/>
+    <edittype type="0" name="VYMERA_PARCELY"/>
+    <edittype type="0" name="ZDPAZE_KOD"/>
+    <edittype type="0" name="ZPURVY_KOD"/>
+    <edittype type="0" name="ZPVYPA_KOD"/>
+  </edittypes>
+  <editform></editform>
+  <editforminit></editforminit>
+  <annotationform></annotationform>
+  <attributeactions/>
+  <overlay display="false" type="diagram">
+    <renderer item_interpretation="linear">
+      <diagramitem size="0" value="0"/>
+      <diagramitem size="0" value="0"/>
+    </renderer>
+    <factory sizeUnits="MM" type="Pie">
+      <wellknownname>Pie</wellknownname>
+      <classificationfield>0</classificationfield>
+    </factory>
+    <scalingAttribute>0</scalingAttribute>
+  </overlay>
+</qgis>
+\end{lstlisting}
+
+
+
+
+
 
 %-----------------------------------------------
 
