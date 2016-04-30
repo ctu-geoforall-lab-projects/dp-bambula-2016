@@ -29,12 +29,19 @@
 \usepackage{caption}
 \usepackage{subcaption}
 
+\definecolor{light-gray}{gray}{0.97}
+
 \lstset{
+numbers=left,
+numberstyle=\tiny,
 basicstyle=\ttfamily,
 columns=flexible,
-breaklines=true
+breaklines=true,
+backgroundcolor=\color{light-gray},
+xleftmargin=\parindent,
 }
 
+\renewcommand\lstlistingname{Kód}
 
 \usepackage[%
 %top=40mm,
@@ -1268,6 +1275,114 @@ Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré infor
 \chapter{Zpracování změnových vět}
 V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK.
 
+\section{Usnadnění distribuce pluginu}
+Jak už bylo zmíněno v kapitolách uvedených výše, stávající zásuvný modul byl napsán v jazyce C++. Což znamená, že před prvním použitím se musí plugin překompilovat. 
+
+Kompilace pod operačním systémem Linux (Ubuntu) může být provedena pomocí skriptů\footnote{Návod dostupný na: http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}, které vytvořili autoři původní verze modulu. 
+
+Pod operačním systémem Microsoft Windows je situace poněkud komplikovanější. Pro každou verzi programu QGIS musí být plugin zkompilován samostatně vzhledem k typu operačního systému (32bit/64bit). Předkompilované verze mohou být staženy opět na stránkách pluginu, avšak nejsou zde uvedeny veškeré verze QGIS jak pro 32bit systém, tak pro 64bit systém. Uživatel jiné verzi QGIS (jiného typu operačního systému) by si tedy musel plugin zkompilovat sám, což může být pro nezkušené uživatele značná překážka. 
+
+Výše zmíněné problémy značně snižují jak možnost většího rozšíření zásuvného modulu, tak komfort při jeho instalaci (aktualizaci). Řešením je přepis modulu do jazyka Python, čímž se plugin stane snadněji dostupným pro všechny uživatele bez rozdílu operačního systému, či verze programu QGIS.
+
+\subsection{Přepis do jazyka Python}
+Přepis zásuvného modulu do jazyka Python byl zásadním bodem této práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce podobný původnímu kódu v jazyku C++, a to hlavně z důvodu, aby byly zachovány veškeré funkcionality a vlastnosti tak, jak jsou známé stávajícím uživatelům nástroje.
+
+Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V následujících ukázkách je porovnán původní kód v jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s mnou napsaným kódem v jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
+
+\begin{lstlisting}[language=C++, 
+		    caption=Kód pro načtení vektorové vrstvy v C++, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={QgsDebugMsg,QString,QgsVectorLayer,QList,QgsMapLayerRegistry},
+		    label=l_loadLayerC++]
+ void VfkMainWindow::loadVfkLayer( QString vfkLayerName )
+{
+  QgsDebugMsg( QString( "Loading vfk layer %1" ).arg( vfkLayerName ) );
+  if ( mLoadedLayers.contains( vfkLayerName ) )
+  {
+    QgsDebugMsg( QString( "Vfk layer %1 is already loaded" ).arg( vfkLayerName ) );
+    return;
+  }
+  QString composedURI = mLastVfkFile + "|layername=" + vfkLayerName;
+  QgsVectorLayer *layer = new QgsVectorLayer( composedURI, vfkLayerName, "ogr" );
+  mLoadedLayers.insert( vfkLayerName, layer->id() );
+  setSymbology( layer );
+
+  QList<QgsMapLayer *> myList;
+  myList << layer;
+  QgsMapLayerRegistry::instance()->addMapLayers( myList );
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python, 
+		    caption=Kód pro načtení vektorové vrstvy v jazyce Python, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
+		    label=l_loadLayerPython]
+def __loadVfkLayer(self, vfkLayerName):
+"""
+Method loads VFK layer.
+:type vfkLayerName: str
+"""
+  qDebug("\n(VFK) Loading vfk layer {}".format(vfkLayerName))
+  if vfkLayerName in self.__mLoadedLayers:
+      qDebug(
+	  "\n(VFK) Vfk layer {} is already loaded".format(vfkLayerName))
+      return
+
+  composedURI = self.__mDataSourceName + "|layername=" + vfkLayerName
+  layer = QgsVectorLayer(composedURI, vfkLayerName, "ogr")
+  if not layer.isValid():
+      qDebug("\n(VFK) Layer failed to load!")
+
+  self.__mLoadedLayers[vfkLayerName] = layer.id()
+
+  try:
+      self.__setSymbology(layer)
+  except VFKWarning as e:
+      QMessageBox.information(self, 'Load Style', e, QMessageBox.Ok)
+
+  QgsMapLayerRegistry.instance().addMapLayer(layer)
+\end{lstlisting}
+
+\subsection{Instalace zásuvného modulu v QGIS}
+Díky přepisu zásuvného modulu do jazyka Python je plugin v QGIS dostupný standardním způsobem, jako ostatní pluginy napsány v tomto jazyce. Plugin v současné době není dostupný v oficiálním repositáři QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný organizací OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/}, pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto musí být tato volba zohledněna při jeho instalaci, viz obr. \ref{l_qgis_plugins}. Okno pro zadání repositáře vyvoláme v záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install plugins}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{images/qgis_repo_plugins.png}
+\caption[Přidání repositáře QGIS]{Přidání repositáře QGIS}
+\label{l_qgis_plugins}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\textwidth]{images/qgis_repo_detail.png}
+\caption[Přidání repositáře QGIS -- detail]{Přidání repositáře QGIS -- detail}
+\label{l_repo_detail}
+\end{figure}
+
+Po přidání repositáře a jeho aktualizaci je zásuvný modul dohledatelný standardním způsobem pod názvem \textbf{VFK Plugin}, viz obr. \ref{l_qgis_hledani_pluginu}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{images/qgis_plugin_vyhledani.png}
+\caption[Vyhledání zásuvného modulu]{Vyhledání zásuvného modulu}
+\label{l_qgis_hledani_pluginu}
+\end{figure}
+
+Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho ikonka (viz obr. \ref{l_plugin_ikona}). Plugin je poté dostupný po kliknutí na tuto ikonku nebo z menu \textit{Plugins} $\rightarrow$ \textit{VFK} $\rightarrow$ \textit{Otevřít prohlížeč VFK}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{images/vfkPluginIcon.png}
+\caption[VFK Plugin -- ikona]{VFK Plugin -- ikona}
+\label{l_plugin_ikona}
+\end{figure}
+
+\clearpage
+\section{Popis tříd zásuvného modulu}
 
 
 
@@ -1293,7 +1408,7 @@ V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které 
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{Roman} % číslování arabskými
 
-\chapter{Symbologie ve formátu \textit{.qml} pro vrstvu parcel}
+\chapter{Ukázka definice symbologie ve formátu \textit{.qml} pro vrstvu parcel}
 \label{l_priloha_symbologie}
 
 \begin{lstlisting}[language=XML]
