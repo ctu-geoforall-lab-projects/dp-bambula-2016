@@ -1272,8 +1272,8 @@ Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré infor
 
 % ==================================================================================
 \clearpage
-\chapter{Zpracování změnových vět}
-V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK.
+\chapter{Rozšíření stávající funkcionality}
+V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK. Spolu s tímto byly do pluginu přidány další funkcionality. 
 
 \section{Usnadnění distribuce pluginu}
 Jak už bylo zmíněno v kapitolách uvedených výše, stávající zásuvný modul byl napsán v jazyce C++. Což znamená, že před prvním použitím se musí plugin překompilovat. 
@@ -1287,7 +1287,7 @@ Výše zmíněné problémy značně snižují jak možnost většího rozšíř
 \subsection{Přepis do jazyka Python}
 Přepis zásuvného modulu do jazyka Python byl zásadním bodem této práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce podobný původnímu kódu v jazyku C++, a to hlavně z důvodu, aby byly zachovány veškeré funkcionality a vlastnosti tak, jak jsou známé stávajícím uživatelům nástroje.
 
-Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V následujících ukázkách je porovnán původní kód v jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s mnou napsaným kódem v jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
+Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporučovaného nástroje \textbf{Plugin Builder}\footnote{http://g-sherman.github.io/Qgis-Plugin-Builder/} dostupného přímo z QGIS. Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V následujících ukázkách je porovnán původní kód v jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s mnou napsaným kódem v jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
 
 \begin{lstlisting}[language=C++, 
 		    caption=Kód pro načtení vektorové vrstvy v C++, 
@@ -1314,6 +1314,7 @@ Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive Py
 }
 \end{lstlisting}
 
+\newpage
 \begin{lstlisting}[language=Python, 
 		    caption=Kód pro načtení vektorové vrstvy v jazyce Python, 
 		    keywordstyle=\color{blue}\ttfamily,
@@ -1381,14 +1382,33 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 \label{l_plugin_ikona}
 \end{figure}
 
+
 \clearpage
 \section{Popis tříd zásuvného modulu}
 
+\subsubsection{BudovySearchForm}
+Jedná se o třídu, která se stará o vyhledávací prvky ve formuláři pro vyhledávání budov. Třída dědí od třídy \texttt{QWidget}. Vzhled uživatelského rozhraní této třídy byl navržen samostatně pomocí programu \texttt{Qt Designer}. Kód návrhu je uložen v souboru \texttt{ui\_budovysearchform.ui}, respektive v překompilované verzi pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru třídy je uvedena v příloze \ref{l_budovySearchForm_konstruktor}.
 
+\subsubsection{DocumentBuilder}
+V třídě \texttt{DocumentBuilder} se sestavuje dokument, který bude zobrazen v prohlížeči dat (nebo exportován do některého z podporovaných formátů), na základě výsledků vyhledávání. O správné sestavení se stará metoda \texttt{buildHtml}, viz příloha \ref{l_buildHtml}. 
+
+Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek (např. \texttt{tableParcely(self, model, parIds, LVColumn)}), metody pro tvorbu jednotlivých částí listu vlastnictví (např. \texttt{partTelesoB1(self, parIds, budIds, jedIds, opsubIds, forLV)}), nebo metody pro zobrazení detailu o vyhledávaném tělese (např. \texttt{pageBudova(self, id)}).
+
+Důležitou metodou v této třídě je metoda \texttt{pageHelp(self)}, díky které je možné zobrazit krátkou nápovědu k zásuvnému modulu, a metoda \texttt{saveDefinitionPoint( self, id, nemovitost)}, která slouží k získání a uložení definičního bodu vyhledané nemovitosti.
+
+\subsubsection{Domains}
+V této třídě jsou jednoduché metody pro zjištění domény prvku na základě vstupního argumentu. Je zde metoda \texttt{anoNe(an)}, která testuje, zda je vstupní argument rovný \uv{a}, a podle toho vrací \texttt{True/False}. Metoda \texttt{cpCe(kod)} převádí hodnotu vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo evidenční}. Metoda \texttt{druhUcastnika(kod)} kontroluje, o jaký typ subjektu se jedná (např. právnická osoba). Poslední metodou je metoda \texttt{rodinnyStav(kod)}, která vrací rodinný stav subjektu na základě zadaného vstupního kódu.
+
+\subsubsection{HtmlDocument}
+Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz \ref{l_vfkDocument}).
+% :TODO: dopsat
+
+\subsubsection{VfkDocument}
+\label{l_vfkDocument}
 
 %======================CITACE=========================================
 \clearpage
-\rhead{{\rightmark}}		% vpravo název kapitoly
+\rhead{{\rightmark}}	% vpravo název kapitoly
 \renewcommand{\refname}{Použitá literatura}
 \bibliography{citace}
 \bibliographystyle{czechiso}
@@ -1552,7 +1572,93 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 </qgis>
 \end{lstlisting}
 
+\chapter{Ukázky kódu}
 
+\section{Konstruktor třídy BudovySearchForm}
+
+\begin{lstlisting}[language=Python, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
+		    label=l_budovySearchForm_konstruktor]
+class BudovySearchForm(QWidget):
+
+    def __init__(self, parent=None):
+        super(BudovySearchForm, self).__init__(parent)
+
+        # Set up the user interface from Designer.
+        self.ui = Ui_BudovySearchForm()
+        self.ui.setupUi(self)
+
+        self.__mZpusobVyuzitiModel = QAbstractItemModel
+\end{lstlisting}
+
+
+\section{Metoda buildHtml}
+
+\begin{lstlisting}[language=Python, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
+		    label=l_buildHtml]
+def buildHtml(self, document, taskMap):
+"""
+:type document: VfkDocument
+:type taskMap: dict
+"""
+        self.__mCurrentPageParIds = []
+        self.__mCurrentPageBudIds = []
+        self.__mCurrentDefinitionPoint.first = ''
+        self.__mCurrentDefinitionPoint.second = ''
+
+        self.__mDocument = document
+        self.__mDocument.header()
+
+        if taskMap["page"] == "help":
+            self.pageHelp()
+
+        if self.__mHasConnection:
+            if taskMap["page"] == "tel":
+                self.pageTeleso(taskMap["id"])
+            elif taskMap["page"] == "par":
+                self.pageParcela(taskMap["id"])
+            elif taskMap["page"] == "bud":
+                self.pageBudova(taskMap["id"])
+            elif taskMap["page"] == "jed":
+                self.pageJednotka(taskMap["id"])
+            elif taskMap["page"] == "opsub":
+                self.pageOpravnenySubjekt(taskMap["id"])
+            elif taskMap["page"] == "seznam":
+                if taskMap["type"] == "id":
+                    if "parcely" in taskMap:
+                        self.pageSeznamParcel(taskMap["parcely"].split(","))
+                    if "budovy" in taskMap:
+                        self.pageSeznamBudov(taskMap["budovy"].split(","))
+                elif taskMap["type"] == "string":
+                    if "opsub" in taskMap:
+                        self.pageSeznamOsob(taskMap['opsub'].split(","))
+            elif taskMap["page"] == "search":
+                if taskMap["type"] == "vlastnici":
+                    self.pageSearchVlastnici(
+                        taskMap["jmeno"], taskMap["rcIco"],
+                                             taskMap["sjm"], taskMap["opo"],
+                                             taskMap["ofo"], taskMap["lv"])
+                elif taskMap["type"] == "parcely":
+                    self.pageSearchParcely(
+                        taskMap["parcelniCislo"], taskMap["typ"], taskMap["druh"], taskMap["lv"])
+                elif taskMap["type"] == "budovy":
+                    self.pageSearchBudovy(
+                        taskMap["domovniCislo"], taskMap[
+                            "naParcele"], taskMap["zpusobVyuziti"],
+                                          taskMap["lv"])
+                elif taskMap["type"] == "jednotky":
+                    self.pageSearchJednotky(
+                        taskMap["cisloJednotky"], taskMap[
+                            "domovniCislo"], taskMap["naParcele"],
+                                            taskMap["zpusobVyuziti"], taskMap["lv"])
+        self.__mDocument.footer()
+        return
+\end{lstlisting}
 
 
 
