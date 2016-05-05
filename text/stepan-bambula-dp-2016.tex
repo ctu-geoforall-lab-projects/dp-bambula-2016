@@ -1444,7 +1444,7 @@ Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK soubo
 Toto chování muselo být vzhledem ke struktuře, v jaké se k uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
 
 \subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny v načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.1.0}. V případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
+Výše uvedené změny v načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
 
 \begin{lstlisting}[language=Python, 
 		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
@@ -1452,10 +1452,10 @@ Výše uvedené změny v načítání vícero VFK souborů do stejné databáze 
 		    stringstyle=\color{red}\ttfamily,
 		    commentstyle=\color{green}\ttfamily, morekeywords={self},
 		    label=l_kontrola_verze_gdal]
-if gdal_version < 2010000:
+if gdal_version < 2020000:
     self.pb_nextFile.setEnabled(False)
     self.pb_nextFile.setToolTip(
-	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.1.0.')
+	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.2.0.')
 \end{lstlisting}
 
 Jak z výše uvedených vět vyplývá, k přidání této podpory musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
