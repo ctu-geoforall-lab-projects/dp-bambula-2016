@@ -28,6 +28,7 @@
 \usepackage{color}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{dirtree}
 
 \definecolor{light-gray}{gray}{0.97}
 
@@ -42,6 +43,7 @@ xleftmargin=\parindent,
 }
 
 \renewcommand\lstlistingname{Kód}
+\renewcommand*{\lstlistlistingname}{Seznam ukázek kódu}
 
 \usepackage[%
 %top=40mm,
@@ -1093,7 +1095,7 @@ Specifickou částí výměnného formátu je takzvaný \uv{koncový znak} \text
 
 
 \section{Změnové věty v~NVF}
-
+\label{l_struktura_zmen}
 Změnový export nelze provést nad všemi skupinami datových bloků. Proveden může být pouze nad následujícími:
 
 \begin{itemize}
@@ -1385,6 +1387,95 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 % -----------------------------------------------------------------------
 \clearpage
 \section{Úprava GDAL VFK driveru}
+Před začátkem práce na podpoře zpracování změnových vět v QGIS VFK Pluginu bylo potřeba provést několik nezbytných úprav na straně GDAL VFK driveru, který plugin využívá pro čtení dat VFK, respektive jejich zápis do databáze SQLite.
+
+Úprava byla provedena ve spolupráci s autorem GDAL VFK driveru Martinem Landou, který provedl většinu změn ovladače, které byly pro zpracování změnových VFK souborů nezbytné. 
+
+\subsection{Načítání dat z více VFK souborů}
+Vzhledem ke struktuře, v jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k uživatelům distribuovány ve struktuře, která je uvedena v následující ukázce č. \ref{l_struktura_sireni_vfk}.
+
+\begin{figure}[htbf]
+\centering
+\begin{minipage}{0.9\textwidth}
+  \dirtree{%
+  .1 /.
+  .2 nemodebo.
+  .3 vfk\_soubor.vfk.
+  .2 nvfpkmbpej.
+  .3 vfk\_soubor.vfk.
+  .2 \vdots.
+  }
+\end{minipage}
+\caption{Struktura VFK souborů}
+\label{l_struktura_sireni_vfk}
+\end{figure}
+
+K tomuto byla upravena funkce pro načítání dat. Původní chování VFK driveru bylo, že při prvním čtení VFK souboru se na pozadí ve stejném adresáři vytvořila databáze SQLite (její název byl shodný s názvem vstupního souboru), do které byla data načtena. Při opakovaném čtení VFK souboru se stejným názvem, se data četla již z existující databáze. Jméno výstupní SQLite databáze mohlo být ovlivněno pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}, data poté byla ukládána/načítána do/z této databáze. 
+
+Nebylo tedy možné zpracovat data, která jsou uložena v adresářové struktuře (viz ukázka \ref{l_struktura_sireni_vfk}), kdy jsou některé VFK bloky uloženy v jednom adresáři a další ve druhém pod stejným názvem souboru.
+
+Chování driveru bylo proto opraveno tak, že pokud uživatel potřebuje načíst více VFK souborů do jedné databáze, musí nejprve zadat cestu k výstupní SQLite databází pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}. Při čtení prvního souboru se načtou data standardním způsobem do databáze, ale při čtení dalších driver porovná tabulky v databázi s datovými bloky čteného VFK souboru. Jestliže tabulka daného jména v databázi neexistuje, tak ji vytvoří a pokračuje v načítání dat. 
+
+Při načítání dat driver testuje (viz \ref{l_gdal_kontrola_zmen}), zda se jedná o změnový, nebo stavový VFK soubor. Jestliže se jedná o stavový, tak driver nepovolí načítání dat, která jsou již v databázi uloženy (vznikaly by duplicity, což není u stavových dat možné). Při čtení změnového souboru je povoleno ukládání prvků s \texttt{ID}, které je již v tabulce uložené (ve změnovém souboru je možné uložit prvky se stejným \texttt{ID}, viz kapitola \ref{l_struktura_zmen}). Správné uložení prvků s duplicitním \texttt{ID} je zajištěno pomocí databázového indexu \texttt{UNIQUE}, který je vytvářen právě jen pro stavová data.
+
+\begin{lstlisting}[language=C++, 
+		    caption={Výňatek z kódu pro kontrolu změnového souboru}, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, 
+		    morekeywords={AddInfo, EQUAL},
+		    label=l_gdal_kontrola_zmen]
+else if (pszLine[1] == 'H') {
+    /* check if amendment file */
+    if (EQUAL(pszLine, "&HZMENY;1")) {
+	m_bAmendment = TRUE;
+    }
+
+    /* header - metadata */
+    AddInfo(pszLine);
+}
+\end{lstlisting}
+
+\subsection{Vytváření geometrie prvků}
+Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK souboru, se děje pomocí metody \texttt{int IVFKDataBlock::LoadGeometry()}. V dosavadní verzi VFK driveru byla tato metoda volána při požadavku o konkrétní prvek (například pomocí konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID 1}). Geometrie tedy nebyla sestavena dopředu po uložení dat do databáze, ale až poté, co si uživatel o daný prvek přímo zažádal.
+
+Toto chování muselo být vzhledem ke struktuře, v jaké se k uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
+
+\subsection{Implementace na straně zásuvného modulu}
+Výše uvedené změny v načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.1.0}. V případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
+
+\begin{lstlisting}[language=Python, 
+		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={self},
+		    label=l_kontrola_verze_gdal]
+if gdal_version < 2010000:
+    self.pb_nextFile.setEnabled(False)
+    self.pb_nextFile.setToolTip(
+	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.1.0.')
+\end{lstlisting}
+
+Jak z výše uvedených vět vyplývá, k přidání této podpory musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
+
+\begin{enumerate}
+ \item Tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
+ \item nově vygenerovaný formulář pro vyhledání VFK souboru,
+ \item indikátor stavu načítání VFK souborů.
+ \item popisek stavu načítání dat.
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{images/vfkPlugin-novy_vzhled.png}
+\caption[VFK Plugin -- okno pro načítání souborů]{VFK Plugin -- okno pro načítání souborů}
+\label{l_plugin_novy_vzhled}
+\end{figure}
+
+
+
+
+
 
 
 
@@ -1392,6 +1483,14 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 % -----------------------------------------------------------------------
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
+
+
+
+
+
+
+
+
 
 
 \clearpage
@@ -1471,6 +1570,10 @@ Jedná se o třídu, která slouží k vyhledávání vlastníků podle jména, 
 %======================SEZNAM TABULEK================================
 \clearpage
 \listoftables
+
+%======================SEZNAM UKÁZEK KÓDŮ===========================
+\clearpage
+\lstlistoflistings
 
 %====================== PŘÍLOHY ========================================
 \newpage
