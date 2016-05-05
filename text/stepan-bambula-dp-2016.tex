@@ -32,6 +32,8 @@
 
 \definecolor{light-gray}{gray}{0.97}
 
+\newcommand{\latex}{\LaTeX}
+
 \lstset{
 numbers=left,
 numberstyle=\tiny,
@@ -1235,7 +1237,7 @@ Veškeré výpisy zobrazené v prohlížeči zásuvného modulu lze exportovat, 
 
 \begin{itemize}
  \item \textbf{HTML}: umožňuje následné zobrazení ve webovém prohlížeči, případně import do textového procesoru,
- \item \textbf{zdrojový kód $\LaTeX$}: umožňuje vytvoření PDF nebo PS.
+ \item \textbf{zdrojový kód \latex}: umožňuje vytvoření PDF nebo PS.
 \end{itemize}
 
 Zásuvný modul a mapové okno QGIS jsou navzájem propojené. Je tedy možné v mapovém okně zobrazit polohu vyhledaných prvků a opačně vyhledat informace o prvcích, které byly vybrány pomocí nástroje výběru QGIS právě v mapovém okně.
@@ -1394,7 +1396,7 @@ Před začátkem práce na podpoře zpracování změnových vět v QGIS VFK Plu
 \subsection{Načítání dat z více VFK souborů}
 Vzhledem ke struktuře, v jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k uživatelům distribuovány ve struktuře, která je uvedena v následující ukázce č. \ref{l_struktura_sireni_vfk}.
 
-\begin{figure}[htbf]
+\begin{figure}[htb]
 \centering
 \begin{minipage}{0.9\textwidth}
   \dirtree{%
@@ -1519,7 +1521,7 @@ Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz \ref{
 V této třídě se řeší vyhledávání jednotek pomocí vyhledávacích formulářů navržených v programu \texttt{Qt Designer}. Vyhledávat lze podle čísla jednotky, domovního čísla, čísla parcely, ke které jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída je potomkem třídy \texttt{QWidget}.
 
 \subsubsection{LatexDocument}
-Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří části kódu, které jsou nakonec sestaveny v  $\LaTeX$ dokument. Takto sestavený dokument je poté vyexportován pomocí příslušné funkcionality modulu a je připravený pro export například od formátu \textit{PDF} (\texttt{pdflatex}). Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
+Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří části kódu, které jsou nakonec sestaveny v  \latex~dokument. Takto sestavený dokument je poté vyexportován pomocí příslušné funkcionality modulu a je připravený pro export například od formátu \textit{PDF} (\texttt{pdflatex}). Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
 
 \subsubsection{MainApp}
 Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Dědí od tříd \texttt{QDockWidget}, \texttt{QMainWindow} a \texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů, nastavuje symbologii načtených vrstev, propojuje vyhledávání s mapovým oknem QGIS, stará se o exporty do definovaných formátů. Ve třídě se také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
