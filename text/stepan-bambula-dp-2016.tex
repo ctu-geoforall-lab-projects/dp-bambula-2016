@@ -489,7 +489,7 @@ INFO: Open of `Export_vse.vfk'
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{images/grass_ukazka.png}
-\caption[Ukázka načtení VFK pomocí VFK Driveru GDAL v programu GRASS GIS]{Ukázka načtení VFK pomocí VFK Driveru GDAL v programu GRASS GIS (zdroj: vlastní)}
+\caption[Ukázka načtení VFK pomocí VFK Driveru GDAL v~programu GRASS GIS]{Ukázka načtení VFK pomocí VFK Driveru GDAL v~programu GRASS GIS (zdroj: vlastní)}
 \end{figure}
 
 
@@ -514,7 +514,7 @@ QGIS nedisponuje tak širokou paletou nástrojů, jako jeho open-source kolega G
 \cite{qgis_wiki}
 
 
-\section{GDAL/OGR}
+\section{GDAL}
 \label{l_gdal}
 
 GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihovna je vyvíjena pod hlavičkou Open Source Geospatial Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá jednoduchý abstraktní datový model pro všechny podporované datové formáty. Kromě toho nabízí také řadu užitečných nástrojů pro příkazovou řádku určených pro konverzi a~zpracování dat. \cite{gdal_wiki}
@@ -525,11 +525,11 @@ GDAL je knihovna určená pro čtení a~zápis rastrových GIS formátů. Knihov
 \caption[GDAL -- logo]{GDAL -- logo (zdroj: \cite{gdal})}
 \end{figure}
 
-GDAL byla původně vyvíjena Frankem Warmerdamem a~to do verze 1.3.2, posléze byla knihovna převedena na GDAL/OGR Project Management Committee, která je součástí Open Source Geospatial Foundation.\cite{gdal_wiki}
+GDAL byla původně vyvíjena Frankem Warmerdamem a~to do verze 1.3.2, posléze byla knihovna převedena na GDAL Project Management Committee, která je součástí Open Source Geospatial Foundation.\cite{gdal_wiki}
 
-Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL/OGR, slouží pro práci s~daty ve vektorovém formátu.\cite{gdal}
+Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL, slouží pro práci s~daty ve vektorovém formátu.\cite{gdal}
 
-GDAL/OGR je považován za jeden z~hlavních open-source projektů. Knihovna je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená a~poskytuje základní funkcionalitu potřebnou pro denní práci s~rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
+GDAL je považován za jeden z~hlavních open-source projektů. Knihovna je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená a~poskytuje základní funkcionalitu potřebnou pro denní práci s~rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
 
 
 \section{Python}
@@ -1170,13 +1170,13 @@ V~číselnících jsou exportována jen ta data, u~kterých byla platnost započ
 % ==================================================================================
 \clearpage
 \chapter{VFK Plugin pro QGIS}
-Prvotní verze zásuvného modulu QGIS \textbf{VFK Plugin} pro práci s daty českého katastru nemovitostí byla vyvinuta studenty oboru Geoinformatika na FSv ČVUT v Praze Annou Kratochvílovou a Václavem Petrášem. 
+Prvotní verze zásuvného modulu QGIS \textbf{VFK Plugin} pro práci s~daty českého katastru nemovitostí byla vyvinuta studenty oboru Geoinformatika na FSv ČVUT v~Praze Annou Kratochvílovou a Václavem Petrášem. 
 
-Zásuvný modul byl napsát v jazyce C++, s použitím knihovny Qt. Pracuje s daty v novém výměnném formátu katastru (VFK), viz kapitola č. \ref{l_format_vfk}. 
+Zásuvný modul byl napsát v~jazyce C++, s~použitím knihovny Qt. Pracuje s~daty v~novém výměnném formátu katastru (VFK), viz kapitola č. \ref{l_format_vfk}. 
 
-Pro přístup k datům plugin využívá knihovny GDAL, respektive ovladače \textbf{VFK Driver}. Načtená data driver ukládá do databáze SQLite, jejíž struktura je shodná se strukturou jednotlivých bloků v souboru VFK. Při opakovaném čtení dat ze stejného souboru je využívána již vytvořená SQLite databáze, oproti původnímu VFK souboru. 
+Pro přístup k~datům plugin využívá knihovny GDAL, respektive ovladače \textbf{VFK Driver}. Načtená data driver ukládá do databáze SQLite, jejíž struktura je shodná se strukturou jednotlivých bloků v~souboru VFK. Při opakovaném čtení dat ze stejného souboru je využívána již vytvořená SQLite databáze, oproti původnímu VFK souboru. 
 
-Zdrojové kódy zásuvného modulu jsou šířeny pod licencí GNU GPL\footnote{https://raw.githubusercontent.com/ctu-osgeorel/qgis-vfk-plugin/master/LICENSE}. Zásuvný modul je možné stáhnout z oficiálního git repositáře\footnote{https://github.com/ctu-osgeorel/qgis-vfk-plugin-cpp}. \cite{cvut_vfkPlugin}
+Zdrojové kódy zásuvného modulu jsou šířeny pod licencí GNU GPL\footnote{https://raw.githubusercontent.com/ctu-osgeorel/qgis-vfk-plugin/master/LICENSE}. Zásuvný modul je možné stáhnout z~oficiálního git repositáře\footnote{https://github.com/ctu-osgeorel/qgis-vfk-plugin-cpp}. \cite{cvut_vfkPlugin}
 
 \begin{figure}[htb]
 \centering
@@ -1186,7 +1186,7 @@ Zdrojové kódy zásuvného modulu jsou šířeny pod licencí GNU GPL\footnote{
 
 \newpage
 \section{Funkcionalita}
-Cílem zásuvného modulu je zjednodušit práci s daty katastru nemovitostí. Plugin byl proto navržen tak, aby byl schopen jednoduše a rychle řešit základní úlohy nad těmito daty. Mezi základní funkcionalitu patří možnost vyhledávání podle:
+Cílem zásuvného modulu je zjednodušit práci s~daty katastru nemovitostí. Plugin byl proto navržen tak, aby byl schopen jednoduše a rychle řešit základní úlohy nad těmito daty. Mezi základní funkcionalitu patří možnost vyhledávání podle:
 
 \begin{itemize}
  \item vlastníků,
@@ -1231,44 +1231,44 @@ Cílem zásuvného modulu je zjednodušit práci s daty katastru nemovitostí. P
 
 Ve vedlejším okně, prohlížeči dat, se zobrazují výsledky vyhledávání. Tato data lze interaktivně procházet, podobně jako je tomu ve webovém prohlížeči, jelikož jsou ukládána ve formě HTML stránek. Jsou zde implementovány základní vlastnosti HTML. Pro navigaci mezi jednotlivými prvky jsou používány hypertextové odkazy. Obsah okna prohlížeče je ukládán do historie, což usnadňuje uživateli vyhledávání stále se opakujících informací (není potřeba opakovaně provádět stejný databázový dotaz). Historii lze procházet pomocí tlačítek \texttt{Vpřed} a \texttt{Zpět}.
 
-Pro zjištění aktuálního stavu o dané nemovitosti je zde implementováno propojení s aplikací \textbf{Nahlížení do katastru nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
+Pro zjištění aktuálního stavu o~dané nemovitosti je zde implementováno propojení s~aplikací \textbf{Nahlížení do katastru nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
 
-Veškeré výpisy zobrazené v prohlížeči zásuvného modulu lze exportovat, a to do následujících formátů:
+Veškeré výpisy zobrazené v~prohlížeči zásuvného modulu lze exportovat, a to do následujících formátů:
 
 \begin{itemize}
  \item \textbf{HTML}: umožňuje následné zobrazení ve webovém prohlížeči, případně import do textového procesoru,
  \item \textbf{zdrojový kód \latex}: umožňuje vytvoření PDF nebo PS.
 \end{itemize}
 
-Zásuvný modul a mapové okno QGIS jsou navzájem propojené. Je tedy možné v mapovém okně zobrazit polohu vyhledaných prvků a opačně vyhledat informace o prvcích, které byly vybrány pomocí nástroje výběru QGIS právě v mapovém okně.
+Zásuvný modul a mapové okno QGIS jsou navzájem propojené. Je tedy možné v~mapovém okně zobrazit polohu vyhledaných prvků a opačně vyhledat informace o~prvcích, které byly vybrány pomocí nástroje výběru QGIS právě v~mapovém okně.
 
-Uživatelská přívětivost používání zásuvného modulu je zvýšena \uv{dokovatelností} samotného okna pluginu. Modul je primárně ukotven k horní liště okna QGIS, ale je možné ho ukotvit i k ostatním okrajům. Okno modulu lze samozřejmě používat i samostatně (neukotvené).
+Uživatelská přívětivost používání zásuvného modulu je zvýšena \uv{dokovatelností} samotného okna pluginu. Modul je primárně ukotven k~horní liště okna QGIS, ale je možné ho ukotvit i k~ostatním okrajům. Okno modulu lze samozřejmě používat i samostatně (neukotvené).
 
-Pro vrstvy parcel (\texttt{PAR}) a budov (\texttt{BUD}) byl vytvořen předdefinovaný vzhled ve formátu \textit{.xml}, respektive \textit{.qml}, se kterým QGIS nativně pracuje. Ukázka použité symbologie pro vrstvu parcel je uvedena v příloze \ref{l_priloha_symbologie}. 
+Pro vrstvy parcel (\texttt{PAR}) a budov (\texttt{BUD}) byl vytvořen předdefinovaný vzhled ve formátu \textit{.xml}, respektive \textit{.qml}, se kterým QGIS nativně pracuje. 
 
-Součástí zásuvného modulu je také stručná nápověda, která je po spuštění pluginu zobrazena stejně jako veškeré hledané informace v prohlížeči dat ve formátu HTML. Nápověda může být vyvolána i po kliknutí na příslušné tlačítko v liště panelu nástrojů VFK Pluginu. \cite{cvut_vfkPlugin}
+Součástí zásuvného modulu je také stručná nápověda, která je po spuštění pluginu zobrazena stejně jako veškeré hledané informace v~prohlížeči dat ve formátu HTML. Nápověda může být vyvolána i po kliknutí na příslušné tlačítko v~liště panelu nástrojů VFK Pluginu. \cite{cvut_vfkPlugin}
 
 \newpage
 \section{Použití pluginu}
 
 \subsection{Instalace a spuštění}
-Stávající zásuvný modul, který je napsán v jazyce C++, je možné pod operačním systémem Ubuntu nainstalovat dle skriptů dostupných na stránkách pluginu\footnote{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}. Pro spuštění pod operačním systémem Windows, je potřeba stáhnout předkompilovanou verzi pro danou verzi QGIS a tu překopírovat do požadovaného adresáře. Podrobný návod je uveden opět na stránkách zásuvného modulu. 
+Stávající zásuvný modul, který je napsán v~jazyce C++, je možné pod operačním systémem Ubuntu nainstalovat dle skriptů dostupných na stránkách pluginu\footnote{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}. Pro spuštění pod operačním systémem Windows, je potřeba stáhnout předkompilovanou verzi pro danou verzi QGIS a tu překopírovat do požadovaného adresáře. Podrobný návod je uveden opět na stránkách zásuvného modulu. 
 
-Takto nainstalovaný modul lze potom vyhledat v QGIS v nabídce Pluginy $\rightarrow$ Spravovat zásuvné moduly. Zde lze plugin dohledat po zadání filtru \textit{VFK}. Spuštění pluginu je poté možné z hlavní nabídky QGIS Pluginy $\rightarrow$ VFK Plugin $\rightarrow$ VFK Plugin, nebo pomocí ikonky přímo z nástrojové lišty.
+Takto nainstalovaný modul lze potom vyhledat v~QGIS v~nabídce Pluginy $\rightarrow$ Spravovat zásuvné moduly. Zde lze plugin dohledat po zadání filtru \textit{VFK}. Spuštění pluginu je poté možné z~hlavní nabídky QGIS Pluginy $\rightarrow$ VFK Plugin $\rightarrow$ VFK Plugin, nebo pomocí ikonky přímo z~nástrojové lišty.
 
 \subsection{Rozložení}
-Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci s prohlížečem, interakcí s mapou a nástroje pro export. 
+Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci s~prohlížečem, interakcí s~mapou a nástroje pro export. 
 
 \subsection{Načítání dat}
-Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \textit{Procházet} v nabídce \textit{Import VFK}. V tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s mapovým oknem. 
+Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \textit{Procházet} v~nabídce \textit{Import VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s~mapovým oknem. 
 
 \subsection{Vyhledávání}
-Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré informace vyhledané o~vlastnících, parcelách, budovách nebo jednotkách lze pohodlně procházet pomocí hypertextových odkazů v prohlížeči dat. Náhled vyhledaných informací je uveden na obrázku č. \ref{l_informace_o_parcele}.
+Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré informace vyhledané o~vlastnících, parcelách, budovách nebo jednotkách lze pohodlně procházet pomocí hypertextových odkazů v~prohlížeči dat. Náhled vyhledaných informací je uveden na obrázku č. \ref{l_informace_o_parcele}.
 
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.4\textwidth]{images/vfkPlugin-informace_o_parcele.png}
-\caption[Ukázka vyhledaných informací k dané parcele]{Ukázka vyhledaných informací k~dané parcele}
+\caption[Ukázka vyhledaných informací k~dané parcele]{Ukázka vyhledaných informací k~dané parcele}
 \label{l_informace_o_parcele}
 \end{figure}
 
@@ -1277,24 +1277,24 @@ Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré infor
 % ==================================================================================
 \clearpage
 \chapter{Rozšíření stávající funkcionality}
-V této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK. Spolu s tímto byly do pluginu přidány další funkcionality, jež jsou zmíněny na následujících řádcích kapitoly. 
+V~této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK. Spolu s~tímto byly do pluginu přidány další funkcionality, jež jsou zmíněny na následujících řádcích kapitoly. 
 
 \section{Usnadnění distribuce pluginu}
-Jak už bylo zmíněno v kapitolách uvedených výše, stávající zásuvný modul byl napsán v jazyce C++. Což znamená, že před prvním použitím se musí plugin překompilovat. 
+Jak už bylo zmíněno v~kapitolách uvedených výše, stávající zásuvný modul byl napsán v~jazyce C++. Což znamená, že před prvním použitím se musí plugin překompilovat. 
 
 Kompilace pod operačním systémem Linux (Ubuntu) může být provedena pomocí skriptů\footnote{Návod dostupný na: http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}, které vytvořili autoři původní verze modulu. 
 
-Pod operačním systémem Microsoft Windows je situace poněkud komplikovanější. Pro každou verzi programu QGIS musí být plugin zkompilován samostatně vzhledem k typu operačního systému (32bit/64bit). Předkompilované verze mohou být staženy opět na stránkách pluginu, avšak nejsou zde uvedeny veškeré verze QGIS jak pro 32bit systém, tak pro 64bit systém. Uživatel jiné verzi QGIS (jiného typu operačního systému) by si tedy musel plugin zkompilovat sám, což může být pro nezkušené uživatele značná překážka. 
+Pod operačním systémem Microsoft Windows je situace poněkud komplikovanější. Pro každou verzi programu QGIS musí být plugin zkompilován samostatně vzhledem k~typu operačního systému (32bit/64bit). Předkompilované verze mohou být staženy opět na stránkách pluginu, avšak nejsou zde uvedeny veškeré verze QGIS jak pro 32bit systém, tak pro 64bit systém. Uživatel jiné verzi QGIS (jiného typu operačního systému) by si tedy musel plugin zkompilovat sám, což může být pro nezkušené uživatele značná překážka. 
 
 Výše zmíněné problémy značně snižují jak možnost většího rozšíření zásuvného modulu, tak komfort při jeho instalaci (aktualizaci). Řešením je přepis modulu do jazyka Python, čímž se plugin stane snadněji dostupným pro všechny uživatele bez rozdílu operačního systému, či verze programu QGIS.
 
 \subsection{Přepis do jazyka Python}
-Přepis zásuvného modulu do jazyka Python byl zásadním bodem této práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce podobný původnímu kódu v jazyku C++, a to hlavně z důvodu, aby byly zachovány veškeré funkcionality a vlastnosti tak, jak jsou známé stávajícím uživatelům nástroje.
+Přepis zásuvného modulu do jazyka Python byl zásadním bodem této práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce podobný původnímu kódu v~jazyku C++, a to hlavně z~důvodu, aby byly zachovány veškeré funkcionality a vlastnosti tak, jak jsou známé stávajícím uživatelům nástroje.
 
-Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporučovaného nástroje \textbf{Plugin Builder}\footnote{http://g-sherman.github.io/Qgis-Plugin-Builder/} dostupného přímo z QGIS. Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V následujících ukázkách je porovnán původní kód v jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s mnou napsaným kódem v jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
+Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporučovaného nástroje \textbf{Plugin Builder}\footnote{http://g-sherman.github.io/Qgis-Plugin-Builder/} dostupného přímo z~QGIS. Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V~následujících ukázkách je porovnán původní kód v~jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s~mnou napsaným kódem v~jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
 
 \begin{lstlisting}[language=C++, 
-		    caption=Kód pro načtení vektorové vrstvy v C++, 
+		    caption=Kód pro načtení vektorové vrstvy v~C++, 
 		    keywordstyle=\color{blue}\ttfamily,
 		    stringstyle=\color{red}\ttfamily,
 		    commentstyle=\color{green}\ttfamily, morekeywords={QgsDebugMsg,QString,QgsVectorLayer,QList,QgsMapLayerRegistry},
@@ -1320,7 +1320,7 @@ Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporu�
 
 \newpage
 \begin{lstlisting}[language=Python, 
-		    caption=Kód pro načtení vektorové vrstvy v jazyce Python, 
+		    caption=Kód pro načtení vektorové vrstvy v~jazyce Python, 
 		    keywordstyle=\color{blue}\ttfamily,
 		    stringstyle=\color{red}\ttfamily,
 		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
@@ -1351,8 +1351,8 @@ Method loads VFK layer.
   QgsMapLayerRegistry.instance().addMapLayer(layer)
 \end{lstlisting}
 
-\subsection{Instalace zásuvného modulu v QGIS}
-Díky přepisu zásuvného modulu do jazyka Python je plugin v QGIS dostupný standardním způsobem, jako ostatní pluginy napsány v tomto jazyce. Plugin v současné době není dostupný v oficiálním repositáři QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný organizací OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/}, pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto musí být tato volba zohledněna při jeho instalaci, viz obr. \ref{l_qgis_plugins}. Okno pro zadání repositáře vyvoláme v záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install plugins}.
+\subsection{Instalace zásuvného modulu v~QGIS}
+Díky přepisu zásuvného modulu do jazyka Python je plugin v~QGIS dostupný standardním způsobem, jako ostatní pluginy napsány v~tomto jazyce. Plugin v~současné době není dostupný v~oficiálním repositáři QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný organizací OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/}, pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto musí být tato volba zohledněna při jeho instalaci, viz obr. \ref{l_qgis_plugins}. Okno pro zadání repositáře vyvoláme v~záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install plugins}.
 
 \begin{figure}[htb]
 \centering
@@ -1377,7 +1377,7 @@ Po přidání repositáře a jeho aktualizaci je zásuvný modul dohledatelný s
 \label{l_qgis_hledani_pluginu}
 \end{figure}
 
-Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho ikonka (viz obr. \ref{l_plugin_ikona}). Plugin je poté dostupný po kliknutí na tuto ikonku nebo z menu \textit{Plugins} $\rightarrow$ \textit{VFK} $\rightarrow$ \textit{Otevřít prohlížeč VFK}.
+Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho ikonka (viz obr. \ref{l_plugin_ikona}). Plugin je poté dostupný po kliknutí na tuto ikonku nebo z~menu \textit{Plugins} $\rightarrow$ \textit{VFK} $\rightarrow$ \textit{Otevřít prohlížeč VFK}.
 
 \begin{figure}[H]
 \centering
@@ -1389,12 +1389,13 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 % -----------------------------------------------------------------------
 \clearpage
 \section{Úprava GDAL VFK driveru}
-Před začátkem práce na podpoře zpracování změnových vět v QGIS VFK Pluginu bylo potřeba provést několik nezbytných úprav na straně GDAL VFK driveru, který plugin využívá pro čtení dat VFK, respektive jejich zápis do databáze SQLite.
+\label{l_uprava_gdal}
+Před začátkem práce na podpoře zpracování změnových vět v~QGIS VFK Pluginu bylo potřeba provést několik nezbytných úprav na straně GDAL VFK driveru, který plugin využívá pro čtení dat VFK, respektive jejich zápis do databáze SQLite.
 
-Úprava byla provedena ve spolupráci s autorem GDAL VFK driveru Martinem Landou, který provedl většinu změn ovladače, které byly pro zpracování změnových VFK souborů nezbytné. 
+Úprava byla provedena ve spolupráci s~autorem GDAL VFK driveru Martinem Landou, který provedl většinu změn ovladače, které byly pro zpracování změnových VFK souborů nezbytné. 
 
-\subsection{Načítání dat z více VFK souborů}
-Vzhledem ke struktuře, v jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k uživatelům distribuovány ve struktuře, která je uvedena v následující ukázce č. \ref{l_struktura_sireni_vfk}.
+\subsection{Načítání dat z~více VFK souborů}
+Vzhledem ke struktuře, v~jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k~uživatelům distribuovány ve struktuře, která je uvedena v~následující ukázce č. \ref{l_struktura_sireni_vfk}.
 
 \begin{figure}[htb]
 \centering
@@ -1412,16 +1413,16 @@ Vzhledem ke struktuře, v jaké jsou změnová data dodávána od ČUZK uživate
 \label{l_struktura_sireni_vfk}
 \end{figure}
 
-K tomuto byla upravena funkce pro načítání dat. Původní chování VFK driveru bylo, že při prvním čtení VFK souboru se na pozadí ve stejném adresáři vytvořila databáze SQLite (její název byl shodný s názvem vstupního souboru), do které byla data načtena. Při opakovaném čtení VFK souboru se stejným názvem, se data četla již z existující databáze. Jméno výstupní SQLite databáze mohlo být ovlivněno pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}, data poté byla ukládána/načítána do/z této databáze. 
+K~tomuto byla upravena funkce pro načítání dat. Původní chování VFK driveru bylo, že při prvním čtení VFK souboru se na pozadí ve stejném adresáři vytvořila databáze SQLite (její název byl shodný s~názvem vstupního souboru), do které byla data načtena. Při opakovaném čtení VFK souboru se stejným názvem, se data četla již z~existující databáze. Jméno výstupní SQLite databáze mohlo být ovlivněno pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}, data poté byla ukládána/načítána do/z této databáze. 
 
-Nebylo tedy možné zpracovat data, která jsou uložena v adresářové struktuře (viz ukázka \ref{l_struktura_sireni_vfk}), kdy jsou některé VFK bloky uloženy v jednom adresáři a další ve druhém pod stejným názvem souboru.
+Nebylo tedy možné zpracovat data, která jsou uložena v~adresářové struktuře (viz ukázka \ref{l_struktura_sireni_vfk}), kdy jsou některé VFK bloky uloženy v~jednom adresáři a další ve druhém pod stejným názvem souboru.
 
-Chování driveru bylo proto opraveno tak, že pokud uživatel potřebuje načíst více VFK souborů do jedné databáze, musí nejprve zadat cestu k výstupní SQLite databází pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}. Při čtení prvního souboru se načtou data standardním způsobem do databáze, ale při čtení dalších driver porovná tabulky v databázi s datovými bloky čteného VFK souboru. Jestliže tabulka daného jména v databázi neexistuje, tak ji vytvoří a pokračuje v načítání dat. 
+Chování driveru bylo proto opraveno tak, že pokud uživatel potřebuje načíst více VFK souborů do jedné databáze, musí nejprve zadat cestu k~výstupní SQLite databází pomocí proměnné prostředí \texttt{OGR\_VFK\_DB\_NAME}. Při čtení prvního souboru se načtou data standardním způsobem do databáze, ale při čtení dalších driver porovná tabulky v~databázi s~datovými bloky čteného VFK souboru. Jestliže tabulka daného jména v~databázi neexistuje, tak ji vytvoří a pokračuje v~načítání dat. 
 
-Při načítání dat driver testuje (viz \ref{l_gdal_kontrola_zmen}), zda se jedná o změnový, nebo stavový VFK soubor. Jestliže se jedná o stavový, tak driver nepovolí načítání dat, která jsou již v databázi uloženy (vznikaly by duplicity, což není u stavových dat možné). Při čtení změnového souboru je povoleno ukládání prvků s \texttt{ID}, které je již v tabulce uložené (ve změnovém souboru je možné uložit prvky se stejným \texttt{ID}, viz kapitola \ref{l_struktura_zmen}). Správné uložení prvků s duplicitním \texttt{ID} je zajištěno pomocí databázového indexu \texttt{UNIQUE}, který je vytvářen právě jen pro stavová data.
+Při načítání dat driver testuje (viz \ref{l_gdal_kontrola_zmen}), zda se jedná o~změnový, nebo stavový VFK soubor. Jestliže se jedná o~stavový, tak driver nepovolí načítání dat, která jsou již v~databázi uloženy (vznikaly by duplicity, což není u~stavových dat možné). Při čtení změnového souboru je povoleno ukládání prvků s~\texttt{ID}, které je již v~tabulce uložené (ve změnovém souboru je možné uložit prvky se stejným \texttt{ID}, viz kapitola \ref{l_struktura_zmen}). Správné uložení prvků s~duplicitním \texttt{ID} je zajištěno pomocí databázového indexu \texttt{UNIQUE}, který je vytvářen právě jen pro stavová data.
 
 \begin{lstlisting}[language=C++, 
-		    caption={Výňatek z kódu pro kontrolu změnového souboru}, 
+		    caption={Výňatek z~kódu pro kontrolu změnového souboru}, 
 		    keywordstyle=\color{blue}\ttfamily,
 		    stringstyle=\color{red}\ttfamily,
 		    commentstyle=\color{green}\ttfamily, 
@@ -1439,12 +1440,12 @@ else if (pszLine[1] == 'H') {
 \end{lstlisting}
 
 \subsection{Vytváření geometrie prvků}
-Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK souboru, se děje pomocí metody \texttt{int IVFKDataBlock::LoadGeometry()}. V dosavadní verzi VFK driveru byla tato metoda volána při požadavku o konkrétní prvek (například pomocí konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID 1}). Geometrie tedy nebyla sestavena dopředu po uložení dat do databáze, ale až poté, co si uživatel o daný prvek přímo zažádal.
+Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK souboru, se děje pomocí metody \texttt{int IVFKDataBlock::LoadGeometry()}. V~dosavadní verzi VFK driveru byla tato metoda volána při požadavku o~konkrétní prvek (například pomocí konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID 1}). Geometrie tedy nebyla sestavena dopředu po uložení dat do databáze, ale až poté, co si uživatel o~daný prvek přímo zažádal.
 
-Toto chování muselo být vzhledem ke struktuře, v jaké se k uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
+Toto chování muselo být vzhledem ke struktuře, v~jaké se k~uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v~databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k~dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
 
 \subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny v načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
+Výše uvedené změny v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
 
 \begin{lstlisting}[language=Python, 
 		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
@@ -1458,7 +1459,7 @@ if gdal_version < 2020000:
 	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.2.0.')
 \end{lstlisting}
 
-Jak z výše uvedených vět vyplývá, k přidání této podpory musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
+Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
 
 \begin{enumerate}
  \item Tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
@@ -1475,23 +1476,122 @@ Jak z výše uvedených vět vyplývá, k přidání této podpory musel být zm
 \end{figure}
 
 
-
-
-
-
-
-
 \clearpage
 % -----------------------------------------------------------------------
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
+Schopnost umět zpracovat změnové věty VFK souborů je důležitá pro každého uživatele, který s daty katastru nemovitostí pracuje. Jestliže uživatel již jednou vlastní stavová data pro dané území a potřebuje hlídat aktuálnost těchto dat, je pro něj výhodnější stahovat právě změnové VFK soubory, než soubory stavové. 
+
+Zpracování těchto vět pomocí zásuvného modulu v QGIS nebylo do této doby možné. O implementaci podpory pro jejich zpracování na straně VFK pluginu pojednává právě tato kapitola.
+
+Změnové věty jsou směrem k uživatelům šířeny ve stejné struktuře jako stavová data, viz obr. \ref{l_struktura_sireni_vfk}. Pro jejich zpracování musely být nejprve provedeny úpravy na straně VFK driveru v knihovně GDAL, viz kapitola \ref{l_uprava_gdal}. Díky tomuto kroku a úpravě principu načítání souborů v okně zásuvného modulu (viz obr. \ref{l_plugin_novy_vzhled}) je možné změnové VFK soubory uložit do jedné databáze a pomocí VFK pluginu zobrazit v programu QGIS. V případě, kdy změny obsahují potřebné datové bloky, je nad změnovými daty umožněno i~vyhledávání.
+
+\subsection{Metodika aplikace změn na stavová data}
+Aplikace změn na stavová data předpokládá, že uživatel již má pomocí VFK driveru knihovny GDAL připravenou databázi jak se stavovými daty, tak s daty změnovými. V opačném případě může uživatel tyto databáze vytvořit pomocí samotného VFK pluginu. 
+
+Pro aplikaci změn byla vytvořena samostatná třída (\texttt{ApplyChanges}), pomocí které mohou být změny aplikovány. Toto může být provedeno jednak pomocí zásuvného modulu (viz \ref{l_implementace_zmen}), nebo pomocí samostatně spustitelné konzolové aplikace (viz \ref{l_apply_changes_ukazka}).
+
+Vstupními argumenty pro tuto třídu, respektive metodu \texttt{run(\dots)}, jsou:
+
+\begin{itemize}
+ \item \textbf{Hlavní databáze:} Databáze, která obsahuje stavová data, na něž budou změny aplikovány.
+ \item \textbf{Změnová databáze:} Databáze obsahující změnová data.
+ \item \textbf{Režim \uv{debug}:} Nepovinný argument. V případě jeho zadání jsou na standardní výstup vypisovány veškeré SQL příkazy do databáze. Implicitně je nastaven na hodnotu \texttt{False}.
+\end{itemize}
+
+Jediným výstupním argumentem je poté cesta k nově vytvořené databázi, která bude obsahovat stavová data s aplikovanými změnami.
+
+\newpage
+\begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
+		    label=l_apply_changes_ukazka]
+$ ./applyChanges.py -h
+
+usage: applyChanges.py [-h] [-v] -m MAIN -c CHANGES -e EXPORT [-d]
+
+Script applies changes from amendment VFK database to main VFK database. In this process new database is created.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  -d, --debug           Enables debug mode.
+  -m MAIN, --main MAIN  Path to the main database.
+  -c CHANGES, --changes CHANGES
+                        Path to the database with changes.
+  -e EXPORT, --export EXPORT
+                        Path to the new database which will be created.
+\end{lstlisting}
+
+V prvním kroku se pomocí nástroje \texttt{shutil.copy2(src, dst)} vytvoří kopie hlavní databáze. Cesta k ní je zadána pomocí výstupního argumentu. Čas potřebný pro tvorbu kopie databáze je přímo úměrný její velikosti. Tento krok proto může být pro objemná data časově náročný. Díky tvorbě kopie a práce s ní je ale zajištěno, že v případě, kdyby se aplikace změn nepovedla, uživatel nepřijde o původní data.
+
+V dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede připojení ke kopii databáze (v dalším textu bude tato kopie označována jako hlavní / \uv{main}). Databáze se změnami je poté k této hlavní databázi připojena pomocí SQL příkazu \texttt{ATTACH DATABASE}\footnote{https://www.sqlite.org/lang\_attach.html}. Práce s takto připojenou databází je poté shodná jako se schématy, známými například z PostgreSQL.
+
+Samotné změny jsou aplikovány pouze z tabulek, které podporují princip \uv{historizace} (viz kapitola \ref{l_struktura_zmen}) a které nejsou prázdné. Tyto tabulky musí obsahovat sloupec \texttt{STAV\_DAT}. Pro výběr odpovídajících tabulek slouží k tomu určená metoda \texttt{\_\_findTablesWithChanges(self)}.
+
+Při aplikaci změn jsou v cyklu pro každou tabulku spouštěny databázové příkazy \texttt{DELETE} (viz ukázka \ref{l_changes_delete}) a \texttt{INSERT} (viz ukázka \ref{l_changes_insert}), kde proměnná \texttt{table} označuje jméno databázové tabulky, proměnná \texttt{column} jméno příslušného sloupce,  \texttt{columns} označuje seznam sloupců a proměnná \texttt{id} je nahrazena identifikátorem vkládaného prvku z databáze, která obsahuje změnová data.
+
+Příkaz \texttt{DELETE} z hlavní databáze smaže veškeré prvky, které se vyskytují v databázi se změnovými daty. Tento příkaz je vykonán, protože v databázi se změnovými daty jsou vždy aktuálnější informace o prvcích, než v databázi původní. 
+
+\begin{lstlisting}[language=SQL, 
+		    caption={Aplikace změn -- příkaz DELETE}, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={},
+		    label=l_changes_delete]
+DELETE FROM main.{table} 
+WHERE {column} IN (
+SELECT DISTINCT t1.{column} FROM main.{table} t1 
+JOIN db2.{table} t2 ON t1.{column} = t2.{column});
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL, 
+		    caption={Aplikace změn -- příkaz INSERT}, 
+		    keywordstyle=\color{blue}\ttfamily,
+		    stringstyle=\color{red}\ttfamily,
+		    commentstyle=\color{green}\ttfamily, morekeywords={},
+		    label=l_changes_insert]
+INSERT INTO main.{table}
+SELECT {columns} FROM db2.{table}
+WHERE stav_dat = 0
+    AND id = {id}
+LIMIT 1;
+\end{lstlisting}
+
+Po smazání veškerých neaktuálních záznamů z hlavní databáze, je vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v cyklu nad všemi záznamy ze změnové databáze, které jsou určeny pro import. Případ, kdy jsou ve změnové databázi uloženy některé položky duplicitně, je ošetřen pomocí nastavení limitu (viz řádek č. 5 ukázky \ref{l_changes_insert}).
+
+% TODO: nakreslit diagram fungovani kodu
+
+
+
+\subsection{Implementace na straně zásuvného modulu}
+\label{l_implementace_zmen}
+Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla implementována díky vytvoření nového formuláře v okně pluginu. Na okně zásuvného modulu byly provedeny následující úpravy:
+
+\begin{enumerate}
+ \item \textbf{Ikona změn:} Okno pro aplikaci změn na stavová data je vyvoláno pomocí nově vytvořené ikony v nástrojové liště, viz obr. \ref{l_ikona_zmen}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.9]{images/applyChanges.png}
+\caption[VFK Plugin -- ikona pro zpracování změn]{VFK Plugin -- ikona pro zpracování změn}
+\label{l_ikona_zmen}
+\end{figure} 
+ 
+ \item \textbf{Formuláře:} 
+ \item \textbf{Popisek průběhu zpracování:} 
+ \item \textbf{Grafický indikátor průběhu:} 
+ \item \textbf{Tlačítko pro zpracování:} 
+\end{enumerate}
 
 
 
 
 
-
-
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{images/vfkPlugin-zmeny.png}
+\caption[VFK Plugin -- okno pro zpracování změn]{VFK Plugin -- okno pro zpracování změn}
+\label{l_plugin_zmeny}
+\end{figure}
 
 
 
@@ -1499,64 +1599,67 @@ Jak z výše uvedených vět vyplývá, k přidání této podpory musel být zm
 \section{Popis tříd zásuvného modulu}
 
 \subsubsection{ApplyChanges}
-Třída, která se stará o aplikaci změn, které jsou pomocí \texttt{VFK Driveru GDAL} uloženy do databáze SQLite, na SQLite databázi vytvořenou ze stavového VFK souboru. Podrobnější popis zpracování změnových souborů touto třídou je k dispozici v kapitole \ref{l_zpracovani_zmen}.
+Třída, která se stará o~aplikaci změn, které jsou pomocí \texttt{VFK Driveru GDAL} uloženy do databáze SQLite, na SQLite databázi vytvořenou ze stavového VFK souboru. Podrobnější popis zpracování změnových souborů touto třídou je k~dispozici v~kapitole \ref{l_zpracovani_zmen}.
 
 \subsubsection{BudovySearchForm}
-Jedná se o třídu, která se stará o vyhledávací prvky ve formuláři pro vyhledávání budov. Třída dědí od třídy \texttt{QWidget}. Vzhled uživatelského rozhraní této třídy byl navržen samostatně pomocí programu \texttt{Qt Designer}. Kód návrhu je uložen v souboru \texttt{ui\_budovysearchform.ui}, respektive v překompilované verzi pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru třídy je uvedena v příloze \ref{l_budovySearchForm_konstruktor}.
+Jedná se o~třídu, která se stará o~vyhledávací prvky ve formuláři pro vyhledávání budov. Třída dědí od třídy \texttt{QWidget}. Vzhled uživatelského rozhraní této třídy byl navržen samostatně pomocí programu \texttt{Qt Designer}. Kód návrhu je uložen v~souboru \texttt{ui\_budovysearchform.ui}, respektive v~překompilované verzi pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru třídy je uvedena v~příloze \ref{l_budovySearchForm_konstruktor}.
 
 \subsubsection{DocumentBuilder}
-V třídě \texttt{DocumentBuilder} se sestavuje dokument, který bude zobrazen v prohlížeči dat (nebo exportován do některého z podporovaných formátů), na základě výsledků vyhledávání. O správné sestavení se stará metoda \texttt{buildHtml}, viz příloha \ref{l_buildHtml}. 
+V~třídě \texttt{DocumentBuilder} se sestavuje dokument, který bude zobrazen v~prohlížeči dat (nebo exportován do některého z~podporovaných formátů), na základě výsledků vyhledávání. O~správné sestavení se stará metoda \texttt{buildHtml}, viz příloha \ref{l_buildHtml}. 
 
-Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek (např. \texttt{tableParcely(self, model, parIds, LVColumn)}), metody pro tvorbu jednotlivých částí listu vlastnictví (např. \texttt{partTelesoB1(self, parIds, budIds, jedIds, opsubIds, forLV)}), nebo metody pro zobrazení detailu o vyhledávaném tělese (např. \texttt{pageBudova(self, id)}).
+Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek (např. \texttt{tableParcely(self, model, parIds, LVColumn)}), metody pro tvorbu jednotlivých částí listu vlastnictví (např. \texttt{partTelesoB1(self, parIds, budIds, jedIds, opsubIds, forLV)}), nebo metody pro zobrazení detailu o~vyhledávaném tělese (např. \texttt{pageBudova(self, id)}).
 
-Důležitou metodou v této třídě je metoda \texttt{pageHelp(self)}, díky které je možné zobrazit krátkou nápovědu k zásuvnému modulu, a metoda \texttt{saveDefinitionPoint( self, id, nemovitost)}, která slouží k získání a uložení definičního bodu vyhledané nemovitosti.
+Důležitou metodou v~této třídě je metoda \texttt{pageHelp(self)}, díky které je možné zobrazit krátkou nápovědu k~zásuvnému modulu, a metoda \texttt{saveDefinitionPoint( self, id, nemovitost)}, která slouží k~získání a uložení definičního bodu vyhledané nemovitosti.
 
 \subsubsection{Domains}
-V této třídě jsou jednoduché metody pro zjištění domény prvku na základě vstupního argumentu. Je zde metoda \texttt{anoNe(an)}, která testuje, zda je vstupní argument rovný \uv{a}, a podle toho vrací \texttt{True/False}. Metoda \texttt{cpCe(kod)} převádí hodnotu vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo evidenční}. Metoda \texttt{druhUcastnika(kod)} kontroluje, o jaký typ subjektu se jedná (např. právnická osoba). Poslední metodou je metoda \texttt{rodinnyStav(kod)}, která vrací rodinný stav subjektu na základě zadaného vstupního kódu.
+V~této třídě jsou jednoduché metody pro zjištění domény prvku na základě vstupního argumentu. Je zde metoda \texttt{anoNe(an)}, která testuje, zda je vstupní argument rovný \uv{a}, a podle toho vrací \texttt{True/False}. Metoda \texttt{cpCe(kod)} převádí hodnotu vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo evidenční}. Metoda \texttt{druhUcastnika(kod)} kontroluje, o~jaký typ subjektu se jedná (např. právnická osoba). Poslední metodou je metoda \texttt{rodinnyStav(kod)}, která vrací rodinný stav subjektu na základě zadaného vstupního kódu.
 
 \subsubsection{HtmlDocument}
-Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz \ref{l_vfkDocument}). Jsou v ní obsaženy metody pro tvorbu jednotlivých částí kódu v jazyce \textit{HTML}. Vhodnou kombinací těchto částí je poté sestaven celý \textit{HTML} dokument. Takto připravený dokument je poté možné vyexportovat pomocí příslušné funkcionality a zobrazit v libovolném prohlížeči.
+Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz \ref{l_vfkDocument}). Jsou v~ní obsaženy metody pro tvorbu jednotlivých částí kódu v~jazyce \textit{HTML}. Vhodnou kombinací těchto částí je poté sestaven celý \textit{HTML} dokument. Takto připravený dokument je poté možné vyexportovat pomocí příslušné funkcionality a zobrazit v~libovolném prohlížeči.
 
 \subsubsection{JednotkySearchForm}
-V této třídě se řeší vyhledávání jednotek pomocí vyhledávacích formulářů navržených v programu \texttt{Qt Designer}. Vyhledávat lze podle čísla jednotky, domovního čísla, čísla parcely, ke které jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída je potomkem třídy \texttt{QWidget}.
+V~této třídě se řeší vyhledávání jednotek pomocí vyhledávacích formulářů navržených v~programu \texttt{Qt Designer}. Vyhledávat lze podle čísla jednotky, domovního čísla, čísla parcely, ke které jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída je potomkem třídy \texttt{QWidget}.
 
 \subsubsection{LatexDocument}
-Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří části kódu, které jsou nakonec sestaveny v  \latex~dokument. Takto sestavený dokument je poté vyexportován pomocí příslušné funkcionality modulu a je připravený pro export například od formátu \textit{PDF} (\texttt{pdflatex}). Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
+Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří části kódu, které jsou nakonec sestaveny v~\latex~dokument. Takto sestavený dokument je poté vyexportován pomocí příslušné funkcionality modulu a je připravený pro export například od formátu \textit{PDF} (\texttt{pdflatex}). Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
 
 \subsubsection{MainApp}
-Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Dědí od tříd \texttt{QDockWidget}, \texttt{QMainWindow} a \texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů, nastavuje symbologii načtených vrstev, propojuje vyhledávání s mapovým oknem QGIS, stará se o exporty do definovaných formátů. Ve třídě se také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
+Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Dědí od tříd \texttt{QDockWidget}, \texttt{QMainWindow} a \texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů, nastavuje symbologii načtených vrstev, propojuje vyhledávání s~mapovým oknem QGIS, stará se o~exporty do definovaných formátů. Ve třídě se také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
 
 \subsubsection{OpenThread}
-Tato třída se stará o načítání jednotlivých \textit{VFK} souborů v separátním vlákně. Díky použití jiného vlákna pro načítání souborů, se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy \texttt{QThread} dostupné v použité knihovně \texttt{PyQt4}. Obsahuje jedinou metodu (\texttt{run(self)}) pro spuštění separátního vlákna, jejíž předpis je dostupný v příloze č. \ref{l_thread_run}.
+Tato třída se stará o~načítání jednotlivých \textit{VFK} souborů v~separátním vlákně. Díky použití jiného vlákna pro načítání souborů, se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy \texttt{QThread} dostupné v~použité knihovně \texttt{PyQt4}. Obsahuje jedinou metodu (\texttt{run(self)}) pro spuštění separátního vlákna, jejíž předpis je dostupný v~příloze č. \ref{l_thread_run}.
 
 \subsubsection{ParcelySearchForm}
-Třída \texttt{ParcelySearchForm} stejně jako předešlé třídy pro vyhledávání dědí od rodičovské třídy \texttt{QWidget}. Obsahuje metody, které pracují s navrženými grafickými prvky. Díky těmto metodám je možné vyhledávat parcely podle parcelního čísla, typu parcely, druhu pozemku nebo listu vlastnictví.
+Třída \texttt{ParcelySearchForm} stejně jako předešlé třídy pro vyhledávání dědí od rodičovské třídy \texttt{QWidget}. Obsahuje metody, které pracují s~navrženými grafickými prvky. Díky těmto metodám je možné vyhledávat parcely podle parcelního čísla, typu parcely, druhu pozemku nebo listu vlastnictví.
 
 \subsubsection{RichTextDocument}
-Třída se stará o tvorbu \textit{HTML} dokumentu, který obsahuje výsledky vyhledávání a je zobrazen v prohlížeči dat. Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
+Třída se stará o~tvorbu \textit{HTML} dokumentu, který obsahuje výsledky vyhledávání a je zobrazen v~prohlížeči dat. Třída dědí od rodičovské třídy \texttt{VfkDocument}. 
 
 \subsubsection{SearchFormController}
-Třída \texttt{SearchFormController} získává hodnoty ze vstupních formulářů, které jsou obsahem tříd pro vyhledávání  (\texttt{BudovySearchForm}, \texttt{JednotkySearchForm}, \texttt{Par\-celySearchForm}, \texttt{VlasniciSearchForm}). Z těchto vstupních hodnot poté sestavuje vyhledávací dotaz, který pomocí signálu \texttt{actionTriggered} emituje dále. Ukázka kódu pro sestavení vyhledávacího dotazu pro parcely je uvedena v příloze \ref{l_search_parcely}.
+Třída \texttt{SearchFormController} získává hodnoty ze vstupních formulářů, které jsou obsahem tříd pro vyhledávání  (\texttt{BudovySearchForm}, \texttt{JednotkySearchForm}, \texttt{Par\-celySearchForm}, \texttt{VlasniciSearchForm}). Z~těchto vstupních hodnot poté sestavuje vyhledávací dotaz, který pomocí signálu \texttt{actionTriggered} emituje dále. Ukázka kódu pro sestavení vyhledávacího dotazu pro parcely je uvedena v~příloze \ref{l_search_parcely}.
 
 \subsubsection{VfkDocument}
 \label{l_vfkDocument}
-Jedná se o abstraktní třídu, ze které jsou odvozeny třídy pro sestavení dokumentů v různých formátech (\texttt{HtmlDocument}, \texttt{LatexDocument}, \texttt{RichTextDocument}). Jsou zde implementovány základní metody, které zajišťují správné sestavení dokumentu.
+Jedná se o~abstraktní třídu, ze které jsou odvozeny třídy pro sestavení dokumentů v~různých formátech (\texttt{HtmlDocument}, \texttt{LatexDocument}, \texttt{RichTextDocument}). Jsou zde implementovány základní metody, které zajišťují správné sestavení dokumentu.
 
 \subsubsection{VfkPlugin}
-Tato třída implementuje zásuvný modul do programu QGIS. Jsou zde uvedeny metody, které vytvářejí instanci pluginu v programu QGIS po jeho instalaci, nebo metody, které tuto instanci ruší. Tato třída byla vygenerována automaticky při tvorbě základního schéma pluginu nástrojem \textit{Plugin Builder} a později upravena dle konkrétních potřeb.
+Tato třída implementuje zásuvný modul do programu QGIS. Jsou zde uvedeny metody, které vytvářejí instanci pluginu v~programu QGIS po jeho instalaci, nebo metody, které tuto instanci ruší. Tato třída byla vygenerována automaticky při tvorbě základního schéma pluginu nástrojem \textit{Plugin Builder} a později upravena dle konkrétních potřeb.
 
 \subsubsection{VfkTableModel}
-Tato třída dědí od třídy \texttt{QSqlQueryModel}, která poskytuje model pro čtení SQL dotazů. Třída komunikuje s připojenou databází, která je do třídy předávána pomocí argumentu \texttt{connectionName}. Ke komunikaci jsou používány standardní SQL dotazy, které jsou do databáze předávány metodou \texttt{self.setQuery(query, QSqlDatabase.database(self.\_\_mConnectionName))}.
+Tato třída dědí od třídy \texttt{QSqlQueryModel}, která poskytuje model pro čtení SQL dotazů. Třída komunikuje s~připojenou databází, která je do třídy předávána pomocí argumentu \texttt{connectionName}. Ke komunikaci jsou používány standardní SQL dotazy, které jsou do databáze předávány metodou \texttt{self.setQuery(query, QSqlDatabase.database(self.\_\_mConnectionName))}.
 
 \subsubsection{VfkTextBrowser}
-\texttt{VfkTextBrowser} je třída, která dědí od třídy \texttt{QTextBrowser}. Třída byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v okně zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
+\texttt{VfkTextBrowser} je třída, která dědí od třídy \texttt{QTextBrowser}. Třída byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v~okně zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
 
 \subsubsection{VlastniciSearchForm}
-Jedná se o třídu, která slouží k vyhledávání vlastníků podle jména, typu (fyzická osoba, právnická osoba, společné jmění manželů), rodného čísla (případně IČO) nebo listu vlastnictví. Metody třídy získávají hodnoty vstupních polí / \uv{checkboxů}.
+Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména, typu (fyzická osoba, právnická osoba, společné jmění manželů), rodného čísla (případně IČO) nebo listu vlastnictví. Metody třídy získávají hodnoty vstupních polí / \uv{checkboxů}.
 
 
 \clearpage
 \chapter*{Závěr}
+\addcontentsline{toc}{chapter}{Závěr}
+
+
 
 %======================CITACE=========================================
 \clearpage
@@ -1583,150 +1686,6 @@ Jedná se o třídu, která slouží k vyhledávání vlastníků podle jména, 
 
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{Roman} % číslování arabskými
-
-\chapter{Ukázka definice symbologie ve formátu \textit{.qml} pro vrstvu parcel}
-\label{l_priloha_symbologie}
-
-\begin{lstlisting}[language=XML]
-<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis version="1.9.90-Alpha" minimumScale="0" maximumScale="1e+08" hasScaleBasedVisibilityFlag="0">
-  <transparencyLevelInt>255</transparencyLevelInt>
-  <renderer-v2 symbollevels="0" type="singleSymbol">
-    <symbols>
-      <symbol outputUnit="MM" alpha="1" type="fill" name="0">
-        <layer pass="0" class="SimpleFill" locked="0">
-          <prop k="color" v="0,0,0,255"/>
-          <prop k="color_border" v="0,0,0,255"/>
-          <prop k="offset" v="0,0"/>
-          <prop k="style" v="no"/>
-          <prop k="style_border" v="solid"/>
-          <prop k="width_border" v="0.26"/>
-        </layer>
-      </symbol>
-    </symbols>
-    <rotation field=""/>
-    <sizescale field=""/>
-  </renderer-v2>
-  <customproperties>
-    <property key="labeling" value="pal"/>
-    <property key="labeling/addDirectionSymbol" value="false"/>
-    <property key="labeling/bufferColorB" value="255"/>
-    <property key="labeling/bufferColorG" value="255"/>
-    <property key="labeling/bufferColorR" value="255"/>
-    <property key="labeling/bufferSize" value="0.5"/>
-    <property key="labeling/dataDefinedProperty0" value=""/>
-    <property key="labeling/dataDefinedProperty1" value=""/>
-    <property key="labeling/dataDefinedProperty10" value=""/>
-    <property key="labeling/dataDefinedProperty11" value=""/>
-    <property key="labeling/dataDefinedProperty12" value=""/>
-    <property key="labeling/dataDefinedProperty13" value=""/>
-    <property key="labeling/dataDefinedProperty14" value=""/>
-    <property key="labeling/dataDefinedProperty2" value=""/>
-    <property key="labeling/dataDefinedProperty3" value=""/>
-    <property key="labeling/dataDefinedProperty4" value=""/>
-    <property key="labeling/dataDefinedProperty5" value=""/>
-    <property key="labeling/dataDefinedProperty6" value=""/>
-    <property key="labeling/dataDefinedProperty7" value=""/>
-    <property key="labeling/dataDefinedProperty8" value=""/>
-    <property key="labeling/dataDefinedProperty9" value=""/>
-    <property key="labeling/decimals" value="0"/>
-    <property key="labeling/dist" value="0"/>
-    <property key="labeling/distInMapUnits" value="false"/>
-    <property key="labeling/enabled" value="true"/>
-    <property key="labeling/fieldName" value="CASE WHEN (length(&quot;PODDELENI_CISLA_PAR&quot; ) = 0  OR &quot;PODDELENI_CISLA_PAR&quot; = '0') THEN  KMENOVE_CISLO_PAR ELSE &quot;KMENOVE_CISLO_PAR&quot;  || '/' || &quot;PODDELENI_CISLA_PAR&quot; END"/>
-    <property key="labeling/fontFamily" value="DejaVu Sans"/>
-    <property key="labeling/fontItalic" value="true"/>
-    <property key="labeling/fontSize" value="9"/>
-    <property key="labeling/fontSizeInMapUnits" value="false"/>
-    <property key="labeling/fontStrikeout" value="false"/>
-    <property key="labeling/fontUnderline" value="false"/>
-    <property key="labeling/fontWeight" value="50"/>
-    <property key="labeling/formatNumbers" value="false"/>
-    <property key="labeling/isExpression" value="true"/>
-    <property key="labeling/labelPerPart" value="false"/>
-    <property key="labeling/mergeLines" value="false"/>
-    <property key="labeling/minFeatureSize" value="0"/>
-    <property key="labeling/obstacle" value="true"/>
-    <property key="labeling/placement" value="1"/>
-    <property key="labeling/placementFlags" value="0"/>
-    <property key="labeling/plussign" value="true"/>
-    <property key="labeling/priority" value="5"/>
-    <property key="labeling/scaleMax" value="5000"/>
-    <property key="labeling/scaleMin" value="1"/>
-    <property key="labeling/textColorB" value="0"/>
-    <property key="labeling/textColorG" value="0"/>
-    <property key="labeling/textColorR" value="0"/>
-    <property key="labeling/wrapChar" value=""/>
-  </customproperties>
-  <displayfield>ID</displayfield>
-  <label>0</label>
-  <labelattributes>
-    <label fieldname="" text="Label"/>
-    <family fieldname="" name="Sans"/>
-    <size fieldname="" units="pt" value="12"/>
-    <bold fieldname="" on="0"/>
-    <italic fieldname="" on="0"/>
-    <underline fieldname="" on="0"/>
-    <strikeout fieldname="" on="0"/>
-    <color fieldname="" red="0" blue="0" green="0"/>
-    <x fieldname=""/>
-    <y fieldname=""/>
-    <offset x="0" y="0" units="pt" yfieldname="" xfieldname=""/>
-    <angle fieldname="" value="0" auto="0"/>
-    <alignment fieldname="" value="center"/>
-    <buffercolor fieldname="" red="255" blue="255" green="255"/>
-    <buffersize fieldname="" units="pt" value="1"/>
-    <bufferenabled fieldname="" on=""/>
-    <multilineenabled fieldname="" on=""/>
-    <selectedonly on=""/>
-  </labelattributes>
-  <edittypes>
-    <edittype type="0" name="BUD_ID"/>
-    <edittype type="0" name="CENA_NEMOVITOSTI"/>
-    <edittype type="0" name="DATUM_VZNIKU"/>
-    <edittype type="0" name="DATUM_ZANIKU"/>
-    <edittype type="0" name="DEFINICNI_BOD_PAR"/>
-    <edittype type="0" name="DIL_PARCELY"/>
-    <edittype type="0" name="DRUH_CISLOVANI_PAR"/>
-    <edittype type="0" name="DRUPOZ_KOD"/>
-    <edittype type="0" name="ID"/>
-    <edittype type="0" name="IDENT_BUD"/>
-    <edittype type="0" name="KATUZE_KOD"/>
-    <edittype type="0" name="KATUZE_KOD_PUV"/>
-    <edittype type="0" name="KMENOVE_CISLO_PAR"/>
-    <edittype type="0" name="MAPLIS_KOD"/>
-    <edittype type="0" name="PAR_ID"/>
-    <edittype type="0" name="PAR_TYPE"/>
-    <edittype type="0" name="PKN_ID"/>
-    <edittype type="0" name="PODDELENI_CISLA_PAR"/>
-    <edittype type="0" name="PRIZNAK_KONTEXTU"/>
-    <edittype type="0" name="RIZENI_ID_VZNIKU"/>
-    <edittype type="0" name="RIZENI_ID_ZANIKU"/>
-    <edittype type="0" name="STAV_DAT"/>
-    <edittype type="0" name="TEL_ID"/>
-    <edittype type="0" name="TYP_PARCELY"/>
-    <edittype type="0" name="VYMERA_PARCELY"/>
-    <edittype type="0" name="ZDPAZE_KOD"/>
-    <edittype type="0" name="ZPURVY_KOD"/>
-    <edittype type="0" name="ZPVYPA_KOD"/>
-  </edittypes>
-  <editform></editform>
-  <editforminit></editforminit>
-  <annotationform></annotationform>
-  <attributeactions/>
-  <overlay display="false" type="diagram">
-    <renderer item_interpretation="linear">
-      <diagramitem size="0" value="0"/>
-      <diagramitem size="0" value="0"/>
-    </renderer>
-    <factory sizeUnits="MM" type="Pie">
-      <wellknownname>Pie</wellknownname>
-      <classificationfield>0</classificationfield>
-    </factory>
-    <scalingAttribute>0</scalingAttribute>
-  </overlay>
-</qgis>
-\end{lstlisting}
 
 \chapter{Ukázky kódu}
 
@@ -1816,7 +1775,7 @@ def buildHtml(self, document, taskMap):
         return
 \end{lstlisting}
 
-\section{Načtení souborů v separátním vlákně}
+\section{Načtení souborů v~separátním vlákně}
 \begin{lstlisting}[language=Python, 
 		    keywordstyle=\color{blue}\ttfamily,
 		    stringstyle=\color{red}\ttfamily,
@@ -1853,6 +1812,9 @@ Method creates and emits query for searching of plots.
     self.actionTriggered.emit(url)
 \end{lstlisting}
 
+
+%-----------------------------------------------
+\chapter{Uživatelská příručka}
 
 
 
