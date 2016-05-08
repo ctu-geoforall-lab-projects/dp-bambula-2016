@@ -1,9 +1,11 @@
 # LaTeX Makefile
 FILE=stepan-bambula-dp-2016
+DIAGRAM=diagram
 
 all: pdf
 
 pdf:
+	pdflatex $(DIAGRAM)
 	pdflatex $(FILE)
 	bibtex $(FILE)
 	pdflatex $(FILE)
@@ -15,3 +17,4 @@ clean:
 distclean:
 	make clean
 	rm -f $(FILE).pdf
+	rm -f $(DIAGRAM).pdf
