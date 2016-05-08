@@ -10,7 +10,7 @@ pdf:
 	pdflatex $(FILE)
 
 clean:
-	rm -f *~ *.aux *.log *.out *.toc *.bbl *.blg *.lof *.lol *.lot *.backup
+	rm -f *~ *.aux *.log *.out *.toc *.bbl *.blg *.lof *.lol *.lot *.backup, *.sta
 
 distclean:
 	make clean

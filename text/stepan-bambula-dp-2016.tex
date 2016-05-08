@@ -29,6 +29,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{dirtree}
+\usepackage[subpreambles=true]{standalone}
+
 
 \definecolor{light-gray}{gray}{0.97}
 
@@ -42,6 +44,37 @@ columns=flexible,
 breaklines=true,
 backgroundcolor=\color{light-gray},
 xleftmargin=\parindent,
+}
+
+% % Define styles for lstlisting environment
+\lstdefinestyle{python}{
+   language=python,
+   basicstyle={\ttfamily},
+   keywordstyle=\color{blue}\ttfamily,
+   stringstyle=\color{red}\ttfamily,
+   commentstyle=\color{green}\ttfamily,
+   showstringspaces=false,
+   morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self}
+}
+
+\lstdefinestyle{sql}{
+   language=sql,
+   basicstyle={\ttfamily},
+   keywordstyle=\color{blue}\ttfamily,
+   stringstyle=\color{red}\ttfamily,
+   commentstyle=\color{green}\ttfamily,
+   showstringspaces=false,
+   morekeywords={}
+}
+
+\lstdefinestyle{c++}{
+   language=C++,
+   basicstyle={\ttfamily},
+   keywordstyle=\color{blue}\ttfamily,
+   stringstyle=\color{red}\ttfamily,
+   commentstyle=\color{green}\ttfamily,
+   showstringspaces=false,
+   morekeywords={AddInfo, EQUAL, QgsDebugMsg, QString, QgsVectorLayer, QList, QgsMapLayerRegistry}
 }
 
 \renewcommand\lstlistingname{Kód}
@@ -1293,11 +1326,8 @@ Přepis zásuvného modulu do jazyka Python byl zásadním bodem této práce. P
 
 Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporučovaného nástroje \textbf{Plugin Builder}\footnote{http://g-sherman.github.io/Qgis-Plugin-Builder/} dostupného přímo z~QGIS. Přepis byl značně ulehčen díky použití stejné knihovny Qt (respektive PyQt verze 4). V~následujících ukázkách je porovnán původní kód v~jazyce C++ (ukázka č. \ref{l_loadLayerC++}) s~mnou napsaným kódem v~jazyce Python (ukázka č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové vrstvy ze souboru VFK do okna QGIS.
 
-\begin{lstlisting}[language=C++, 
+\begin{lstlisting}[style=c++, 
 		    caption=Kód pro načtení vektorové vrstvy v~C++, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={QgsDebugMsg,QString,QgsVectorLayer,QList,QgsMapLayerRegistry},
 		    label=l_loadLayerC++]
  void VfkMainWindow::loadVfkLayer( QString vfkLayerName )
 {
@@ -1319,11 +1349,8 @@ Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporu�
 \end{lstlisting}
 
 \newpage
-\begin{lstlisting}[language=Python, 
-		    caption=Kód pro načtení vektorové vrstvy v~jazyce Python, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
+\begin{lstlisting}[style=python, 
+		    caption=Kód pro načtení vektorové vrstvy v~jazyce Python,
 		    label=l_loadLayerPython]
 def __loadVfkLayer(self, vfkLayerName):
 """
@@ -1394,7 +1421,9 @@ Před začátkem práce na podpoře zpracování změnových vět v~QGIS VFK Plu
 
 Úprava byla provedena ve spolupráci s~autorem GDAL VFK driveru Martinem Landou, který provedl většinu změn ovladače, které byly pro zpracování změnových VFK souborů nezbytné. 
 
-\subsection{Načítání dat z~více VFK souborů}
+Veškeré provedené změny na ovladači VFK budou dostupné v knihovně GDAL od verze 2.2.0, v současné době jsou dostupné ve formě \uv{patche}, který je obsahem CD přiloženého k diplomové práci. Tento \uv{patch} je vytvořen proti vývojové verzi 2.2.0 knihovny GDAL.
+
+\subsection{Načítání dat z~více souborů}
 Vzhledem ke struktuře, v~jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k~uživatelům distribuovány ve struktuře, která je uvedena v~následující ukázce č. \ref{l_struktura_sireni_vfk}.
 
 \begin{figure}[htb]
@@ -1421,12 +1450,8 @@ Chování driveru bylo proto opraveno tak, že pokud uživatel potřebuje načí
 
 Při načítání dat driver testuje (viz \ref{l_gdal_kontrola_zmen}), zda se jedná o~změnový, nebo stavový VFK soubor. Jestliže se jedná o~stavový, tak driver nepovolí načítání dat, která jsou již v~databázi uloženy (vznikaly by duplicity, což není u~stavových dat možné). Při čtení změnového souboru je povoleno ukládání prvků s~\texttt{ID}, které je již v~tabulce uložené (ve změnovém souboru je možné uložit prvky se stejným \texttt{ID}, viz kapitola \ref{l_struktura_zmen}). Správné uložení prvků s~duplicitním \texttt{ID} je zajištěno pomocí databázového indexu \texttt{UNIQUE}, který je vytvářen právě jen pro stavová data.
 
-\begin{lstlisting}[language=C++, 
+\begin{lstlisting}[style=c++, 
 		    caption={Výňatek z~kódu pro kontrolu změnového souboru}, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, 
-		    morekeywords={AddInfo, EQUAL},
 		    label=l_gdal_kontrola_zmen]
 else if (pszLine[1] == 'H') {
     /* check if amendment file */
@@ -1439,6 +1464,9 @@ else if (pszLine[1] == 'H') {
 }
 \end{lstlisting}
 
+\subsection{Čtení z databáze SQLite}
+Další podstatnou změnou na VFK driveru knihovny GDAL bylo přidání podpory pro čtení z databáze SQLite. Díky této nové funkcionalitě je možné v QGIS načíst vrstvy z databáze, do které byly aplikovány změny.
+
 \subsection{Vytváření geometrie prvků}
 Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK souboru, se děje pomocí metody \texttt{int IVFKDataBlock::LoadGeometry()}. V~dosavadní verzi VFK driveru byla tato metoda volána při požadavku o~konkrétní prvek (například pomocí konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID 1}). Geometrie tedy nebyla sestavena dopředu po uložení dat do databáze, ale až poté, co si uživatel o~daný prvek přímo zažádal.
 
@@ -1447,11 +1475,8 @@ Toto chování muselo být vzhledem ke struktuře, v~jaké se k~uživatelům dos
 \subsection{Implementace na straně zásuvného modulu}
 Výše uvedené změny v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
 
-\begin{lstlisting}[language=Python, 
+\begin{lstlisting}[style=python, 
 		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={self},
 		    label=l_kontrola_verze_gdal]
 if gdal_version < 2020000:
     self.pb_nextFile.setEnabled(False)
@@ -1467,6 +1492,8 @@ Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel b
  \item indikátor stavu načítání VFK souborů.
  \item popisek stavu načítání dat.
 \end{enumerate}
+
+% TODO: dopsat podporu načitání dat z databáze SQLite
 
 \begin{figure}[htb]
 \centering
@@ -1531,11 +1558,7 @@ Při aplikaci změn jsou v cyklu pro každou tabulku spouštěny databázové p�
 
 Příkaz \texttt{DELETE} z hlavní databáze smaže veškeré prvky, které se vyskytují v databázi se změnovými daty. Tento příkaz je vykonán, protože v databázi se změnovými daty jsou vždy aktuálnější informace o prvcích, než v databázi původní. 
 
-\begin{lstlisting}[language=SQL, 
-		    caption={Aplikace změn -- příkaz DELETE}, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={},
+\begin{lstlisting}[style=sql, caption={Aplikace změn -- příkaz DELETE}, 
 		    label=l_changes_delete]
 DELETE FROM main.{table} 
 WHERE {column} IN (
@@ -1543,11 +1566,8 @@ SELECT DISTINCT t1.{column} FROM main.{table} t1
 JOIN db2.{table} t2 ON t1.{column} = t2.{column});
 \end{lstlisting}
 
-\begin{lstlisting}[language=SQL, 
+\begin{lstlisting}[style=sql, 
 		    caption={Aplikace změn -- příkaz INSERT}, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={},
 		    label=l_changes_insert]
 INSERT INTO main.{table}
 SELECT {columns} FROM db2.{table}
@@ -1558,10 +1578,17 @@ LIMIT 1;
 
 Po smazání veškerých neaktuálních záznamů z hlavní databáze, je vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v cyklu nad všemi záznamy ze změnové databáze, které jsou určeny pro import. Případ, kdy jsou ve změnové databázi uloženy některé položky duplicitně, je ošetřen pomocí nastavení limitu (viz řádek č. 5 ukázky \ref{l_changes_insert}).
 
-% TODO: nakreslit diagram fungovani kodu
+Pro lepší orientaci o průběhu aplikování změn na stavová data byl vytvořen diagram, viz obr. \ref{l_zmeny_diagram}.
+
+\begin{figure}
+  \centering
+  \includestandalone[mode=buildnew, width=0.4\textheight]{diagram}
+  \caption{Diagram průběhu implementace změn na stavová data}
+  \label{l_zmeny_diagram}
+\end{figure}
 
 
-
+\newpage
 \subsection{Implementace na straně zásuvného modulu}
 \label{l_implementace_zmen}
 Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla implementována díky vytvoření nového formuláře v okně pluginu. Na okně zásuvného modulu byly provedeny následující úpravy:
@@ -1576,10 +1603,14 @@ Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla imple
 \label{l_ikona_zmen}
 \end{figure} 
  
- \item \textbf{Formuláře:} 
- \item \textbf{Popisek průběhu zpracování:} 
- \item \textbf{Grafický indikátor průběhu:} 
- \item \textbf{Tlačítko pro zpracování:} 
+ \item \textbf{Formuláře:} K dispozici jsou tři formuláře pro zadání cesty ke vstupní databázi se stavovými daty, k databázi se změnovými daty a databázi výstupní, do které budou uložena stavová data s aplikovanými změnami.
+ 
+ \item \textbf{Popisek průběhu zpracování:} V tomto popisku jsou zobrazovány informace o průběhu zpracování změn.
+ 
+ \item \textbf{Grafický indikátor průběhu:} Zde je průběh zpracování změn vyjádřen procentuálně a graficky.
+ 
+ \item \textbf{Tlačítko pro zpracování:} Po stisku tohoto tlačítka je je vyvolána metoda \texttt{run(\dots)}, díky které jsou změny aplikovány do databáze se stavovými daty.
+ 
 \end{enumerate}
 
 
@@ -1691,11 +1722,7 @@ Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména, 
 
 \section{Konstruktor třídy BudovySearchForm}
 
-\begin{lstlisting}[language=Python, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
-		    label=l_budovySearchForm_konstruktor]
+\begin{lstlisting}[style=python, label=l_budovySearchForm_konstruktor]
 class BudovySearchForm(QWidget):
 
     def __init__(self, parent=None):
@@ -1711,11 +1738,7 @@ class BudovySearchForm(QWidget):
 
 \section{Metoda buildHtml}
 
-\begin{lstlisting}[language=Python, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
-		    label=l_buildHtml]
+\begin{lstlisting}[style=python, label=l_buildHtml]
 def buildHtml(self, document, taskMap):
 """
 :type document: VfkDocument
@@ -1776,11 +1799,7 @@ def buildHtml(self, document, taskMap):
 \end{lstlisting}
 
 \section{Načtení souborů v~separátním vlákně}
-\begin{lstlisting}[language=Python, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={qDebug,QString,QgsVectorLayer,QgsMapLayerRegistry,QMessageBox,self},
-		    label=l_thread_run]
+\begin{lstlisting}[style=python, label=l_thread_run]
  def run(self):
     # load all VFK files
     for i, vfkFile in enumerate(self.vfk_files):
@@ -1792,11 +1811,7 @@ def buildHtml(self, document, taskMap):
 \end{lstlisting}
 
 \section{Vyhledání parcel -- ukázka URL}
-\begin{lstlisting}[language=Python, 
-		    keywordstyle=\color{blue}\ttfamily,
-		    stringstyle=\color{red}\ttfamily,
-		    commentstyle=\color{green}\ttfamily, morekeywords={QUrl,QString,self},
-		    label=l_search_parcely]
+\begin{lstlisting}[style=python, label=l_search_parcely]
 def __searchParcely(self):
 """
 Method creates and emits query for searching of plots.

@@ -1,0 +1,59 @@
+\documentclass[border=1cm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{matrix, shapes, arrows, positioning}
+\begin{document}    
+% Define block styles
+\tikzstyle{decision} = [diamond, draw=blue, fill=blue!20, 
+text width=4em, text badly centered, node distance=2cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, minimum width=3cm, minimum width=3cm, minimum height=1cm, text centered, text width=8em, draw=blue, fill=blue!20]
+
+\tikzstyle{loop} = [chamfered rectangle, chamfered rectangle xsep=2cm, minimum width=3cm, minimum width=3cm, minimum height=1cm, text centered, text width=6em, draw=blue, fill=blue!20]
+
+\tikzstyle{line} = [draw, -latex']
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+minimum height=4em]
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=red, fill=red!30]
+
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, text width=5em, draw=blue, fill=blue!20]
+
+\tikzstyle{empty} = [minimum height=0.0cm]
+
+\begin{tikzpicture}[auto]
+% Place nodes with matrix nodes
+ \matrix[matrix of nodes, column sep=1cm, row sep=1cm]{%
+  \node [startstop] (start) {Start};\\
+  \node [block] (copy_db) {Create copy of the main database};\\
+  \node [block] (connect_db) {Establish connection to the main database};\\
+  \node [block] (attach_db) {Attach the amendment database};\\
+  \node [io] (find_tables) {Find tables with changes};\\    
+  \node [loop] (loop_tables) {For all tables};\\  
+  \node [block, xshift=2cm] (do_delete) {Delete old rows in the main database};\\
+  \node [io, xshift=2cm] (find_ids) {Get IDs of new features};\\  
+  \node [loop, xshift=2cm] (loop_ids) {For all IDs};\\  
+  \node [block, left of=loop_ids, xshift=-2cm] (do_insert) {Insert new feature into main database};\\  
+  \node [empty] (null_stop){};\\
+  \node [startstop] (stop) {Stop};\\};
+    
+    
+    
+% Draw edges
+  % connect all nodes defined above
+  \path [line] (start) -- (copy_db);
+  \path [line] (copy_db) -- (connect_db);
+  \path [line] (connect_db) -- (attach_db);
+  \path [line] (attach_db) -- (find_tables);
+  \path [line] (find_tables) -- (loop_tables);
+  \path [line] (loop_tables) |- node[anchor=east] [near start] {table} (do_delete);
+  \path [line] (do_delete) -- (find_ids);
+  \path [line] (find_ids) -- (loop_ids);
+  \path [line] (loop_ids) -| node[anchor=south] [near start] {ID} (do_insert);
+  \path [line] (do_insert) |- ([yshift=-3cm]loop_ids.south) -- (loop_ids);  
+  \path [line] (loop_tables) -- node[anchor=south] [near start] {finish}([xshift=-2cm]loop_tables.west)
+		|-([yshift=-0.5cm]null_stop.north) -- (stop);
+  \path [line] (loop_ids) -- ++(2,0) node[xshift=0.5cm, anchor=north] [near start]{finish} |- (loop_tables);
+
+\end{tikzpicture}
+\end{document}
