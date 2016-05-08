@@ -1473,7 +1473,9 @@ Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK soubo
 Toto chování muselo být vzhledem ke struktuře, v~jaké se k~uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v~databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k~dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
 
 \subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Tato podpora je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
+Výše uvedené změny týkající se v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Spolu s touto změnou byla do zásuvného modulu přidána i možnost načíst přímo SQLite databáze s VFK daty.
+
+Tato rozšířená funkcionalita je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
 
 \begin{lstlisting}[style=python, 
 		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
@@ -1493,8 +1495,6 @@ Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel b
  \item popisek stavu načítání dat.
 \end{enumerate}
 
-% TODO: dopsat podporu načitání dat z databáze SQLite
-
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{images/vfkPlugin-novy_vzhled.png}
@@ -1503,7 +1503,7 @@ Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel b
 \end{figure}
 
 
-\clearpage
+\newpage
 % -----------------------------------------------------------------------
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
@@ -1528,7 +1528,7 @@ Vstupními argumenty pro tuto třídu, respektive metodu \texttt{run(\dots)}, js
 
 Jediným výstupním argumentem je poté cesta k nově vytvořené databázi, která bude obsahovat stavová data s aplikovanými změnami.
 
-\newpage
+% \newpage
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
 		    label=l_apply_changes_ukazka]
 $ ./applyChanges.py -h
@@ -1613,9 +1613,7 @@ Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla imple
  
 \end{enumerate}
 
-
-
-
+Funkcionalita pro aplikaci změn obsažených v databázi SQLite na data obsažená v databázi se stavovými daty je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0} a vyšší. V opačném případě je ikonka pro zpracování změn neaktivní.
 
 \begin{figure}[htb]
 \centering
