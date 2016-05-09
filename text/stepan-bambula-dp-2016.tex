@@ -1290,7 +1290,7 @@ Stávající zásuvný modul, který je napsán v~jazyce C++, je možné pod ope
 Takto nainstalovaný modul lze potom vyhledat v~QGIS v~nabídce Pluginy $\rightarrow$ Spravovat zásuvné moduly. Zde lze plugin dohledat po zadání filtru \textit{VFK}. Spuštění pluginu je poté možné z~hlavní nabídky QGIS Pluginy $\rightarrow$ VFK Plugin $\rightarrow$ VFK Plugin, nebo pomocí ikonky přímo z~nástrojové lišty.
 
 \subsection{Rozložení}
-Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci s~prohlížečem, interakcí s~mapou a nástroje pro export. 
+Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci se zásuvným modulem.
 
 \subsection{Načítání dat}
 Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \textit{Procházet} v~nabídce \textit{Import VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s~mapovým oknem. 
@@ -1829,9 +1829,75 @@ Method creates and emits query for searching of plots.
 %-----------------------------------------------
 \chapter{Uživatelská příručka}
 
+\section{Instalace a spuštění zásuvného modulu}
+Plugin v~současné době není dostupný v~oficiálním repositáři QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný organizací OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/}, pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto musí být tato volba zohledněna při jeho instalaci, viz obr. \ref{l_qgis_plugins}. Okno pro zadání repositáře vyvoláme v~záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install plugins}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{images/qgis_repo_plugins.png}
+\caption[Přidání repositáře QGIS]{Přidání repositáře QGIS}
+\label{l_qgis_plugins}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\textwidth]{images/qgis_repo_detail.png}
+\caption[Přidání repositáře QGIS -- detail]{Přidání repositáře QGIS -- detail}
+\label{l_repo_detail}
+\end{figure}
+
+Po přidání repositáře a jeho aktualizaci je zásuvný modul dohledatelný standardním způsobem pod názvem \textbf{VFK Plugin}, viz obr. \ref{l_qgis_hledani_pluginu}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=1\textwidth]{images/qgis_plugin_vyhledani.png}
+\caption[Vyhledání zásuvného modulu]{Vyhledání zásuvného modulu}
+\label{l_qgis_hledani_pluginu}
+\end{figure}
+
+Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho ikonka (viz obr. \ref{l_plugin_ikona}). Plugin je poté dostupný po kliknutí na tuto ikonku nebo z~menu \textit{Plugins} $\rightarrow$ \textit{VFK} $\rightarrow$ \textit{Otevřít prohlížeč VFK}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.9]{images/vfkPluginIcon.png}
+\caption[VFK Plugin -- ikona]{VFK Plugin -- ikona}
+\label{l_plugin_ikona}
+\end{figure}
+
+
+% -----------------------------------------------
+\clearpage
+\section{Rozložení zásuvného modulu}
+Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů (obr \ref{l_plugin_prirucka_rozlozeni} prvek č. 1) pro přepínání oken pro import souborů ve formátu \textit{.vfk}, \textit{.db} a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat (obr \ref{l_plugin_prirucka_rozlozeni} prvek č. 2), ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je umístěna nástrojová lišta (obr \ref{l_plugin_prirucka_rozlozeni} prvek č. 3), která obsahuje nástroje pro práci se zásuvným modulem. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{images/vfkPlugin-prirucka_rozlozeni.png}
+\caption[VFK Plugin -- rozložení prvků]{VFK Plugin -- rozložení prvků}
+\label{l_plugin_prirucka_rozlozeni}
+\end{figure}
+
+
+% -----------------------------------------------
+\section{Načtení datových souborů}
+
+
+% -----------------------------------------------
+\section{Vyhledávání}
+
+
+% -----------------------------------------------
+\section{Zpracování změn}
 
 
 %-----------------------------------------------
+\chapter{Obsah přiloženého CD}
+
+\begin{enumerate}
+ \item Zdrojové kódy zásuvného modulu.
+ \item Patch knihovny GDAL ve verzi 2.2.0.
+\end{enumerate}
+
 
 
 \end{document}
