@@ -1293,7 +1293,7 @@ Takto nainstalovaný modul lze potom vyhledat v~QGIS v~nabídce Pluginy $\righta
 Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachází hlavní panel nástrojů pro přepínání oken pro import souborů VFK a pro vyhledávání. Naprostou většinu pravé části tvoří prohlížeč dat, ve kterém se zobrazují výsledky vyhledávání a nápověda. Nad ním je poté nástrojová lišta, která obsahuje nástroje pro práci se zásuvným modulem.
 
 \subsection{Načítání dat}
-Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \textit{Procházet} v~nabídce \textit{Import VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s~mapovým oknem. 
+Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s~mapovým oknem. 
 
 \subsection{Vyhledávání}
 Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré informace vyhledané o~vlastnících, parcelách, budovách nebo jednotkách lze pohodlně procházet pomocí hypertextových odkazů v~prohlížeči dat. Náhled vyhledaných informací je uveden na obrázku č. \ref{l_informace_o_parcele}.
@@ -1421,7 +1421,7 @@ Před začátkem práce na podpoře zpracování změnových vět v~QGIS VFK Plu
 
 Úprava byla provedena ve spolupráci s~autorem GDAL VFK driveru Martinem Landou, který provedl většinu změn ovladače, které byly pro zpracování změnových VFK souborů nezbytné. 
 
-Veškeré provedené změny na ovladači VFK budou dostupné v knihovně GDAL od verze 2.2.0, v současné době jsou dostupné ve formě \uv{patche}, který je obsahem CD přiloženého k diplomové práci. Tento \uv{patch} je vytvořen proti vývojové verzi 2.2.0 knihovny GDAL.
+Veškeré provedené změny na ovladači VFK budou dostupné v~knihovně GDAL od verze 2.2.0, v~současné době jsou dostupné ve formě \uv{patche}, který je obsahem CD přiloženého k~diplomové práci. Tento \uv{patch} je vytvořen proti vývojové verzi 2.2.0 knihovny GDAL.
 
 \subsection{Načítání dat z~více souborů}
 Vzhledem ke struktuře, v~jaké jsou změnová data dodávána od ČUZK uživatelům, musela být implementována podpora načítání několika VFK souborů do jedné SQLite databáze. VFK soubory jsou k~uživatelům distribuovány ve struktuře, která je uvedena v~následující ukázce č. \ref{l_struktura_sireni_vfk}.
@@ -1464,8 +1464,8 @@ else if (pszLine[1] == 'H') {
 }
 \end{lstlisting}
 
-\subsection{Čtení z databáze SQLite}
-Další podstatnou změnou na VFK driveru knihovny GDAL bylo přidání podpory pro čtení z databáze SQLite. Díky této nové funkcionalitě je možné v QGIS načíst vrstvy z databáze, do které byly aplikovány změny.
+\subsection{Čtení z~databáze SQLite}
+Další podstatnou změnou na VFK driveru knihovny GDAL bylo přidání podpory pro čtení z~databáze SQLite. Díky této nové funkcionalitě je možné v~QGIS načíst vrstvy z~databáze, do které byly aplikovány změny.
 
 \subsection{Vytváření geometrie prvků}
 Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK souboru, se děje pomocí metody \texttt{int IVFKDataBlock::LoadGeometry()}. V~dosavadní verzi VFK driveru byla tato metoda volána při požadavku o~konkrétní prvek (například pomocí konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID 1}). Geometrie tedy nebyla sestavena dopředu po uložení dat do databáze, ale až poté, co si uživatel o~daný prvek přímo zažádal.
@@ -1473,7 +1473,7 @@ Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK soubo
 Toto chování muselo být vzhledem ke struktuře, v~jaké se k~uživatelům dostávají VFK soubory, změněno. Geometrie se nyní sestavuje ihned po načtení dat do databáze. Jestliže databáze neobsahuje potřebné tabulky pro její sestavení, tak je zobrazeno upozornění\footnote{Upozornění, že v~databázi chybí tabulka \texttt{HP}, potřebná pro sestavení geometrie parcel:\\\uv{Warning 3: Data block HP not found. Unable to build geometry for PAR.}}. Při čtení dalšího VFK souboru jsou data ukládána do stejné databáze a po jejich uložení se opět testuje, zda jsou k~dispozici veškeré potřebné tabulky pro sestavení geometrie prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je opět zobrazeno upozornění. 
 
 \subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny týkající se v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Spolu s touto změnou byla do zásuvného modulu přidána i možnost načíst přímo SQLite databáze s VFK daty.
+Výše uvedené změny týkající se v~načítání vícero VFK souborů do stejné databáze byly implementovány i do zásuvného modulu. Spolu s~touto změnou byla do zásuvného modulu přidána i možnost načíst přímo SQLite databáze s~VFK daty.
 
 Tato rozšířená funkcionalita je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek ikonky pro přidání dalších VFK souborů (viz \ref{l_kontrola_verze_gdal}) a přidání dalších souborů není umožněno.
 
@@ -1486,7 +1486,7 @@ if gdal_version < 2020000:
 	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.2.0.')
 \end{lstlisting}
 
-Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
+Jak z~výše uvedených vět vyplývá, k~přidání této funkcionality musel být změněn i~vzhled samotného okna zásuvného modulu pro načítání dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
 
 \begin{enumerate}
  \item Tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
@@ -1507,14 +1507,14 @@ Jak z~výše uvedených vět vyplývá, k přidání této funkcionality musel b
 % -----------------------------------------------------------------------
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
-Schopnost umět zpracovat změnové věty VFK souborů je důležitá pro každého uživatele, který s daty katastru nemovitostí pracuje. Jestliže uživatel již jednou vlastní stavová data pro dané území a potřebuje hlídat aktuálnost těchto dat, je pro něj výhodnější stahovat právě změnové VFK soubory, než soubory stavové. 
+Schopnost umět zpracovat změnové věty VFK souborů je důležitá pro každého uživatele, který s~daty katastru nemovitostí pracuje. Jestliže uživatel již jednou vlastní stavová data pro dané území a potřebuje hlídat aktuálnost těchto dat, je pro něj výhodnější stahovat právě změnové VFK soubory, než soubory stavové. 
 
-Zpracování těchto vět pomocí zásuvného modulu v QGIS nebylo do této doby možné. O implementaci podpory pro jejich zpracování na straně VFK pluginu pojednává právě tato kapitola.
+Zpracování těchto vět pomocí zásuvného modulu v~QGIS nebylo do této doby možné. O~implementaci podpory pro jejich zpracování na straně VFK pluginu pojednává právě tato kapitola.
 
-Změnové věty jsou směrem k uživatelům šířeny ve stejné struktuře jako stavová data, viz obr. \ref{l_struktura_sireni_vfk}. Pro jejich zpracování musely být nejprve provedeny úpravy na straně VFK driveru v knihovně GDAL, viz kapitola \ref{l_uprava_gdal}. Díky tomuto kroku a úpravě principu načítání souborů v okně zásuvného modulu (viz obr. \ref{l_plugin_novy_vzhled}) je možné změnové VFK soubory uložit do jedné databáze a pomocí VFK pluginu zobrazit v programu QGIS. V případě, kdy změny obsahují potřebné datové bloky, je nad změnovými daty umožněno i~vyhledávání.
+Změnové věty jsou směrem k~uživatelům šířeny ve stejné struktuře jako stavová data, viz obr. \ref{l_struktura_sireni_vfk}. Pro jejich zpracování musely být nejprve provedeny úpravy na straně VFK driveru v~knihovně GDAL, viz kapitola \ref{l_uprava_gdal}. Díky tomuto kroku a úpravě principu načítání souborů v~okně zásuvného modulu (viz obr. \ref{l_plugin_novy_vzhled}) je možné změnové VFK soubory uložit do jedné databáze a pomocí VFK pluginu zobrazit v~programu QGIS. V~případě, kdy změny obsahují potřebné datové bloky, je nad změnovými daty umožněno i~vyhledávání.
 
 \subsection{Metodika aplikace změn na stavová data}
-Aplikace změn na stavová data předpokládá, že uživatel již má pomocí VFK driveru knihovny GDAL připravenou databázi jak se stavovými daty, tak s daty změnovými. V opačném případě může uživatel tyto databáze vytvořit pomocí samotného VFK pluginu. 
+Aplikace změn na stavová data předpokládá, že uživatel již má pomocí VFK driveru knihovny GDAL připravenou databázi jak se stavovými daty, tak s~daty změnovými. V~opačném případě může uživatel tyto databáze vytvořit pomocí samotného VFK pluginu. 
 
 Pro aplikaci změn byla vytvořena samostatná třída (\texttt{ApplyChanges}), pomocí které mohou být změny aplikovány. Toto může být provedeno jednak pomocí zásuvného modulu (viz \ref{l_implementace_zmen}), nebo pomocí samostatně spustitelné konzolové aplikace (viz \ref{l_apply_changes_ukazka}).
 
@@ -1523,10 +1523,10 @@ Vstupními argumenty pro tuto třídu, respektive metodu \texttt{run(\dots)}, js
 \begin{itemize}
  \item \textbf{Hlavní databáze:} Databáze, která obsahuje stavová data, na něž budou změny aplikovány.
  \item \textbf{Změnová databáze:} Databáze obsahující změnová data.
- \item \textbf{Režim \uv{debug}:} Nepovinný argument. V případě jeho zadání jsou na standardní výstup vypisovány veškeré SQL příkazy do databáze. Implicitně je nastaven na hodnotu \texttt{False}.
+ \item \textbf{Režim \uv{debug}:} Nepovinný argument. V~případě jeho zadání jsou na standardní výstup vypisovány veškeré SQL příkazy do databáze. Implicitně je nastaven na hodnotu \texttt{False}.
 \end{itemize}
 
-Jediným výstupním argumentem je poté cesta k nově vytvořené databázi, která bude obsahovat stavová data s aplikovanými změnami.
+Jediným výstupním argumentem je poté cesta k~nově vytvořené databázi, která bude obsahovat stavová data s~aplikovanými změnami.
 
 % \newpage
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
@@ -1548,15 +1548,15 @@ optional arguments:
                         Path to the new database which will be created.
 \end{lstlisting}
 
-V prvním kroku se pomocí nástroje \texttt{shutil.copy2(src, dst)} vytvoří kopie hlavní databáze. Cesta k ní je zadána pomocí výstupního argumentu. Čas potřebný pro tvorbu kopie databáze je přímo úměrný její velikosti. Tento krok proto může být pro objemná data časově náročný. Díky tvorbě kopie a práce s ní je ale zajištěno, že v případě, kdyby se aplikace změn nepovedla, uživatel nepřijde o původní data.
+V~prvním kroku se pomocí nástroje \texttt{shutil.copy2(src, dst)} vytvoří kopie hlavní databáze. Cesta k~ní je zadána pomocí výstupního argumentu. Čas potřebný pro tvorbu kopie databáze je přímo úměrný její velikosti. Tento krok proto může být pro objemná data časově náročný. Díky tvorbě kopie a práce s~ní je ale zajištěno, že v~případě, kdyby se aplikace změn nepovedla, uživatel nepřijde o~původní data.
 
-V dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede připojení ke kopii databáze (v dalším textu bude tato kopie označována jako hlavní / \uv{main}). Databáze se změnami je poté k této hlavní databázi připojena pomocí SQL příkazu \texttt{ATTACH DATABASE}\footnote{https://www.sqlite.org/lang\_attach.html}. Práce s takto připojenou databází je poté shodná jako se schématy, známými například z PostgreSQL.
+V~dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede připojení ke kopii databáze (v~dalším textu bude tato kopie označována jako hlavní / \uv{main}). Databáze se změnami je poté k~této hlavní databázi připojena pomocí SQL příkazu \texttt{ATTACH DATABASE}\footnote{https://www.sqlite.org/lang\_attach.html}. Práce s~takto připojenou databází je poté shodná jako se schématy, známými například z~PostgreSQL.
 
-Samotné změny jsou aplikovány pouze z tabulek, které podporují princip \uv{historizace} (viz kapitola \ref{l_struktura_zmen}) a které nejsou prázdné. Tyto tabulky musí obsahovat sloupec \texttt{STAV\_DAT}. Pro výběr odpovídajících tabulek slouží k tomu určená metoda \texttt{\_\_findTablesWithChanges(self)}.
+Samotné změny jsou aplikovány pouze z~tabulek, které podporují princip \uv{historizace} (viz kapitola \ref{l_struktura_zmen}) a které nejsou prázdné. Tyto tabulky musí obsahovat sloupec \texttt{STAV\_DAT}. Pro výběr odpovídajících tabulek slouží k~tomu určená metoda \texttt{\_\_findTablesWithChanges(self)}.
 
-Při aplikaci změn jsou v cyklu pro každou tabulku spouštěny databázové příkazy \texttt{DELETE} (viz ukázka \ref{l_changes_delete}) a \texttt{INSERT} (viz ukázka \ref{l_changes_insert}), kde proměnná \texttt{table} označuje jméno databázové tabulky, proměnná \texttt{column} jméno příslušného sloupce,  \texttt{columns} označuje seznam sloupců a proměnná \texttt{id} je nahrazena identifikátorem vkládaného prvku z databáze, která obsahuje změnová data.
+Při aplikaci změn jsou v~cyklu pro každou tabulku spouštěny databázové příkazy \texttt{DELETE} (viz ukázka \ref{l_changes_delete}) a \texttt{INSERT} (viz ukázka \ref{l_changes_insert}), kde proměnná \texttt{table} označuje jméno databázové tabulky, proměnná \texttt{column} jméno příslušného sloupce,  \texttt{columns} označuje seznam sloupců a proměnná \texttt{id} je nahrazena identifikátorem vkládaného prvku z~databáze, která obsahuje změnová data.
 
-Příkaz \texttt{DELETE} z hlavní databáze smaže veškeré prvky, které se vyskytují v databázi se změnovými daty. Tento příkaz je vykonán, protože v databázi se změnovými daty jsou vždy aktuálnější informace o prvcích, než v databázi původní. 
+Příkaz \texttt{DELETE} z~hlavní databáze smaže veškeré prvky, které se vyskytují v~databázi se změnovými daty. Tento příkaz je vykonán, protože v~databázi se změnovými daty jsou vždy aktuálnější informace o~prvcích, než v~databázi původní. 
 
 \begin{lstlisting}[style=sql, caption={Aplikace změn -- příkaz DELETE}, 
 		    label=l_changes_delete]
@@ -1576,9 +1576,9 @@ WHERE stav_dat = 0
 LIMIT 1;
 \end{lstlisting}
 
-Po smazání veškerých neaktuálních záznamů z hlavní databáze, je vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v cyklu nad všemi záznamy ze změnové databáze, které jsou určeny pro import. Případ, kdy jsou ve změnové databázi uloženy některé položky duplicitně, je ošetřen pomocí nastavení limitu (viz řádek č. 5 ukázky \ref{l_changes_insert}).
+Po smazání veškerých neaktuálních záznamů z~hlavní databáze, je vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v~cyklu nad všemi záznamy ze změnové databáze, které jsou určeny pro import. Případ, kdy jsou ve změnové databázi uloženy některé položky duplicitně, je ošetřen pomocí nastavení limitu (viz řádek č. 5 ukázky \ref{l_changes_insert}).
 
-Pro lepší orientaci o průběhu aplikování změn na stavová data byl vytvořen diagram, viz obr. \ref{l_zmeny_diagram}.
+Pro lepší orientaci o~průběhu aplikování změn na stavová data byl vytvořen diagram, viz obr. \ref{l_zmeny_diagram}.
 
 \begin{figure}
   \centering
@@ -1591,10 +1591,10 @@ Pro lepší orientaci o průběhu aplikování změn na stavová data byl vytvo�
 \newpage
 \subsection{Implementace na straně zásuvného modulu}
 \label{l_implementace_zmen}
-Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla implementována díky vytvoření nového formuláře v okně pluginu. Na okně zásuvného modulu byly provedeny následující úpravy:
+Funkcionalita pro aplikování změn z~prostředí zásuvného modulu byla implementována díky vytvoření nového formuláře v~okně pluginu. Na okně zásuvného modulu byly provedeny následující úpravy:
 
 \begin{enumerate}
- \item \textbf{Ikona změn:} Okno pro aplikaci změn na stavová data je vyvoláno pomocí nově vytvořené ikony v nástrojové liště, viz obr. \ref{l_ikona_zmen}.
+ \item \textbf{Ikona změn:} Okno pro aplikaci změn na stavová data je vyvoláno pomocí nově vytvořené ikony v~nástrojové liště, viz obr. \ref{l_ikona_zmen}.
 
 \begin{figure}[htb]
 \centering
@@ -1603,9 +1603,9 @@ Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla imple
 \label{l_ikona_zmen}
 \end{figure} 
  
- \item \textbf{Formuláře:} K dispozici jsou tři formuláře pro zadání cesty ke vstupní databázi se stavovými daty, k databázi se změnovými daty a databázi výstupní, do které budou uložena stavová data s aplikovanými změnami.
+ \item \textbf{Formuláře:} K~dispozici jsou tři formuláře pro zadání cesty ke vstupní databázi se stavovými daty, k~databázi se změnovými daty a databázi výstupní, do které budou uložena stavová data s~aplikovanými změnami.
  
- \item \textbf{Popisek průběhu zpracování:} V tomto popisku jsou zobrazovány informace o průběhu zpracování změn.
+ \item \textbf{Popisek průběhu zpracování:} V~tomto popisku jsou zobrazovány informace o~průběhu zpracování změn.
  
  \item \textbf{Grafický indikátor průběhu:} Zde je průběh zpracování změn vyjádřen procentuálně a graficky.
  
@@ -1613,7 +1613,7 @@ Funkcionalita pro aplikování změn z prostředí zásuvného modulu byla imple
  
 \end{enumerate}
 
-Funkcionalita pro aplikaci změn obsažených v databázi SQLite na data obsažená v databázi se stavovými daty je do zásuvného modulu přidána pouze v případě, kdy je na počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0} a vyšší. V opačném případě je ikonka pro zpracování změn neaktivní.
+Funkcionalita pro aplikaci změn obsažených v~databázi SQLite na data obsažená v~databázi se stavovými daty je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0} a vyšší. V~opačném případě je ikonka pro zpracování změn neaktivní.
 
 \begin{figure}[htb]
 \centering
@@ -1864,6 +1864,7 @@ Po správné instalaci zásuvného modulu se do nástrojové lišty přidá jeho
 \label{l_plugin_ikona}
 \end{figure}
 
+Uživatelská přívětivost používání zásuvného modulu je zvýšena \uv{dokovatelností} samotného okna pluginu. Modul je primárně ukotven k~horní liště okna QGIS, ale je možné ho ukotvit i k~ostatním okrajům. Okno modulu lze samozřejmě používat i samostatně (neukotvené).
 
 % -----------------------------------------------
 \clearpage
@@ -1877,18 +1878,112 @@ Okno zásuvného modulu se skládá ze tří hlavních částí. Vlevo se nachá
 \label{l_plugin_prirucka_rozlozeni}
 \end{figure}
 
-
 % -----------------------------------------------
-\section{Načtení datových souborů}
+\section{Načítání dat}
+Pomocí zásuvného modulu je možné nahrát soubor VFK nebo soubor databáze SQLite, ve které jsou VFK data uložena. Tento import je k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import VFK}. 
 
+Zásuvný modul podporuje načítání více souborů. Formulář pro načtení dalšího VFK souboru je vygenerován po stisku tlačítka \uv{+}. Cesta k~novému souboru se zadává opět po stisku tlačítka \uv{Procházet}.
+
+V~tomto okně je dále možné zvolit, které vrstvy se budou importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce s~mapovým oknem. 
+
+Jestliže je na vstupu zadán soubor ve formátu \textit{.vfk}, tak je na pozadí vytvořená databáze SQLite, do které jsou data z~VFK souboru načteny. Tato databáze je pojmenována \texttt{jmeno\_prvniho\_souboru\_stav.db} pro případ, kdy načtený soubor obsahuje stavová data, nebo \texttt{jmeno\_prvniho\_souboru\_zmeny.db}, když jsou v~prvním souboru uložena změnová data. Databáze je uložena o~adresář výše, než první soubor VFK.
+
+Funkcionalita pro načítání více souborů a načítání dat z~SQLite databáze je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0} a vyšší. 
 
 % -----------------------------------------------
 \section{Vyhledávání}
+Po úspěšném načtení dat je zpřístupněno vyhledávání. Výsledky vyhledávání se zobrazují ve vedlejším okně, prohlížeči dat. Tato data lze interaktivně procházet, podobně jako je tomu ve webovém prohlížeči, jelikož jsou ukládána ve formě HTML stránek. Pro navigaci mezi jednotlivými prvky jsou používány hypertextové odkazy. Obsah okna prohlížeče je ukládán do historie, což usnadňuje uživateli vyhledávání stále se opakujících informací (není potřeba opakovaně provádět stejný databázový dotaz). Historii lze procházet pomocí tlačítek \uv{Vpřed} a \uv{Zpět}.
 
+Pro zjištění aktuálního stavu o~dané nemovitosti je zde implementováno propojení s~aplikací \textbf{Nahlížení do katastru nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
+
+Zásuvný modul a mapové okno QGIS jsou navzájem propojené. Je tedy možné v~mapovém okně zobrazit polohu vyhledaných prvků a opačně vyhledat informace o~prvcích, které byly vybrány pomocí nástroje výběru QGIS právě v~mapovém okně (při výběru prvků z~mapového okna je potřeba aktivovat tlačítko \uv{Aktivovat / deaktivovat zobrazení informací o~vybraných nemovitostech}).
+
+Vyhledávat lze podle následujících prvků:
+
+\begin{itemize}
+ \item vlastníků,
+ \item parcel,
+ \item budov,
+ \item jednotek.
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-vlastnici.png}
+        \caption{Vyhledávání vlastníků}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-parcely.png}
+        \caption{Vyhledávání parcel}
+    \end{subfigure}
+    \caption{Vyhledávací formuláře 1/2}
+    \label{l_vyhledavani_1}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.393\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-budovy.png}
+        \caption{Vyhledávání budov}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/vfkPlugin-jednotky.png}
+        \caption{Vyhledávání jednotek}
+    \end{subfigure}
+    \caption{Vyhledávací formuláře 2/2}
+    \label{l_vyhledavani_1}
+\end{figure}
+
+
+\clearpage
+% -----------------------------------------------
+\section{Export vyhledaných informací}
+Veškeré vyhledané informace, které jsou zobrazeny v~prohlížeči dat, je možné uložit. Export může být proveden do souboru v~následujících formátech:
+
+\begin{itemize}
+ \item \textbf{HTML}: Umožňuje následné zobrazení ve webovém prohlížeči, případně import do textového procesoru
+ \item \textbf{Zdrojový kód \latex}: Umožňuje vytvoření PDF nebo PS.
+\end{itemize}
 
 % -----------------------------------------------
 \section{Zpracování změn}
+Funkcionalita pro zpracování změn je dostupná pod příslušnou ikonou (obr \ref{l_ikona_zmen}). Po stisku této ikony je vygenerováno nové okno s~následujícími prvky:
 
+\begin{figure}[htb]
+\centering
+\includegraphics[scale=0.9]{images/applyChanges.png}
+\caption[VFK Plugin -- ikona pro zpracování změn]{VFK Plugin -- ikona pro zpracování změn}
+\label{l_ikona_zmen}
+\end{figure} 
+
+\begin{enumerate} 
+ \item \textbf{Formuláře:} K~dispozici jsou tři formuláře pro zadání cesty ke vstupní databázi se stavovými daty, k~databázi se změnovými daty a databázi výstupní, do které budou uložena stavová data s~aplikovanými změnami.
+ 
+ \item \textbf{Popisek průběhu zpracování:} V~tomto popisku jsou zobrazovány informace o~průběhu zpracování změn.
+ 
+ \item \textbf{Grafický indikátor průběhu:} Zde je průběh zpracování změn vyjádřen procentuálně a graficky.
+ 
+ \item \textbf{Tlačítko pro zpracování:} Po stisku tohoto tlačítka jsou změny aplikovány do databáze se stavovými daty.
+ 
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{images/vfkPlugin-prirucka_zmeny.png}
+\caption[VFK Plugin -- okno pro zpracování změn]{VFK Plugin -- okno pro zpracování změn}
+\label{l_plugin_zmeny}
+\end{figure}
+
+Postup zpracování změn je následující. Nejprve jsou načteny pomocí tlačítek \uv{Procházet} databáze se stavovými daty a databáze se změnami. Dále je potřeba zadat cestu k~nově vytvořené databázi, do které budou změny aplikovány. Po zadání těchto informací je zpřístupněno tlačítko \uv{Zpracovat změny}. Změny jsou na stavová data aplikovány po jeho stisknutí.
+
+Funkcionalita pro aplikaci změn obsažených v~databázi SQLite na data obsažená v~databázi se stavovými daty je do zásuvného modulu přidána pouze v~případě, kdy je na počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0} a vyšší. V~opačném případě je ikonka pro zpracování změn neaktivní.
 
 %-----------------------------------------------
 \chapter{Obsah přiloženého CD}
