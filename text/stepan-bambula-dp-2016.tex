@@ -577,6 +577,7 @@ Jazyk Python je objektově orientovaný programovací jazyk, který efektivně p
 \caption[Python -- logo]{Python -- logo (zdroj: \cite{python_web})}
 \end{figure}
 
+\newpage
 \section{PyQt}
 
 PyQt je modul, který zpřístupňuje knihovnu Qt pro programovací jazyk Python. Spolu s~PySide se jedná o~nejznámější a~nejpoužívanější modul pro Python postavený nad knihovnou Qt. Je vyvíjen britskou firmou Riverbank Computing ve dvou verzích. Ve verzi 4, podporující knihovnu Qt 4, a~ve verzi 5, která podporuje novější verzi Qt knihovny. Modul je dostupný na všech platformách, které podporují knihovnu Qt (Windows, MacOS/X a~Linux). PyQt je šířeno pod tzv. dvojí licencí, \textit{GNU GPL v3} a~\textit{Riverbank Commercial License}. Spolu s~těmito licencemi je dostupné i~pod komerční licencí.
@@ -1353,10 +1354,10 @@ Základní struktura kódu zásuvného modulu byla vygenerována pomocí doporu�
 		    caption=Kód pro načtení vektorové vrstvy v~jazyce Python,
 		    label=l_loadLayerPython]
 def __loadVfkLayer(self, vfkLayerName):
-"""
-Method loads VFK layer.
-:type vfkLayerName: str
-"""
+  """
+  Method loads VFK layer.
+  :type vfkLayerName: str
+  """
   qDebug("\n(VFK) Loading vfk layer {}".format(vfkLayerName))
   if vfkLayerName in self.__mLoadedLayers:
       qDebug(
@@ -1738,62 +1739,74 @@ class BudovySearchForm(QWidget):
 
 \begin{lstlisting}[style=python, label=l_buildHtml]
 def buildHtml(self, document, taskMap):
-"""
-:type document: VfkDocument
-:type taskMap: dict
-"""
-        self.__mCurrentPageParIds = []
-        self.__mCurrentPageBudIds = []
-        self.__mCurrentDefinitionPoint.first = ''
-        self.__mCurrentDefinitionPoint.second = ''
+    """
+    :type document: VfkDocument
+    :type taskMap: dict
+    """
+    self.__mCurrentPageParIds = []
+    self.__mCurrentPageBudIds = []
+    self.__mCurrentDefinitionPoint.first = ''
+    self.__mCurrentDefinitionPoint.second = ''
 
-        self.__mDocument = document
-        self.__mDocument.header()
+    self.__mDocument = document
+    self.__mDocument.header()
 
-        if taskMap["page"] == "help":
-            self.pageHelp()
+    if taskMap["page"] == "help":
+        self.pageHelp()
 
-        if self.__mHasConnection:
-            if taskMap["page"] == "tel":
-                self.pageTeleso(taskMap["id"])
-            elif taskMap["page"] == "par":
-                self.pageParcela(taskMap["id"])
-            elif taskMap["page"] == "bud":
-                self.pageBudova(taskMap["id"])
-            elif taskMap["page"] == "jed":
-                self.pageJednotka(taskMap["id"])
-            elif taskMap["page"] == "opsub":
-                self.pageOpravnenySubjekt(taskMap["id"])
-            elif taskMap["page"] == "seznam":
-                if taskMap["type"] == "id":
-                    if "parcely" in taskMap:
-                        self.pageSeznamParcel(taskMap["parcely"].split(","))
-                    if "budovy" in taskMap:
-                        self.pageSeznamBudov(taskMap["budovy"].split(","))
-                elif taskMap["type"] == "string":
-                    if "opsub" in taskMap:
-                        self.pageSeznamOsob(taskMap['opsub'].split(","))
-            elif taskMap["page"] == "search":
-                if taskMap["type"] == "vlastnici":
-                    self.pageSearchVlastnici(
-                        taskMap["jmeno"], taskMap["rcIco"],
-                                             taskMap["sjm"], taskMap["opo"],
-                                             taskMap["ofo"], taskMap["lv"])
-                elif taskMap["type"] == "parcely":
-                    self.pageSearchParcely(
-                        taskMap["parcelniCislo"], taskMap["typ"], taskMap["druh"], taskMap["lv"])
-                elif taskMap["type"] == "budovy":
-                    self.pageSearchBudovy(
-                        taskMap["domovniCislo"], taskMap[
-                            "naParcele"], taskMap["zpusobVyuziti"],
-                                          taskMap["lv"])
-                elif taskMap["type"] == "jednotky":
-                    self.pageSearchJednotky(
-                        taskMap["cisloJednotky"], taskMap[
-                            "domovniCislo"], taskMap["naParcele"],
-                                            taskMap["zpusobVyuziti"], taskMap["lv"])
-        self.__mDocument.footer()
-        return
+    if self.__mHasConnection:
+        if taskMap["page"] == "tel":
+            self.pageTeleso(taskMap["id"])
+        elif taskMap["page"] == "par":
+            self.pageParcela(taskMap["id"])
+        elif taskMap["page"] == "bud":
+            self.pageBudova(taskMap["id"])
+        elif taskMap["page"] == "jed":
+            self.pageJednotka(taskMap["id"])
+        elif taskMap["page"] == "opsub":
+            self.pageOpravnenySubjekt(taskMap["id"])
+        elif taskMap["page"] == "seznam":
+            if taskMap["type"] == "id":
+                if "parcely" in taskMap:
+                    self.pageSeznamParcel(taskMap["parcely"]
+                    	.split(","))
+                if "budovy" in taskMap:
+                    self.pageSeznamBudov(taskMap["budovy"]
+                    	.split(","))
+            elif taskMap["type"] == "string":
+                if "opsub" in taskMap:
+                    self.pageSeznamOsob(taskMap['opsub']
+                    	.split(","))
+        elif taskMap["page"] == "search":
+            if taskMap["type"] == "vlastnici":
+                self.pageSearchVlastnici(
+                    taskMap["jmeno"], 
+                    taskMap["rcIco"],
+                    taskMap["sjm"], 
+                    taskMap["opo"],
+                    taskMap["ofo"], 
+                    taskMap["lv"])
+            elif taskMap["type"] == "parcely":
+                self.pageSearchParcely(
+                    taskMap["parcelniCislo"], 
+                    taskMap["typ"], 
+                    taskMap["druh"], 
+                    taskMap["lv"])
+            elif taskMap["type"] == "budovy":
+                self.pageSearchBudovy(
+                    taskMap["domovniCislo"], 
+                    taskMap["naParcele"], 
+                    taskMap["zpusobVyuziti"],
+                    taskMap["lv"])
+            elif taskMap["type"] == "jednotky":
+                self.pageSearchJednotky(
+                    taskMap["cisloJednotky"], 
+                    taskMap["domovniCislo"], 
+                    taskMap["naParcele"],
+                    taskMap["zpusobVyuziti"], 
+                    taskMap["lv"])
+    self.__mDocument.footer()
+    return
 \end{lstlisting}
 
 \section{Načtení souborů v~separátním vlákně}
@@ -1808,12 +1821,12 @@ def buildHtml(self, document, taskMap):
 	    self.sleep(1)
 \end{lstlisting}
 
-\section{Vyhledání parcel -- ukázka URL}
+\section{Vyhledání parcel -- ukázka tvorby URL}
 \begin{lstlisting}[style=python, label=l_search_parcely]
 def __searchParcely(self):
-"""
-Method creates and emits query for searching of plots.
-"""
+    """
+    Method creates and emits query for searching of plots.
+    """
     parcelniCislo = self.__forms.parcely.parcelniCislo()
     typ = int(self.__forms.parcely.typParcely())
     druh = self.__forms.parcely.druhPozemkuKod()
