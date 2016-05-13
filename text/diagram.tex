@@ -33,6 +33,7 @@ minimum height=4em]
   \node [block, xshift=2cm] (do_delete) {Delete old rows in the main database};\\
   \node [io, xshift=2cm] (find_ids) {Get IDs of new features};\\  
   \node [loop, xshift=2cm] (loop_ids) {For all IDs};\\  
+  \node [block, left of=loop_ids, xshift=-2cm] (select_ids) {Select the newest features for given ID};\\  
   \node [block, left of=loop_ids, xshift=-2cm] (do_insert) {Insert new feature into main database};\\  
   \node [empty] (null_stop){};\\
   \node [startstop] (stop) {Stop};\\};
@@ -49,8 +50,9 @@ minimum height=4em]
   \path [line] (loop_tables) |- node[anchor=east] [near start] {table} (do_delete);
   \path [line] (do_delete) -- (find_ids);
   \path [line] (find_ids) -- (loop_ids);
-  \path [line] (loop_ids) -| node[anchor=south] [near start] {ID} (do_insert);
-  \path [line] (do_insert) |- ([yshift=-3cm]loop_ids.south) -- (loop_ids);  
+  \path [line] (loop_ids) -| node[anchor=south] [near start] {ID} (select_ids);
+  \path [line] (select_ids) -- (do_insert);
+  \path [line] (do_insert) |- ([yshift=-5.5cm]loop_ids.south) -- (loop_ids);  
   \path [line] (loop_tables) -- node[anchor=south] [near start] {finish}([xshift=-2cm]loop_tables.west)
 		|-([yshift=-0.5cm]null_stop.north) -- (stop);
   \path [line] (loop_ids) -- ++(2,0) node[xshift=0.5cm, anchor=north] [near start]{finish} |- (loop_tables);
