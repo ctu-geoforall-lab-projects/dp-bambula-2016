@@ -319,7 +319,8 @@ V~Praze dne \dots \dots \dots \\
 \textsc{\Large Poděkování}
 
 \vspace{12pt}
-
+Na tomto místě bych chtěl poděkovat vedoucímu diplomové práce Ing. Martinu
+Landovi, PhD. za pomoc,  připomínky a~poskytnuté rady při zpracování této práce. Dále bych chtěl poděkovat Jiřímu Chroustovi za rady ohledně zpracování změnových vět. V~neposlední řadě děkuji rodině za podporu během celého studia.
 \vspace{2cm}
 
 %======================POUZITE ZKRATKY===============================
@@ -1735,7 +1736,7 @@ Podněty pro nové funkcionality zásuvného modulu pocházely přímo od uživa
 
 Další vývoj zásuvného modulu se může ubírat mnoha směry. Jednou z~možných budoucích funkcionalit může být podpora exportu do více formátů -- především tedy do PDF, či XML. Vhodné by také bylo, kdyby modul lépe pracoval s~více vlákny při načítání VFK souborů, toto se týká hlavně fáze při načítání datového souboru. Dalším bodem může být zobrazení sluček v~mapovém okně, nebo hromadný export podrobností o~nemovitostech. Obě tyto funkcionality vzešly přímo od uživatelů. Jako nejdůležitější bod ale vnímám překlad zásuvného modulu do angličtiny, což v~současné chvíli blokuje přesun modulu do hlavního repositáře QGIS. Tímto by se modul stal pro uživatele ještě více dostupnější než doposud.
 
-Hlavním výstupem diplomové práce je tedy zásuvný modul pro práci s~katastrálními daty v~prostředí QGIS. Tento modul disponuje několika novými funkcionalitami, kde nejdůležitější z~nich je podpora zpracování změn. Zdrojové kódy jsou dostupné v~repositáři na serveru Github (\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin}). Modul může být v~prostředí QGIS nainstalován po přidání nového repositáře (\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}), který je spravovaný organizací OSGeoREL.
+Hlavním výstupem diplomové práce je tedy zásuvný modul pro práci s~katastrálními daty v~prostředí QGIS. Tento modul disponuje několika novými funkcionalitami, kde nejdůležitější z~nich je podpora zpracování změn. Zdrojové kódy jsou dostupné v~repositáři na serveru Github (\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin}). Modul může být v~prostředí QGIS nainstalován po přidání nového repositáře (\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}), který je spravovaný organizací OSGeoREL. Spolu se zásuvným modulem vznikla i~uživatelská příručka, která je v~diplomové práci uvedena jako příloha \ref{l_prirucka}.
 
 Závěrem bych chtěl upozornit, že se jedná o~vývojovou verzi zásuvného modulu a~budu rád za veškeré podněty pro jeho další vývoj ve formě tzv. \uv{Issues} na stránce se zdrojovým kódem. 
 
@@ -1890,6 +1891,7 @@ def __searchParcely(self):
 
 %-----------------------------------------------
 \chapter{Uživatelská příručka}
+\label{l_prirucka}
 
 \section{Instalace a~spuštění zásuvného modulu}
 Plugin v~současné době není dostupný v~oficiálním repositáři QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný organizací OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/}, pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto musí být tato volba zohledněna při jeho instalaci, viz obr. \ref{l_qgis_plugins}. Okno pro zadání repositáře vyvoláme v~záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install plugins}.
