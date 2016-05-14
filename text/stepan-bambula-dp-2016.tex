@@ -331,6 +331,7 @@ Landovi, PhD. za pomoc,  připomínky a~poskytnuté rady při zpracování této
 
 \begin{description}
 \item[VFK] Výměnný formát katastru nemovitostí
+\item[NVF] Nový výměnný formát
 \item[ČUZK] Český úřad zeměměřický a~katastrální
 \item[GDAL] Geospatial Data Abstraction Library
 \item[GIS] Geografický informační systém
@@ -1720,11 +1721,11 @@ Cílem diplomové práce bylo rozšířit stávající zásuvný modul pro prác
 
 Práce byla rozdělena do dvou částí -- teoretické a~praktické. V~teoretické části jsem se věnoval rešerši dostupných nástrojů pro zpracování a~práci s~katastrálními daty a~použité technologii, která byla nezbytná pro vypracování práce. Dále jsem zde vypracoval kapitolu týkající se Informačního systému katastru nemovitostí, ze kterého jsou datové soubory VFK exportovány. Především jsem se zde ale zabýval výměnným formátem katastru nemovitostí. Zde jsem kladl důraz na jeho strukturu, jejíž znalost je nezbytná pro správnou funkcionalitu zásuvného modulu. V~kapitole jsem se zaměřil i~na strukturu změnových vět VFK tak, aby mohl být vypracován hlavní bod diplomové práce -- \textbf{zpracování změnových vět}.
 
-Na teoretickou část volně navazuje kapitola týkající stavu současného zásuvného modulu pro zpracování katastrálních dat. Zde jsem se snažil popsat práci s~modulem od jeho instalace a~zprovoznění pod QGIS, přes načítání souborů VFK, až k~jeho klíčovým funkcionalitám týkajících se samotného vyhledávání nad importovanými katastrálními daty. Nechybí zde informace o~možnostech exportu výsledků vyhledávaní do podporovaných formátů.
+Na teoretickou část volně navazuje kapitola týkající se stavu současného zásuvného modulu pro zpracování katastrálních dat. Zde jsem se snažil popsat práci s~modulem od jeho instalace a~zprovoznění pod QGIS, přes načítání souborů VFK, až k~jeho klíčovým funkcionalitám týkajících se samotného vyhledávání nad importovanými katastrálními daty. Nechybí zde informace o~možnostech exportu výsledků vyhledávaní do podporovaných formátů.
 
 Ve stěžejní kapitole praktické části -- Rozšíření stávající funkcionality (\ref{l_rozsireni_funkcionality}) -- jsem popsal veškerý svůj přínos k~rozšíření zásuvného modulu. Jsou zde zmíněny kroky, které vedly k~přepisu stávajícího modulu do jazyka Python, potřebné změny na straně ovladače VFK v~knihovně GDAL, nově přidaná funkcionalita týkající se zpracování změnových vět a~popis tříd zásuvného modulu, pro rychlejší orientaci v~kódu.
 
-Při přepisu stávajícího zásuvného modulu do jazyku Python jsem se snažil držet co možná nejvíce původního kódu v~jazyce C++. Modul byl navržen s~pomocí stejné knihovny Qt, respektive PyQt, která je jednou z~hlavních knihoven pro tvorbu uživatelského rozhraní a~značně ulehčuje tvorbu celé aplikace. Zásuvný modul komunikuje s~prostředím QGIS díky použití aplikačního rozhraní QGIS API.
+Při přepisu stávajícího zásuvného modulu do jazyka Python jsem se snažil držet co možná nejvíce původního kódu v~jazyce C++. Modul byl navržen s~pomocí stejné knihovny Qt, respektive PyQt, která je jednou z~hlavních knihoven pro tvorbu uživatelského rozhraní a~značně ulehčuje tvorbu celé aplikace. Zásuvný modul komunikuje s~prostředím QGIS díky použití aplikačního rozhraní QGIS API.
 
 Poté, co byl stávající zásuvný modul přepsán, tak byl umístěn do nově vzniklého repositáře\footnote{\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}}, který spravuje organizace OSGeoREL na ČVUT v~Praze. Zde je plugin dostupný ve verzi \texttt{2.0BETA} a~jeho funkcionalita kopíruje původní zásuvný modul v~C++. Pro tuto verzi modulu byla v~oficiálním repositáři se zdrojovým kódem\footnote{\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin/tree/release-2_0}} vytvořena nová vývojová větev \texttt{release-2\_0}. Modul je v~této formě dostupný pro uživatele po přidání výše zmíněného repositáře do programu QGIS.
 
@@ -1732,7 +1733,7 @@ Funkcionalitě týkající se zpracování změnových vět předcházela úprav
 
 Pro zpracování změnových vět vznikla samostatná třída, která umožňuje aplikovat změny, které jsou uloženy v~předem připravené databázi SQLite, na stavová data, která opět musí být uložena v~předem připravené SQLite databázi. Výstupem je nově vzniklá databáze s~již obsaženými změnami. Změny mohou být aplikovány jednak pomocí vzniklé konzolové aplikace, nebo přímo v~zásuvném modulu.
 
-Nově vzniklé funkcionality jsou dostupné od verze (\texttt{2.1BETA}) zásuvného modulu a~jsou k~dispozici pro všechny uživatele, kteří mají nainstalovanou knihovnu GDAL ve verzi 2.2.0 a~vyšší. Vývoj této verze probíhal (a~stále probíhá) ve větvi \texttt{master} opět na serveru Github, kde jsou k~dispozici veškeré zdrojové kódy. Mezi nejpodstatnější nově vzniklé funkcionality, které jsou v~této verzi modulu obsaženy, patří podpora načítání a~zpracování změnových souborů, případně možnost načtení více souborů VFK do jedné databáze, nebo čtení čtení z~databáze SQLite. V~zásuvném modulu nejen této verze bylo opraveno i~několik chyb pro zpříjemnění práce s~modulem. 
+Nově vzniklé funkcionality jsou dostupné od verze \texttt{2.1BETA} zásuvného modulu a~jsou k~dispozici pro všechny uživatele, kteří mají nainstalovanou knihovnu GDAL ve verzi 2.2.0 a~vyšší. Vývoj této verze probíhal (a~stále probíhá) ve větvi \texttt{master} opět na serveru Github, kde jsou k~dispozici veškeré zdrojové kódy. Mezi nejpodstatnější nově vzniklé funkcionality, které jsou v~této verzi modulu obsaženy, patří podpora načítání a~zpracování změnových souborů, případně možnost načtení více souborů VFK do jedné databáze, nebo čtení čtení z~databáze SQLite. V~zásuvném modulu nejen této verze bylo opraveno i~několik chyb pro zpříjemnění práce s~modulem. 
 
 Podněty pro nové funkcionality zásuvného modulu pocházely přímo od uživatelů předešlé C++ verze. Vývoj třídy pro aplikaci změn, respektive metodika samotného nahrazování stavových dat změnovými, byl také konzultován s~lidmi z~praxe, kteří mají se zpracováním změn bohaté zkušenosti.
 
