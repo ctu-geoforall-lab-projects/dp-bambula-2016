@@ -259,7 +259,7 @@ Diplomová práce rozšiřuje stávající projekt laboratoře OSGeoREL ČVUT v~
 
 \vspace{12pt}
 
-VFK, QGIS, ISKN, Python, PyQt, GDAL, zásuvný modul
+VFK, NVF, QGIS, ISKN, Python, PyQt, GDAL, zásuvný modul
 
 
 \vfill
@@ -277,7 +277,7 @@ Diploma thesis extends the existing project of OSGeoREL at the Czech Technical U
 \textsc{\Large Keywords}
 
 \vspace{12pt}
-VFK, QGIS, ISKN, Python, PyQt, GDAL, plugin
+VFK, NVF, QGIS, ISKN, Python, PyQt, GDAL, plugin
 
 
 \vfill
@@ -337,6 +337,7 @@ V~Praze dne \dots \dots \dots \\
 \item[ISKN] Informační systém katastru nemovitostí
 \item[SGI] Soubor geodetických informací
 \item[SPI] Soubor popisných informací
+\item[API] Application Programming Interface
 \end{description}
 
 
@@ -1333,6 +1334,7 @@ Po úspěšném načtení dat je zpřístupněno vyhledávání. Veškeré infor
 % ==================================================================================
 \clearpage
 \chapter{Rozšíření stávající funkcionality}
+\label{l_rozsireni_funkcionality}
 V~této kapitole bych se chtěl postupně věnovat jednotlivým krokům, které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS o~podporu zpracování změnových vět souborů VFK. Spolu s~tímto byly do pluginu přidány další funkcionality, jež jsou zmíněny na následujících řádcích kapitoly. 
 
 \section{Usnadnění distribuce pluginu}
@@ -1646,7 +1648,7 @@ Funkcionalita pro aplikaci změn obsažených v~databázi SQLite na data obsaže
 \end{figure}
 
 
-
+% -----------------------------------------------------------------------
 \clearpage
 \section{Popis tříd zásuvného modulu}
 
@@ -1711,6 +1713,31 @@ Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména, 
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 
+Cílem diplomové práce bylo rozšířit stávající zásuvný modul pro práci s~katastrálními daty v~programu QGIS. Samotnému rozšíření modulu o~nové funkcionality předcházelo jeho přepsání do jazyka Python, díky čemuž se velice usnadnila jeho distribuce směrem k~uživatelům. Hlavním tématem diplomové práce bylo zpracování změnových vět výměnného formátu katastru nemovitostí. 
+
+Práce byla rozdělena do dvou částí -- teoretické a~praktické. V~teoretické části jsem se věnoval rešerši dostupných nástrojů pro zpracování a~práci s~katastrálními daty a~použité technologii, která byla nezbytná pro vypracování práce. Dále jsem zde vypracoval kapitolu týkající se Informačního systému katastru nemovitostí, ze kterého jsou datové soubory VFK exportovány. Především jsem se zde ale zabýval výměnným formátem katastru nemovitostí. Zde jsem kladl důraz na jeho strukturu, jejíž znalost je nezbytná pro správnou funkcionalitu zásuvného modulu. V~kapitole jsem se zaměřil i~na strukturu změnových vět VFK tak, aby mohl být vypracován hlavní bod diplomové práce -- \textbf{zpracování změnových vět}.
+
+Na teoretickou část volně navazuje kapitola týkající stavu současného zásuvného modulu pro zpracování katastrálních dat. Zde jsem se snažil popsat práci s~modulem od jeho instalace a~zprovoznění pod QGIS, přes načítání souborů VFK, až k~jeho klíčovým funkcionalitám týkajících se samotného vyhledávání nad importovanými katastrálními daty. Nechybí zde informace o~možnostech exportu výsledků vyhledávaní do podporovaných formátů.
+
+Ve stěžejní kapitole praktické části -- Rozšíření stávající funkcionality (\ref{l_rozsireni_funkcionality}) -- jsem popsal veškerý svůj přínos k~rozšíření zásuvného modulu. Jsou zde zmíněny kroky, které vedly k~přepisu stávajícího modulu do jazyka Python, potřebné změny na straně ovladače VFK v~knihovně GDAL, nově přidaná funkcionalita týkající se zpracování změnových vět a~popis tříd zásuvného modulu, pro rychlejší orientaci v~kódu.
+
+Při přepisu stávajícího zásuvného modulu do jazyku Python jsem se snažil držet co možná nejvíce původního kódu v~jazyce C++. Modul byl navržen s~pomocí stejné knihovny Qt, respektive PyQt, která je jednou z~hlavních knihoven pro tvorbu uživatelského rozhraní a~značně ulehčuje tvorbu celé aplikace. Zásuvný modul komunikuje s~prostředím QGIS díky použití aplikačního rozhraní QGIS API.
+
+Poté, co byl stávající zásuvný modul přepsán, tak byl umístěn do nově vzniklého repositáře\footnote{\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}}, který spravuje organizace OSGeoREL na ČVUT v~Praze. Zde je plugin dostupný ve verzi \texttt{2.0BETA} a~jeho funkcionalita kopíruje původní zásuvný modul v~C++. Pro tuto verzi modulu byla v~oficiálním repositáři se zdrojovým kódem\footnote{\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin/tree/release-2_0}} vytvořena nová vývojová větev \texttt{release-2\_0}. Modul je v~této formě dostupný pro uživatele po přidání výše zmíněného repositáře do programu QGIS.
+
+Funkcionalitě týkající se zpracování změnových vět předcházela úprava ovladače VFK v~knihovně GDAL. Zde bylo provedeno několik úprav. Jako jedna z~nejdůležitějších může být zmíněna podpora načítání více souborů do jedné databáze SQLite, či úprava struktury výstupní databáze podle toho, zda je načten stavový, nebo změnový soubor VFK. Další důležitou novou vlastností ovladače je možnost čtení přímo z~databáze SQLite, čímž je možné do QGIS načíst databázi, na kterou byly aplikovány změnové věty.
+
+Pro zpracování změnových vět vznikla samostatná třída, která umožňuje aplikovat změny, které jsou uloženy v~předem připravené databázi SQLite, na stavová data, která opět musí být uložena v~předem připravené SQLite databázi. Výstupem je nově vzniklá databáze s~již obsaženými změnami. Změny mohou být aplikovány jednak pomocí vzniklé konzolové aplikace, nebo přímo v~zásuvném modulu.
+
+Nově vzniklé funkcionality jsou dostupné od verze (\texttt{2.1BETA}) zásuvného modulu a~jsou k~dispozici pro všechny uživatele, kteří mají nainstalovanou knihovnu GDAL ve verzi 2.2.0 a~vyšší. Vývoj této verze probíhal (a~stále probíhá) ve větvi \texttt{master} opět na serveru Github, kde jsou k~dispozici veškeré zdrojové kódy. Mezi nejpodstatnější nově vzniklé funkcionality, které jsou v~této verzi modulu obsaženy, patří podpora načítání a~zpracování změnových souborů, případně možnost načtení více souborů VFK do jedné databáze, nebo čtení čtení z~databáze SQLite. V~zásuvném modulu nejen této verze bylo opraveno i~několik chyb pro zpříjemnění práce s~modulem. 
+
+Podněty pro nové funkcionality zásuvného modulu pocházely přímo od uživatelů předešlé C++ verze. Vývoj třídy pro aplikaci změn, respektive metodika samotného nahrazování stavových dat změnovými, byl také konzultován s~lidmi z~praxe, kteří mají se zpracováním změn bohaté zkušenosti.
+
+Další vývoj zásuvného modulu se může ubírat mnoha směry. Jednou z~možných budoucích funkcionalit může být podpora exportu do více formátů -- především tedy do PDF, či XML. Vhodné by také bylo, kdyby modul lépe pracoval s~více vlákny při načítání VFK souborů, toto se týká hlavně fáze při načítání datového souboru. Dalším bodem může být zobrazení sluček v~mapovém okně, nebo hromadný export podrobností o~nemovitostech. Obě tyto funkcionality vzešly přímo od uživatelů. Jako nejdůležitější bod ale vnímám překlad zásuvného modulu do angličtiny, což v~současné chvíli blokuje přesun modulu do hlavního repositáře QGIS. Tímto by se modul stal pro uživatele ještě více dostupnější než doposud.
+
+Hlavním výstupem diplomové práce je tedy zásuvný modul pro práci s~katastrálními daty v~prostředí QGIS. Tento modul disponuje několika novými funkcionalitami, kde nejdůležitější z~nich je podpora zpracování změn. Zdrojové kódy jsou dostupné v~repositáři na serveru Github (\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin}). Modul může být v~prostředí QGIS nainstalován po přidání nového repositáře (\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}), který je spravovaný organizací OSGeoREL.
+
+Závěrem bych chtěl upozornit, že se jedná o~vývojovou verzi zásuvného modulu a~budu rád za veškeré podněty pro jeho další vývoj ve formě tzv. \uv{Issues} na stránce se zdrojovým kódem. 
 
 
 %======================CITACE=========================================
