@@ -387,20 +387,26 @@ plánováním. Vzhledem k~tomu, že data obsahují nejen popisnou, ale
 i~prostorovou složku, tak na nich může být prováděno široké spektrum
 prostorových analýz.
 
+%%% ML: techto dat, nize v textu mas VFK bez blizsiho vysvetlene (data
+%%% KN jsou poskytovana ve Vymennem formatu ...)
 Pro zpracování těchto dat je k~dispozici několik nástrojů. Většinou se
 však jedná o~komerční nástroje, které jsou šířeny za úplatu, nebo
 o~nástroje, které jsou dostupné jako modul pro komerční GIS software
+%%% ML: Kokes a dalsi
 typu ArcGIS nebo AutoCAD Map 3D.
 
 Výsadní postavení placených programů pro práci s~geografickými daty se
+%%% ML: o nabourani nejde, ani o to, ze je zdarma ;-)
 v~posledních letech snaží nabourat projekt QGIS, který je šířen zdarma
-pod licencí open-source. Toto se mu daří i~díky mnoha dobrovolníkům,
+%%% ML: licence open source neexistuje, zmeneno
+jako open-source. To se mu daří i~díky mnoha dobrovolníkům,
 kteří se na jeho vývoji podílí. Nemalý podíl na úspěchu tohoto
 open-source programu má i~knihovna GDAL, díky které je QGIS schopen
 číst, či zapisovat do širokého spektra vektorových, ale i~rastrových
 formátů.
 
-Pro Českou republiku je jedním z~nejdůležitějších ovladačů knihovny
+%%% ML: dvakrat ovladac ve vete, zmenoveno na soucast, nic lepsiho me nanapadlo
+Pro Českou republiku je jednou z~nejdůležitějších součástí knihovny
 GDAL ovladač VFK, který podporuje čtení právě ze souborů
 vyexportovaných z~Informačního systému katastru nemovitostí
 v~tzv. novém výměnném formátu (VFK). Spolu s~vývojem knihovny GDAL se
@@ -411,24 +417,30 @@ GDAL. Tato funkcionalita byla přidána i~díky této diplomové práci.
 
 Pro usnadnění práce s~daty ve výměnném formátu katastru nemovitostí
 v~prostředí QGIS vznikl na Fakultě stavební ČVUT v~Praze roku 2012
-zásuvný modul, jehož autory jsou dnes již absolventi oboru
+zásuvný modul, jehož autory jsou absolventi oboru
 Geoinformatika Anna Kratochvílová a~Václav Petráš. Tento modul byl
 napsán v~jazyce C++ a~obsahoval široké spektrum nástrojů, díky kterým
 bylo možné soubory VFK načíst, zobrazit v~mapovém okně QGIS a~provádět
 nad nimi vyhledávací dotazy, včetně možnosti exportu výsledků do
 některého z~podporovaných formátů.
 
+%%% ML: zkus pouzit jine slovo nez slabina
 Největší slabinou tohoto nástroje byl paradoxně použitý jazyk C++,
 díky čemuž byla instalace a~zprovoznění zásuvného modulu v~QGIS ne
-zcela intuitivní a~pro běžného uživatele toto mnohdy představovalo
+zcela intuitivní a~pro běžného uživatele mnohdy představovala
+%%% ML: v textu mas casto "toto", tohoto, zkus se tomu vyhnout
 nepřekonatelný problém. Na základě tohoto podnětu vzniklo jedno
 z~podtémat této diplomové práce, a~to přepis stávajícího zásuvného
+%%% ML: nasjedujici vetu preformulovat, nezni cesky
 modulu do jazyka Python. Tento jazyk byl zvolen z~důvodu, protože QGIS
 podporuje zásuvné moduly napsané právě v~těchto dvou jazycích. Oproti
+%%% ML: spojit dve nasledujici vety do jedne, zkratit
 modulům napsaným v~jazyce C++ mají moduly v~jazyce Python výhodu
 snadné instalace v~prostředí QGIS. Takto napsané moduly jsou v~QGIS
 dostupné standardní cestou, čili ze správce zásuvných modulů.
 
+%%% ML: ich forma v uvodu je akceptovatelna, jinak se pouziva "my",
+%%% tj. zamerime a pod.
 V~teoretické části diplomové práce se zaměřím na nezbytnou rešerši
 nástrojů, které mohou být pro zpracování katastrálních dat
 použity. Uvedu zde zástupce jak z~komerční sféry, tak nástroje, které
