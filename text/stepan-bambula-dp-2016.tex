@@ -1053,7 +1053,7 @@ nahrazoval starý výměnný formát (SVF). \cite{dp_landa}
 
 \subsection{Výměnný formát KN před ISKN}
 
-Tento formát je po zavedení nového formátu také nazýván \textit{starý
+Tento formát je po zavedení nového formátu také nazýván jako \textit{starý
   výměnný formát}~--~\textbf{SVF}. Byl vytvořen roku 1996, kdy začala
 vznikat digitalizace SGI. Obsahuje dvě samostatné části:
 
@@ -1154,7 +1154,7 @@ výměnného formátu jsou pořízeny z~testovacích dat dostupných na
 stránkách ČUZK (\cite{nvf_cuzk}).
 
 Datový soubor \textit{.vfk} se skládá ze tří základních částí, které
-budou samostatně popsány na následujících řádcích této kapitoly:
+budou samostatně popsány v následujícím textu této kapitoly:
 
 \begin{itemize}
  \item hlavička \texttt{\&H},
@@ -1414,7 +1414,6 @@ ZPVYJE* & Způsob využití jednotek \\
 \label{t_skupina_jednotky}
 \end{table}
 
- \newpage
 \item[BONITNÍ DÍLY PARCEL:] Jsou zde uvedeny informace o~bonitních
   dílech parcely. Ve skupině se nachází pouze jeden datový blok (BDP),
   ve kterém je popsán vztah mezi BPEJ\footnote{\textbf{Bonitovaná
@@ -1502,6 +1501,8 @@ OBESMF* & Obeslání účastníků řízení \\
 \label{t_skupina_rizeni}
 \end{table}
  
+
+\newpage
 \item[PRVKY KATASTRÁLNÍ MAPY:] Tato skupina je jednou
   z~nejdůležitějších pro zásuvný modul, respektive pro driver VFK
   v~knihovně GDAL. Jsou v~ní totiž obsaženy jak popisné, tak hlavně
@@ -1538,7 +1539,6 @@ SPOL & Souřadnice polohy bodů polohopisu (měřené) \\
 \label{t_skupina_prvkyKM}
 \end{table}
  
- \newpage
 \item[BPEJ:] Skupina \texttt{BPEJ} obsahuje dva datové bloky, viz
   tab. \ref{t_skupina_bpej}. Jsou v~ní obsaženy informace
   o~bonitovaných půdně ekologických jednotkách. BPEJ je základní
@@ -1597,7 +1597,6 @@ OBDEBOG & Obrazy definičních bodů parcel a~budov GP \\
 \label{t_skupina_gp}
 \end{table}
 
- \newpage
 \item[REZERVOVANÁ ČÍSLA:] Rezervovanými čísly se v~této skupině myslí
   parcelní čísla, která byla rezervována pro účely vyhotovení
   geometrického plánu. Před potvrzením geometrického plánu probíhá
