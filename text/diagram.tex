@@ -30,11 +30,11 @@ minimum height=4em]
   \node [block] (attach_db) {Attach the amendment database};\\
   \node [io] (find_tables) {Find tables with changes};\\    
   \node [loop] (loop_tables) {For all tables};\\  
-  \node [block, xshift=2cm] (do_delete) {Delete old rows in the main database};\\
+  \node [block, xshift=2cm] (do_delete) {Delete old rows in the output database};\\
   \node [io, xshift=2cm] (find_ids) {Get IDs of new features};\\  
   \node [loop, xshift=2cm] (loop_ids) {For all IDs};\\  
   \node [block, left of=loop_ids, xshift=-2cm] (select_ids) {Select the newest features for given ID};\\  
-  \node [block, left of=loop_ids, xshift=-2cm] (do_insert) {Insert new feature into main database};\\  
+  \node [block, left of=loop_ids, xshift=-2cm] (do_insert) {Insert new feature into output database};\\  
   \node [empty] (null_stop){};\\
   \node [startstop] (stop) {Stop};\\};
     

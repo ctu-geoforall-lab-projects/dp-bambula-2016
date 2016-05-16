@@ -31,7 +31,6 @@
 \usepackage{dirtree}
 \usepackage[subpreambles=true]{standalone}
 
-
 \definecolor{light-gray}{gray}{0.97}
 
 \newcommand{\latex}{\LaTeX}
@@ -385,22 +384,26 @@ data jsou velice zajímavým zdrojem informací ať už pro uživatele ze
 státní sféry, či pro společnosti zabývající se například územním
 plánováním. Vzhledem k~tomu, že data obsahují nejen popisnou, ale
 i~prostorovou složku, tak na nich může být prováděno široké spektrum
-prostorových analýz.
+prostorových analýz. Data jsou k dispozici ve strukturovaném výměnném
+formátu (VFK).
 
 %%% ML: techto dat, nize v textu mas VFK bez blizsiho vysvetlene (data
 %%% KN jsou poskytovana ve Vymennem formatu ...)
-Pro zpracování těchto dat je k~dispozici několik nástrojů. Většinou se
+%% opraveno
+Pro jejich zpracování je k~dispozici několik nástrojů. Většinou se
 však jedná o~komerční nástroje, které jsou šířeny za úplatu, nebo
 o~nástroje, které jsou dostupné jako modul pro komerční GIS software
 %%% ML: Kokes a dalsi
-typu ArcGIS nebo AutoCAD Map 3D.
+%% opraveno
+typu ArcGIS, AutoCAD Map 3D, Kokeš a~další.
 
-Výsadní postavení placených programů pro práci s~geografickými daty se
+Alternativou k placený programům pro práci s~geografickými daty je,
 %%% ML: o nabourani nejde, ani o to, ze je zdarma ;-)
-v~posledních letech snaží nabourat projekt QGIS, který je šířen zdarma
+%% opraveno
+v~posledních letech čím dál úspěšnější, projekt QGIS, který je šířen zdarma
 %%% ML: licence open source neexistuje, zmeneno
-jako open-source. To se mu daří i~díky mnoha dobrovolníkům,
-kteří se na jeho vývoji podílí. Nemalý podíl na úspěchu tohoto
+jako open-source. Projekt je úspěšný i~díky mnoha dobrovolníkům,
+kteří se na jeho vývoji podílí. Nemalý podíl na oblíbenosti tohoto
 open-source programu má i~knihovna GDAL, díky které je QGIS schopen
 číst, či zapisovat do širokého spektra vektorových, ale i~rastrových
 formátů.
@@ -425,25 +428,30 @@ nad nimi vyhledávací dotazy, včetně možnosti exportu výsledků do
 některého z~podporovaných formátů.
 
 %%% ML: zkus pouzit jine slovo nez slabina
-Největší slabinou tohoto nástroje byl paradoxně použitý jazyk C++,
+%% opraveno
+Hlavní nevýhodou výše zmíněného nástroje byl paradoxně použitý jazyk C++,
 díky čemuž byla instalace a~zprovoznění zásuvného modulu v~QGIS ne
-zcela intuitivní a~pro běžného uživatele mnohdy představovala
+zcela intuitivní a~i~pro zkušeného uživatele mnohdy představovala
 %%% ML: v textu mas casto "toto", tohoto, zkus se tomu vyhnout
+%% upraveno
 nepřekonatelný problém. Na základě tohoto podnětu vzniklo jedno
-z~podtémat této diplomové práce, a~to přepis stávajícího zásuvného
+z~podtémat diplomové práce, a~sice přepis stávajícího zásuvného
 %%% ML: nasjedujici vetu preformulovat, nezni cesky
-modulu do jazyka Python. Tento jazyk byl zvolen z~důvodu, protože QGIS
-podporuje zásuvné moduly napsané právě v~těchto dvou jazycích. Oproti
+%% upraveno
+modulu do jazyka Python. Tento jazyk byl zvolen, jelikož program QGIS
+podporuje zásuvné moduly napsané právě v~těchto dvou jazycích. 
 %%% ML: spojit dve nasledujici vety do jedne, zkratit
-modulům napsaným v~jazyce C++ mají moduly v~jazyce Python výhodu
-snadné instalace v~prostředí QGIS. Takto napsané moduly jsou v~QGIS
-dostupné standardní cestou, čili ze správce zásuvných modulů.
+%% upraveno
+Moduly napsáné v jazyce Python je možné instalovat standardní cestou, 
+čili ze správce zásuvných modulů, což velice usnadňuje jejich dostupnost.
+Jazyk C++ je vhodný především u modulů, které jsou součástí jádra QGIS
+(např. QGIS GRASS Plugin).
 
 %%% ML: ich forma v uvodu je akceptovatelna, jinak se pouziva "my",
 %%% tj. zamerime a pod.
 V~teoretické části diplomové práce se zaměřím na nezbytnou rešerši
-nástrojů, které mohou být pro zpracování katastrálních dat
-použity. Uvedu zde zástupce jak z~komerční sféry, tak nástroje, které
+nástrojů, které mohou být pro zpracování katastrálních dat použity. 
+Uvedu zde zástupce jak z~komerční sféry, tak nástroje, které
 jsou dostupné bezúplatně -- především tedy výše zmíněný ovladač VFK
 knihovny GDAL. V~další kapitole teoretické části se budu věnovat
 popisu použitých technologií, bez kterých by diplomová práce nemohla
@@ -486,14 +494,15 @@ daty. Ať už se jedná o~moduly, které jsou distribuovány zdarma, nebo
 za úplatu, jako nadstavba pro komerční nástroje, případně o~moduly
 dostupné pro open-source nástroje. S~trochou nadsázky se dá říci, že
 %%% ML: vetsi software zni divne
-každý větší software pro práci s~prostorovými daty má svůj zásuvný
-modul (nadstavbu) pro práci s~daty \textit{VFK}.
+většina programů pro práci s~prostorovými daty má svůj zásuvný
+modul (nadstavbu) pro zpracování souborů VFK.
 
 %%% ML: Ich forma se v textu prace nepouziva (nemela by se pouzivat),
 %%% maximalne v uvodu a zaveru, tj. se budeme věnovat, zmenit to v
 %%% celem textu bude narocne a zaneses tam radu chyb, pokud to mas v
 %%% celem textu, tak navrhuji asi nechat
-V~této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím
+%% upraveno
+V kapitole se budeme věnovat vybraným nástrojům pracujícím
 s~těmito daty. Moduly, které jsou šířeny zdarma a~bylo je možné
 vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází
 především z~dostupně dokumentace na příslušných oficiálních webových
@@ -508,7 +517,7 @@ navržena dle připravené šablony. Tato šablona je vždy vázána k~dané
 verzi formátu VFK a~může být stažena přímo ze stránek společnosti
 Arcdata Praha, která je zároveň tvůrcem této aplikace. Data načtená
 touto aplikací mohou být exportována také ve formátu
-\textit{XML}. Díky této aplikaci může být v~geodatabázi sestavena
+XML. Díky této aplikaci může být v~geodatabázi sestavena
 geometrie vektorových prvků. \cite{iskn_studio}
 
 \begin{figure}[htb]
@@ -526,6 +535,7 @@ funkcionalitami. Jednou z~hlavních je možnost kontroly struktury
 vstupního VFK souboru podle zvolené šablony nebo podle
 geodatabáze. Samozřejmostí je možnost uložení protokolu
 %%% ML: vsechny jeji verze, nebo pouze ta zakladni?
+%% ano, podle informaci na https://www.arcdata.cz/sluzby-a-podpora-zakazniku/sluzby/software-arcdata
 o~zpracování. Aplikace je distribuována zdarma.
 
 \newpage
@@ -542,15 +552,17 @@ ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio
 \end{figure}
 
 Díky ISKN View je umožněno rychlé a~jednoduché vyhledávání v~datech
-ISKN, která byla pomocí aplikace ISKN Studio převedena do některé
+ISKN, která byla pomocí aplikace ISKN Studio převedena do 
 %%% ML: ted najednou pises o vice formatech (co podporuje krome File Geodatabaze?)
-z~podporovaných geodatabází.  Aplikace je rovněž šířena
+ESRI geodatabáze.  Aplikace je rovněž šířena
 %%% ML: vsechny verze?
+%% ano, podle informaci na https://www.arcdata.cz/sluzby-a-podpora-zakazniku/sluzby/software-arcdata
 bezúplatně. \cite{iskn_studio}
 
 \newpage
-\section{Import dat KN ve výměnném formátu}
+\section{Import VFK, VKM}
 %%% ML: nastoj ma opravdu tak obecny nazev?
+%% upraveno
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK
 Jedná se o~modul vytvořený společností GISOFT, který slouží k~převodu
 a~načtení dat ve formátech VFK a~VKM do formátu DGN. Modul
@@ -646,13 +658,7 @@ Aplikace převádí \textit{VFK} soubory na objekty (hranice parcel,
 parcelní čísla, vnitřní kresby, popisy, \dots), se kterými je AutoCAD
 schopen pracovat. Tyto objekty jsou pomocí hypertextových odkazů
 provázány se stránkami ČUZK (respektive s~aplikací \textbf{Nahlížení
-  do KN}), kde o~nich mohou být zjištěny dodatečné informace.
-
-% \begin{figure}[htb]
-% \centering
-% \includegraphics[width=\textwidth]{images/vfk2dwg-ukazka.png}
-% \caption[Aplikace VFK2DWG -- ukázka načtených dat]{Aplikace VFK2DWG -- ukázka načtených dat (zdroj: \cite{cadstudio-vfk2dwg})}
-% \end{figure}
+ do KN}), kde o~nich mohou být zjištěny dodatečné informace.
 
 Nejnovější verze aplikace pracuje i~s~daty formátu ve verzi 5.1 a~je
 podporována i~v~AutoCAD 2016. Bohužel se jedná o~komerční aplikaci
@@ -698,6 +704,7 @@ vykoušena. Veškeré informace pocházejí z~webových stránek výrobce, viz
 
 \newpage
 \section{GDAL -- VFK Driver}
+\label{l_gdal_vfk_driver}
 % TODO: http://freegis.fsv.cvut.cz/gwiki/VFK_/_GDAL
 % TODO: http://www.gdal.org/drv_vfk.html
 % TODO: http://gama.fsv.cvut.cz/~landa/publications/2010/gis-ostrava-2010/paper/landa-ogr-vfk.pdf
@@ -735,6 +742,7 @@ sloužící pro definici jména SQLite databáze. Neméně důležitá proměnn�
 \texttt{OGR\_VFK\_DB\_OVERWRITE} říká, že při každém čtení souboru VFK
 se vytváří databáze SQLite znovu, čtení tedy probíhá pouze ze
 souboru VFK. Níže je uvedena ukázka otevření souboru VFK. \cite{gdal_vfk}
+\cite{landa_gis_ostrava_vfk}
 
 \begin{lstlisting}[language=bash, showstringspaces=false, escapeinside={(*@}{@*)}]
 $ ogrinfo Export_vse.vfk
@@ -760,7 +768,7 @@ INFO: Open of `Export_vse.vfk'
 \end{figure}
 
 
-
+% =============================================================================
 \clearpage
 \chapter{Použité technologie}
 
@@ -768,11 +776,11 @@ INFO: Open of `Export_vse.vfk'
 
 QGIS je geografický informační systém, který je distribuován jako
 open-source\footnote{Open-source software je takový software, k~němuž
-  zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále
-  upravovat. Jednotlivé definice termínu \uv{open source} se liší
-  zvláště v~podmínkách pro další distribuci
-  softwaru.\cite{abclinuxu_opensource}} pod licencí \textit{GNU
-  General Public License}. Je oficiálním a~klíčovým produktem
+zákazník dostane od jeho tvůrce zdrojový kód a~může jej dále
+upravovat. Jednotlivé definice termínu \uv{open source} se liší
+zvláště v~podmínkách pro další distribuci
+softwaru.\cite{abclinuxu_opensource}} pod licencí \textit{GNU
+General Public License}. Je oficiálním a~klíčovým produktem
 organizace OSGeo. Díky přenositelnosti zdrojového kódu je použitelný
 na širokém spektru platforem, ať už jsou to desktopové platformy
 Linux, MacOS, Windows, nebo mobilní platforma Android.
@@ -807,7 +815,7 @@ Foundation a~vydávána pod licencí \textit{X/MIT}. Knihovna používá
 jednoduchý abstraktní datový model pro všechny podporované datové
 formáty. Kromě toho nabízí také řadu užitečných nástrojů pro
 příkazovou řádku určených pro konverzi a~zpracování
-dat. \cite{gdal_wiki}
+dat.
 
 \begin{figure}[h]
 \centering
@@ -817,18 +825,20 @@ dat. \cite{gdal_wiki}
 
 GDAL byla původně vyvíjena Frankem Warmerdamem a~to do verze 1.3.2,
 posléze byla knihovna převedena na GDAL Project Management Committee,
-která je součástí Open Source Geospatial Foundation.\cite{gdal_wiki}
+která je součástí Open Source Geospatial Foundation.
 
 Knihovna OGR, která je od verze 2.0 součástí knihovny GDAL, slouží pro
-práci s~daty ve vektorovém formátu.\cite{gdal}
+práci s~daty ve vektorovém formátu.
 
 %%% ML: mozna by stalo za to, zduraznit, ze jako jediny z popisovanych
 %%% nastroju je open source (btw, nenasel jsi krome GDAL jeste neco
 %%% dalsiho, vim, ze neco meli v Plzni pro prevod do PG)
+%% akorat https://ojs.cvut.cz/ojs/index.php/gi/article/viewFile/gi.2.14/2592
+%% ale neni zde informace o soucasnem stavu software
 GDAL je považován za jeden z~hlavních open-source projektů. Knihovna
 je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená
 a~poskytuje základní funkcionalitu potřebnou pro denní práci
-s~rozsáhlým množstvím GIS formátů.\cite{gdal_wiki}
+s~rozsáhlým množstvím GIS formátů.\cite{gdal_wiki} \cite{gdal}
 
 
 \section{Python}
@@ -891,7 +901,10 @@ služeb. Obsahuje prostředky pro současné vedení souborů popisných
 informací (SPI) a~souborů geodetických informací (SGI). Dále jsou
 v~něm obsaženy prostředky pro podporu správních a~administrativních
 činností při vedení katastru nemovitostí a~pro správu dokumentačních
-fondů. \cite{iskn}
+fondů. 
+
+Informace obsažené v této kapitole jsou čerpány především z popisu Informačního
+systému katastru nemovitostí na stránkách ČUZK, viz \cite{iskn}.
 
 \begin{figure}[htb]
 \centering
@@ -904,19 +917,21 @@ fondů. \cite{iskn}
 %%% ML: je otazka, zda za kazdym odstavce uvadet s tejnou citaci,
 %%% lepsi je na uvod veta typu "Text teto kapitoly prevazne cerpa z
 %%% ...." (coz plati pro celou kapitolu 3)
+%% upraveno
 Vývoj systému byl započat v~roce 1997 ve spolupráci se společností APP
 Czech s.r.o.\footnote{Dnes společnost funguje pod názvem NESS Czech
   s.r.o.}, která fungovala jako systémový integrátor a~dodavatel
 %%% ML: pro CUZK (?)
-aplikačního programového vybavení. Dalšími společnostmi podílejícími
+%% upraveno
+aplikačního programového vybavení pro ČUZK. Dalšími společnostmi podílejícími
 se na vývoji ISKN byly Infinity, a.s., Compaq Computer
 s.r.o.\footnote{Dnes pod názvem HP.}, Oracle Czech, s.r.o., Bentley
-Systems, s.r.o., BEA Systems, s.r.o. \cite{iskn}
+Systems, s.r.o., BEA Systems, s.r.o.
 
 Systém byl nasazen do provozu v~září roku 2001, a~to na všech
 katastrálních pracovištích včetně centrály. Dolaďování a~převzetí
 závěrečných etap probíhalo v~roce 2002. V~témže roce byl dokončen
-audit systému. \cite{iskn}
+audit systému.
 
 Implementace ISKN plně nahradila dřívější způsob vedení katastru
 nemovitostí. ISKN integroval vedení a~správu katastru nemovitostí pod
@@ -924,12 +939,12 @@ jediný informační systém společný pro všechna pracoviště katastrálníc
 úřadů a~centrum. To vedlo k~tomu, že je možné zveřejňovat
 a~poskytovat aktuální data z~katastru nemovitostí prostřednictvím
 dálkového přístupu během několika málo minut, a~to z~celého území
-republiky.~\cite{iskn}
+republiky.
 
 Data jsou do systému ISKN ukládána pomocí Spatial Cartridge Option do
 databáze Oracle. Podpora vzdáleného přístupu k~datům pomocí sítě
 Internet je zajištěna pomocí BEA WebLogic. Systémový management
-využívá nástrojů CA Unicenter.~\cite{iskn}
+využívá nástrojů CA Unicenter.
 
 V~roce 2004 byla uzavřena nová smlouva se společností NESS Czech
 s.r.o. na rozvoj a~údržbu informačního systému v~letech 2004 --
@@ -937,10 +952,10 @@ s.r.o. na rozvoj a~údržbu informačního systému v~letech 2004 --
 katastru nemovitostí a~zavedena orientační mapa parcel. Důležitou
 inovací bylo zavedení elektronické značky pro výpis z~katastru
 nemovitostí a~pro kopii katastrální mapy \footnote{Tento krok umožnil,
-  aby tzv. \uv{ověřující} podle zákona č. 365/2000 Sb., o~informačních
-  systémech veřejné správy, v~platném znění, mohli poskytovat ověřené
-  výpisy z~katastru nemovitostí, převedené z~elektronické do listinné
-  podoby. \cite{iskn}}. \cite{iskn}
+aby tzv \uv{ověřující} podle zákona č. 365/2000 Sb., o~informačních
+systémech veřejné správy, v~platném znění, mohli poskytovat ověřené
+výpisy z~katastru nemovitostí, převedené z~elektronické do listinné
+podoby.\cite{iskn}}.
 
 Společnost NESS Czech s.r.o. poté v~dalších letech vyhrála několik
 veřejných zakázek týkajících se údržby a~rozvoje ISKN. Hlavním cílem
@@ -950,12 +965,12 @@ kterém byla data ISKN uložena pouze v~jedné databázi. Spolu s~touto
 úpravou byla změněna i~architektura z~původní client/server na
 třívrstvou architekturu. Architektura je postavena na platformě Oracle
 Forms/Reports 10g a~databázi Oracle 10g. Další změnou byl přechod na
-vyšší verzi Bentley nástroje pro správu prostorových dat. \cite{iskn}
+vyšší verzi Bentley nástroje pro správu prostorových dat.
 
 ISKN byl nadále zlepšován. Za zmínku stojí především systém pro
 Dálkový přístup do katastru nemovitostí nebo zavedení možnosti získat
 informaci o~ukončení řízení pomocí SMS nebo e-mailové
-zprávy. \cite{iskn}
+zprávy.
 
 
 \section{Hlavní charakteristiky ISKN}
@@ -970,7 +985,7 @@ optimalizaci byla také přijata koncepce samostatné evidence budov
 a~bezešvé digitální katastrální mapy. Od konce roku 2001 jsou
 uchovávány také veškerá historická data popisných a~prostorových dat,
 díky čemuž je možné sestavovat data do potřebných výstupů
-k~historickému datu od zavedení ISKN v~roce 2001. \cite{iskn}
+k~historickému datu od zavedení ISKN v~roce 2001.
 
 \subsection{Optimalizace procesů při správě KN}
 
@@ -983,7 +998,7 @@ zobrazit (SPI, SGI), případně v~něm provádět úpravy. Toto zajišťuje
 důkladnou kontrolu výsledného stavu katastru. Proces realizace změny
 je navíc zajištěn i~technicko-organizačními opatřeními (návrh změny
 a~kontrolu, včetně zplatnění provádí vždy jiná osoba dle přidělených
-uživatelských rolí). \cite{iskn}
+uživatelských rolí).
 
 Díky novým procesům ve zpracování dat/návrhů změn je možné částečné
 nabytí platnosti geometrického plánu s~automatizovanou změnou návrhu
@@ -996,7 +1011,7 @@ jednotnost do procesu zpracování změn na katastrálních úřadech. Tímto
 se rapidně zvyšuje konzistence a~kvalita datové základny. Některé
 z~centrálních číselníků nebo seznamů jsou přebírány z~externích
 datových zdrojů (např. číselníky územní identifikace,
-PSČ). \cite{iskn}
+PSČ).
 
 \subsection{Bezpečnost}
 
@@ -1006,13 +1021,13 @@ ISKN. Nepřetržitý provoz je zajištěn pomocí technologie databázových
 a~aplikačních clusterů a~tím, že je celá infrastruktura zdvojena
 (primární a~záložní centrum). Do záložního centra jsou replikována
 veškerá data tak, aby byl v~případě náhlého výpadku primárního centra
-zajištěn nepřetržitý provoz ISKN. \cite{iskn}
+zajištěn nepřetržitý provoz ISKN.
 
 
 \section{Poskytování dat}
 
 Poskytování dat je umožněno na základě vyhlášky číslo 358/2013 Sb.,
-o~poskytování údajů z~katastru nemovitostí. \cite{iskn}
+o~poskytování údajů z~katastru nemovitostí.
 
 \subsection{Poskytování dat dálkovým přístupem}
 
@@ -1021,7 +1036,7 @@ Na základě registrace je umožněno poskytování dat (zdarma, nebo za
 z~KN a~snímky katastrální mapy mají povahu veřejných elektronických
 listin (jsou opatřeny elektronickou značkou) a~mohou být převedeny do
 podoby listinných veřejných listin. Tímto způsobem je v~současné době
-vyřizována více než třetina výstupů. \cite{iskn}
+vyřizována více než třetina výstupů. 
 
 Více informací o~této metodě poskytování dat je spolu s~aplikací
 dostupných na stránkách ČUZK (\url{http://www.cuzk.cz/aplikace-dp/}).
@@ -1041,7 +1056,9 @@ formátu je uvedeno v~kapitole č. \ref{l_format_vfk}.
 V~této kapitole je ve stručnosti popsána historie vývoje výměnného
 formátu ISKN spolu s~jeho popisem, ve kterém se věnuji především
 sekcím důležitým pro vývoj zásuvného modulu pro QGIS, který dokáže
-data v~tomto formátu zobrazit.
+data v~tomto formátu zobrazit. Kapitola čerpá především z oficiální
+dokumentace výměnného formátu, viz \cite{vfk_struktura}.
+
 
 \section{Vývoj formátu}
 
@@ -1149,11 +1166,11 @@ Tato kapitola pojednává o~struktuře výměnného formátu ISKN. Nejsou zde
 popsány a~do detailu rozvedeny veškeré datové bloky formátu, ale pouze
 ty nejdůležitější prvky formátu vzhledem k~zásuvnému modulu pro
 QGIS. Podrobný popis formátu je dostupný v~oficiální dokumentaci
-(\cite{vfk_struktura}), ze které tato kapitola čerpá. Veškeré ukázky
+(viz \cite{vfk_struktura}), ze které tato kapitola čerpá. Veškeré ukázky
 výměnného formátu jsou pořízeny z~testovacích dat dostupných na
-stránkách ČUZK (\cite{nvf_cuzk}).
+stránkách ČUZK (viz \cite{nvf_cuzk}).
 
-Datový soubor \textit{.vfk} se skládá ze tří základních částí, které
+Datový soubor VFK se skládá ze tří základních částí, které
 budou samostatně popsány v následujícím textu této kapitoly:
 
 \begin{itemize}
@@ -1172,7 +1189,7 @@ souslednosti znaků \texttt{<CR><LF>}. Znak \uv{\texttt{\currency}}
 znamená, že následující řádek souboru výměnného formátu je
 pokračováním předchozího řádku a~tvoří jedinou datovou větu, která
 v~textové položce obsahuje formátovací znaky
-\texttt{<CR><LF>}. \cite{vfk_struktura}
+\texttt{<CR><LF>}.
 
 \subsection{Hlavička \texttt{\&H}}
 
@@ -1344,8 +1361,9 @@ pořízena z~testovacích dat.
 \subsection*{Seznam skupin datových bloků ISKN}
 
 V~této sekci je uveden popis jednotlivých skupin datových bloků. Jsou
-zde uvedeny pouze nejpodstatnější informace, podrobný popis lze
-dohledat v~oficiální dokumentaci formátu VFK (\cite{vfk_struktura}).
+zde uvedeny pouze nejpodstatnější informace. Podrobný popis lze
+dohledat v~oficiální dokumentaci formátu VFK (viz \cite{vfk_struktura}),
+ze které tento text převážně vychází.
 
 \begin{description}
 \item[NEMOVITOSTI:] Jedná se o~největší skupinu datových bloků. Celkem
@@ -1686,8 +1704,7 @@ Změnový export nelze provést nad všemi skupinami datových bloků. Proveden 
 Objekty, které byly vybrány v~parametrech při spuštění exportu, jsou
 součástí datového souboru i~v~případě, kdy na nich nebyla provedena
 žádná změna (tzn. jsou platné). Pro ostatní objekty ve vybraných
-datových skupinách se exportují pouze změnové
-věty. \cite{vfk_struktura}
+datových skupinách se exportují pouze změnové věty.
 
 \subsection{Obsah změnového exportu -- Typy tabulek}
 
@@ -1703,7 +1720,7 @@ jednotkách, OS, JPV, přiřazených listinách a~katastrálních
 tělesech. Aktuálnost dat je vyjádřena pomocí následujících atributů:
 datum vzniku, datum zániku, stav dat a~kontext změn. Může nastat
 několik kombinací atributů, jejich seznam a~popis je uveden v~tabulce
-č. \ref{t_komb_atributu}. \cite{vfk_struktura}
+č. \ref{t_komb_atributu}. 
 
 \begin{table}[htbp]
 \centering
@@ -1729,7 +1746,7 @@ a~\textit{platnost do} u~exportovaného objektu vzhledem k~danému
 období.
 
 U~operací \texttt{INSERT} a~\texttt{DELETE} je v~datovém souboru možný
-pouze jeden záznam s~jedním ID. \cite{vfk_struktura}
+pouze jeden záznam s~jedním ID.
 
 Příklad obsahu změnového exportu:
 
@@ -1748,20 +1765,20 @@ Jsou exportovány daná řízení, která byla v~zadaném intervalu (Platnost
 od -- Platnost do) zplatněna, nebo uzavřena. Na tato řízení navazuje
 vazba na k.ú., objekty řízení, předměty říz., účast. říz., adresy,
 listiny, vazba na další údaje listin, typy účastníků řízení
-a~denormalizovaná data o~obeslání účastníků. \cite{vfk_struktura}
+a~denormalizovaná data o~obeslání účastníků.
 
 \subsubsection{Tabulky nepodléhají principu historizace (skupiny GMPL a~REZE)}
 
 U~těchto tabulek se udržuje aktuální stav. Nemohou být proto obsahem
 změnových vět. Jsou zde udržovány informace o~geometrických plánech
 (skupina GMPL) a~rezervovaných číslech (skupina
-REZE). \cite{vfk_struktura}
+REZE).
 
 \subsubsection{Export číselníků}
 
 V~číselnících jsou exportována jen ta data, u~kterých byla platnost
 započata nebo ukončena v~zadaném časovém intervalu (Platnost od --
-Platnost do). \cite{vfk_struktura}
+Platnost do).
 
 
 % ==================================================================================
@@ -1778,7 +1795,8 @@ s~daty v~novém výměnném formátu katastru (VFK), viz kapitola
 
 Pro přístup k~datům plugin využívá knihovny GDAL, respektive ovladače
 %%% ML: doplnit odkaz na kapitolu
-\textbf{VFK Driver}. Načtená data driver ukládá do databáze SQLite,
+%% doplneno
+\textbf{VFK Driver} (viz \ref{l_gdal_vfk_driver}). Načtená data ovladač ukládá do databáze SQLite,
 jejíž struktura je shodná se strukturou jednotlivých bloků v~souboru
 VFK. Při opakovaném čtení dat ze stejného souboru je využívána již
 vytvořená SQLite databáze, oproti původnímu VFK souboru.
@@ -1850,7 +1868,7 @@ navigaci mezi jednotlivými prvky jsou používány hypertextové
 odkazy. Obsah okna prohlížeče je ukládán do historie, což usnadňuje
 uživateli vyhledávání stále se opakujících informací (není potřeba
 opakovaně provádět stejný databázový dotaz). Historii lze procházet
-pomocí tlačítek \texttt{Vpřed} a~\texttt{Zpět}.
+pomocí tlačítek \uv{Vpřed} a~\uv{Zpět}.
 
 Pro zjištění aktuálního stavu o~dané nemovitosti je zde implementováno
 propojení s~aplikací \textbf{Nahlížení do katastru
@@ -1875,7 +1893,7 @@ k~horní liště okna QGIS, ale je možné ho ukotvit i~k~ostatním
 okrajům. Okno modulu lze samozřejmě používat i~samostatně
 (neukotvené).
 
-Pro vrstvy parcel (\texttt{PAR}) a~budov (\texttt{BUD}) byl vytvořen
+Pro vrstvy parcel (PAR) a~budov (BUD) byl vytvořen
 předdefinovaný vzhled ve formátu \textit{XML}, respektive
 \textit{QML}, se kterým QGIS nativně pracuje.
 
@@ -1914,11 +1932,13 @@ zásuvným modulem.
 
 \subsection{Načítání dat}
 %%% ML: Tato operace je k dispozici ?
-Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je
+%% upraveno
+Pomocí zásuvného modulu je možné načíst soubor VFK. Tento import je
 k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import
-  VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou
+  VFK}. V~tomto okně je dále možné zvolit, které vrstvy (PAR, BUD) se budou
 %%% ML: nepresne, spise zobrazovat v mapovem okne
-importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole,
+%% upraveno
+zobrazovat v mapovém okně QGIS. V~případě, kdy není zatrženo ani jedno pole,
 tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání
 bez interakce s~mapovým oknem.
 
@@ -1945,10 +1965,11 @@ dat. Náhled vyhledaných informací je uveden na obrázku
 
 %%% ML: opet nevhodna ich forma, ale je v cele praci i kdyz vetsinou
 %%% pouze v uvodni castech kapitol
-V~této kapitole bych se chtěl postupně věnovat jednotlivým krokům,
+%% upraveno
+V~této kapitole se budeme postupně věnovat jednotlivým krokům,
 které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS
 o~podporu zpracování změnových vět souborů VFK. Spolu s~tímto byly do
-pluginu přidány další funkcionality, jež jsou zmíněny v dalším textu kapitoly.
+pluginu přidány další funkcionality, jež budou zmíněny v dalším textu kapitoly.
 
 \section{Usnadnění distribuce pluginu}
 
@@ -1956,7 +1977,11 @@ pluginu přidány další funkcionality, jež jsou zmíněny v dalším textu ka
 %%% repozitaru instalovat pouze python pluginy (mas to naznaceno v
 %%% zaveru tohoto textu, ale ne primo), neumoznuje distribuci C++
 %%% pluginu, z textu to neni zrejme
-Jak již bylo zmíněno v~kapitolách uvedených výše, stávající zásuvný modul byl napsán v~jazyce C++. Což znamenalo plugin kompilovat pro každou podporovanou platformu.
+Jak již bylo zmíněno v~kapitolách uvedených výše, stávající zásuvný modul 
+byl napsán v~jazyce C++. Program QGIS ale umožňuje ze vzdálených repositářů
+instalovat pouze moduly napsané v jazyce Python. C++ plugin tak musel být
+pro každou podporovanou platformu kompilován samostatně a instalován jiným 
+vhodným způsobem.
 
 Kompilace pod operačním systémem Linux (Ubuntu) může být provedena
 pomocí skriptů\footnote{Návod dostupný na:
@@ -1983,22 +2008,24 @@ operačního systému, či verze programu QGIS.
 
 %%% ML: zasadnim bodem teto prace je implementace novych
 %%% funkcionalit...
-Přepis zásuvného modulu do jazyka Python byl zásadním bodem této
+%% upraveno
+Přepis zásuvného modulu do jazyka Python je důležitým bodem této
 %%% ML: tady opet ich forma, dale v textu ne
-práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce
-podobný původnímu kódu v~jazyku C++, a~to hlavně z~důvodu, aby byly
-zachovány veškeré funkcionality a~vlastnosti tak, jak jsou známé
-stávajícím uživatelům nástroje.
+%% upraveno
+práce vzhledem k usnadnění jeho distribuce. Při přepisu byl kód vytvářen 
+co možná nejvíce podobný původnímu kódu v~jazyku C++, a~to hlavně z~důvodu, 
+aby byly zachovány veškeré funkcionality a~vlastnosti tak, jak jsou známé
+stávajícím uživatelům zásuvného modulu.
 
 Základní struktura kódu zásuvného modulu byla vygenerována pomocí
 doporučovaného nástroje \textbf{Plugin
-  Builder}\footnote{http://g-sherman.github.io/Qgis-Plugin-Builder/}
+Builder}\footnote{\url{http://g-sherman.github.io/Qgis-Plugin-Builder/}}
 dostupného přímo z~QGIS. Přepis byl značně ulehčen díky použití stejné
 knihovny Qt (respektive PyQt verze 4). V~následujících ukázkách je
 porovnán původní kód v~jazyce C++ (ukázka č. \ref{l_loadLayerC++})
-s~mnou napsaným kódem v~jazyce Python (ukázka
+s kódem v~jazyce Python (ukázka
 č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové
-vrstvy ze souboru VFK do okna QGIS.
+vrstvy ze souboru VFK do mapového okna QGIS.
 
 %%% ML: zmensil jsem font
 {\scriptsize
@@ -2054,7 +2081,7 @@ def __loadVfkLayer(self, vfkLayerName):
 %%% ML: tohle by spis patrilo do priloh, ale klidne to tu nech
 \subsection{Instalace zásuvného modulu v~QGIS}
 Díky přepisu zásuvného modulu do jazyka Python je plugin v~QGIS
-dostupný standardním způsobem podobně ostatní pluginy. Plugin
+dostupný standardním způsobem, podobně jako ostatní pluginy. Plugin
 v~současné době není dostupný v~oficiálním repositáři QGIS. Pro
 instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný
 organizací
@@ -2104,8 +2131,8 @@ po kliknutí na tuto ikonku nebo z~menu \textit{Plugins} $\rightarrow$
 \label{l_plugin_ikona}
 \end{figure}
 
-% -----------------------------------------------------------------------
 
+% -----------------------------------------------------------------------
 \section{Úprava GDAL VFK driveru}
 \label{l_uprava_gdal}
 Před začátkem práce na podpoře zpracování změnových vět v~QGIS VFK
@@ -2120,8 +2147,9 @@ zpracování změnových VFK souborů nezbytné.
 %%% ML: ty zmenu uz jsou nahrane v SVN vetvi (trunk) teto
 %%% verze. Stacilo by napsat, ze prehled zmen popisuje prilozeny
 %%% patch.
-Veškeré provedené změny na ovladači VFK budou dostupné v~knihovně GDAL
-od verze 2.2.0, v~současné době jsou dostupné ve formě \uv{patche},
+%% upraveno
+Veškeré provedené změny na ovladači VFK jsou dostupné v~knihovně GDAL
+od verze 2.2.0. Přehled provedených změn popisuje přiložený \uv{patch},
 který je obsahem CD přiloženého k~diplomové práci. Tento \uv{patch} je
 vytvořen proti vývojové verzi 2.2.0 knihovny GDAL.
 
@@ -2318,28 +2346,30 @@ Vstupními argumenty pro tuto třídu, respektive metodu
 Jediným výstupním argumentem je poté cesta k~nově vytvořené databázi, která bude obsahovat stavová data s~aplikovanými změnami.
 
 %%% ML: co prejmenovat parametry (main->input a export -> output) ?
-% \newpage
+%% prejmenovano
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
 		    label=l_apply_changes_ukazka]
 $ ./applyChanges.py -h
 
-usage: applyChanges.py [-h] [-v] -m MAIN -c CHANGES -e EXPORT [-d]
+Usage: applyChanges.py [-h] [-v] -i INPUT -c CHANGES -o OUTPUT [-d]
 
 Script applies changes from amendment VFK database to main VFK database. In this process new database is created.
 
 optional arguments:
   -h, --help            Show this help message and exit
   -v, --version         Show program's version number and exit
-  -d, --debug           Enables debug mode.
-  -m MAIN, --main MAIN  Path to the main database.
+  -i INPUT, --input INPUT
+                        Path to the main database.
   -c CHANGES, --changes CHANGES
                         Path to the database with changes.
-  -e EXPORT, --export EXPORT
+  -o OUTPUT, --output OUTPUT
                         Path to the new database which will be created.
+  -d, --debug           Enables debug mode.
+
 \end{lstlisting}
 
 V~prvním kroku se pomocí nástroje \texttt{shutil.copy2(src, dst)}
-vytvoří kopie hlavní databáze. Cesta k~ní je zadána pomocí výstupního
+vytvoří kopie vstupní databáze. Cesta k~ní je zadána pomocí výstupního
 argumentu. Čas potřebný pro tvorbu kopie databáze je přímo úměrný její
 velikosti. Tento krok proto může být pro objemná data časově
 náročný. Díky tvorbě kopie a~práce s~ní je ale zajištěno, že
@@ -2349,7 +2379,8 @@ o~původní data.
 V~dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede
 připojení ke kopii databáze (v~dalším textu bude tato kopie označována
 %%% ML: to je matouci (je to vystupni DB, viz input/output)
-jako hlavní / \uv{main}). Databáze se změnami je poté k~této hlavní
+%% upraveno
+jako výstupní / \uv{output}). Databáze se změnami je poté k~této výstupní
 databázi připojena pomocí SQL příkazu \texttt{ATTACH
   DATABASE}\footnote{\url{https://www.sqlite.org/lang\_attach.html}}. Práce
 s~takto připojenou databází je poté shodná jako se schématy, známými
@@ -2369,7 +2400,7 @@ a~\texttt{INSERT} (viz ukázka \ref{l_changes_insert}), kde proměnná
 seznam sloupců a~proměnná \texttt{id} je nahrazena identifikátorem
 vkládaného prvku z~databáze, která obsahuje změnová data.
 
-Příkaz \texttt{DELETE} z~hlavní databáze smaže veškeré prvky, které se
+Příkaz \texttt{DELETE} z~výstupní databáze smaže veškeré prvky, které se
 vyskytují v~databázi se změnovými daty. Tento příkaz je vykonán,
 protože v~databázi se změnovými daty jsou vždy aktuálnější informace
 o~prvcích, než v~databázi původní.
@@ -2394,7 +2425,7 @@ WHERE ogr_fid={selected_ogr_fid}
 \end{lstlisting}
 }
 
-Po smazání veškerých neaktuálních záznamů z~hlavní databáze, je
+Po smazání veškerých neaktuálních záznamů z~výstupní databáze, je
 vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v~cyklu nad
 všemi záznamy ze změnové databáze, které jsou určeny pro
 import. V~případě, kdy jsou ve změnové databázi prvky, na kterých bylo
@@ -2432,7 +2463,7 @@ zásuvného modulu byly provedeny následující úpravy:
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.9]{images/applyChanges.png}
-\caption[VFK Plugin -- ikona pro zpracování změn]{VFK Plugin -- ikona pro zpracování změn}
+\caption[VFK Plugin -- ikona pro zpracování změn]{VFK Plugin -- ikona pro zpracování změn (zdroj: \url{https://goo.gl/BiHWLz})}
 \label{l_ikona_zmen}
 \end{figure} 
  
@@ -2474,11 +2505,11 @@ zpracování změn neaktivní.
 %%% ML: tato kapitola spise patri do priloh!!!, ale chapu, ze by se potom
 %%% text prilis zkratil
 \subsubsection{ApplyChanges}
-%%% ML: prvni vetu preformilovat
-Třída, která se stará o~aplikaci změn, které jsou pomocí \texttt{VFK
-  Driveru GDAL} uloženy do databáze SQLite, na SQLite databázi
-vytvořenou ze stavového VFK souboru. Podrobnější popis zpracování
-změnových souborů touto třídou je k~dispozici v~kapitole
+%%% ML: prvni vetu preformulovat
+%% upraveno
+Třída slouží pro aplikaci změn na stavová data. Pracuje s databázemi SQLite,
+které jsou vytvořeny pomocí \texttt{VFK Driveru GDAL}. Podrobnější popis 
+zpracování změnových souborů touto třídou je uveden v~kapitole
 \ref{l_zpracovani_zmen}.
 
 \subsubsection{BudovySearchForm}
@@ -2500,7 +2531,7 @@ sestavení se stará metoda \texttt{buildHtml()}, viz příloha
 %%% ML: 3x napriklad vypada divne
 Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek
 (např. \texttt{tableParcely()}), metody pro tvorbu jednotlivých částí
-listu vlastnictví (např. \texttt{partTelesoB1()}), nebo metody pro
+listu vlastnictví jako je \texttt{partTelesoB1()}, nebo metody pro
 zobrazení detailu o~vyhledávaném tělese (např. \texttt{pageBudova()}).
 
 Důležitou metodou v~této třídě je metoda \texttt{pageHelp()}, díky
@@ -2522,8 +2553,8 @@ základě zadaného vstupního kódu.
 \subsubsection{HtmlDocument}
 
 %%% ML: zde je odkaz na stejnou kapitolu, ve ktere je tento text
-Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz
-\ref{l_vfkDocument}). Jsou v~ní obsaženy metody pro tvorbu
+Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}. 
+Jsou v~ní obsaženy metody pro tvorbu
 jednotlivých částí kódu v~jazyce \textit{HTML}. Vhodnou kombinací
 těchto částí je poté sestaven celý \textit{HTML} dokument. Takto
 připravený dokument je poté možné vyexportovat pomocí příslušné
