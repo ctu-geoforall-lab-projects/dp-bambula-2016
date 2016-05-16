@@ -1942,18 +1942,25 @@ dat. Náhled vyhledaných informací je uveden na obrázku
 \clearpage
 \chapter{Rozšíření stávající funkcionality}
 \label{l_rozsireni_funkcionality}
+
+%%% ML: opet nevhodna ich forma, ale je v cele praci i kdyz vetsinou
+%%% pouze v uvodni castech kapitol
 V~této kapitole bych se chtěl postupně věnovat jednotlivým krokům,
 které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS
 o~podporu zpracování změnových vět souborů VFK. Spolu s~tímto byly do
-pluginu přidány další funkcionality, jež jsou zmíněny na následujících
-řádcích kapitoly.
+pluginu přidány další funkcionality, jež jsou zmíněny v dalším textu kapitoly.
 
 \section{Usnadnění distribuce pluginu}
-Jak už bylo zmíněno v~kapitolách uvedených výše, stávající zásuvný modul byl napsán v~jazyce C++. Což znamená, že před prvním použitím se musí plugin překompilovat. 
+
+%%% ML: tady bych chtelo doplnit, ze qgis umoznuje ze vzdalenych
+%%% repozitaru instalovat pouze python pluginy (mas to naznaceno v
+%%% zaveru tohoto textu, ale ne primo), neumoznuje distribuci C++
+%%% pluginu, z textu to neni zrejme
+Jak již bylo zmíněno v~kapitolách uvedených výše, stávající zásuvný modul byl napsán v~jazyce C++. Což znamenalo plugin kompilovat pro každou podporovanou platformu.
 
 Kompilace pod operačním systémem Linux (Ubuntu) může být provedena
 pomocí skriptů\footnote{Návod dostupný na:
-  http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}, které
+  \url{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}}, které
 vytvořili autoři původní verze modulu.
 
 Pod operačním systémem Microsoft Windows je situace poněkud
@@ -1963,7 +1970,8 @@ zkompilován samostatně vzhledem k~typu operačního systému
 stránkách pluginu, avšak nejsou zde uvedeny veškeré verze QGIS jak pro
 32bit systém, tak pro 64bit systém. Uživatel jiné verzi QGIS (jiného
 typu operačního systému) by si tedy musel plugin zkompilovat sám, což
-může být pro nezkušené uživatele značná překážka.
+%%% ML: ani zkuseni uzivatele nejsou schopni casto kompilovat
+může být i pro zkušeného uživatele nepřekonatelná překážka.
 
 Výše zmíněné problémy značně snižují jak možnost většího rozšíření
 zásuvného modulu, tak komfort při jeho instalaci
@@ -1972,7 +1980,11 @@ plugin stane snadněji dostupným pro všechny uživatele bez rozdílu
 operačního systému, či verze programu QGIS.
 
 \subsection{Přepis do jazyka Python}
+
+%%% ML: zasadnim bodem teto prace je implementace novych
+%%% funkcionalit...
 Přepis zásuvného modulu do jazyka Python byl zásadním bodem této
+%%% ML: tady opet ich forma, dale v textu ne
 práce. Při přepisu jsem se snažil kód vytvářet co možná nejvíce
 podobný původnímu kódu v~jazyku C++, a~to hlavně z~důvodu, aby byly
 zachovány veškeré funkcionality a~vlastnosti tak, jak jsou známé
@@ -1988,6 +2000,8 @@ s~mnou napsaným kódem v~jazyce Python (ukázka
 č. \ref{l_loadLayerPython}). Oba kódy slouží pro přidání vektorové
 vrstvy ze souboru VFK do okna QGIS.
 
+%%% ML: zmensil jsem font
+{\scriptsize
 \begin{lstlisting}[style=c++, 
 		    caption=Kód pro načtení vektorové vrstvy v~C++, 
 		    label=l_loadLayerC++]
@@ -2009,20 +2023,16 @@ vrstvy ze souboru VFK do okna QGIS.
   QgsMapLayerRegistry::instance()->addMapLayers( myList );
 }
 \end{lstlisting}
+}
 
-\newpage
+{\scriptsize
 \begin{lstlisting}[style=python, 
 		    caption=Kód pro načtení vektorové vrstvy v~jazyce Python,
 		    label=l_loadLayerPython]
 def __loadVfkLayer(self, vfkLayerName):
-  """
-  Method loads VFK layer.
-  :type vfkLayerName: str
-  """
   qDebug("\n(VFK) Loading vfk layer {}".format(vfkLayerName))
   if vfkLayerName in self.__mLoadedLayers:
-      qDebug(
-	  "\n(VFK) Vfk layer {} is already loaded".format(vfkLayerName))
+      qDebug("\n(VFK) Vfk layer {} is already loaded".format(vfkLayerName))
       return
 
   composedURI = self.__mDataSourceName + "|layername=" + vfkLayerName
@@ -2039,14 +2049,16 @@ def __loadVfkLayer(self, vfkLayerName):
 
   QgsMapLayerRegistry.instance().addMapLayer(layer)
 \end{lstlisting}
+}
 
+%%% ML: tohle by spis patrilo do priloh, ale klidne to tu nech
 \subsection{Instalace zásuvného modulu v~QGIS}
 Díky přepisu zásuvného modulu do jazyka Python je plugin v~QGIS
-dostupný standardním způsobem, jako ostatní pluginy napsány v~tomto
-jazyce. Plugin v~současné době není dostupný v~oficiálním repositáři
-QGIS. Pro instalaci pluginu je potřeba do QGIS přidat nový repositář
-spravovaný organizací
-OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/},
+dostupný standardním způsobem podobně ostatní pluginy. Plugin
+v~současné době není dostupný v~oficiálním repositáři QGIS. Pro
+instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný
+organizací
+OSGeoREL\footnote{\url{http://geomatics.fsv.cvut.cz/research/osgeorel}},
 pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese
 \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz
 obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto
@@ -2057,7 +2069,7 @@ v~záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=1\textwidth]{images/qgis_repo_plugins.png}
+\includegraphics[width=.7\textwidth]{images/qgis_repo_plugins.png}
 \caption[Přidání repositáře QGIS]{Přidání repositáře QGIS}
 \label{l_qgis_plugins}
 \end{figure}
@@ -2075,7 +2087,7 @@ obr. \ref{l_qgis_hledani_pluginu}.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=1\textwidth]{images/qgis_plugin_vyhledani.png}
+\includegraphics[width=.7\textwidth]{images/qgis_plugin_vyhledani.png}
 \caption[Vyhledání zásuvného modulu]{Vyhledání zásuvného modulu}
 \label{l_qgis_hledani_pluginu}
 \end{figure}
@@ -2093,7 +2105,7 @@ po kliknutí na tuto ikonku nebo z~menu \textit{Plugins} $\rightarrow$
 \end{figure}
 
 % -----------------------------------------------------------------------
-\clearpage
+
 \section{Úprava GDAL VFK driveru}
 \label{l_uprava_gdal}
 Před začátkem práce na podpoře zpracování změnových vět v~QGIS VFK
@@ -2102,9 +2114,12 @@ VFK driveru, který plugin využívá pro čtení dat VFK, respektive jejich
 zápis do databáze SQLite.
 
 Úprava byla provedena ve spolupráci s~autorem GDAL VFK driveru
-Martinem Landou, který provedl většinu změn ovladače, které byly pro
+Martinem Landou. Ten provedl většinu změn ovladače, které byly pro
 zpracování změnových VFK souborů nezbytné.
 
+%%% ML: ty zmenu uz jsou nahrane v SVN vetvi (trunk) teto
+%%% verze. Stacilo by napsat, ze prehled zmen popisuje prilozeny
+%%% patch.
 Veškeré provedené změny na ovladači VFK budou dostupné v~knihovně GDAL
 od verze 2.2.0, v~současné době jsou dostupné ve formě \uv{patche},
 který je obsahem CD přiloženého k~diplomové práci. Tento \uv{patch} je
@@ -2147,26 +2162,28 @@ struktuře (viz ukázka \ref{l_struktura_sireni_vfk}), kdy jsou některé
 VFK bloky uloženy v~jednom adresáři a~další ve druhém pod stejným
 názvem souboru.
 
-Chování driveru bylo proto opraveno tak, že pokud uživatel potřebuje
+Chování driveru bylo proto upraveno tak, že pokud uživatel potřebuje
 načíst více VFK souborů do jedné databáze, musí nejprve zadat cestu
-k~výstupní SQLite databází pomocí proměnné prostředí
+k~výstupní SQLite databázi pomocí proměnné prostředí
 \texttt{OGR\_VFK\_DB\_NAME}. Při čtení prvního souboru se načtou data
-standardním způsobem do databáze, ale při čtení dalších driver porovná
-tabulky v~databázi s~datovými bloky čteného VFK souboru. Jestliže
-tabulka daného jména v~databázi neexistuje, tak ji vytvoří a~pokračuje
-v~načítání dat.
+standardním způsobem do databáze. Čtení dalších souborů je ošetřeno
+tak, že driver porovná tabulky v~databázi s~datovými bloky čteného VFK
+souboru. Jestliže tabulka daného jména v~databázi neexistuje, tak ji
+vytvoří a~pokračuje v~načítání dat.
 
 Při načítání dat driver testuje (viz \ref{l_gdal_kontrola_zmen}), zda
 se jedná o~změnový, nebo stavový VFK soubor. Jestliže se jedná
 o~stavový, tak driver nepovolí načítání dat, která jsou již v~databázi
-uloženy (vznikaly by duplicity, což není u~stavových dat možné). Při
+uložena (vznikaly by duplicity, což není u~stavových dat možné). Při
 čtení změnového souboru je povoleno ukládání prvků s~\texttt{ID},
 které je již v~tabulce uložené (ve změnovém souboru je možné uložit
 prvky se stejným \texttt{ID}, viz kapitola
-\ref{l_struktura_zmen}). Správné uložení prvků s~duplicitním
-\texttt{ID} je zajištěno pomocí databázového indexu \texttt{UNIQUE},
+\ref{l_struktura_zmen}). Kontrola uložení prvků s~duplicitním
+\texttt{ID} je zajištěna pomocí databázového indexu \texttt{UNIQUE},
 který je vytvářen právě jen pro stavová data.
 
+\newpage
+{\scriptsize
 \begin{lstlisting}[style=c++, 
 		    caption={Výňatek z~kódu pro kontrolu změnového souboru}, 
 		    label=l_gdal_kontrola_zmen]
@@ -2180,6 +2197,7 @@ else if (pszLine[1] == 'H') {
     AddInfo(pszLine);
 }
 \end{lstlisting}
+}
 
 \subsection{Čtení z~databáze SQLite}
 Další podstatnou změnou na VFK driveru knihovny GDAL bylo přidání
@@ -2188,7 +2206,7 @@ možné v~QGIS načíst vrstvy z~databáze, do které byly aplikovány změny.
 
 \subsection{Vytváření geometrie prvků}
 Vytváření geometrie pro jednotlivé prvky, které jsou obsaženy ve VFK
-souboru, se děje pomocí metody \texttt{int
+souboru, se děje pomocí metody \texttt{
   IVFKDataBlock::LoadGeometry()}. V~dosavadní verzi VFK driveru byla
 tato metoda volána při požadavku o~konkrétní prvek (například pomocí
 konzolového příkazu: \texttt{ogrinfo Export\_vse.vfk PAR -FID
@@ -2208,17 +2226,18 @@ prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je
 opět zobrazeno upozornění.
 
 \subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny týkající se v~načítání vícero VFK souborů do stejné
+Výše uvedené změny týkající se načítání vícero VFK souborů do stejné
 databáze byly implementovány i~do zásuvného modulu. Spolu s~touto
 změnou byla do zásuvného modulu přidána i~možnost načíst přímo SQLite
 databáze s~VFK daty.
 
 Tato rozšířená funkcionalita je do zásuvného modulu přidána pouze
 v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od
-verze \texttt{2.2.0}. V~případě nižší verze je aktualizován popisek
+verze \texttt{2.2.0}. V~případě nižší verze je upraven popisek
 ikonky pro přidání dalších VFK souborů (viz
 \ref{l_kontrola_verze_gdal}) a~přidání dalších souborů není umožněno.
 
+{\scriptsize
 \begin{lstlisting}[style=python, 
 		    caption={Kontrola verze GDAL na straně VFK pluginu}, 
 		    label=l_kontrola_verze_gdal]
@@ -2227,8 +2246,9 @@ if gdal_version < 2020000:
     self.pb_nextFile.setToolTip(
 	u'Neni mozne nacist vice souboru, verze GDAL je nizsi nez 2.2.0.')
 \end{lstlisting}
+}
 
-Jak z~výše uvedených vět vyplývá, k~přidání této funkcionality musel
+Jak z~výše uvedeného vyplývá, k~přidání této funkcionality musel
 být změněn i~vzhled samotného okna zásuvného modulu pro načítání
 dat. Nový vzhled je uveden na obrázku
 č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
@@ -2236,7 +2256,7 @@ dat. Nový vzhled je uveden na obrázku
 \begin{enumerate}
  \item Tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
  \item nově vygenerovaný formulář pro vyhledání VFK souboru,
- \item indikátor stavu načítání VFK souborů.
+ \item indikátor stavu načítání VFK souborů,
  \item popisek stavu načítání dat.
 \end{enumerate}
 
@@ -2248,11 +2268,10 @@ dat. Nový vzhled je uveden na obrázku
 \end{figure}
 
 
-\newpage
 % -----------------------------------------------------------------------
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
-Schopnost umět zpracovat změnové věty VFK souborů je důležitá pro
+Schopnost zpracovat změnové věty VFK souborů je důležitá pro
 každého uživatele, který s~daty katastru nemovitostí pracuje. Jestliže
 uživatel již jednou vlastní stavová data pro dané území a~potřebuje
 hlídat aktuálnost těchto dat, je pro něj výhodnější stahovat právě
@@ -2273,6 +2292,7 @@ QGIS. V~případě, kdy změny obsahují potřebné datové bloky, je nad
 změnovými daty umožněno i~vyhledávání.
 
 \subsection{Metodika aplikace změn na stavová data}
+
 Aplikace změn na stavová data předpokládá, že uživatel již má pomocí
 VFK driveru knihovny GDAL připravenou databázi jak se stavovými daty,
 tak s~daty změnovými. V~opačném případě může uživatel tyto databáze
@@ -2297,6 +2317,7 @@ Vstupními argumenty pro tuto třídu, respektive metodu
 
 Jediným výstupním argumentem je poté cesta k~nově vytvořené databázi, která bude obsahovat stavová data s~aplikovanými změnami.
 
+%%% ML: co prejmenovat parametry (main->input a export -> output) ?
 % \newpage
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
 		    label=l_apply_changes_ukazka]
@@ -2307,8 +2328,8 @@ usage: applyChanges.py [-h] [-v] -m MAIN -c CHANGES -e EXPORT [-d]
 Script applies changes from amendment VFK database to main VFK database. In this process new database is created.
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
+  -h, --help            Show this help message and exit
+  -v, --version         Show program's version number and exit
   -d, --debug           Enables debug mode.
   -m MAIN, --main MAIN  Path to the main database.
   -c CHANGES, --changes CHANGES
@@ -2327,9 +2348,10 @@ o~původní data.
 
 V~dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede
 připojení ke kopii databáze (v~dalším textu bude tato kopie označována
+%%% ML: to je matouci (je to vystupni DB, viz input/output)
 jako hlavní / \uv{main}). Databáze se změnami je poté k~této hlavní
 databázi připojena pomocí SQL příkazu \texttt{ATTACH
-  DATABASE}\footnote{https://www.sqlite.org/lang\_attach.html}. Práce
+  DATABASE}\footnote{\url{https://www.sqlite.org/lang\_attach.html}}. Práce
 s~takto připojenou databází je poté shodná jako se schématy, známými
 například z~PostgreSQL.
 
@@ -2337,7 +2359,7 @@ Samotné změny jsou aplikovány pouze z~tabulek, které podporují princip
 \uv{historizace} (viz kapitola \ref{l_struktura_zmen}) a~které nejsou
 prázdné. Tyto tabulky musí obsahovat sloupec \texttt{STAV\_DAT}. Pro
 výběr odpovídajících tabulek slouží k~tomu určená metoda
-\texttt{\_\_findTablesWithChanges(self)}.
+\texttt{\_\_findTablesWithChanges()}.
 
 Při aplikaci změn jsou v~cyklu pro každou tabulku spouštěny databázové
 příkazy \texttt{DELETE} (viz ukázka \ref{l_changes_delete})
@@ -2352,6 +2374,7 @@ vyskytují v~databázi se změnovými daty. Tento příkaz je vykonán,
 protože v~databázi se změnovými daty jsou vždy aktuálnější informace
 o~prvcích, než v~databázi původní.
 
+{\scriptsize
 \begin{lstlisting}[style=sql, caption={Aplikace změn -- příkaz DELETE}, 
 		    label=l_changes_delete]
 DELETE FROM main.{table}
@@ -2369,6 +2392,7 @@ WHERE ogr_fid={selected_ogr_fid}
   AND stav_dat=0
   AND id = {id};
 \end{lstlisting}
+}
 
 Po smazání veškerých neaktuálních záznamů z~hlavní databáze, je
 vykonán příkaz \texttt{INSERT}. Tento příkaz je spuštěn v~cyklu nad
@@ -2379,11 +2403,14 @@ jsou příslušné prvky seřazeny podle data vzniku a~do databáze je
 vkládán pouze nejnovější prvek (ten je jednoznačně vybrán dle
 identifikátoru \texttt{selected\_ogr\_fid}).
 
-Pro lepší orientaci o~průběhu aplikování změn na stavová data byl vytvořen diagram, viz obr. \ref{l_zmeny_diagram}.
+Pro lepší orientaci o~průběhu aplikování změn na stavová data byl
+vytvořen diagram, viz obr. \ref{l_zmeny_diagram}.
 
+%%% ML: osobne bych dal tento diagram do prilohy, potom bude text
+%%% navazovat, pokud mas pocit, ze to ma byt v textu, tak to tak nech
 \begin{figure}
   \centering
-  \includestandalone[mode=buildnew, height=0.7\paperheight]{diagram}
+  \includestandalone[mode=buildnew,height=0.7\paperheight]{diagram}
   \caption{Diagram průběhu implementace změn na stavová data}
   \label{l_zmeny_diagram}
 \end{figure}
@@ -2397,8 +2424,11 @@ implementována díky vytvoření nového formuláře v~okně pluginu. Na okně
 zásuvného modulu byly provedeny následující úpravy:
 
 \begin{enumerate}
- \item \textbf{Ikona změn:} Okno pro aplikaci změn na stavová data je vyvoláno pomocí nově vytvořené ikony v~nástrojové liště, viz obr. \ref{l_ikona_zmen}.
+\item \textbf{Ikona změn:} Okno pro aplikaci změn na stavová data je
+  vyvoláno pomocí nově vytvořené ikony v~nástrojové liště, viz
+  obr. \ref{l_ikona_zmen}.
 
+%%% ML: zdroj ikonky?
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.9]{images/applyChanges.png}
@@ -2417,7 +2447,7 @@ zásuvného modulu byly provedeny následující úpravy:
 \item \textbf{Grafický indikátor průběhu:} Zde je průběh zpracování
   změn vyjádřen procentuálně a~graficky.
  
-\item \textbf{Tlačítko pro zpracování:} Po stisku tohoto tlačítka je
+\item \textbf{Tlačítko pro zpracování:} Po stisku tohoto tlačítka
   je vyvolána metoda \texttt{run(\dots)}, díky které jsou změny
   aplikovány do databáze se stavovými daty.
  
@@ -2441,7 +2471,10 @@ zpracování změn neaktivní.
 \clearpage
 \section{Popis tříd zásuvného modulu}
 
+%%% ML: tato kapitola spise patri do priloh!!!, ale chapu, ze by se potom
+%%% text prilis zkratil
 \subsubsection{ApplyChanges}
+%%% ML: prvni vetu preformilovat
 Třída, která se stará o~aplikaci změn, které jsou pomocí \texttt{VFK
   Driveru GDAL} uloženy do databáze SQLite, na SQLite databázi
 vytvořenou ze stavového VFK souboru. Podrobnější popis zpracování
@@ -2450,7 +2483,7 @@ změnových souborů touto třídou je k~dispozici v~kapitole
 
 \subsubsection{BudovySearchForm}
 Jedná se o~třídu, která se stará o~vyhledávací prvky ve formuláři pro
-vyhledávání budov. Třída dědí od třídy \texttt{QWidget}. Vzhled
+vyhledávání budov. Vzhled
 uživatelského rozhraní této třídy byl navržen samostatně pomocí
 programu \texttt{Qt Designer}. Kód návrhu je uložen v~souboru
 \texttt{ui\_budovysearchform.ui}, respektive v~překompilované verzi
@@ -2458,36 +2491,37 @@ pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru
 třídy je uvedena v~příloze \ref{l_budovySearchForm_konstruktor}.
 
 \subsubsection{DocumentBuilder}
-V~třídě \texttt{DocumentBuilder} se sestavuje dokument, který bude
+V~třídě \texttt{DocumentBuilder} sestavuje dokument, který bude
 zobrazen v~prohlížeči dat (nebo exportován do některého
 z~podporovaných formátů), na základě výsledků vyhledávání. O~správné
-sestavení se stará metoda \texttt{buildHtml}, viz příloha
+sestavení se stará metoda \texttt{buildHtml()}, viz příloha
 \ref{l_buildHtml}.
 
+%%% ML: 3x napriklad vypada divne
 Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek
-(např. \texttt{tableParcely(self, model, parIds, LVColumn)}), metody
-pro tvorbu jednotlivých částí listu vlastnictví
-(např. \texttt{partTelesoB1(self, parIds, budIds, jedIds, opsubIds,
-  forLV)}), nebo metody pro zobrazení detailu o~vyhledávaném tělese
-(např. \texttt{pageBudova(self, id)}).
+(např. \texttt{tableParcely()}), metody pro tvorbu jednotlivých částí
+listu vlastnictví (např. \texttt{partTelesoB1()}), nebo metody pro
+zobrazení detailu o~vyhledávaném tělese (např. \texttt{pageBudova()}).
 
-Důležitou metodou v~této třídě je metoda \texttt{pageHelp(self)}, díky
+Důležitou metodou v~této třídě je metoda \texttt{pageHelp()}, díky
 které je možné zobrazit krátkou nápovědu k~zásuvnému modulu, a~metoda
-\texttt{saveDefinitionPoint( self, id, nemovitost)}, která slouží
+\texttt{saveDefinitionPoint()}, která slouží
 k~získání a~uložení definičního bodu vyhledané nemovitosti.
 
 \subsubsection{Domains}
 V~této třídě jsou jednoduché metody pro zjištění domény prvku na
-základě vstupního argumentu. Je zde metoda \texttt{anoNe(an)}, která
+základě vstupního argumentu. Je zde metoda \texttt{anoNe()}, která
 testuje, zda je vstupní argument rovný \uv{a}, a~podle toho vrací
-\texttt{True/False}. Metoda \texttt{cpCe(kod)} převádí hodnotu
+\texttt{True/False}. Metoda \texttt{cpCe()} převádí hodnotu
 vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo
-  evidenční}. Metoda \texttt{druhUcastnika(kod)} kontroluje, o~jaký
+  evidenční}. Metoda \texttt{druhUcastnika()} kontroluje, o~jaký
 typ subjektu se jedná (např. právnická osoba). Poslední metodou je
-metoda \texttt{rodinnyStav(kod)}, která vrací rodinný stav subjektu na
+metoda \texttt{rodinnyStav()}, která vrací rodinný stav subjektu na
 základě zadaného vstupního kódu.
 
 \subsubsection{HtmlDocument}
+
+%%% ML: zde je odkaz na stejnou kapitolu, ve ktere je tento text
 Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}(viz
 \ref{l_vfkDocument}). Jsou v~ní obsaženy metody pro tvorbu
 jednotlivých částí kódu v~jazyce \textit{HTML}. Vhodnou kombinací
@@ -2500,19 +2534,18 @@ V~této třídě se řeší vyhledávání jednotek pomocí vyhledávacích
 formulářů navržených v~programu \texttt{Qt Designer}. Vyhledávat lze
 podle čísla jednotky, domovního čísla, čísla parcely, ke které
 jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída
-je potomkem třídy \texttt{QWidget}.
+je potomkem \texttt{QWidget}.
 
 \subsubsection{LatexDocument}
 Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří
-části kódu, které jsou nakonec sestaveny v~\latex~dokument. Takto
+části kódu, které jsou nakonec sestaveny jako~\latex~dokument. Takto
 sestavený dokument je poté vyexportován pomocí příslušné funkcionality
 modulu a~je připravený pro export například od formátu \textit{PDF}
-(\texttt{pdflatex}). Třída dědí od rodičovské třídy
-\texttt{VfkDocument}.
+(\texttt{pdflatex}). Třída je potomkem \texttt{VfkDocument}.
 
 \subsubsection{MainApp}
-Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Dědí od
-tříd \texttt{QDockWidget}, \texttt{QMainWindow}
+Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Je
+potomkem tříd \texttt{QDockWidget}, \texttt{QMainWindow}
 a~\texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů,
 nastavuje symbologii načtených vrstev, propojuje vyhledávání s~mapovým
 oknem QGIS, stará se o~exporty do definovaných formátů. Ve třídě se
@@ -2523,7 +2556,7 @@ Tato třída se stará o~načítání jednotlivých \textit{VFK} souborů
 v~separátním vlákně. Díky použití jiného vlákna pro načítání souborů,
 se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy
 \texttt{QThread} dostupné v~použité knihovně \texttt{PyQt4}. Obsahuje
-jedinou metodu (\texttt{run(self)}) pro spuštění separátního vlákna,
+jedinou metodu (\texttt{run()}) pro spuštění separátního vlákna,
 jejíž předpis je dostupný v~příloze č. \ref{l_thread_run}.
 
 \subsubsection{ParcelySearchForm}
@@ -2535,8 +2568,8 @@ parcely, druhu pozemku nebo listu vlastnictví.
 
 \subsubsection{RichTextDocument}
 Třída se stará o~tvorbu \textit{HTML} dokumentu, který obsahuje
-výsledky vyhledávání a~je zobrazen v~prohlížeči dat. Třída dědí od
-rodičovské třídy \texttt{VfkDocument}.
+výsledky vyhledávání a~je zobrazen v~prohlížeči dat. Třída je potomkem
+\texttt{VfkDocument}.
 
 \subsubsection{SearchFormController}
 Třída \texttt{SearchFormController} získává hodnoty ze vstupních
@@ -2565,19 +2598,17 @@ nástrojem \textit{Plugin Builder} a~později upravena dle konkrétních
 potřeb.
 
 \subsubsection{VfkTableModel}
-Tato třída dědí od třídy \texttt{QSqlQueryModel}, která poskytuje
+Tato třída je potomkem \texttt{QSqlQueryModel}, která poskytuje
 model pro čtení SQL dotazů. Třída komunikuje s~připojenou databází,
 která je do třídy předávána pomocí argumentu
 \texttt{connectionName}. Ke komunikaci jsou používány standardní SQL
 dotazy, které jsou do databáze předávány metodou
-\texttt{self.setQuery(query,
-  QSqlDatabase.database(self.\_\_mConnectionName))}.
+\texttt{self.setQuery()}.
 
 \subsubsection{VfkTextBrowser}
-\texttt{VfkTextBrowser} je třída, která dědí od třídy
-\texttt{QTextBrowser}. Třída byla stanovena jako \uv{zástupná} pro
-prvek \texttt{vfkBrowser} v~okně zásuvného modulu. Tento prvek slouží
-jako prohlížeč dat.
+\texttt{VfkTextBrowser} je potomkem třídy \texttt{QTextBrowser}. Třída
+byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v~okně
+zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
 
 \subsubsection{VlastniciSearchForm}
 Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména,
