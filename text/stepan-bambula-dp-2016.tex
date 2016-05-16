@@ -2623,6 +2623,8 @@ hodnoty vstupních polí / \uv{checkboxů}.
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 
+%%% ML: projit, preformulovat, je videt, ze je text jeste "zivy"
+
 Cílem diplomové práce bylo rozšířit stávající zásuvný modul pro práci
 s~katastrálními daty v~programu QGIS. Samotnému rozšíření modulu
 o~nové funkcionality předcházelo jeho přepsání do jazyka Python, díky
@@ -2632,32 +2634,42 @@ formátu katastru nemovitostí.
 
 Práce byla rozdělena do dvou částí -- teoretické
 a~praktické. V~teoretické části jsem se věnoval rešerši dostupných
-nástrojů pro zpracování a~práci s~katastrálními daty a~použité
+nástrojů pro práci s~katastrálními daty a~použité
+%%% ML: "Dale jsem ... " preformulovat
 technologii, která byla nezbytná pro vypracování práce. Dále jsem zde
 vypracoval kapitolu týkající se Informačního systému katastru
+%%% ML: kde "zde", cely odstavec zni nevyrovnane...
 nemovitostí, ze kterého jsou datové soubory VFK exportovány. Především
+%%% ML: opet "zde"
 jsem se zde ale zabýval výměnným formátem katastru nemovitostí. Zde
 jsem kladl důraz na jeho strukturu, jejíž znalost je nezbytná pro
 správnou funkcionalitu zásuvného modulu. V~kapitole jsem se zaměřil
 i~na strukturu změnových vět VFK tak, aby mohl být vypracován hlavní
+%%% ML: spise cil (zde hodnotis naplneni cilu, ktere jsou popsany v uvodu)
 bod diplomové práce -- \textbf{zpracování změnových vět}.
 
 Na teoretickou část volně navazuje kapitola týkající se stavu
-současného zásuvného modulu pro zpracování katastrálních dat. Zde jsem
-se snažil popsat práci s~modulem od jeho instalace a~zprovoznění pod
-QGIS, přes načítání souborů VFK, až k~jeho klíčovým funkcionalitám
-týkajících se samotného vyhledávání nad importovanými katastrálními
-daty. Nechybí zde informace o~možnostech exportu výsledků vyhledávaní
-do podporovaných formátů.
+%%% ML: zkus v textu omezit "zde"
+současného zásuvného modulu pro zpracování katastrálních dat v
+QGISu. Zde jsem se snažil popsat práci s~modulem od jeho instalace
+a~zprovoznění, přes načítání souborů VFK, až k~jeho klíčovým
+funkcionalitám týkajících se samotného vyhledávání nad importovanými
+%%% ML: zde
+katastrálními daty. Nechybí zde informace o~možnostech exportu
+výsledků vyhledávaní do podporovaných formátů.
 
 Ve stěžejní kapitole praktické části -- Rozšíření stávající
 funkcionality (\ref{l_rozsireni_funkcionality}) -- jsem popsal veškerý
+%%% ML: prinos prace, prilis osobni ;-)
+%%% ML: zde^n :-)
 svůj přínos k~rozšíření zásuvného modulu. Jsou zde zmíněny kroky,
 které vedly k~přepisu stávajícího modulu do jazyka Python, potřebné
 změny na straně ovladače VFK v~knihovně GDAL, nově přidaná
 funkcionalita týkající se zpracování změnových vět a~popis tříd
 zásuvného modulu, pro rychlejší orientaci v~kódu.
 
+%%% ML: ted me napada, ze v praci nezminijes fakt, ze pripis zacal
+%%% jako semestralni projekt YFSG
 Při přepisu stávajícího zásuvného modulu do jazyka Python jsem se
 snažil držet co možná nejvíce původního kódu v~jazyce C++. Modul byl
 navržen s~pomocí stejné knihovny Qt, respektive PyQt, která je jednou
@@ -2665,6 +2677,9 @@ z~hlavních knihoven pro tvorbu uživatelského rozhraní a~značně
 ulehčuje tvorbu celé aplikace. Zásuvný modul komunikuje s~prostředím
 QGIS díky použití aplikačního rozhraní QGIS API.
 
+%%% ML: tady by bylo dobre poznamenat, ze to neni pouze tvuj vystup, v
+%%% textu to mas uvedeno, tady je to ale pro transparentnost nutne
+%%% uvest take (uvod a zaver prace je nejpodstatnejsi)
 Poté, co byl stávající zásuvný modul přepsán, tak byl umístěn do nově
 vzniklého
 repositáře\footnote{\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}},
@@ -2686,8 +2701,9 @@ VFK. Další důležitou novou vlastností ovladače je možnost čtení přímo
 z~databáze SQLite, čímž je možné do QGIS načíst databázi, na kterou
 byly aplikovány změnové věty.
 
+%%% ML: prilis komplikovana veta, preformulovat
 Pro zpracování změnových vět vznikla samostatná třída, která umožňuje
-aplikovat změny, které jsou uloženy v~předem připravené databázi
+aplikovat změn, které jsou uloženy v~předem připravené databázi
 SQLite, na stavová data, která opět musí být uložena v~předem
 připravené SQLite databázi. Výstupem je nově vzniklá databáze s~již
 obsaženými změnami. Změny mohou být aplikovány jednak pomocí vzniklé
@@ -2716,6 +2732,7 @@ formátů -- především tedy do PDF, či XML. Vhodné by také bylo, kdyby
 modul lépe pracoval s~více vlákny při načítání VFK souborů, toto se
 týká hlavně fáze při načítání datového souboru. Dalším bodem může být
 zobrazení sluček v~mapovém okně, nebo hromadný export podrobností
+%%% ML: pozadavky
 o~nemovitostech. Obě tyto funkcionality vzešly přímo od
 uživatelů. Jako nejdůležitější bod ale vnímám překlad zásuvného modulu
 do angličtiny, což v~současné chvíli blokuje přesun modulu do hlavního
@@ -2734,11 +2751,15 @@ i~uživatelská příručka, která je v~diplomové práci uvedena jako
 příloha \ref{l_prirucka}.
 
 Závěrem bych chtěl upozornit, že se jedná o~vývojovou verzi zásuvného
-modulu a~budu rád za veškeré podněty pro jeho další vývoj ve formě
+modulu a~budu rád za veškeré podněty pro jeho další vývoj ideálně ve formě
 tzv. \uv{Issues} na stránce se zdrojovým kódem.
 
 
 %======================CITACE=========================================
+
+%%% ML: prislis malo offline zdroju (knihy, clanky a pod), vetsina
+%%% jsou webove stranky (online zdroje), ale s tim asi ted moc
+%%% neudelame, ale zkus popremyslet, zda bys neco nemohl pridat
 \clearpage
 \rhead{{\rightmark}}	% vpravo název kapitoly
 \renewcommand{\refname}{Použitá literatura}
@@ -2768,6 +2789,7 @@ tzv. \uv{Issues} na stránce se zdrojovým kódem.
 
 \section{Konstruktor třídy BudovySearchForm}
 
+{\scriptsize
 \begin{lstlisting}[style=python, label=l_budovySearchForm_konstruktor]
 class BudovySearchForm(QWidget):
 
@@ -2780,10 +2802,11 @@ class BudovySearchForm(QWidget):
 
         self.__mZpusobVyuzitiModel = QAbstractItemModel
 \end{lstlisting}
-
+}
 
 \section{Metoda buildHtml}
 
+{\scriptsize
 \begin{lstlisting}[style=python, label=l_buildHtml]
 def buildHtml(self, document, taskMap):
     """
@@ -2855,8 +2878,9 @@ def buildHtml(self, document, taskMap):
     self.__mDocument.footer()
     return
 \end{lstlisting}
-
+}
 \section{Načtení souborů v~separátním vlákně}
+{\scriptsize
 \begin{lstlisting}[style=python, label=l_thread_run]
  def run(self):
     # load all VFK files
@@ -2867,8 +2891,10 @@ def buildHtml(self, document, taskMap):
 	while self.nextLayer:
 	    self.sleep(1)
 \end{lstlisting}
-
+}
 \section{Vyhledání parcel -- ukázka tvorby URL}
+
+{\scriptsize
 \begin{lstlisting}[style=python, label=l_search_parcely]
 def __searchParcely(self):
     """
@@ -2884,7 +2910,7 @@ def __searchParcely(self):
 		.format(parcelniCislo, typ, druh, lv))
     self.actionTriggered.emit(url)
 \end{lstlisting}
-
+}
 
 %-----------------------------------------------
 \chapter{Uživatelská příručka}
