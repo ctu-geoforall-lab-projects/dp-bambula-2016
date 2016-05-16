@@ -485,9 +485,14 @@ V~současné době existuje několik nástrojů pro práci s~katastrálními
 daty. Ať už se jedná o~moduly, které jsou distribuovány zdarma, nebo
 za úplatu, jako nadstavba pro komerční nástroje, případně o~moduly
 dostupné pro open-source nástroje. S~trochou nadsázky se dá říci, že
+%%% ML: vetsi software zni divne
 každý větší software pro práci s~prostorovými daty má svůj zásuvný
 modul (nadstavbu) pro práci s~daty \textit{VFK}.
 
+%%% ML: Ich forma se v textu prace nepouziva (nemela by se pouzivat),
+%%% maximalne v uvodu a zaveru, tj. se budeme věnovat, zmenit to v
+%%% celem textu bude narocne a zaneses tam radu chyb, pokud to mas v
+%%% celem textu, tak navrhuji asi nechat
 V~této kapitole bych se chtěl věnovat vybraným nástrojům pracujícím
 s~těmito daty. Moduly, které jsou šířeny zdarma a~bylo je možné
 vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází
@@ -497,18 +502,18 @@ stránkách.
 \section{ISKN Studio pro ArcGIS}
 \label{l_iskn_studio}
 % TODO: https://www.arcdata.cz/produkty/ceska-specifika/iskn-pro-arcgis-for-desktop
-Aplikace ISKN Studio slouží pro převod dat VFK do do geodatabáze, se
+Aplikace ISKN Studio slouží pro převod dat VFK do ESRI geodatabáze, se
 kterou je schopen pracovat program ArcGIS. Struktura geodatabáze je
 navržena dle připravené šablony. Tato šablona je vždy vázána k~dané
 verzi formátu VFK a~může být stažena přímo ze stránek společnosti
 Arcdata Praha, která je zároveň tvůrcem této aplikace. Data načtená
 touto aplikací mohou být exportována také ve formátu
-\textit{.xml}. Díky této aplikaci může být v~geodatabázi sestavena
+\textit{XML}. Díky této aplikaci může být v~geodatabázi sestavena
 geometrie vektorových prvků. \cite{iskn_studio}
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=\textwidth]{images/ISKNStudio-aplikace.png}
+\includegraphics[width=.8\textwidth]{images/ISKNStudio-aplikace.png}
 \caption[Aplikace ISKN Studio]{Aplikace ISKN Studio (zdroj: vlastní)}
 \end{figure}
 
@@ -520,6 +525,7 @@ Aplikace disponuje kromě zpracování souboru VFK dalšími
 funkcionalitami. Jednou z~hlavních je možnost kontroly struktury
 vstupního VFK souboru podle zvolené šablony nebo podle
 geodatabáze. Samozřejmostí je možnost uložení protokolu
+%%% ML: vsechny jeji verze, nebo pouze ta zakladni?
 o~zpracování. Aplikace je distribuována zdarma.
 
 \newpage
@@ -531,17 +537,20 @@ ISKN View je sesterskou aplikací ke zvýše zmíněnému ISKN Studio
 
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.65]{images/ISKNView-aplikace.png}
+\includegraphics[scale=0.47]{images/ISKNView-aplikace.png}
 \caption[Aplikace ISKN View]{Aplikace ISKN View (zdroj: \cite{iskn_studio})}
 \end{figure}
 
 Díky ISKN View je umožněno rychlé a~jednoduché vyhledávání v~datech
 ISKN, která byla pomocí aplikace ISKN Studio převedena do některé
+%%% ML: ted najednou pises o vice formatech (co podporuje krome File Geodatabaze?)
 z~podporovaných geodatabází.  Aplikace je rovněž šířena
+%%% ML: vsechny verze?
 bezúplatně. \cite{iskn_studio}
 
 \newpage
 \section{Import dat KN ve výměnném formátu}
+%%% ML: nastoj ma opravdu tak obecny nazev?
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK
 Jedná se o~modul vytvořený společností GISOFT, který slouží k~převodu
 a~načtení dat ve formátech VFK a~VKM do formátu DGN. Modul
@@ -549,8 +558,8 @@ spolupracuje s~produkty společnosti Bentley Systems, především
 MicroStation. Umožňuje načtení dat jak ve starém, tak i~v~novém
 výměnném formátu (viz kapitola č. \ref{l_format_vfk}) KN. Je dostupný
 jako volitelný modul pro nadstavby
-\textbf{MGEO}\footnote{http://www.gisoft.cz/MGEO/MGEO}
-a~\textbf{SPIDER}\footnote{http://www.gisoft.cz/SPIDER/SPIDER}. Může
+\textbf{MGEO}\footnote{\url{http://www.gisoft.cz/MGEO/MGEO}}
+a~\textbf{SPIDER}\footnote{\url{http://www.gisoft.cz/SPIDER/SPIDER}}. Může
 být použit v~následujících případech:
 
 \begin{description}
@@ -578,7 +587,7 @@ GISOFT. \cite{gisoft_modul}
 \newpage
 \section{Spirit VFK}
 % TODO: http://www.georeal.cz/cz/spirit-desktop/spirit-vfk
-Software Spirit VFK je vytvořený a~distribuovaný společností GEOREAL
+Software Spirit VFK je vytvořen a~distribuován společností GEOREAL
 jako samostatně spustitelná desktopová aplikace. Slouží pro převod dat
 (VFK) katastru nemovitostí do jakékoli geodatabáze podporované
 společností ESRI.
@@ -586,9 +595,9 @@ společností ESRI.
 Do geodatabáze jsou postupně importovány tabulky, relace a~ostatní
 obsažené objekty ISKN. Takto vytvořená databáze může být použita
 v~souvisejících aplikačních nadstavbách \textbf{Spirit
-  KN}\footnote{http://www.georeal.cz/cz/spirit-desktop/spirit-kn}
+  KN}\footnote{\url{http://www.georeal.cz/cz/spirit-desktop/spirit-kn}}
 a~\textbf{Spirit Portál -
-  KN}\footnote{http://www.georeal.cz/cz/spirit-server/portal-kn},
+  KN}\footnote{\url{http://www.georeal.cz/cz/spirit-server/portal-kn}},
 případně může sloužit pro další analytické práce nad daty KN. Import
 dat do geodatabáze probíhá v~následujících krocích:
 
@@ -606,7 +615,7 @@ aktualizaci datových skladů katastru nemovitostí.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=0.9]{images/spirit_vfk.png}
+\includegraphics[scale=0.7]{images/spirit_vfk.png}
 \caption[Spirit VFK -- ukázka aplikace]{Spirit VFK -- ukázka aplikace (zdroj: \cite{spirit_vfk})}
 \end{figure}
 
@@ -725,7 +734,7 @@ Jednou z~nejdůležitějších je proměnná \texttt{OGR\_VFK\_DB\_NAME}
 sloužící pro definici jména SQLite databáze. Neméně důležitá proměnná
 \texttt{OGR\_VFK\_DB\_OVERWRITE} říká, že při každém čtení souboru VFK
 se vytváří databáze SQLite znovu, čtení tedy probíhá pouze ze
-souboru. Níže je uvedena ukázka otevření souboru VFK. \cite{gdal_vfk}
+souboru VFK. Níže je uvedena ukázka otevření souboru VFK. \cite{gdal_vfk}
 
 \begin{lstlisting}[language=bash, showstringspaces=false, escapeinside={(*@}{@*)}]
 $ ogrinfo Export_vse.vfk
@@ -740,9 +749,13 @@ INFO: Open of `Export_vse.vfk'
 75: ADROBJ (None) 
 \end{lstlisting}
 
+\newpage
+
+%%% ML: tady by se hodil screenshot GUI GRASS vcetne nacteni dat, ale
+%%% nech to klidne takto byt, je to detail
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{images/grass_ukazka.png}
+\includegraphics[width=.7\textwidth]{images/grass_ukazka.png}
 \caption[Ukázka načtení VFK pomocí VFK Driveru GDAL v~programu GRASS GIS]{Ukázka načtení VFK pomocí VFK Driveru GDAL v~programu GRASS GIS (zdroj: vlastní)}
 \end{figure}
 
