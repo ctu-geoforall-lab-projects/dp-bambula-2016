@@ -1772,20 +1772,21 @@ s~daty českého katastru nemovitostí byla vyvinuta studenty oboru
 Geoinformatika na FSv ČVUT v~Praze Annou Kratochvílovou a~Václavem
 Petrášem.
 
-Zásuvný modul byl napsát v~jazyce C++, s~použitím knihovny Qt. Pracuje
+Zásuvný modul byl napsán v~jazyce C++ s~použitím knihovny Qt. Pracuje
 s~daty v~novém výměnném formátu katastru (VFK), viz kapitola
 č. \ref{l_format_vfk}.
 
 Pro přístup k~datům plugin využívá knihovny GDAL, respektive ovladače
+%%% ML: doplnit odkaz na kapitolu
 \textbf{VFK Driver}. Načtená data driver ukládá do databáze SQLite,
 jejíž struktura je shodná se strukturou jednotlivých bloků v~souboru
 VFK. Při opakovaném čtení dat ze stejného souboru je využívána již
 vytvořená SQLite databáze, oproti původnímu VFK souboru.
 
 Zdrojové kódy zásuvného modulu jsou šířeny pod licencí GNU
-GPL\footnote{https://raw.githubusercontent.com/ctu-osgeorel/qgis-vfk-plugin/master/LICENSE}. Zásuvný
-modul je možné stáhnout z~oficiálního git
-repositáře\footnote{https://github.com/ctu-osgeorel/qgis-vfk-plugin-cpp}. \cite{cvut_vfkPlugin}
+GPL\footnote{\url{https://raw.githubusercontent.com/ctu-osgeorel/qgis-vfk-plugin/master/LICENSE}}. Zásuvný
+modul je možné stáhnout z~oficiálního Git
+repositáře\footnote{\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin-cpp}}. \cite{cvut_vfkPlugin}
 
 \begin{figure}[htb]
 \centering
@@ -1853,7 +1854,7 @@ pomocí tlačítek \texttt{Vpřed} a~\texttt{Zpět}.
 
 Pro zjištění aktuálního stavu o~dané nemovitosti je zde implementováno
 propojení s~aplikací \textbf{Nahlížení do katastru
-  nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
+  nemovitostí}\footnote{\url{http://nahlizenidokn.cuzk.cz}}.
 
 Veškeré výpisy zobrazené v~prohlížeči zásuvného modulu lze exportovat,
 a~to do následujících formátů:
@@ -1875,8 +1876,8 @@ okrajům. Okno modulu lze samozřejmě používat i~samostatně
 (neukotvené).
 
 Pro vrstvy parcel (\texttt{PAR}) a~budov (\texttt{BUD}) byl vytvořen
-předdefinovaný vzhled ve formátu \textit{.xml}, respektive
-\textit{.qml}, se kterým QGIS nativně pracuje.
+předdefinovaný vzhled ve formátu \textit{XML}, respektive
+\textit{QML}, se kterým QGIS nativně pracuje.
 
 Součástí zásuvného modulu je také stručná nápověda, která je po
 spuštění pluginu zobrazena stejně jako veškeré hledané informace
@@ -1891,7 +1892,7 @@ Pluginu. \cite{cvut_vfkPlugin}
 Stávající zásuvný modul, který je napsán v~jazyce C++, je možné pod
 operačním systémem Ubuntu nainstalovat dle skriptů dostupných na
 stránkách
-pluginu\footnote{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}. Pro
+pluginu\footnote{\url{http://freegis.fsv.cvut.cz/gwiki/VFK\_/\_QGIS\_plugin}}. Pro
 spuštění pod operačním systémem Windows, je potřeba stáhnout
 předkompilovanou verzi pro danou verzi QGIS a~tu překopírovat do
 požadovaného adresáře. Podrobný návod je uveden opět na stránkách
@@ -1912,9 +1913,11 @@ je poté nástrojová lišta, která obsahuje nástroje pro práci se
 zásuvným modulem.
 
 \subsection{Načítání dat}
+%%% ML: Tato operace je k dispozici ?
 Pomocí zásuvného modulu je možné nahrát soubor VFK. Tento import je
 k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import
   VFK}. V~tomto okně je dále možné zvolit, které vrstvy se budou
+%%% ML: nepresne, spise zobrazovat v mapovem okne
 importovat (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole,
 tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání
 bez interakce s~mapovým oknem.
