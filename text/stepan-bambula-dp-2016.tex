@@ -2916,11 +2916,14 @@ def __searchParcely(self):
 \chapter{Uživatelská příručka}
 \label{l_prirucka}
 
+%%% ML: podobny text uz mas v tele prace vcetne podobnych screenshotu
+%%% (navrhuji ponechat prilohu a kapitolu v textu prace redukovat,
+%%% popis instalace pouze zde s odkazem v textu)
 \section{Instalace a~spuštění zásuvného modulu}
 Plugin v~současné době není dostupný v~oficiálním repositáři QGIS. Pro
 instalaci pluginu je potřeba do QGIS přidat nový repositář spravovaný
 organizací
-OSGeoREL\footnote{http://geomatics.fsv.cvut.cz/research/osgeorel/},
+OSGeoREL\footnote{\url{http://geomatics.fsv.cvut.cz/research/osgeorel}},
 pod kterou je tento plugin vyvíjen. Repositář je dostupný na adrese
 \url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}, viz
 obr. \ref{l_repo_detail}. Modul je šířený jako experimentální, proto
@@ -2931,7 +2934,7 @@ v~záložce \textit{Plugins} $\rightarrow$ \textit{Manage and install
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=1\textwidth]{images/qgis_repo_plugins.png}
+\includegraphics[width=.7\textwidth]{images/qgis_repo_plugins.png}
 \caption[Přidání repositáře QGIS]{Přidání repositáře QGIS}
 \label{l_qgis_plugins}
 \end{figure}
@@ -2949,7 +2952,7 @@ obr. \ref{l_qgis_hledani_pluginu}.
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=1\textwidth]{images/qgis_plugin_vyhledani.png}
+\includegraphics[width=.7\textwidth]{images/qgis_plugin_vyhledani.png}
 \caption[Vyhledání zásuvného modulu]{Vyhledání zásuvného modulu}
 \label{l_qgis_hledani_pluginu}
 \end{figure}
@@ -3035,7 +3038,7 @@ a~\uv{Zpět}.
 
 Pro zjištění aktuálního stavu o~dané nemovitosti je zde implementováno
 propojení s~aplikací \textbf{Nahlížení do katastru
-  nemovitostí}\footnote{http://nahlizenidokn.cuzk.cz/}.
+  nemovitostí}\footnote{\url{http://nahlizenidokn.cuzk.cz/}}.
 
 Zásuvný modul a~mapové okno QGIS jsou navzájem propojené. Je tedy
 možné v~mapovém okně zobrazit polohu vyhledaných prvků a~opačně
@@ -3154,6 +3157,7 @@ zpracování změn neaktivní.
 %-----------------------------------------------
 \chapter{Obsah přiloženého CD}
 
+%%% ML: co text prace, pridej alespon nazvy adresaru
 \begin{enumerate}
  \item Zdrojové kódy zásuvného modulu.
  \item Patch knihovny GDAL ve verzi 2.2.0.
