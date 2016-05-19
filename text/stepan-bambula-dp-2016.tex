@@ -646,7 +646,7 @@ Jedná se o~aplikaci od společnosti CAD Studio. Slouží jako nadstavba
 (utilita) pro produkty firmy Autodesk založených na AutoCadu (AutoCAD,
 AutoCAD Architecture, AutoCAD Map 3D, AutoCAD Civil 3D, \dots). Díky
 této aplikaci je možné do výše uvedených programů načíst data VF ISKN
-(\textit{.vfk}) a~dále s~nimi pracovat.
+(VFK) a~dále s~nimi pracovat.
 
 \begin{figure}[htb]
 \centering
@@ -2149,7 +2149,7 @@ zpracování změnových VFK souborů nezbytné.
 %%% patch.
 %% upraveno
 Veškeré provedené změny na ovladači VFK jsou dostupné v~knihovně GDAL
-od verze 2.2.0. Přehled provedených změn popisuje přiložený \uv{patch},
+od verze 2.2.0. Přehled provedených změn popisuje \uv{patch},
 který je obsahem CD přiloženého k~diplomové práci. Tento \uv{patch} je
 vytvořen proti vývojové verzi 2.2.0 knihovny GDAL.
 
@@ -2253,17 +2253,21 @@ jsou k~dispozici veškeré potřebné tabulky pro sestavení geometrie
 prvků. Jestliže ano, tak je geometrie sestavena. V~opačném případě je
 opět zobrazeno upozornění.
 
-\subsection{Implementace na straně zásuvného modulu}
-Výše uvedené změny týkající se načítání vícero VFK souborů do stejné
-databáze byly implementovány i~do zásuvného modulu. Spolu s~touto
-změnou byla do zásuvného modulu přidána i~možnost načíst přímo SQLite
-databáze s~VFK daty.
 
-Tato rozšířená funkcionalita je do zásuvného modulu přidána pouze
-v~případě, kdy je na počítači uživatele dostupná knihovna GDAL od
-verze \texttt{2.2.0}. V~případě nižší verze je upraven popisek
-ikonky pro přidání dalších VFK souborů (viz
-\ref{l_kontrola_verze_gdal}) a~přidání dalších souborů není umožněno.
+% -----------------------------------------------------------------------
+\clearpage
+\section{Nově přidané funkcionality}
+\label{l_nove_funkcionality}
+Díky změnám provedeným na VFK ovladači knihovny GDAL, bylo možné přidat
+nové funkcionality nejen pro načítání dat.
+
+Veškeré nové funkcionality související s načítáním více souborů, 
+jsou do zásuvného modulu přidány pouze v~případě, kdy 
+je na počítači uživatele dostupná knihovna GDAL od verze \texttt{2.2.0}. 
+V~případě nižší verze je upraven popisek ikonky pro přidání dalších VFK 
+souborů (viz \ref{l_kontrola_verze_gdal}) a~přidání dalších souborů 
+není umožněno. Stejně tak je zakázáno načítání souborů z adresáře a 
+databáze SQLite.
 
 {\scriptsize
 \begin{lstlisting}[style=python, 
@@ -2276,16 +2280,67 @@ if gdal_version < 2020000:
 \end{lstlisting}
 }
 
-Jak z~výše uvedeného vyplývá, k~přidání této funkcionality musel
+\subsection{Čtení z databáze SQLite}
+Zásuvný modul umožňuje načítání souboru ve formátu databáze SQLite. Tato
+možnost uživateli umožní práci s již zpracovanými VFK daty pomocí ovladače
+VFK knihovny GDAL. Tato volba je užitečná zejména v případě, kdy uživatel 
+potřebuje načíst objemná data, případně při načítání databáze s aplikovanými
+změnami (viz kapitola \ref{l_zpracovani_zmen}).
+
+\subsection{Načítání více souborů}
+Načítání více souborů je povoleno, jestliže uživatel zvolí jako vstupní
+zdroj (viz obr. \ref{l_plugin_novy_vzhled} prvek č. 1) volbu \uv{Soubor}.
+Poté je uživateli zpřístupněna ikona, díky níž je možné přidávat cestu k
+více VFK souborům. Počet takto načtených VFK souborů je omezen na pět.
+Není povoleno načítání více databází SQLite.
+
+\subsection{Načítání VFK souborů z adresáře}
+Jestliže má uživatel VFK data uložena ve více souborech a nemůže je načíst
+jednotlivě, je vhodné použít tuto volbu. Tato volba je zpřístupněna po změně
+vstupního zdroje z hodnoty \uv{Soubor} na hodnotu \uv{Adresář}. Následně je 
+změněn vzhled \uv{widgetu} pro načítání, viz obr. \ref{l_cteni_z_adresare}.
+
+Při této volbě je umožněn pouze jeden vstup. Tím je cesta k adresáři, ze 
+kterého bude načítání probíhat. Zásuvný modul poté stromově projde obsah 
+zadaného adresáře a vyhledá všechny VFK soubory, které budou načteny.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.4\textwidth]{images/vfkPlugin-cteni_adresar.png}
+\caption[VFK Plugin -- okno pro načítání z adresáře]{VFK Plugin -- okno pro načítání z adresáře}
+\label{l_cteni_z_adresare}
+\end{figure}
+
+
+\subsection{Automatické pojmenování databáze}
+Jak bylo řečeno v kapitole \ref{l_uprava_gdal}, ovladač VFK knihovny GDAL 
+načítá VFK soubory interně do databáze SQLite. Tato databáze je umístěna 
+o adresář výše, než první načítaný soubor. Její jméno je tvořeno  jako \texttt{jmeno\_prvniho\_souboru\_XXX.db}, kde \texttt{XXX} nabývá hodnot 
+\uv{stav} pro stavová data, nebo \uv{zmeny} pro data obsahující změnové věty.
+
+\subsection{Přepsání existující databáze}
+Tato volba umožňuje přepsat stávající databázi SQLite před načtením dat VFK.
+Přepsání současné databáze je užitečné, pokud uživatel nechce pracovat se 
+stávající databází. Jedním z důvodů pro tento krok může být 
+nekompatibilita dat načtených GDAL ve verzi 1.11 s novou verzí knihovny 
+GDAL (2.0). Přepsání databáze je zajištěno pomocí vyexportování proměnné 
+prostředí \texttt{OGR\_VFK\_DB\_OVERWRITE=1}, která náleží k ovladači VFK 
+v knihovně GDAL.
+
+
+\subsection{Změna vzhledu zásuvného modulu}
+Jak z~výše uvedeného vyplývá, k~přidání nových funkcionality musel
 být změněn i~vzhled samotného okna zásuvného modulu pro načítání
-dat. Nový vzhled je uveden na obrázku
-č. \ref{l_plugin_novy_vzhled}. Kde byly přidány následující prvky:
+dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. 
+Kde byly přidány následující prvky:
 
 \begin{enumerate}
- \item Tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
+ \item Volba vstupního zdroje,
+ \item tlačítko pro vložení nového řádku do formuláře pro přidání souboru,
  \item nově vygenerovaný formulář pro vyhledání VFK souboru,
- \item indikátor stavu načítání VFK souborů,
- \item popisek stavu načítání dat.
+ \item možnost přepsání již existující databáze SQLite,
+ \item popisek stavu načítání dat,
+ \item grafický indikátor stavu načítání.
 \end{enumerate}
 
 \begin{figure}[htb]
@@ -2297,6 +2352,7 @@ dat. Nový vzhled je uveden na obrázku
 
 
 % -----------------------------------------------------------------------
+\clearpage
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
 Schopnost zpracovat změnové věty VFK souborů je důležitá pro
@@ -2347,6 +2403,7 @@ Jediným výstupním argumentem je poté cesta k~nově vytvořené databázi, kt
 
 %%% ML: co prejmenovat parametry (main->input a export -> output) ?
 %% prejmenovano
+\newpage
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
 		    label=l_apply_changes_ukazka]
 $ ./applyChanges.py -h
@@ -2496,156 +2553,6 @@ zpracování změn neaktivní.
 \caption[VFK Plugin -- okno pro zpracování změn]{VFK Plugin -- okno pro zpracování změn}
 \label{l_plugin_zmeny}
 \end{figure}
-
-
-% -----------------------------------------------------------------------
-\clearpage
-\section{Popis tříd zásuvného modulu}
-
-%%% ML: tato kapitola spise patri do priloh!!!, ale chapu, ze by se potom
-%%% text prilis zkratil
-\subsubsection{ApplyChanges}
-%%% ML: prvni vetu preformulovat
-%% upraveno
-Třída slouží pro aplikaci změn na stavová data. Pracuje s databázemi SQLite,
-které jsou vytvořeny pomocí \texttt{VFK Driveru GDAL}. Podrobnější popis 
-zpracování změnových souborů touto třídou je uveden v~kapitole
-\ref{l_zpracovani_zmen}.
-
-\subsubsection{BudovySearchForm}
-Jedná se o~třídu, která se stará o~vyhledávací prvky ve formuláři pro
-vyhledávání budov. Vzhled
-uživatelského rozhraní této třídy byl navržen samostatně pomocí
-programu \texttt{Qt Designer}. Kód návrhu je uložen v~souboru
-\texttt{ui\_budovysearchform.ui}, respektive v~překompilované verzi
-pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru
-třídy je uvedena v~příloze \ref{l_budovySearchForm_konstruktor}.
-
-\subsubsection{DocumentBuilder}
-V~třídě \texttt{DocumentBuilder} sestavuje dokument, který bude
-zobrazen v~prohlížeči dat (nebo exportován do některého
-z~podporovaných formátů), na základě výsledků vyhledávání. O~správné
-sestavení se stará metoda \texttt{buildHtml()}, viz příloha
-\ref{l_buildHtml}.
-
-%%% ML: 3x napriklad vypada divne
-Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek
-(např. \texttt{tableParcely()}), metody pro tvorbu jednotlivých částí
-listu vlastnictví jako je \texttt{partTelesoB1()}, nebo metody pro
-zobrazení detailu o~vyhledávaném tělese (např. \texttt{pageBudova()}).
-
-Důležitou metodou v~této třídě je metoda \texttt{pageHelp()}, díky
-které je možné zobrazit krátkou nápovědu k~zásuvnému modulu, a~metoda
-\texttt{saveDefinitionPoint()}, která slouží
-k~získání a~uložení definičního bodu vyhledané nemovitosti.
-
-\subsubsection{Domains}
-V~této třídě jsou jednoduché metody pro zjištění domény prvku na
-základě vstupního argumentu. Je zde metoda \texttt{anoNe()}, která
-testuje, zda je vstupní argument rovný \uv{a}, a~podle toho vrací
-\texttt{True/False}. Metoda \texttt{cpCe()} převádí hodnotu
-vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo
-  evidenční}. Metoda \texttt{druhUcastnika()} kontroluje, o~jaký
-typ subjektu se jedná (např. právnická osoba). Poslední metodou je
-metoda \texttt{rodinnyStav()}, která vrací rodinný stav subjektu na
-základě zadaného vstupního kódu.
-
-\subsubsection{HtmlDocument}
-
-%%% ML: zde je odkaz na stejnou kapitolu, ve ktere je tento text
-Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}. 
-Jsou v~ní obsaženy metody pro tvorbu
-jednotlivých částí kódu v~jazyce \textit{HTML}. Vhodnou kombinací
-těchto částí je poté sestaven celý \textit{HTML} dokument. Takto
-připravený dokument je poté možné vyexportovat pomocí příslušné
-funkcionality a~zobrazit v~libovolném prohlížeči.
-
-\subsubsection{JednotkySearchForm}
-V~této třídě se řeší vyhledávání jednotek pomocí vyhledávacích
-formulářů navržených v~programu \texttt{Qt Designer}. Vyhledávat lze
-podle čísla jednotky, domovního čísla, čísla parcely, ke které
-jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída
-je potomkem \texttt{QWidget}.
-
-\subsubsection{LatexDocument}
-Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří
-části kódu, které jsou nakonec sestaveny jako~\latex~dokument. Takto
-sestavený dokument je poté vyexportován pomocí příslušné funkcionality
-modulu a~je připravený pro export například od formátu \textit{PDF}
-(\texttt{pdflatex}). Třída je potomkem \texttt{VfkDocument}.
-
-\subsubsection{MainApp}
-Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Je
-potomkem tříd \texttt{QDockWidget}, \texttt{QMainWindow}
-a~\texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů,
-nastavuje symbologii načtených vrstev, propojuje vyhledávání s~mapovým
-oknem QGIS, stará se o~exporty do definovaných formátů. Ve třídě se
-také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
-
-\subsubsection{OpenThread}
-Tato třída se stará o~načítání jednotlivých \textit{VFK} souborů
-v~separátním vlákně. Díky použití jiného vlákna pro načítání souborů,
-se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy
-\texttt{QThread} dostupné v~použité knihovně \texttt{PyQt4}. Obsahuje
-jedinou metodu (\texttt{run()}) pro spuštění separátního vlákna,
-jejíž předpis je dostupný v~příloze č. \ref{l_thread_run}.
-
-\subsubsection{ParcelySearchForm}
-Třída \texttt{ParcelySearchForm} stejně jako předešlé třídy pro
-vyhledávání dědí od rodičovské třídy \texttt{QWidget}. Obsahuje
-metody, které pracují s~navrženými grafickými prvky. Díky těmto
-metodám je možné vyhledávat parcely podle parcelního čísla, typu
-parcely, druhu pozemku nebo listu vlastnictví.
-
-\subsubsection{RichTextDocument}
-Třída se stará o~tvorbu \textit{HTML} dokumentu, který obsahuje
-výsledky vyhledávání a~je zobrazen v~prohlížeči dat. Třída je potomkem
-\texttt{VfkDocument}.
-
-\subsubsection{SearchFormController}
-Třída \texttt{SearchFormController} získává hodnoty ze vstupních
-formulářů, které jsou obsahem tříd pro vyhledávání
-(\texttt{BudovySearchForm}, \texttt{JednotkySearchForm},
-\texttt{Par\-celySearchForm}, \texttt{VlasniciSearchForm}). Z~těchto
-vstupních hodnot poté sestavuje vyhledávací dotaz, který pomocí
-signálu \texttt{actionTriggered} emituje dále. Ukázka kódu pro
-sestavení vyhledávacího dotazu pro parcely je uvedena v~příloze
-\ref{l_search_parcely}.
-
-\subsubsection{VfkDocument}
-\label{l_vfkDocument}
-Jedná se o~abstraktní třídu, ze které jsou odvozeny třídy pro
-sestavení dokumentů v~různých formátech (\texttt{HtmlDocument},
-\texttt{LatexDocument}, \texttt{RichTextDocument}). Jsou zde
-implementovány základní metody, které zajišťují správné sestavení
-dokumentu.
-
-\subsubsection{VfkPlugin}
-Tato třída implementuje zásuvný modul do programu QGIS. Jsou zde
-uvedeny metody, které vytvářejí instanci pluginu v~programu QGIS po
-jeho instalaci, nebo metody, které tuto instanci ruší. Tato třída byla
-vygenerována automaticky při tvorbě základního schéma pluginu
-nástrojem \textit{Plugin Builder} a~později upravena dle konkrétních
-potřeb.
-
-\subsubsection{VfkTableModel}
-Tato třída je potomkem \texttt{QSqlQueryModel}, která poskytuje
-model pro čtení SQL dotazů. Třída komunikuje s~připojenou databází,
-která je do třídy předávána pomocí argumentu
-\texttt{connectionName}. Ke komunikaci jsou používány standardní SQL
-dotazy, které jsou do databáze předávány metodou
-\texttt{self.setQuery()}.
-
-\subsubsection{VfkTextBrowser}
-\texttt{VfkTextBrowser} je potomkem třídy \texttt{QTextBrowser}. Třída
-byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v~okně
-zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
-
-\subsubsection{VlastniciSearchForm}
-Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména,
-typu (fyzická osoba, právnická osoba, společné jmění manželů), rodného
-čísla (případně IČO) nebo listu vlastnictví. Metody třídy získávají
-hodnoty vstupních polí / \uv{checkboxů}.
 
 
 % -----------------------------------------------------------------------
@@ -2815,6 +2722,154 @@ tzv. \uv{Issues} na stránce se zdrojovým kódem.
 
 \setcounter{page}{1}   	% nastaví čítač stránek znovu od jedné
 \pagenumbering{Roman} % číslování arabskými
+
+
+% -----------------------------------------------------------------------
+\clearpage
+\chapter{Popis tříd zásuvného modulu}
+
+\section{ApplyChanges}
+Třída slouží pro aplikaci změn na stavová data. Pracuje s databázemi SQLite,
+které jsou vytvořeny pomocí \texttt{VFK Driveru GDAL}. Podrobnější popis 
+zpracování změnových souborů touto třídou je uveden v~kapitole
+\ref{l_zpracovani_zmen}.
+
+\section{BudovySearchForm}
+Jedná se o~třídu, která se stará o~vyhledávací prvky ve formuláři pro
+vyhledávání budov. Vzhled
+uživatelského rozhraní této třídy byl navržen samostatně pomocí
+programu \texttt{Qt Designer}. Kód návrhu je uložen v~souboru
+\texttt{ui\_budovysearchform.ui}, respektive v~překompilované verzi
+pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru
+třídy je uvedena v~příloze \ref{l_budovySearchForm_konstruktor}.
+
+\section{DocumentBuilder}
+V~třídě \texttt{DocumentBuilder} sestavuje dokument, který bude
+zobrazen v~prohlížeči dat (nebo exportován do některého
+z~podporovaných formátů), na základě výsledků vyhledávání. O~správné
+sestavení se stará metoda \texttt{buildHtml()}, viz příloha
+\ref{l_buildHtml}.
+
+%%% ML: 3x napriklad vypada divne
+Třída mimo jiné obsahuje několik metod pro správné sestavení tabulek
+(např. \texttt{tableParcely()}), metody pro tvorbu jednotlivých částí
+listu vlastnictví jako je \texttt{partTelesoB1()}, nebo metody pro
+zobrazení detailu o~vyhledávaném tělese (např. \texttt{pageBudova()}).
+
+Důležitou metodou v~této třídě je metoda \texttt{pageHelp()}, díky
+které je možné zobrazit krátkou nápovědu k~zásuvnému modulu, a~metoda
+\texttt{saveDefinitionPoint()}, která slouží
+k~získání a~uložení definičního bodu vyhledané nemovitosti.
+
+\section{Domains}
+V~této třídě jsou jednoduché metody pro zjištění domény prvku na
+základě vstupního argumentu. Je zde metoda \texttt{anoNe()}, která
+testuje, zda je vstupní argument rovný \uv{a}, a~podle toho vrací
+\texttt{True/False}. Metoda \texttt{cpCe()} převádí hodnotu
+vstupního argumentu na řetězec \uv{Číslo popisné} / \uv{Číslo
+  evidenční}. Metoda \texttt{druhUcastnika()} kontroluje, o~jaký
+typ subjektu se jedná (např. právnická osoba). Poslední metodou je
+metoda \texttt{rodinnyStav()}, která vrací rodinný stav subjektu na
+základě zadaného vstupního kódu.
+
+\section{HtmlDocument}
+
+%%% ML: zde je odkaz na stejnou kapitolu, ve ktere je tento text
+Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}. 
+Jsou v~ní obsaženy metody pro tvorbu
+jednotlivých částí kódu v~jazyce \textit{HTML}. Vhodnou kombinací
+těchto částí je poté sestaven celý \textit{HTML} dokument. Takto
+připravený dokument je poté možné vyexportovat pomocí příslušné
+funkcionality a~zobrazit v~libovolném prohlížeči.
+
+\section{JednotkySearchForm}
+V~této třídě se řeší vyhledávání jednotek pomocí vyhledávacích
+formulářů navržených v~programu \texttt{Qt Designer}. Vyhledávat lze
+podle čísla jednotky, domovního čísla, čísla parcely, ke které
+jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída
+je potomkem \texttt{QWidget}.
+
+\section{LatexDocument}
+Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří
+části kódu, které jsou nakonec sestaveny jako~\latex~dokument. Takto
+sestavený dokument je poté vyexportován pomocí příslušné funkcionality
+modulu a~je připravený pro export například od formátu \textit{PDF}
+(\texttt{pdflatex}). Třída je potomkem \texttt{VfkDocument}.
+
+\section{MainApp}
+Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Je
+potomkem tříd \texttt{QDockWidget}, \texttt{QMainWindow}
+a~\texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů,
+nastavuje symbologii načtených vrstev, propojuje vyhledávání s~mapovým
+oknem QGIS, stará se o~exporty do definovaných formátů. Ve třídě se
+také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
+
+\section{OpenThread}
+Tato třída se stará o~načítání jednotlivých \textit{VFK} souborů
+v~separátním vlákně. Díky použití jiného vlákna pro načítání souborů,
+se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy
+\texttt{QThread} dostupné v~použité knihovně \texttt{PyQt4}. Obsahuje
+jedinou metodu (\texttt{run()}) pro spuštění separátního vlákna,
+jejíž předpis je dostupný v~příloze č. \ref{l_thread_run}.
+
+\section{ParcelySearchForm}
+Třída \texttt{ParcelySearchForm} stejně jako předešlé třídy pro
+vyhledávání dědí od rodičovské třídy \texttt{QWidget}. Obsahuje
+metody, které pracují s~navrženými grafickými prvky. Díky těmto
+metodám je možné vyhledávat parcely podle parcelního čísla, typu
+parcely, druhu pozemku nebo listu vlastnictví.
+
+\section{RichTextDocument}
+Třída se stará o~tvorbu \textit{HTML} dokumentu, který obsahuje
+výsledky vyhledávání a~je zobrazen v~prohlížeči dat. Třída je potomkem
+\texttt{VfkDocument}.
+
+\section{SearchFormController}
+Třída \texttt{SearchFormController} získává hodnoty ze vstupních
+formulářů, které jsou obsahem tříd pro vyhledávání
+(\texttt{BudovySearchForm}, \texttt{JednotkySearchForm},
+\texttt{Par\-celySearchForm}, \texttt{VlasniciSearchForm}). Z~těchto
+vstupních hodnot poté sestavuje vyhledávací dotaz, který pomocí
+signálu \texttt{actionTriggered} emituje dále. Ukázka kódu pro
+sestavení vyhledávacího dotazu pro parcely je uvedena v~příloze
+\ref{l_search_parcely}.
+
+\section{VfkDocument}
+\label{l_vfkDocument}
+Jedná se o~abstraktní třídu, ze které jsou odvozeny třídy pro
+sestavení dokumentů v~různých formátech (\texttt{HtmlDocument},
+\texttt{LatexDocument}, \texttt{RichTextDocument}). Jsou zde
+implementovány základní metody, které zajišťují správné sestavení
+dokumentu.
+
+\section{VfkPlugin}
+Tato třída implementuje zásuvný modul do programu QGIS. Jsou zde
+uvedeny metody, které vytvářejí instanci pluginu v~programu QGIS po
+jeho instalaci, nebo metody, které tuto instanci ruší. Tato třída byla
+vygenerována automaticky při tvorbě základního schéma pluginu
+nástrojem \textit{Plugin Builder} a~později upravena dle konkrétních
+potřeb.
+
+\section{VfkTableModel}
+Tato třída je potomkem \texttt{QSqlQueryModel}, která poskytuje
+model pro čtení SQL dotazů. Třída komunikuje s~připojenou databází,
+která je do třídy předávána pomocí argumentu
+\texttt{connectionName}. Ke komunikaci jsou používány standardní SQL
+dotazy, které jsou do databáze předávány metodou
+\texttt{self.setQuery()}.
+
+\section{VfkTextBrowser}
+\texttt{VfkTextBrowser} je potomkem třídy \texttt{QTextBrowser}. Třída
+byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v~okně
+zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
+
+\section{VlastniciSearchForm}
+Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména,
+typu (fyzická osoba, právnická osoba, společné jmění manželů), rodného
+čísla (případně IČO) nebo listu vlastnictví. Metody třídy získávají
+hodnoty vstupních polí / \uv{checkboxů}.
+
+
 
 \chapter{Ukázky kódu}
 
@@ -3027,21 +3082,35 @@ prvek č. 3), která obsahuje nástroje pro práci se zásuvným modulem.
 
 % -----------------------------------------------
 \section{Načítání dat}
-Pomocí zásuvného modulu je možné nahrát soubor VFK nebo soubor
-databáze SQLite, ve které jsou VFK data uložena. Tento import je
-k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import
-  VFK}.
+Pomocí zásuvného modulu je možné načíst soubor VFK nebo soubor
+databáze SQLite, ve které jsou VFK data uložena. 
 
-Zásuvný modul podporuje načítání více souborů. Formulář pro načtení
+Funkcionalita pro načítání více souborů (jednotlivě nebo z adresáře) a~načítání 
+dat z~SQLite databáze je do zásuvného modulu přidána pouze v~případě, kdy je na
+počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0}
+a~vyšší.
+
+\subsection{Načítání ze souborů}
+Zásuvný modul podporuje načítání souborů ve formátu VFK nebo databáze SQLite.
+Cesta ke vstupním souborům je zadána pomocí tlačítka \uv{Procházet} v~nabídce 
+\textit{Import VFK}.
+
+Je podporováno načítání více souborů do jedné databáze. Formulář pro načtení
 dalšího VFK souboru je vygenerován po stisku tlačítka \uv{+}. Cesta
 k~novému souboru se zadává opět po stisku tlačítka \uv{Procházet}.
 
-V~tomto okně je dále možné zvolit, které vrstvy se budou importovat
+\subsection{Načítání z adresáře}
+Při čtení z adresáře uživatel musí zadat cestu k požadovanému adresáři
+obdobně, jako je tomu při čtení ze souborů. Při této volbě jsou načteny
+veškeré soubory VFK, které obsahuje zadaný adresář (včetně jeho podadresářů).
+
+\subsection{Možnosti načítání}
+V okně pro načítání dat je možné zvolit, které vrstvy se budou importovat
 (PAR, BUD). V~případě, kdy není zatrženo ani jedno pole, tak se načtou
 pouze popisná data. Bude tedy dostupné pouze vyhledávání bez interakce
 s~mapovým oknem.
 
-Jestliže je na vstupu zadán soubor ve formátu \textit{.vfk}, tak je na
+Jestliže je na vstupu zadán soubor ve formátu VFK, tak je na
 pozadí vytvořená databáze SQLite, do které jsou data z~VFK souboru
 načteny. Tato databáze je pojmenována
 \texttt{jmeno\_prvniho\_souboru\_stav.db} pro případ, kdy načtený
@@ -3050,10 +3119,14 @@ soubor obsahuje stavová data, nebo
 uložena změnová data. Databáze je uložena o~adresář výše, než první
 soubor VFK.
 
-Funkcionalita pro načítání více souborů a~načítání dat z~SQLite
-databáze je do zásuvného modulu přidána pouze v~případě, kdy je na
-počítači uživatele dostupná knihovna GDAL ve verzi \texttt{2.2.0}
-a~vyšší.
+V témže okně je možné zvolit možnost \uv{Přepsat stávající databázi}, která
+umožní znovunačtení dat VFK do SQLite databáze. Při této možnosti je původní
+databáze smazána a je vytvořena znovu dle nově načteného souboru VFK.
+
+\begin{description}
+ \item[Upozornění:] Není umožněna kombinace více typů datových zdrojů!
+\end{description}
+
 
 % -----------------------------------------------
 \section{Vyhledávání}
@@ -3189,8 +3262,8 @@ zpracování změn neaktivní.
 \chapter{Obsah přiloženého CD}
 
 %%% ML: co text prace, pridej alespon nazvy adresaru
-Přiložené CD obsahuje zdrojové kódy zásuvného modulu, text diplomové práce a \uv{patch} knihovny GDAL vytvořený oproti
-verzi 2.2.0.
+Přiložené CD obsahuje zdrojové kódy zásuvného modulu, text diplomové
+práce a \uv{patch} knihovny GDAL vytvořený oproti verzi 2.2.0.
 
 \begin{minipage}{0.9\textwidth}
   \dirtree{%
