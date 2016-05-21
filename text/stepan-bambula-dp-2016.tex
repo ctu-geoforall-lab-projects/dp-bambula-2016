@@ -390,16 +390,19 @@ formátu (VFK).
 %%% ML: techto dat, nize v textu mas VFK bez blizsiho vysvetlene (data
 %%% KN jsou poskytovana ve Vymennem formatu ...)
 %% opraveno
+%%% ML: OK
 Pro jejich zpracování je k~dispozici několik nástrojů. Většinou se
 však jedná o~komerční nástroje, které jsou šířeny za úplatu, nebo
 nástroje, které jsou dostupné jako modul pro komerční GIS software
 %%% ML: Kokes a dalsi
 %% opraveno
+%%% ML: OK
 typu ArcGIS, AutoCAD Map 3D, Kokeš a~další.
 
 Alternativou k~placený programům pro práci s~geografickými daty je,
 %%% ML: o nabourani nejde, ani o to, ze je zdarma ;-)
 %% opraveno
+%%% ML: OK
 v~posledních letech čím dál úspěšnější, projekt QGIS, který je šířen zdarma
 %%% ML: licence open source neexistuje, zmeneno
 jako open-source. Projekt je úspěšný i~díky mnoha dobrovolníkům,
@@ -429,19 +432,23 @@ některého z~podporovaných formátů.
 
 %%% ML: zkus pouzit jine slovo nez slabina
 %% opraveno
+%%% ML: OK
 Hlavní nevýhodou výše zmíněného nástroje byl paradoxně použitý jazyk C++,
 díky němuž byla instalace a~zprovoznění zásuvného modulu v~QGIS ne
 zcela intuitivní a~i~pro zkušeného uživatele mnohdy představovala
 %%% ML: v textu mas casto "toto", tohoto, zkus se tomu vyhnout
 %% upraveno
+%%% ML: OK
 nepřekonatelný problém. Na základě tohoto podnětu vzniklo jedno
 z~podtémat diplomové práce, a~sice přepis stávajícího zásuvného
 %%% ML: nasjedujici vetu preformulovat, nezni cesky
 %% upraveno
+%%% ML: OK
 modulu do jazyka Python. Tento jazyk byl zvolen, jelikož program QGIS
 podporuje zásuvné moduly napsané právě v~těchto dvou jazycích. 
 %%% ML: spojit dve nasledujici vety do jedne, zkratit
 %% upraveno
+%%% ML: OK
 Moduly napsáné v~jazyce Python je možné instalovat standardní cestou, 
 čili ze správce zásuvných modulů, což velice usnadňuje jejich dostupnost.
 Jazyk C++ je vhodný především u~modulů, které jsou součástí jádra QGIS
@@ -500,6 +507,7 @@ modul (nadstavbu) pro zpracování souborů VFK.
 %%% celem textu bude narocne a zaneses tam radu chyb, pokud to mas v
 %%% celem textu, tak navrhuji asi nechat
 %% upraveno
+%%% ML: OK
 V~kapitole se budeme věnovat vybraným nástrojům pracujícím
 s~těmito daty. Moduly, které jsou šířeny zdarma a~bylo je možné
 vyzkoušet, byly otestovány přímo. Popis komerčních modulů vychází
@@ -534,6 +542,7 @@ vstupního VFK souboru podle zvolené šablony nebo podle
 geodatabáze. Samozřejmostí je možnost uložení protokolu
 %%% ML: vsechny jeji verze, nebo pouze ta zakladni?
 %% ano, podle informaci na https://www.arcdata.cz/sluzby-a-podpora-zakazniku/sluzby/software-arcdata
+%%% ML: OK
 o~zpracování. Aplikace je distribuována zdarma.
 
 \newpage
@@ -555,12 +564,14 @@ ISKN, která byla pomocí aplikace ISKN Studio převedena do
 ESRI geodatabáze.  Aplikace je rovněž šířena
 %%% ML: vsechny verze?
 %% ano, podle informaci na https://www.arcdata.cz/sluzby-a-podpora-zakazniku/sluzby/software-arcdata
+%%% ML: OK
 bezúplatně. \cite{iskn_studio}
 
 \newpage
 \section{Import VFK, VKM}
 %%% ML: nastoj ma opravdu tak obecny nazev?
 %% upraveno
+%%% ML: OK
 % TODO: http://www.gisoft.cz/Moduly/ImportVFK
 Jedná se o~modul vytvořený společností GISOFT, který slouží k~převodu
 a~načtení dat ve formátech VFK a~VKM do formátu DGN. Modul
@@ -817,7 +828,7 @@ dat.
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{images/gdal-logo.png}
+\includegraphics[scale=.9]{images/gdal-logo.png}
 \caption[GDAL -- logo]{GDAL -- logo (zdroj: \cite{gdal})}
 \end{figure}
 
@@ -833,6 +844,7 @@ práci s~daty ve vektorovém formátu.
 %%% dalsiho, vim, ze neco meli v Plzni pro prevod do PG)
 %% akorat https://ojs.cvut.cz/ojs/index.php/gi/article/viewFile/gi.2.14/2592
 %% ale neni zde informace o soucasnem stavu software
+%%% ML: OK
 GDAL je považován za jeden z~hlavních open-source projektů. Knihovna
 je hojně využívána také v~komerční GIS sféře. Knihovna je otevřená
 a~poskytuje základní funkcionalitu potřebnou pro denní práci
@@ -854,7 +866,7 @@ oblasti. V~současné době je Python vyvíjen ve dvou verzích, ve verzi
 
 \begin{figure}[htb]
 \centering
-\includegraphics[scale=.7]{images/python-logo.png}
+\includegraphics[scale=.6]{images/python-logo.png}
 \caption[Python -- logo]{Python -- logo (zdroj: \cite{python_web})}
 \end{figure}
 
@@ -918,11 +930,13 @@ a~článku v~časopise Geoinformatics FCE CTU (\cite{geoinformatics_katastr}).
 %%% lepsi je na uvod veta typu "Text teto kapitoly prevazne cerpa z
 %%% ...." (coz plati pro celou kapitolu 3)
 %% upraveno
+%%% ML: OK
 Vývoj systému byl započat v~roce 1997 ve spolupráci se společností APP
 Czech s.r.o.\footnote{Dnes společnost funguje pod názvem NESS Czech
   s.r.o.}, která fungovala jako systémový integrátor a~dodavatel
 %%% ML: pro CUZK (?)
 %% upraveno
+%%% ML: OK
 aplikačního programového vybavení pro ČUZK. Dalšími společnostmi podílejícími
 se na vývoji ISKN byly Infinity, a.s., Compaq Computer
 s.r.o.\footnote{Dnes pod názvem HP.}, Oracle Czech, s.r.o., Bentley
@@ -1798,6 +1812,7 @@ s~daty v~novém výměnném formátu katastru (VFK), viz kapitola
 Pro přístup k~datům plugin využívá knihovny GDAL, respektive ovladače
 %%% ML: doplnit odkaz na kapitolu
 %% doplneno
+%%% ML: OK
 \textbf{VFK Driver} (viz \ref{l_gdal_vfk_driver}). Načtená data ovladač ukládá do databáze SQLite,
 jejíž struktura je shodná se strukturou jednotlivých bloků v~souboru
 VFK. Při opakovaném čtení dat ze stejného souboru je využívána již
@@ -1935,11 +1950,13 @@ zásuvným modulem.
 \subsection{Načítání dat}
 %%% ML: Tato operace je k dispozici ?
 %% upraveno
+%%% ML: OK
 Pomocí zásuvného modulu je možné načíst soubor VFK. Tento import je
 k~dispozici pomocí tlačítka \uv{Procházet} v~nabídce \textit{Import
   VFK}. V~tomto okně je dále možné zvolit, které vrstvy (PAR, BUD) se budou
 %%% ML: nepresne, spise zobrazovat v mapovem okne
 %% upraveno
+%%% ML: OK
 zobrazovat v~mapovém okně QGIS. V~případě, kdy není zatrženo ani jedno pole,
 tak se načtou pouze popisná data. Bude tedy dostupné pouze vyhledávání
 bez interakce s~mapovým oknem.
@@ -1968,6 +1985,7 @@ dat. Náhled vyhledaných informací je uveden na obrázku
 %%% ML: opet nevhodna ich forma, ale je v cele praci i kdyz vetsinou
 %%% pouze v uvodni castech kapitol
 %% upraveno
+%%% ML: OK
 V~této kapitole se budeme postupně věnovat jednotlivým krokům,
 které vedly k~rozšíření stávajícího zásuvného modulu programu QGIS
 o~podporu zpracování změnových vět souborů VFK. Spolu s~tímto byly do
@@ -2011,9 +2029,11 @@ operačního systému, či verze programu QGIS.
 %%% ML: zasadnim bodem teto prace je implementace novych
 %%% funkcionalit...
 %% upraveno
+%%% ML: OK
 Přepis zásuvného modulu do jazyka Python je důležitým bodem této
 %%% ML: tady opet ich forma, dale v textu ne
 %% upraveno
+%%% ML: OK
 práce vzhledem k~usnadnění jeho distribuce. Při přepisu byl kód vytvářen 
 co možná nejvíce podobný původnímu kódu v~jazyku C++, a~to hlavně z~důvodu, 
 aby byly zachovány veškeré funkcionality a~vlastnosti tak, jak jsou známé
@@ -2150,6 +2170,7 @@ zpracování změnových VFK souborů nezbytné.
 %%% verze. Stacilo by napsat, ze prehled zmen popisuje prilozeny
 %%% patch.
 %% upraveno
+%%% ML: OK
 Veškeré provedené změny na ovladači VFK jsou dostupné v~knihovně GDAL
 od verze 2.2.0. Přehled provedených změn popisuje \uv{patch},
 který je obsahem CD přiloženého k~diplomové práci. Tento \uv{patch} je
@@ -2260,7 +2281,7 @@ opět zobrazeno upozornění.
 \clearpage
 \section{Nově přidané funkcionality}
 \label{l_nove_funkcionality}
-Díky změnám provedeným na VFK ovladači knihovny GDAL, bylo možné přidat
+Díky změnám provedeným ve VFK ovladači knihovny GDAL, bylo možné do zásuvného modulu QGIS přidat
 nové funkcionality nejen pro načítání dat.
 
 Veškeré nové funkcionality související s~načítáním více souborů, 
@@ -2338,8 +2359,8 @@ v~knihovně GDAL.
 \subsection{Změna vzhledu zásuvného modulu}
 Jak z~výše uvedeného vyplývá, k~přidání nových funkcionality musel
 být změněn i~vzhled samotného okna zásuvného modulu pro načítání
-dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}. 
-Kde byly přidány následující prvky:
+dat. Nový vzhled je uveden na obrázku č. \ref{l_plugin_novy_vzhled}, 
+kde byly přidány následující prvky:
 
 \begin{enumerate}
  \item Volba vstupního zdroje,
@@ -2359,7 +2380,7 @@ Kde byly přidány následující prvky:
 
 
 % -----------------------------------------------------------------------
-\clearpage
+%\clearpage
 \section{Zpracování změnových vět}
 \label{l_zpracovani_zmen}
 Schopnost zpracovat změnové věty VFK souborů je důležitá pro
@@ -2410,7 +2431,8 @@ Jediným výstupním argumentem je poté cesta k~nově vytvořené databázi, kt
 
 %%% ML: co prejmenovat parametry (main->input a export -> output) ?
 %% prejmenovano
-\newpage
+%%% ML: OK
+%\newpage
 \begin{lstlisting}[caption={Nápověda ke konzolové aplikaci pro implementaci změn}, 
 		    label=l_apply_changes_ukazka]
 $ ./applyChanges.py -h
@@ -2444,6 +2466,7 @@ V~dalším kroku se příkazem \texttt{sqlite3.connect(database)} provede
 připojení ke kopii databáze (v~dalším textu bude tato kopie označována
 %%% ML: to je matouci (je to vystupni DB, viz input/output)
 %% upraveno
+%%% ML: OK
 jako výstupní / \uv{output}). Databáze se změnami je poté k~této výstupní
 databázi připojena pomocí SQL příkazu \texttt{ATTACH
   DATABASE}\footnote{\url{https://www.sqlite.org/lang\_attach.html}}. Práce
@@ -2523,7 +2546,8 @@ zásuvného modulu byly provedeny následující úpravy:
   vyvoláno pomocí nově vytvořené ikony v~nástrojové liště, viz
   obr. \ref{l_ikona_zmen}.
 
-%%% ML: zdroj ikonky?
+  %%% ML: zdroj ikonky?
+  %%% ML: OK
 \begin{figure}[htb]
 \centering
 \includegraphics[scale=0.9]{images/applyChanges.png}
@@ -2582,6 +2606,7 @@ a~praktické. V~teoretické části jsem se věnoval rešerši dostupných
 nástrojů pro práci s~katastrálními daty a~použité
 %%% ML: "Dale jsem ... " preformulovat
 %% odstavec upraven
+%%% ML: OK
 technologii, která byla nezbytná pro vypracování práce. Na tyto
 kapitoly navazuje část týkající se Informačního systému katastru
 %%% ML: kde "zde", cely odstavec zni nevyrovnane...
@@ -2589,7 +2614,7 @@ nemovitostí, ze kterého jsou datové soubory VFK exportovány.
 Hlavním bodem teoretické části je kapitola týkající se výměnného formátu
 katastru nemovitostí, kde jsem kladl důraz především na jeho strukturu.
 Pochopení struktury výměnného formátu bylo nezbytné pro správné navržení
-zásuvného modulu. V~kapitole jsem se zaměřil i~na strukturu změnových vět 
+zásuvného modulu. V~této kapitole jsem se zaměřil i~na strukturu změnových vět 
 VFK tak, aby mohl být vypracován hlavní 
 %%% ML: spise cil (zde hodnotis naplneni cilu, ktere jsou popsany v uvodu)
 bod diplomové práce -- \textbf{zpracování změnových vět}.
@@ -2618,7 +2643,7 @@ změnových vět a~ostatní přidané vylepšení zásuvného modulu.
 Přepis stávajícího zásuvného modulu do jazyka Python byl započat v~rámci
 semestrálního projektu předmětu \textit{Free software GIS} v~roce 2015.
 Na přepisu prvních částí kódu (zejména pro načítání VFK souboru) se podíleli
-i~ostatní členové skupiny pracující na tomto tématu, viz stránky předmětu\footnote{\url{http://geo101.fsv.cvut.cz/gwiki/155YFSG_Free_software_GIS}}.
+i~ostatní členové skupiny pracující na tomto tématu, viz stránky předmětu\footnote{\url{http://geo.fsv.cvut.cz/gwiki/155YFSG_Free_software_GIS}}.
 Kód v~jazyce Python se snaží co možná nejvíce kopírovat strukturu původního kódu 
 v~jazyce C++. Modul byl navržen s~pomocí stejné knihovny Qt, respektive PyQt, 
 která je jednou z~hlavních knihoven pro tvorbu uživatelského rozhraní a~značně
@@ -2629,9 +2654,9 @@ QGIS díky použití aplikačního rozhraní QGIS API.
 %%% textu to mas uvedeno, tady je to ale pro transparentnost nutne
 %%% uvest take (uvod a zaver prace je nejpodstatnejsi)
 Poté, co byl stávající zásuvný modul přepsán, tak byl s~pomocí vedoucího 
-diplomové práce umístěn do nově vzniklého
+diplo\-mové práce umístěn do nově vzniklého
 repositáře\footnote{\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}},
-který spravuje organizace OSGeoREL na ČVUT v~Praze. Přepsaný plugin je v~repositáři
+který spravuje organizace OSGeo\-REL na ČVUT v~Praze. Přepsaný plugin je v~repositáři
 dostupný ve verzi \texttt{2.0BETA} a~jeho funkcionalita kopíruje
 původní zásuvný modul v~C++. Pro tuto verzi modulu byla v~oficiálním
 repositáři se zdrojovým
@@ -2695,6 +2720,7 @@ novými funkcionalitami, kde nejdůležitější z~nich je podpora
 zpracování změn. Zdrojové kódy jsou dostupné v~repositáři na serveru
 Github (\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin}). Modul
 může být v~prostředí QGIS nainstalován po přidání nového repositáře
+%%% ML: na predchozi strance mas stejny link v poznamce pod carou
 (\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}), který je
 spravovaný organizací OSGeoREL. Spolu se zásuvným modulem vznikla
 i~uživatelská příručka, která je v~diplomové práci uvedena jako
@@ -2741,6 +2767,7 @@ tzv. \uv{Issues} na stránce se zdrojovým kódem.
 \clearpage
 \chapter{Popis tříd zásuvného modulu}
 
+%%% ML: je otazka zda tyto sekce davat do obsahu, potom zbytecne naroste
 \section{ApplyChanges}
 Třída slouží pro aplikaci změn na stavová data. Pracuje s~databázemi SQLite,
 které jsou vytvořeny pomocí \texttt{VFK Driveru GDAL}. Podrobnější popis 
