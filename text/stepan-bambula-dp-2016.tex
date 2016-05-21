@@ -2655,7 +2655,7 @@ QGIS díky použití aplikačního rozhraní QGIS API.
 %%% uvest take (uvod a zaver prace je nejpodstatnejsi)
 Poté, co byl stávající zásuvný modul přepsán, tak byl s~pomocí vedoucího 
 diplo\-mové práce umístěn do nově vzniklého
-repositáře\footnote{\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}},
+repositáře\footnote{\label{l_qgis_repo}\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}},
 který spravuje organizace OSGeo\-REL na ČVUT v~Praze. Přepsaný plugin je v~repositáři
 dostupný ve verzi \texttt{2.0BETA} a~jeho funkcionalita kopíruje
 původní zásuvný modul v~C++. Pro tuto verzi modulu byla v~oficiálním
@@ -2721,7 +2721,8 @@ zpracování změn. Zdrojové kódy jsou dostupné v~repositáři na serveru
 Github (\url{https://github.com/ctu-osgeorel/qgis-vfk-plugin}). Modul
 může být v~prostředí QGIS nainstalován po přidání nového repositáře
 %%% ML: na predchozi strance mas stejny link v poznamce pod carou
-(\url{http://geo.fsv.cvut.cz/osgeorel/qgis-plugins.xml}), který je
+%% upraveno
+(viz poznámka č. \ref{l_qgis_repo} výše), který je
 spravovaný organizací OSGeoREL. Spolu se zásuvným modulem vznikla
 i~uživatelská příručka, která je v~diplomové práci uvedena jako
 příloha \ref{l_prirucka}.
@@ -2768,13 +2769,14 @@ tzv. \uv{Issues} na stránce se zdrojovým kódem.
 \chapter{Popis tříd zásuvného modulu}
 
 %%% ML: je otazka zda tyto sekce davat do obsahu, potom zbytecne naroste
-\section{ApplyChanges}
+%% upraveno, takto je obsah prehlednejsi
+\section*{ApplyChanges}
 Třída slouží pro aplikaci změn na stavová data. Pracuje s~databázemi SQLite,
 které jsou vytvořeny pomocí \texttt{VFK Driveru GDAL}. Podrobnější popis 
 zpracování změnových souborů touto třídou je uveden v~kapitole
 \ref{l_zpracovani_zmen}.
 
-\section{BudovySearchForm}
+\section*{BudovySearchForm}
 Jedná se o~třídu, která se stará o~vyhledávací prvky ve formuláři pro
 vyhledávání budov. Vzhled
 uživatelského rozhraní této třídy byl navržen samostatně pomocí
@@ -2783,7 +2785,7 @@ programu \texttt{Qt Designer}. Kód návrhu je uložen v~souboru
 pro jazyk Python \texttt{ui\_budovysearchform.py}. Ukázka konstruktoru
 třídy je uvedena v~příloze \ref{l_budovySearchForm_konstruktor}.
 
-\section{DocumentBuilder}
+\section*{DocumentBuilder}
 V~třídě \texttt{DocumentBuilder} sestavuje dokument, který bude
 zobrazen v~prohlížeči dat (nebo exportován do některého
 z~podporovaných formátů), na základě výsledků vyhledávání. O~správné
@@ -2801,7 +2803,7 @@ které je možné zobrazit krátkou nápovědu k~zásuvnému modulu, a~metoda
 \texttt{saveDefinitionPoint()}, která slouží
 k~získání a~uložení definičního bodu vyhledané nemovitosti.
 
-\section{Domains}
+\section*{Domains}
 V~této třídě jsou jednoduché metody pro zjištění domény prvku na
 základě vstupního argumentu. Je zde metoda \texttt{anoNe()}, která
 testuje, zda je vstupní argument rovný \uv{a}, a~podle toho vrací
@@ -2812,7 +2814,7 @@ typ subjektu se jedná (např. právnická osoba). Poslední metodou je
 metoda \texttt{rodinnyStav()}, která vrací rodinný stav subjektu na
 základě zadaného vstupního kódu.
 
-\section{HtmlDocument}
+\section*{HtmlDocument}
 
 %%% ML: zde je odkaz na stejnou kapitolu, ve ktere je tento text
 Třída \texttt{HtmlDocument} je potomkem třídy \texttt{VfkDocument}. 
@@ -2822,21 +2824,21 @@ těchto částí je poté sestaven celý \textit{HTML} dokument. Takto
 připravený dokument je poté možné vyexportovat pomocí příslušné
 funkcionality a~zobrazit v~libovolném prohlížeči.
 
-\section{JednotkySearchForm}
+\section*{JednotkySearchForm}
 V~této třídě se řeší vyhledávání jednotek pomocí vyhledávacích
 formulářů navržených v~programu \texttt{Qt Designer}. Vyhledávat lze
 podle čísla jednotky, domovního čísla, čísla parcely, ke které
 jednotka patří, listu vlastnictví nebo způsobu využití jednotky. Třída
 je potomkem \texttt{QWidget}.
 
-\section{LatexDocument}
+\section*{LatexDocument}
 Třída \texttt{LatexDocument} obsahuje metody, pomocí nichž se vytváří
 části kódu, které jsou nakonec sestaveny jako~\latex~dokument. Takto
 sestavený dokument je poté vyexportován pomocí příslušné funkcionality
 modulu a~je připravený pro export například od formátu \textit{PDF}
 (\texttt{pdflatex}). Třída je potomkem \texttt{VfkDocument}.
 
-\section{MainApp}
+\section*{MainApp}
 Třída \texttt{MainApp} je stěžejní třídou zásuvného modulu. Je
 potomkem tříd \texttt{QDockWidget}, \texttt{QMainWindow}
 a~\texttt{Ui\_MainApp}. Obsahuje metody pro načítání VFK souborů,
@@ -2844,7 +2846,7 @@ nastavuje symbologii načtených vrstev, propojuje vyhledávání s~mapovým
 oknem QGIS, stará se o~exporty do definovaných formátů. Ve třídě se
 také přidává funkcionalita jednotlivým prvkům zásuvného modulu.
 
-\section{OpenThread}
+\section*{OpenThread}
 Tato třída se stará o~načítání jednotlivých \textit{VFK} souborů
 v~separátním vlákně. Díky použití jiného vlákna pro načítání souborů,
 se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy
@@ -2852,19 +2854,19 @@ se práce se zásuvným modulem stává plynulejší. Třída dědí od třídy
 jedinou metodu (\texttt{run()}) pro spuštění separátního vlákna,
 jejíž předpis je dostupný v~příloze č. \ref{l_thread_run}.
 
-\section{ParcelySearchForm}
+\section*{ParcelySearchForm}
 Třída \texttt{ParcelySearchForm} stejně jako předešlé třídy pro
 vyhledávání dědí od rodičovské třídy \texttt{QWidget}. Obsahuje
 metody, které pracují s~navrženými grafickými prvky. Díky těmto
 metodám je možné vyhledávat parcely podle parcelního čísla, typu
 parcely, druhu pozemku nebo listu vlastnictví.
 
-\section{RichTextDocument}
+\section*{RichTextDocument}
 Třída se stará o~tvorbu \textit{HTML} dokumentu, který obsahuje
 výsledky vyhledávání a~je zobrazen v~prohlížeči dat. Třída je potomkem
 \texttt{VfkDocument}.
 
-\section{SearchFormController}
+\section*{SearchFormController}
 Třída \texttt{SearchFormController} získává hodnoty ze vstupních
 formulářů, které jsou obsahem tříd pro vyhledávání
 (\texttt{BudovySearchForm}, \texttt{JednotkySearchForm},
@@ -2874,7 +2876,7 @@ signálu \texttt{actionTriggered} emituje dále. Ukázka kódu pro
 sestavení vyhledávacího dotazu pro parcely je uvedena v~příloze
 \ref{l_search_parcely}.
 
-\section{VfkDocument}
+\section*{VfkDocument}
 \label{l_vfkDocument}
 Jedná se o~abstraktní třídu, ze které jsou odvozeny třídy pro
 sestavení dokumentů v~různých formátech (\texttt{HtmlDocument},
@@ -2882,7 +2884,7 @@ sestavení dokumentů v~různých formátech (\texttt{HtmlDocument},
 implementovány základní metody, které zajišťují správné sestavení
 dokumentu.
 
-\section{VfkPlugin}
+\section*{VfkPlugin}
 Tato třída implementuje zásuvný modul do programu QGIS. Jsou zde
 uvedeny metody, které vytvářejí instanci pluginu v~programu QGIS po
 jeho instalaci, nebo metody, které tuto instanci ruší. Tato třída byla
@@ -2890,7 +2892,7 @@ vygenerována automaticky při tvorbě základního schéma pluginu
 nástrojem \textit{Plugin Builder} a~později upravena dle konkrétních
 potřeb.
 
-\section{VfkTableModel}
+\section*{VfkTableModel}
 Tato třída je potomkem \texttt{QSqlQueryModel}, která poskytuje
 model pro čtení SQL dotazů. Třída komunikuje s~připojenou databází,
 která je do třídy předávána pomocí argumentu
@@ -2898,12 +2900,12 @@ která je do třídy předávána pomocí argumentu
 dotazy, které jsou do databáze předávány metodou
 \texttt{self.setQuery()}.
 
-\section{VfkTextBrowser}
+\section*{VfkTextBrowser}
 \texttt{VfkTextBrowser} je potomkem třídy \texttt{QTextBrowser}. Třída
 byla stanovena jako \uv{zástupná} pro prvek \texttt{vfkBrowser} v~okně
 zásuvného modulu. Tento prvek slouží jako prohlížeč dat.
 
-\section{VlastniciSearchForm}
+\section*{VlastniciSearchForm}
 Jedná se o~třídu, která slouží k~vyhledávání vlastníků podle jména,
 typu (fyzická osoba, právnická osoba, společné jmění manželů), rodného
 čísla (případně IČO) nebo listu vlastnictví. Metody třídy získávají
