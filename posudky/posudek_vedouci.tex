@@ -1,0 +1,97 @@
+\documentclass[czech,11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+\usepackage[pdftex,breaklinks=true,colorlinks=true,urlcolor=blue,
+  pagecolor=black,linkcolor=black]{hyperref}
+\usepackage[czech]{babel}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+  {\Large --- Posudek vedoucího diplomové práce ---}
+\end{center}
+
+\vspace{.2cm}
+
+\noindent \begin{tabular}{rp{.9\textwidth}}
+  {\bf Název:} & Rozšíření nástroje pro práci s katastrálními daty v programu QGIS \\
+  {\bf Student:} & Bc. Štěpán Bambula \\
+  {\bf Vedoucí:} & Ing. Martin Landa, Ph.D. \\
+  {\bf Fakulta:} & Fakulta stavební ČVUT v Praze \\ 
+  {\bf Katedra:} & Katedra geomatiky \\
+  {\bf Oponent:} & Ing. Arnošt Müller \\
+  {\bf Pracoviště oponenta:} & Státní pozemkový úřad v Praze \\
+\end{tabular}
+
+\vspace{1cm}
+
+Práce navazuje na dlouholetý projekt laboratoře Open Source Geospatial
+Research and Education Laboratory (OSGeoREL) na katedře geomatiky,
+fakulty stavební ČVUT v Praze. Jeho cílem je vývoj a údržba
+specializovaného nástroje pro práci s katastrálními daty poskytovanými
+ve výměnném formátu katastru (VFK) na open source GIS platformě
+označované jako QGIS. Prototyp tohoto nástroje vznikl v roce 2012 jako
+semestrální projekt předmětu Projekt informatika 2. Tento prototyp byl
+dále rozvíjen v~navazujícím semestrálním projektu v~roce 2015, jehož
+spoluautorem byl předkladatel práce. Hlavním cílem projektu bylo usnadnění
+distribuce nástroje k cílovým uživatelům. Vzhledem k tomu, že QGIS
+podporuje snadnou distribuci pouze nástrojů (tzv. zásuvných modulů)
+napsaných v programovacím jazyku Python, padla volba na tuto
+platformu. V rámci semestrálního projektu byla portována pouze část
+nástroje. Student tuto část nejprve musel dokončit. Na základě toho
+vzniklo zadání předkládané práce. \newline
+
+V rámci práce projekt, který vzhledem k tomu, že se přes
+nejrůznější technické problémy těžko dostával ke svým uživatelům a
+realisticky řečeno skomíral, byl opět oživen. Díky tomu je nástroj snadno
+dostupný pro běžného uživatele a stal se z dlouhodobého pohledu pro
+jeho autory udržitelným. Tento výsledek je zcela zásadní pro další
+vývoj projektu, který je současně jakousi výkladní skříní laboratoře
+OSGeoREL v Praze a úspěšnou prezentací výsledků práce studentů na
+studijním oboru Geomatika. \newline
+
+Z hlediska hodnocení předkládané práce jsou podstatná rozšíření, která
+student do projektu přinesl. Jedná se o načítání více souborů VFK do
+jedné pracovní databáze a především o podporu zpracování změnových
+souborů. Nejprve byly nutné úpravy provedeny na straně ovladače GDAL,
+který umožňuje data ve formátu VFK zásuvnému modulu QGIS načíst. Tato
+část byla zajištěna vedoucím práce. Úpravy a implementace nových
+funkcionalit na straně zásuvného modulu byly provedeny
+studentem. Výsledkem je nová verze nástroje označovaná jako 2.1,
+která umožňuje zpracovat více souborů ve formátu VFK najednou. Což je
+vzhledem k tomu, že jsou katastrální data daného zájmového území běžně
+poskytována ve více souborech, zcela zásadní pro jeho další uplatnění
+mezi potencionálními uživateli. Druhé podstatné rozšíření se týká
+zpracování změnových vět. Logika zpracování změnových dat byla
+implementována studentem v rámci knihovny v jazyce
+Python, která je použita jak v zásuvném modulu QGIS, tak i v nástroji
+pro příkazovou řádku. Oficiální zveřejnění nové verze nástroje se
+předpokládá na podzim roku 2016, kdy vyjde i verze knihovny GDAL 2.2,
+na které jsou nové functionality závislé. \newpage
+
+Student projevil dlouhodobý zájem na projektu pracovat, vnesl do něj
+svoji iniciativu jejímž výsledkem je stabilní verze nástroje 2.0 a
+vývojová verze 2.1, která přináší nové, pro praxi důležité
+funkcionality. Ze stagnujícího projektu se díky tomu stal živý
+projekt prezentující práci studentů na našem oboru a zároveň platformu
+pro jeho další vývoj. Tento přínos považuji pro moje
+hodnocení za zásadní. \newline
+
+Na základě výše uvedeného hodnotím předloženou diplomovou práci
+klasifikačním stupněm
+
+\begin{center}
+  {\bf --- A (výborně) --- }
+\end{center}
+
+\vskip 2cm
+
+\begin{tabular}{lp{.2\textwidth}r}
+& & \ldots\ldots\ldots\ldots\ldots\ldots\ldots \\
+V~Solanech dne 17. června 2016 & & Ing. Martin Landa, Ph.D. \\
+& & Fakulta stavební, ČVUT v Praze \\
+\end{tabular}
+
+\end{document}
