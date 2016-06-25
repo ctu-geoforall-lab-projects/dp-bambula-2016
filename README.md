@@ -12,6 +12,10 @@ Bc. Štěpán Bambula
 
 Ing. Martin Landa, Ph.D.
 
+## Oponent
+
+Ing. Arnošt Müller
+
 ## Obhajoba
 
 06/2016
